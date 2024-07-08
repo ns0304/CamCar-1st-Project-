@@ -119,7 +119,7 @@ public class MemberController {
 			if(dbMember.getMem_id().equals("admin")) {
 				return "manager_main";
 			}
-			// ㅎㅎㅎㅎㅎ
+			return "redirect:/";
 		}
 	}
 	

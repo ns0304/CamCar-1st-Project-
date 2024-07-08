@@ -72,7 +72,7 @@
 							<option value="기타">기타</option>
 							</select>
 <%-- 						<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId}" required="required" /></td> --%>
-							<input type="text" name="board_name" value="${sessionScope.sId}" required="required" size="15">
+							<input type="text" name="board_name" value="${sessionScope.sId}" required="required" size="15" readonly="readonly">
 						</td>
 					</tr>
 				<%-- 세션 아이디를 사용하여 작성자를 구별하므로 비밀번호는 불필요 --%>

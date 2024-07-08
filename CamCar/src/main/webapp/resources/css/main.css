@@ -1,21 +1,76 @@
 @charset "UTF-8";
 
 /* 캠핑갈카 홍보 사진/일러스트 슬라이드 */
-#SlideImg>img {
+.SlideImg>img {
 	height: 500px;
 }
 
-#SlideImg>p {
+.SlideImg>p {
 	position: relative;
 	bottom: 250px;
 }
 
-#SlideImg {
-	/* 	width: 720px; */
+.SlideImg {
+/* 	width: 720px; */
 	height: 500px;
-	border: 2px solid red; /* 임시 */
+	border: 2px solid red;	/* 임시 */
+	overflow: hidden;
 }
 
-#best_place {
-	
+.slideBestImg {
+	height: 500px;
+	border: 2px solid red;	/* 임시 */	
+	overflow: hidden;
+}
+
+/* okokok 차박 베스트 장소 이미지 사이즈 조절 okokok */
+.slideBestImg > img {
+	height: 500px;
+	object-fit:cover;
+}
+
+/* 자주 묻는 질문 영역 */
+#mainQna {
+	border: 1px solid yellow;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */
+
+}
+
+#mainQnaMore {border:1px solid red;
+text-align: right;
+}
+
+#qna {display: flex;
+flex-direction: column;
+width: 100%;
+border-radius: 3px;
+background-color: lightgray;
+height: auto;
+padding: 50px;
+box-sizing: border-box;
+}
+
+.qnaBtn {width: 100%;
+padding: 10px 15px;
+text-decoration: none;
+background-color:white;
+border-radius:5px;
+text-align: left;
+box-sizing: border-box;
+}
+
+.qnaBtn:not(#qnaBtn3) {
+margin-bottom: 30px;
+}
+
+.qnaBtn:hover {
+background-color: gray; 
+color: white; 
+cursor: pointer;
+}
+
+.clear {
+clear: both;
 }
