@@ -122,8 +122,12 @@ public class MemberController {
 			if(dbMember.getMem_id().equals("admin")) {
 				return "manager_main";
 			}
+<<<<<<< HEAD
 			
 			return "redirect:/";
+=======
+			// ㅎㅎㅎㅎㅎ
+>>>>>>> branch 'main' of https://github.com/ns0304/project-1st-camcar-.git
 		}
 	}
 	
