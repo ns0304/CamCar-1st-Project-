@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+/* body { */
+/*     font-family: Arial, sans-serif; */
+/* } */
+
+.myPageBox {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /*균일한 간격*/
+    align-items: center;
+    margin: 20px 0;
+}
+
+
+/* 예약내역, 문의내역, 사이드 고객센터이동  */
+.resSection, .questionSection, .help-section { 
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.reservationList {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.resCarImage img {
+    max-width: 100%;
+    height: auto;
+}
+
+.reservationInfo {
+    flex: 1;
+    padding: 10px;
+}
+
+.reservationInfo h3 {
+    margin: 0 0 10px;
+}
+
+.detailsBtn, .cancel-button, .myInfoManagement, .moreViewBtn {
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.detailsBtn:hover, .cancel-button:hover, .myInfoManagement:hover, .moreViewBtn:hover {
+    background-color: #0056b3;
+}
+
+.pageDots {
+    margin-top: 10px;
+}
+
+.pageDots .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 2px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.pageDots .dot:hover {
+    background-color: #007bff;
+}
+
+.questionList {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-section {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: right;
+}
+
+
+.OuterBox {
+	display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+
+.myPageBox {
+        width: 100%;
+    }
+
+
+

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/* 상세내역 표 */
+.resList {
+	text-align: left;
+/* 	padding: 50px,50px,50px,50px; */
+/* 	border-collapse: collapse; */
+}
+#resList {
+	width: 700px;
+	height: 300px;
+}
+
+
+
+/*필수약관에 동의해 주세요 */
+ .agreeText1_2, .agreeText2_1, .agreeText2_2 {
+	display : block;
+	margin-left:auto;
+	margin-right:auto;
+	border: 1px solid #000000;
+/* 	padding: 0.5em; */
+	border-radius: 10px;
+	width: 350px;
+	height: 80px;
+	vertical-align: top;
+}
+
+.agreeText1_1 {
+	display : block;
+	margin-left:auto;
+	margin-right:auto;
+	border:1px solid #ffffff;
+	width: 350px;
+	height: 80px;
+	vertical-align: top;
+}
+
+
+
+
+
+
+
+.rule_agree { /* 약관 동의 체크 */
+	border-collapse: collapse;
+	width: 350px;
+	height: 250px;
+	text-align: left;
+	border-radius: 20px;
+}
+
+#agree_rules {
+	font-size: 14px;
+	color: gray;
+}
+
+
+
+.already_pay { /* 결제내역란 */
+	border-collapse: collapse;
+	width: 350px;
+	height: 250px;
+/* 	border-radius: 20px; */
+	text-align: left;
+}
+.alreadyPay {
+	border-radius: 20px;
+/* 	border-collapse: collapse; */
+}
+ 
+
+#rule_agree {
+	text-align: left;
+}
+
+.agree {
+	border:1px;
+	display: inline-block;
+}
+
+#res_cancel_btn { /* 예약 취소 버튼 */
+	width:75px;
+	height:35px;
+	border-radius: 10px;
+	background-color: #a2a2a2;
+	border: 2px #00000;
+	font-weight: bold;}
