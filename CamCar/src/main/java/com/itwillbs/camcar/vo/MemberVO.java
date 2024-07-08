@@ -65,24 +65,7 @@ public class MemberVO {
 	private int mem_status;
 	private String mem_mail_auth_status;
 	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

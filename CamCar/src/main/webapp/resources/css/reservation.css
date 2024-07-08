@@ -5,15 +5,19 @@
 	/* 	position: -webkit -sticky; */ /* IE버전 낮을경우 이 항목 추가 입력 */
 	position: sticky;
 	top: 100px;
-	background-color: #fff;
+	background-color: #ccc;
 	padding: 10px;
 	margin-left: 15px;
 	width: 230px;
 	height: 300px;
 	z-index: 10;
 	float: right;
+	border-radius: 12px;
 }
 
 #research { /* 재검색 버튼 */
 	width: 100%;
 }
+
+
+

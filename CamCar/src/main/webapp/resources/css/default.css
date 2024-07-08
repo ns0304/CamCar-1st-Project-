@@ -7,28 +7,30 @@ header {
 	height: 80px;
 	background-color: white;
 	z-index: 50;
+	justify-content: center;
+	display: flex;
 }
 
 .header_menu {
+	justify-content: center;
 	display: flex;
-	justify-content: space-around;
+	width: 1200px;
 	margin: 30px;
 }
 
 .logo, .menu, .member {
-	list-style-type: none; /* 리스트 스타일 제거 */
-	padding: 0;
-	margin: 0;
+    list-style-type: none; /* 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
 }
 
 .logo li, .menu li, .member li {
-	display: inline; /* 리스트 항목들을 인라인으로 배치 */
-	margin-right: 20px; /* 각 항목 사이의 간격 설정 */
+    display: inline; /* 리스트 항목들을 인라인으로 배치 */
+    margin-right: 20px; /* 각 항목 사이의 간격 설정 */
 }
-
 .logo {
 	overflow: hidden;
-}
+	}
 
 .menu {
 	margin: auto;
@@ -39,56 +41,57 @@ header {
 	overflow: hidden;
 	white-space: nowrap;
 }
-
 .menu a:hover, .member a:hover {
 	color: #81C147;
 }
 
+
 .member {
-	margin-left: auto; /* member를 오른쪽으로 이동 */
+    margin-left: auto; /* member를 오른쪽으로 이동 */
 	overflow: hidden;
 }
-
 .member a {
 	font-size: 12px;
 }
 
 /* ----- bottom.jsp ----- */
 #footer_area {
-	text-align: center;
 	margin-top: 50px;
-	/* 	width: 100%; */
+/* 	width: 100%; */
 	float: none;
 }
 
 /* ------- 공통 ------- */
 
 /* ------ 임시(영역구분하기 위해) ------ */
-/* section, aside { */
-/* 	border:1px solid;  */
-/* } */
+main {
+	border: 1px solid red;
+}
+main>section {
+	border: 1px solid blue;
+}
 /* ------------------------------------ */
 
 /* 하이퍼링크 밑줄 제거 */
 a {
-	text-decoration: none; /* 링크의 밑줄 제거 */
-	color: inherit; /* 링크의 색상 제거 */
+	text-decoration: none;	/* 링크의 밑줄 제거 */
+	color: inherit;			/* 링크의 색상 제거 */
 }
 
 body {
-	margin: 0;
-	padding: 0;
+	margin:0; padding:0;
 }
 
 main {
-	height: 2000px;
+	height: auto;
+	width: 1200px;
 	justify-content: center;
 	display: flex;
+	margin: auto;
 }
 
-section {
+main>section {
 	float: left;
-	height: 720px;
 	width: 720px;
 	position: relative;
 	top: 100px;
@@ -96,34 +99,55 @@ section {
 
 /* ----- reservation.jsp ----- */
 #reservation_container {
+/* 	position: -webkit -sticky; */ /* IE버전 낮을경우 이 항목 추가 입력 */
 	position: sticky;
 	top: 100px;
 	background-color: #fff;
-	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 20px;
 	margin-left: 15px;
-	width: 230px;
-	height: 420px;
+	width: 420px; height: 400px;
+	box-sizing: border-box;
 	z-index: 10;
-	float: right;
 }
 
-.center input { /* 버튼 크기 */
+.center input {	/* 버튼 크기 */
+/* 	width: 100px; */
 	width: 48%;
 	height: 40px;
+/* 	padding: 10px 30px; */
 }
 
 #inquiry { /* 차량 조회하고 예약하기 버튼 */
 	width: 100%;
 }
 
+
 /* 카카오톡 1:1문의 */
+/*
 #kakaotalk {
 	background-color: yellow;
 	border-radius: 100%;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left:5px;
+	padding-right:5px;
 	position: fixed;
 	right: 50px;
 	bottom: 80px;
 	font-size: 50px;
+}
+*/
+
+/* okokokkokok카카오톡 1:1문의okokokkokok*/
+
+.chatBtn {
+	background-color: yellow;
+	border-radius: 100%;	
+	padding-left:5px;
+	padding-right:5px;
+	position: fixed;
+	right: 50px;
+	bottom: 80px;
+	font-size: 20px;
+	text-align: center;
 }
