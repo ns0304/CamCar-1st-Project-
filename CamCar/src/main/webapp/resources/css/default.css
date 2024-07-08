@@ -123,31 +123,26 @@ main>section {
 	width: 100%;
 }
 
-
-/* 카카오톡 1:1문의 */
-/*
-#kakaotalk {
-	background-color: yellow;
-	border-radius: 100%;
-	padding-left:5px;
-	padding-right:5px;
+/* 카카오톡 1:1 상담 */
+.chatBtn {border-left:16px solid #0ca;
+	border-radius: 16px 0 0 16px;
+    background-color: #C0C0C0;
+	width:110px;
+	padding: 10px;
+	box-sizing: border-box;
+	line-height: 1.8;
 	position: fixed;
-	right: 50px;
-	bottom: 80px;
-	font-size: 50px;
-}
-*/
-
-/* okokokkokok카카오톡 1:1문의okokokkokok*/
-
-.chatBtn {
-	background-color: yellow;
-	border-radius: 100%;	
-	padding-left:5px;
-	padding-right:5px;
-	position: fixed;
-	right: 50px;
-	bottom: 80px;
-	font-size: 20px;
+	right: -90px; top: 80%;
 	text-align: center;
 }
+
+.chatBtn:hover {right:0; transition:1.5s;}
+.chatBtn a {
+ text-decoration: none;
+ text-transform: capitalize;}
+.chatBtn img {height: 30px;
+ width: 30px;}
+.chatBtn a:link, #quick a:visited {
+	color: #000040;}
+.chatBtn a:hover, #quick a:active {
+	color: #FFFFFF;}
