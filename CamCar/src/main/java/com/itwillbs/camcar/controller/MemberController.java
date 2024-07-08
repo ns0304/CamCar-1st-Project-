@@ -124,6 +124,7 @@ public class MemberController {
 			}
 			// ㅎㅎㅎㅎㅎ
 		}
+		return "redirec:/";
 	}
 	
 	// 로그아웃
