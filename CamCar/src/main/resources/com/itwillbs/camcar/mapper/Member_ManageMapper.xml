@@ -29,6 +29,7 @@
 
 		)
 	</insert>
+	<!-- 지민이는 왜 500이 뜰까 정말이지 의문이다. -->
 	<!-- 전체 회원정보 조회 -->
 	<!-- 회원정보 게시물 검색기능 -->
 	<select id="selectMemberList" resultType="member">
