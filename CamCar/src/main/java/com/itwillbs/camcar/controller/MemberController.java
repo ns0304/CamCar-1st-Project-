@@ -119,6 +119,10 @@ public class MemberController {
 //				return "redirect:" + session.getAttribute("prevURL");
 //			}
 			
+			if(dbMember.getMem_id().equals("admin")) {
+				return "manager_main";
+			}
+			
 			return "redirect:/";
 		}
 	}
