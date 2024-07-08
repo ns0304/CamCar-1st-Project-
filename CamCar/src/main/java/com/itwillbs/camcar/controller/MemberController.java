@@ -119,7 +119,10 @@ public class MemberController {
 //				return "redirect:" + session.getAttribute("prevURL");
 //			}
 			
-			return "redirect:/";
+			if(dbMember.getMem_id().equals("admin")) {
+				return "manager_main";
+			}
+			// ㅎㅎㅎㅎㅎ
 		}
 	}
 	
@@ -228,7 +231,10 @@ public class MemberController {
 //		return "member/member_pw_reset_final";
 //	}
 	
-	
+	@GetMapping("MemberInfo")
+	public String memberInfo() {
+		return "mypage/mypage";
+	}
 }
 
 
