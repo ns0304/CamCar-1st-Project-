@@ -1,0 +1,182 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.addressInfoChange {
+    width: 70%;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.addressInfoChange> h1 {
+	text-align: left;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.infoBox {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 4px ;
+    margin-bottom: 20px;
+}
+
+.infoBox p {
+    margin: 0;
+}
+
+.address_section, .agreement_section, .submit_section {
+    margin-bottom: 20px;
+}
+
+.address_section label, .agreement_section label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.address_section input, .agreement_section input, .submit_section button {
+    width: calc(75% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#basic_address {
+	width: 98%;
+}
+#detail_address {
+	width: 98%;
+}
+
+
+.searchBtn { /* 주소검색 버튼 */
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #cecece;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.searchBtn:hover { /* 주소검색 버튼 */
+    background-color: #0056b3;
+}
+
+#address_section { /* 주소 정보 영역*/
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	  border: 1px solid #ccc;
+}
+#agree_section { /* 동의 체크 영역*/
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	  border: 1px solid #ccc;
+}
+
+
+
+.agreement_section input {
+    width: auto;
+    margin-right: 10px;
+	display: inline;
+}
+.agreement_section {
+	display:flex;
+	margin-bottom: 0;
+}
+	
+	
+	    
+
+.view { 
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.view:hover {
+    text-decoration: underline;
+}
+
+.submit_section button {
+    width: auto;
+    background-color: #28a745; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.submit_section {
+	text-align: center; 
+}
+.submit_section button:hover {
+    background-color: #gray;
+}
+
+
+/* /*------------------------주소변경페이지 팝업창-----------------------------*/ */
+
+/* /* 팝업 스타일 */ */
+/* .popUp { */
+/*     display: none; */
+/*     position: fixed; */
+/*     left: 50%; */
+/*     top: 50%; */
+/*     transform: translate(-50%, -50%); */
+/*     width: 300px; */
+/*     background-color: white; */
+/*     border: 1px solid #ccc; */
+/*     padding: 20px; */
+/*     box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
+/*     z-index: 1000; */
+/* } */
+/* .popUpHeader { */
+/*     display: flex; */
+/*     justify-content: space-between; */
+/*     align-items: center; */
+/* } */
+/* .popUpHeader h2 { */
+/*     margin: 0; */
+/*     font-size: 16px; */
+/* } */
+/* .popUpHeader .close { */
+/*     cursor: pointer; */
+/*     font-size: 16px; */
+/* } */
+/* .popUpContent { */
+/*     margin: 20px 0; */
+/* } */
+/* .popUp table { */
+/*     width: 100%; */
+/*     border-collapse: collapse; */
+/* } */
+/* .popUp table, .popUp th, .popUp td { */
+/*     border: 1px solid #ccc; */
+/* } */
+/* .popUp th, .popUp td { */
+/*     padding: 8px; */
+/*     text-align: center; */
+/* } */
+/* .popUpConfirm { */
+/*     text-align: center; */
+/* } */
+/* .popUpConfirm button { */
+/*     padding: 10px 20px; */
+/*     background-color: #f68b1f; */
+/*     color: white; */
+/*     border: none; */
+/*     cursor: pointer; */
+/* } */
+/* .popUpConfirm button:hover { */
+/*     background-color: #f68b1f; */
+/* } */
+
+
