@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 캠핑갈카 홍보 사진/일러스트 슬라이드 */
+#SlideImg>img {
+	height: 500px;
+}
+
+#SlideImg>p {
+	position: relative;
+	bottom: 250px;
+}
+
+#SlideImg {
+	/* 	width: 720px; */
+	height: 500px;
+	border: 2px solid red; /* 임시 */
+}
+
+#best_place {
+	
+}
