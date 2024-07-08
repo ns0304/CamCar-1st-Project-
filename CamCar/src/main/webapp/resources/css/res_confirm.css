@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+/* 사이드바 고객센터로 이동 */
+#customer_container { 
+	position: sticky;
+	top: 100px;
+	background-color: #fff;
+	padding: 15px;
+	padding-bottom: 20px;
+	margin-left: 15px;
+	width: 230px; height: 130px;
+	z-index: 10;
+	float: right;
+	border-radius: 20px;
+	background-color: #E2E2E2;}
+	
+#customer_container>  {
+	font-size: 14px;
+	line-height: 150;}	
+
+#moveBtn{ /* 고객센터로 이동 버튼 */
+width:200px;
+height:35px;
+border-radius: 10px;
+background-color: #a2a2a2;
+border: 0px;
+font-weight: bold;
+}
+
+
+/* ---------------------------------------- */
+/* ----------------예약 확인--------------- */
+
+
+#my_res { /* 내 예약 */
+	width: 700px;
+	height: 300px;}
+	
+#old_res { /* 지난 예약 */
+	width: 700px;
+	height: 300px;}
+
+
+
+/* ----------------------------------------- */
+/* ---------------- 예약상세 --------------- */
+
+#resList { /* 상세내역 */
+	width: 700px;
+	height: 300px;} 
+		
+#pay_list { /* 결제 내역 */
+	width: 700px;
+	height: 300px;}
+
+#res_cancelBtn { /* 예약 취소 버튼 */
+	width:75px;
+	height:35px;
+	border-radius: 10px;
+	background-color: #a2a2a2;
+	border: 2px #00000;
+	font-weight: bold;}
+	
+
+
+
+
+
+
+
+
+
+
+
+
