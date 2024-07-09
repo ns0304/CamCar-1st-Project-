@@ -34,7 +34,7 @@
 				<div class="slideScope">
 					<div class="slideData">
 						<div class="slideBestImg">
-							<img src="${pageContext.request.servletContext.contextPath}/resources/images/best_place/best_place1.jpg" id="bestImgSlide">
+							<img src="${pageContext.request.servletContext.contextPath}/resources/img/best_place/best_place1.jpg" id="bestImgSlide">
 						</div>
 						<div class="slideCont">
 							<p class="subTit"></p>
