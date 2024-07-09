@@ -5,6 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<%-- 카카오지도 설치 스크립트 --%>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+				
 
 <style>
 
@@ -225,7 +228,19 @@ $(document).ready(function() {
 	<div id="res_detail1">
 		<span class="close">&times;</span><br>
 		<div>
-			<div class="map">지도 들어올 공간</div>
+			<div class="map">
+				<!-- 1. 지도 노드 -->
+				<div id="daumRoughmapContainer1720494911728" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+				<!-- 3. 실행 스크립트 -->
+				<script charset="UTF-8">
+					new daum.roughmap.Lander({
+						"timestamp" : "1720494911728",
+						"key" : "2jyf3",
+						"mapWidth" : "360",
+						"mapHeight" : "250"
+					}).render();
+				</script>
+			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 부산본점</b>
 		<p style="font-size: 14px;">부산점 상세정보<br> 위치, 이용시간 등등</p>
@@ -234,7 +249,19 @@ $(document).ready(function() {
 	<div id="res_detail2">
 		<span class="close">&times;</span><br>
 		<div>
-			<div class="map">지도 들어올 공간</div>
+			<div class="map">
+				<!-- 1. 지도 노드 -->
+				<div id="daumRoughmapContainer1720495062115" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+				<!-- 2. 실행 스크립트 -->
+				<script charset="UTF-8">
+					new daum.roughmap.Lander({
+						"timestamp" : "1720495062115",
+						"key" : "2jyf4",
+						"mapWidth" : "360",
+						"mapHeight" : "250"
+					}).render();
+				</script>
+			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 서울지점</b>
 		<p style="font-size: 14px;">서울점 상세정보<br> 위치, 이용시간 등등</p>
