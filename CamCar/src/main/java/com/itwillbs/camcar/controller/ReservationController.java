@@ -49,5 +49,33 @@ public class ReservationController {
 		return "reservation/car_detail";
 	}
 	
+	
+	// "Reservation" 서블릿 주소 매핑 - POST
+	@PostMapping("Reservation")
+	public String reservation() {
+		
+		return "reservation/reservation_final2";
+	}
+	
+	// "ReservationAdd" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationAdd")
+	public String reservationAdd() {
+		
+		return "reservation/reservation_final3";
+	}
+	
+	// "ReservationPay" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationPay")
+	public String reservationPay() {
+		
+		return "reservation/reservation_final4";
+	}
+	
+	// "ReservationFin" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationFin")
+	public String reservationFin() {
+		
+		return "reservation/reservation_final5";
+	}
 		
 }

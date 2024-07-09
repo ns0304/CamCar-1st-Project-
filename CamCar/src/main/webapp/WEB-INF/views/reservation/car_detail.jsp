@@ -92,7 +92,7 @@ $(document).ready(function() {
 				</div>
 				
 				<div class="center">
-					<input type="submit" id=reservation value="예약하기">
+					<input type="submit" id="reservation" value="예약하기">
 				</div>
 			</form>
 		</aside>
