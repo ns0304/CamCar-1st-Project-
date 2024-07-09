@@ -5,6 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<%-- 카카오지도 설치 스크립트 --%>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+				
 
 <style>
 
@@ -87,10 +90,18 @@ input[type=button]:hover, input[type=reset]:hover, #res_assembly {
 
 
 <script type="text/javascript">
+let map; // 지도 객체를 전역 변수로 선언
+
 $(document).ready(function() {
+		// 지도를 초기화하여 생성
+        initializeMap();
+		
 	// 각 지점 버튼 클릭 시 상세설명(레이어팝업) 열림/닫힘
 	$("#busan").click(function() {
 		$("#res_detail1").toggle();
+		if ($("#res_detail1").is(':visible')) {
+			resizeMap();	// 팝업창이 보이는 경우 지도 리사이즈
+        }
 	});
 	$("#seoul").click(function() {
 		$("#res_detail2").toggle();
@@ -171,6 +182,23 @@ $(document).ready(function() {
 	 });
 });
 
+// 지도 초기화 함수
+function initializeMap() {
+    var container = document.getElementById('daumRoughmapContainer1720494911728');
+    var options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+    };
+    map = new kakao.maps.Map(container, options); // 지도 생성
+}
+
+// 지도 리사이즈 함수
+function resizeMap() {
+    setTimeout(function() { // 약간의 지연 후 리사이즈 처리
+        map.relayout(); // 지도 크기 재조정
+        map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667)); // 지도 중심 재설정
+    }, 100);
+}
 </script>
 
 <div class="resForm_wrap">
@@ -225,7 +253,10 @@ $(document).ready(function() {
 	<div id="res_detail1">
 		<span class="close">&times;</span><br>
 		<div>
-			<div class="map">지도 들어올 공간</div>
+			<div class="map">
+				<!-- 1. 지도 노드 -->
+				<div id="daumRoughmapContainer1720494911728" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 부산본점</b>
 		<p style="font-size: 14px;">부산점 상세정보<br> 위치, 이용시간 등등</p>
@@ -234,7 +265,19 @@ $(document).ready(function() {
 	<div id="res_detail2">
 		<span class="close">&times;</span><br>
 		<div>
-			<div class="map">지도 들어올 공간</div>
+			<div class="map">
+				<!-- 1. 지도 노드 -->
+				<div id="daumRoughmapContainer1720495062115" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+				<!-- 2. 실행 스크립트 -->
+				<script charset="UTF-8">
+					new daum.roughmap.Lander({
+						"timestamp" : "1720495062115",
+						"key" : "2jyf4",
+						"mapWidth" : "360",
+						"mapHeight" : "250"
+					}).render();
+				</script>
+			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 서울지점</b>
 		<p style="font-size: 14px;">서울점 상세정보<br> 위치, 이용시간 등등</p>

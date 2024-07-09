@@ -46,7 +46,7 @@
 					<span>차량이름</span>예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
-					<input type="button" value="예약 상세 조회">
+					<input type="button" value="예약 상세 조회" onclick="location.href = './'" >
 					<input type="button" value="홈으로 가기">
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 		<aside class="chatBtn">
 		 <nav>
 		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/main/chat.png"><br>
+		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
 		  채팅상담</a>
 		 </nav>
 		</aside>	

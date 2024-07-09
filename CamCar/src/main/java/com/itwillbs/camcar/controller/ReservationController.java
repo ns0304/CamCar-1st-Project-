@@ -24,7 +24,7 @@ public class ReservationController {
 	// "CarList" 서블릿 주소 매핑 - POST
 	@PostMapping("CarList")
 	public String carListPro(
-			@RequestParam Map<String, String> map, Model model,
+			@RequestParam Map<String, String> map, Model model, 
 			@RequestParam(name= "car_opt", required = false) String[] car_opt) {
 		System.out.println("지점 : " + map.get("brc_rent_name"));
 		System.out.println("대여일시 : " + map.get("res_rental_date"));
@@ -49,5 +49,33 @@ public class ReservationController {
 		return "reservation/car_detail";
 	}
 	
+	
+	// "Reservation" 서블릿 주소 매핑 - POST
+	@PostMapping("Reservation")
+	public String reservation() {
+		
+		return "reservation/reservation_final2";
+	}
+	
+	// "ReservationAdd" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationAdd")
+	public String reservationAdd() {
+		
+		return "reservation/reservation_final3";
+	}
+	
+	// "ReservationPay" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationPay")
+	public String reservationPay() {
+		
+		return "reservation/reservation_final4";
+	}
+	
+	// "ReservationFin" 서블릿 주소 매핑 - POST
+	@PostMapping("ReservationFin")
+	public String reservationFin() {
+		
+		return "reservation/reservation_final5";
+	}
 		
 }

@@ -88,6 +88,7 @@ main {
 	justify-content: center;
 	display: flex;
 	margin: auto;
+	padding-bottom: 100px;
 }
 
 main>section {
