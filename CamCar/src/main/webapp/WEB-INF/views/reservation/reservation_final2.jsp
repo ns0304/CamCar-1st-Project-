@@ -11,6 +11,61 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/reservation_final.css" rel="stylesheet" type="text/css">
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<style type="text/css">
+.insurancePopUp {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.popUpHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popUpHeader h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.popUpHeader .close {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popUpField { 
+     margin: 1px 0;
+     margin-bottom: 1px; 
+     margin-top: 1px; 
+ } 
+ 
+</style>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	// 보장 내용 알아보기 팝업창
+	$("#insuranceDetail").click(function(event) {
+	    event.preventDefault();
+	    $(".insurancePopUp").show();
+	});
+	
+	// 팝업 닫기
+	$(".insurancePopUp .close").click(function() {
+	    $(".insurancePopUp").hide();
+	});
+
+});
+</script>
 </head>
 <body>
 <!-- 	<div id="container"> -->
@@ -23,7 +78,7 @@
 			<h2>예약</h2>
 			<div id ="reservationStep" >
 				<ul class="reservationStepList">
-					<li>
+					<li id="reservationStepNow">
 						예약
 					</li>
 					<li>
@@ -60,7 +115,7 @@
 						</section>
 					</div>
 					<div id="insuranceDetail" class="clear">
-						<a href="#">보장 내용 알아보기</a>	
+						<a href="#" insuranceDetail>보장 내용 알아보기</a>	
 					</div>
 			</div>
 			<div id="driverInfo"  class="clear">
@@ -101,15 +156,82 @@
 		</section>
 		
 		<aside id="sideContent">
-			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include>
+<%-- 			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include> --%>
+			<form action="ReservationAdd" name="reservation" method="post">
+				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+					<h5>000님의 여정</h5>     
+					<a href="#">수정</a>
+			          <h4>XX 지점---</h4>
+			          <hr>
+			          <h4>mm:dd yy:MM ~ mm:dd yy:MM</h4>
+			          <hr>
+			          <h4>XX 지점</h4>
+			          
+			          <button type="submit">다음</button>			
+			</form>
 		</aside>
 		</main>
 		
+<!-- 		보장내용 알아보기 팝업 -->
+	    <div class="insurancePopUp">
+	    	<fieldset class="popUpField">
+		        <div class="popUpHeader">
+			       	 <h2>보장내용을 알아볼까요?</h2>
+	   	             <span class="close" id="closePopup">&times;</span>
+		        </div>
+		        <div class="popUpMessage">
+		            <h3>자동차보험 꼭 가입해야 하나요?</h3>
+		            캠핑갈카 모든 차량이 ‘자동차 종합보험’에 가입되어 있으니<br>
+					보험 가입하고 든든하게 보장받으세요.<br>
+					<h3>‘일반자차’와 ‘완전자차’ 차이점을 알고싶어요</h3>
+					‘고객부담금’을 제외한 나머지 보장 내용이 같아요.<br>
+					 단, 보험을 선택하지 않으면 사고 시 모든 비용을 부담해야 해요.<br>
+					<table border="1">
+						<tr>
+							<td>구분</td>
+							<td>선택안함</td>
+							<td>일반자차</td>
+							<td>완전자차</td>
+						</tr>
+						<tr>
+							<td>고객 부담금<br>(자차 수리비)</td>
+							<td>전액</td>
+							<td>30만원</td>
+							<td>면제</td>
+						</tr>
+						<tr>
+							<td>대인</td>
+							<td colspan="3">무한대</td>
+						</tr>
+						<tr>
+							<td>대물</td>
+							<td colspan="3">건당 2천만원까지</td>
+						</tr>
+						<tr>
+							<td>자손</td>
+							<td colspan="3">인당 1천 5백만원까지</td>
+						</tr>
+					</table> 
+					 &#128712; 자손 : 나의 신체가 다친 경우
+					 &#128712; 대물 : 다른 사람의 물건(차량)에 손해를 입힌 경우
+					 &#128712; 대인 : 다른 사람의 신체를 다치게 한 경우
+		            <h3>휴차보상료가 뭔가요?</h3>	
+		            차량 사고시 수리 기간 동안 할인이 적용되지 않은 표준대여료(24시간 기준)의 50%를 고객(임차인)에게 청구하는데<br>
+					이 요금을 휴차보상료(또는 휴차료)라고 해요.<br><br>
+					- ‘완전 자차’ 보험 가입 시 단순 사고일 경우 휴차보상료가 면제 돼요.<br>
+					-  단, ‘완전 자차’ 보험을 가입했어도 전손 처리 혹은 폐차 시 휴차보상료가 부과 돼요.<br>
+					 &#128712; 임대차 계약서 > 보험 보상 관련 약관에서 확인 가능	
+					 <h3>보험 가입 후 사고 났을 때 어떻게 처리되나요?</h3>	
+					 한 번의 사고만 보장해요. 운전 중 사고가 났다면 캠핑갈카 고객센터 (1599-9111)로 전화주세요.<br>
+					 -----이미지삽입-----
+		        </div>		        
+	        </fieldset>
+	    </div>		
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
 		 <nav>
 		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/main/chat.png"><br>
+		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
 		  채팅상담</a>
 		 </nav>
 		</aside>		

@@ -121,13 +121,13 @@ $(document).ready(function() {
 	        <br>
 	        <div id="contentArea1"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
-	        	<p>SK렌터카 사이트에서 예약변경이 가능합니다.<br><br><br>
+	        	<p>캠핑갈카 사이트에서 예약변경이 가능합니다.<br><br><br>
 				   ① 메인 상단 ‘예약확인’ 클릭 ▶ ② 회원로그인(비회원일 경우, '비회원 예약확인' 클릭) ▶ ③내 예약 클릭 ▶ ④예약 상세에서 '예약변경' 클릭</p>
 	    	</div>
 	        <input type="button" id="buttonB" value="렌터카 이용중 반납시간을 연장하고 싶어요."><br>
 	        <div id="contentArea2"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
-	        	<p>SK렌터카 사이트에서 차량 이용중 반납시간 연장이 가능해요.<br><br><br>
+	        	<p>캠핑갈카 사이트에서 차량 이용중 반납시간 연장이 가능해요.<br><br><br>
 				   ① 메인 상단 ‘예약확인’ 클릭 ▶ ② 회원로그인(비회원일 경우, '비회원 예약확인' 클릭) ▶ ③내 예약 클릭 ▶ ④예약 상세에서 '대여연장' 클릭</p>
 	    	</div>
 	        <input type="button" id="buttonC" value="예약 시 차량정보(연식, 주요옵션)를 확인할 수 있나요?"><br>
@@ -141,14 +141,14 @@ $(document).ready(function() {
 	        <input type="button" id="buttonD" value="예약확인 및 예약취소는 어떻게 하나요?"><br>
 	        <div id="contentArea4"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
-	        	<p>SK렌터카 사이트 [예약상세]에서 예약확인 및 예약취소가 가능해요.<br><br><br>
+	        	<p>캠핑갈카 사이트 [예약상세]에서 예약확인 및 예약취소가 가능해요.<br><br><br>
 				   ① 메인 상단 '예약확인' 클릭 ▶ ② 회원로그인(비회원일 경우, '비회원 예약확인' 클릭) ▶ ③예약내역 ▶ ④내 예약 클릭 ▶ ⑤예약 상세에서 예약 내용 확인 or '예약취소' 진행</p>
 	    	</div>
 	        <input type="button" id="buttonE" value="렌터카 예약방법 및 절차가 궁금해요."><br>
 	        <div id="contentArea5"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
 	        	<p>아래 경로로 예약해 보세요.<br>
-				   SK렌터카 회원 가입 후 예약하면 추가 할인을 받을 수 있으니 참고하세요.<br><br><br>
+				   캠핑갈카 회원 가입 후 예약하면 추가 할인을 받을 수 있으니 참고하세요.<br><br><br>
 				   ①메인에서 장소, 일시, 차량 선택▶ ② 검색결과 확인▶ ③ 우측 상단 검색필터 적용(차종, 연료, 제조사 등) ▶ ④ 차량상세 정보 확인 후 예약▶⑤ 로그인 후, 회원가 적용 받기 ▶ ⑥ 보험선택 ▶ ⑦ 운전자 정보 입력▶ ⑧ 결제하기 ▶ ⑨ 예약완료
 				   </p>
 	    	</div>
