@@ -231,10 +231,6 @@ public class MemberController {
 //		return "member/member_pw_reset_final";
 //	}
 	
-	@GetMapping("MemberInfo")
-	public String memberInfo() {
-		return "mypage/mypage";
-	}
 }
 
 
