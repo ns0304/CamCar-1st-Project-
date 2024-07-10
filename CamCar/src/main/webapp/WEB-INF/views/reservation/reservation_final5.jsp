@@ -32,7 +32,7 @@
 					<li>
 						결제
 					</li>
-					<li>
+					<li id="reservationStepNow">
 						완료
 					</li>
 				</ul>
@@ -46,15 +46,25 @@
 					<span>차량이름</span>예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
-					<input type="button" value="예약 상세 조회" onclick="location.href = './'" >
-					<input type="button" value="홈으로 가기">
+					<input type="button" value="예약 상세 조회">
+					<input type="button" value="홈으로 가기"  onclick="location.href = './'" >
 				</div>
 			</div>
 
 
 		</section>
 		</main>
-
+	    <div class="insurancePopUp">
+	    	<fieldset class="popUpField">
+		        <div class="popUpHeader">
+			       	 <h2>보장내용을 알아볼까요?</h2>
+	   	             <span class="close" id="closePopup">&times;</span>
+		        </div>
+		        <div class="popUpMessage">
+		        </div>		        
+	        </fieldset>
+	    </div>	
+	    
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
 		 <nav>

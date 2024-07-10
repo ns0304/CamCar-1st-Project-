@@ -115,7 +115,7 @@ $(document).ready(function() {
 						</section>
 					</div>
 					<div id="insuranceDetail" class="clear">
-						<a href="#" insuranceDetail>보장 내용 알아보기</a>	
+						<a>보장 내용 알아보기</a>	
 					</div>
 			</div>
 			<div id="driverInfo"  class="clear">
@@ -227,6 +227,7 @@ $(document).ready(function() {
 		        </div>		        
 	        </fieldset>
 	    </div>		
+	    
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
 		 <nav>

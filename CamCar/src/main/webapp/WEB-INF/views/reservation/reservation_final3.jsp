@@ -26,7 +26,7 @@
 					<li>
 						예약
 					</li>
-					<li>
+					<li id="reservationStepNow">
 						부가상품
 					</li>
 					<li>
