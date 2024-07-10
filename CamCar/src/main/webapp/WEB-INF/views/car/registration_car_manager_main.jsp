@@ -38,7 +38,8 @@
 				<div align="center">
 					<h1>신규 차량 등록</h1>
 					
-					<form action="CarListWrite" name="joinForm" method="post" enctype="multipart/form-data">
+					<form action="CarListWrite" name="carListWrite" method="post">
+<!-- 					 enctype="multipart/form-data"> -->
 						<table border="1" class="graph">
 							<tr>
 								<th width="80px" rowspan="16">차량이미지</th>
@@ -46,13 +47,13 @@
 							<tr>
 								<th width="80px">차량코드</th>
 								<td class="write_td_right">
-									<input type="text"id="board_subject" name="car_idx" required />
+									<input type="text"id="car_idx" name="car_idx" required />
 								</td>
 							</tr>
 							<tr>
 								<th width="50px">차량 번호</th>
 								<td class="write_td_right">
-									<input type="text"id="board_subject" name="car_number" required />
+									<input type="text"id="car_number" name="car_number" required />
 								</td>
 							</tr>
 <!-- 							<tr> -->
@@ -64,13 +65,13 @@
 							<tr>
 								<th width="100px">모델명</th>
 								<td class="write_td_right">
-									<input type="text"id="board_subject" name="car_model" required />
+									<input type="text"id="car_model" name="car_model" required />
 								</td>
 							</tr>
 							<tr>
 								<th width="80px">연식</th>
 								<td class="write_td_right">
-									<input type="text"id="board_subject" name="car_old" required />
+									<input type="text"id="car_old" name="car_old" required />
 								</td>
 							</tr>
 <!-- 							<tr> -->
@@ -106,7 +107,11 @@
 							<tr>
 								<th width="80px">차량 지점 코드</th>
 								<td class="write_td_right">
-									<input type="text"id="board_subject" name="brc_idx" required />
+<!-- 									<input type="text"id="board_subject" name="brc_idx" required /> -->
+									<select name="brc_idx">
+										<option value="5101">캠핑갈카 부산본점</option>
+										<option value="201">캠핑갈카 서울지점</option>
+									</select>
 								</td>
 							</tr>
 <!-- 							<tr> -->

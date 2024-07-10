@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.camcar.service.Car_ManageService;
 import com.itwillbs.camcar.vo.BoardVO;
+import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
 import com.itwillbs.camcar.vo.PageInfo;
 
@@ -36,7 +37,7 @@ public class Car_ManageController {
 
 	@GetMapping("CarListWrite")
 	public String carWriteForm(HttpSession session, Model model, HttpServletRequest request) {
-		return "car/new_car_manager_main";
+		return "car/registration_car_manager_main";
 	}
 	// [ 글쓰기 비즈니스 로직 처리 ] 
 	
@@ -110,10 +111,10 @@ public class Car_ManageController {
 //			car.setBoard_file5(subDir + "/" + fileName5);
 //		}
 		
-		// BoardService - registBoard() 메서드 호출하여 게시물 등록 작업 요청
+		// Car_ManageService - registCar() 메서드 호출하여 게시물 등록 작업 요청
 		// => 파라미터 : BoardVO 객체   리턴타입 : int(insertCount)
 		System.out.println(car);
-		int insertCount = service.registBoard(car);
+		int insertCount = service.registCar(car);
 		// 게시물 등록 작업 요청 결과 판별
 		if(insertCount > 0) { // 성공
 //			try {
@@ -145,9 +146,30 @@ public class Car_ManageController {
 		} else { // 실패
 			model.addAttribute("msg", "글쓰기 실패!");
 			return "result/fail";
-			}
-			
 		}
+//		return "";
+	}
+	// *******************************************************************
+	// 최짐니 작업
+	// [ 차량 모델 정보(car_model_info) 등록 작업 ]
+	@GetMapping("CarModelRegistration")
+	public String carModelWriteForm(HttpSession session, Model model, HttpServletRequest request) {
+		return "car/registration_carModel_manager_main";
+	}
+	
+	@PostMapping("CarModelRegistration")
+	public String carModelWritePro(CarModelVO carModel, HttpServletRequest request, HttpSession session, Model model) {
+		System.out.println(carModel);
+		System.out.println("모델명 : " + carModel.getCar_model());
+		int insertCount = service.registCarModel(carModel);
+		if(insertCount > 0) { // 성공
+			return "redirect:/Carlist";
+		} else { // 실패
+			model.addAttribute("msg", "차량 모델 정보 등록 실패!");
+			return "result/fail";
+		}
+	}
+	// *******************************************************************
 	@GetMapping("Carlist")
 	public String CarListForm(
 			@RequestParam(defaultValue = "") String searchType,

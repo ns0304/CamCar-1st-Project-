@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <aside>
-	<div class="mainList">
+	<div class="mainList" style="margin-top: 100px;">
 		<h5>
 			<div class="title">관리자 메뉴</div>
 		</h5>
@@ -18,6 +17,9 @@
 		</h4>
 		<h4>
 			<a href="CarListWrite" class="">신규 차량 등록</a>
+		</h4>
+		<h4>
+			<a href="CarModelRegistration" class="">차량 모델 정보 등록</a>
 		</h4>
 		<h2>게시글 관리</h2>
 		<h4>

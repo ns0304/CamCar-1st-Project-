@@ -5,7 +5,8 @@ import lombok.Data;
 /*
 -- 차량모델정보
 create table car_model_info(
-	car_model varchar(20) primary key,			-- 모델명
+	car_model_idx int primary key,				-- 차량모델코드
+	car_model varchar(20) not null,				-- 모델명
 	car_type varchar(10) not null,				-- 차종 
 	car_company varchar(10) not null unique,	-- 제조사
 	car_shift_type varchar(10) not null,		-- 변속타입
@@ -27,6 +28,7 @@ public class CarModelVO {
 	// 2. Getter/Setter 정의
 	// 3. toString() 메서드 오버라이딩
 	// -------------------------------------------------------------
+	private int car_model_idx;
 	private String car_model;
 	private String car_type;
 	private String car_company;

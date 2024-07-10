@@ -18,11 +18,9 @@
 		<%-- 기본 메뉴 표시 영역(inc/top.jsp) 페이지 삽입 --%>
 		<%-- 현재 위치는 컨텍스트 루트(/MVC_Board = webapp) 이므로 inc 디렉토리의 top.jsp 지정 --%>
 		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
 	</header>
 	<main>
-
-
+		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
 		<section>
 			<article>
 				<%-- 본문 표시 영역 --%>

@@ -30,15 +30,15 @@ public class CarVO {
 	private int car_old;
 	private int brc_idx;
 	private String car_status;
-	private String board_file1;
-	private String board_file2;
-	private String board_file3;
-	private String board_file4;
-	private String board_file5;
-	private MultipartFile file1;
-	private MultipartFile file2;
-	private MultipartFile file3;
-	private MultipartFile file4;
-	private MultipartFile file5;
+//	private String board_file1;
+//	private String board_file2;
+//	private String board_file3;
+//	private String board_file4;
+//	private String board_file5;
+//	private MultipartFile file1;
+//	private MultipartFile file2;
+//	private MultipartFile file3;
+//	private MultipartFile file4;
+//	private MultipartFile file5;
 	
 }

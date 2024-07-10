@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.camcar.mapper.Car_ManageMapper;
 import com.itwillbs.camcar.mapper.Member_ManageMapper;
 import com.itwillbs.camcar.vo.BoardVO;
+import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
 import com.itwillbs.camcar.vo.MemberVO;
 
@@ -17,10 +18,15 @@ public class Car_ManageService {
 	private Car_ManageMapper mapper;
 
 	// 신규차량 등록 요청
-	public int registBoard(CarVO car) {
-		return mapper.insertList(car);
+	public int registCar(CarVO car) {
+		return mapper.insertCar(car);
 	}
 
+	// 차량 모델 정보 등록 요청
+	public int registCarModel(CarModelVO carModel) {
+		return mapper.insertCarModel(carModel);
+	}
+	
 	public int getCarListCount(String searchType, String searchKeyword) {
 		return mapper.selectgetCarListCount(searchType, searchKeyword);
 	}
@@ -29,6 +35,7 @@ public class Car_ManageService {
 		
 		return mapper.selectCarList(searchType, searchKeyword, startRow, listLimit);
 	}
+
 
 	
 	
