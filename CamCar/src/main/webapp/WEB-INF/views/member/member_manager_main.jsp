@@ -37,7 +37,7 @@
 			<div>
 				<div align="center">
 					<h1>현재 회원 목록</h1>
-					<form action="member_management">
+					<form action="memberList">
 						<%-- 검색타입 목록(셀렉트박스), 검색어(텍스트박스) 추가(파라미터 있으면 해당 내용 표시) --%>
 						
 						<%--검색기능 처리 --%>
@@ -63,6 +63,15 @@
 								<th width="80px">탈퇴일정</th>
 								<th width="80px">수정</th>
 							</tr>
+						
+							
+							<c:set var="pageNum" value="1"/>
+							<c:if test="${not empty param.pageNum}">
+								<c:set var="pageNum" value="${param.pageNum}"/>
+							</c:if>
+														
+							
+							
 							<c:forEach var="member" items="${memberList}">
 							<tr>
 								<th>${member.mem_idx}</th>
@@ -103,9 +112,8 @@
 			<div id="pageList" align="center">
 			
 				<input type="button" value="이전"
-					onclick= "location.href='memberList?pageNum=${pageNum-1}'"
-					<c:if test="${pageNum <= 1}">disabled</c:if>
-				>
+					onclick="location.href='memberList?pageNum=${pageNum - 1}'"
+					<c:if test="${pageNum <= 1}">disabled</c:if>>
 				<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 					<c:choose>
 						<c:when test="${i eq pageNum}">
@@ -119,7 +127,6 @@
 				<input type="button" value="다음"
 						onclick="location.href='memberList?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
-				
 			</div>
 			</section>
 	</main>

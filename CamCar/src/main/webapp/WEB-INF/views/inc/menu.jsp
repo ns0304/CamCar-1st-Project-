@@ -10,14 +10,14 @@
 		</h5>
 		<h2>회원 관리</h2>
 		<h4>
-			<a href="member_management" class="">현재 회원 목록</a>
+			<a href="memberList" class="">현재 회원 목록</a>
 		</h4>
 		<h2>차량 관리</h2>
 		<h4>
-			<a href="car_management" class="">차량 목록 조회</a>
+			<a href="Carlist" class="">차량 목록 조회</a>
 		</h4>
 		<h4>
-			<a href="new_car_management" class="">신규 차량 등록</a>
+			<a href="CarListWrite" class="">신규 차량 등록</a>
 		</h4>
 		<h2>게시글 관리</h2>
 		<h4>

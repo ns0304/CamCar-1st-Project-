@@ -14,12 +14,10 @@ public class Member_ManageService {
 	private Member_ManageMapper mapper;
 
 	public int getMemberListCount(String searchType, String searchKeyword) {
-		// TODO Auto-generated method stub
 		return mapper.selectMemberListCount(searchType, searchKeyword);
 	}
 
 	public List<MemberVO> getMemberList(String searchType, String searchKeyword, int startRow, int listLimit) {
-		// TODO Auto-generated method stub
 		return mapper.selectMemberList(searchType, searchKeyword, startRow, listLimit);
 	}
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.itwillbs.camcar.mapper.Car_ManageMapper">
+	
+	<insert id="insertList">
+	INSERT
+	INTO car_info
+	VALUES (
+		#{car_idx} 
+		, #{car_number}
+		, #{car_model}
+		, #{car_old}
+		, #{brc_idx}
+		, "신규차량"
+	)
+	</insert>
+	<select id="selectCarList" resultType="car">
+		SELECT *
+		FROM car_info
+	</select>
+	
+	<select id="selectgetCarListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM car_info
+	</select>
+	
+</mapper>
