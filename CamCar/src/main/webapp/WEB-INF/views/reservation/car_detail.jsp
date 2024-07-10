@@ -13,7 +13,7 @@
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <%-- 카카오지도 설치 스크립트 --%>
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.jsc"></script>
 
 <style type="text/css">
 /* ---- 우측 예약 일정 영역 ---- */
@@ -138,11 +138,11 @@ $(document).ready(function() {
 						<p>인수 및 반납장소</p>
 						<hr>
 						<c:choose>
-							<!-- "캠핑갈카 부산본점" 일 경우 -->
-							<c:if test="${fn:trim(param.brc_rent_name) == '캠핑갈카 부산본점'}">
-								<!-- 1. 지도 노드 -->
+							<%-- "캠핑갈카 부산본점" 일 경우 --%>
+							<c:when test="${fn:trim(param.brc_rent_name) == '캠핑갈카 부산본점'}">
+								<%-- 1. 지도 노드 -->
 								<div id="daumRoughmapContainer1720569672541" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-								<!-- 2. 실행 스크립트 -->
+								<%-- 2. 실행 스크립트 --%>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720569672541",
@@ -152,13 +152,13 @@ $(document).ready(function() {
 									}).render();
 								</script>
 								
-							</c:if>
+							</c:when>
 							
-							<!-- "캠핑갈카 서울지점" 일 경우 -->
+							<%-- "캠핑갈카 서울지점" 일 경우 --%>
 							<c:otherwise>
-								<!-- 1. 지도 노드 -->
+								<%-- 1. 지도 노드 --%>
 								<div id="daumRoughmapContainer1720606882411" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-								<!-- 2. 실행 스크립트 -->
+								<%-- 2. 실행 스크립트 --%>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720606882411",
