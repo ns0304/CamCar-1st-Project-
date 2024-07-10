@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.itwillbs.camcar.mapper.MyPageMapper">
+
+<!-- 회원 상세정보 조회 SELECT-->
+	<!-- 아이디(id)가 일치하는 레코드 조회-->
+	<select id="selectMember" resultType="member">
+		SELECT *
+		FROM member_info
+		WHERE mem_id = #{mem_id}
+	</select>
+</mapper>

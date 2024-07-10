@@ -8,13 +8,22 @@
 /* } */
 
 .insertLicense {
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
+	display: none;
+    width: 40%;
+    height: 70%;
+/*     max-width: 600px; */
+    margin: auto;
     background-color: #fff;
     padding: 20px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%, -50%);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow-y: scroll;
 }
 
 h1 {
@@ -110,4 +119,72 @@ select, input[type="text"] {
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
+}
+
+
+
+/*  ==============================================================  */
+/* 팝업 스타일 */
+/* 고유식별정보 수집 및 이용 동의(필수)  */
+/*  개인정보 수집 및 이용 동의(필수)  */
+.popUp1, .popUp2 {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.popUpHeader1, .popUpHeader2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.popUpHeader1 h2, .popUpHeader2 h2 {
+    margin: 0;
+    font-size: 16px;
+}
+.popUpContent1 tr, .popUpContent2 tr {
+    background-color: #e0e0e0;
+}
+.popUpHeader1 .close, .popUpHeader2 .close {
+    cursor: pointer;
+    font-size: 16px;
+}
+.popUpContent1, .popUpContent2 {
+    margin: 20px 0;
+}
+.popUp1 table, .popUp2 table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.popUp1 table, .popUp1 th, .popUp1 td,
+.popUp2 table, .popUp2 th, .popUp2 td {
+    border: 1px solid #ccc;
+}
+.popUp1 th, .popUp1 td, .popUp2 th, .popUp2 td {
+    padding: 8px;
+    text-align: center;
+}
+.popUpConfirm1, .popUpConfirm2 {
+    text-align: center;
+}
+.popUpConfirm1 button, .popUpConfirm2 button {
+    padding: 10px 20px;
+    background-color: #81c147;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.popUpConfirm1 button:hover, .popUpConfirm2 button:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.confirmBtn1, .confirmBtn2 { /* "확인했어요" 버튼 */
+    border-radius: 10px;
 }

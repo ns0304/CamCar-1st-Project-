@@ -14,7 +14,7 @@ public class ReservationConfirmController {
 	@GetMapping("ReservationList")
 	public String confirm() {
 		
-		return "ReservationList";
+		return "reservation_list/ReservationList";
 	}
 	
 	

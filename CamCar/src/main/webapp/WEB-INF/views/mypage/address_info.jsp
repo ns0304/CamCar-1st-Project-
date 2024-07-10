@@ -154,7 +154,7 @@ $(document).ready(function() {
         </section>
     </main>
 
-    <!-- 팝업 -->
+    <!-- 주소 약관동의 팝업 -->
     <div class="popUp">
         <div class="popUpHeader">
             <h2>개인정보 수집 및 이용 동의(필수)</h2>

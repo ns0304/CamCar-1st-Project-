@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form action="customerCenter" name="customerCenter" method="get">
+<form action="Customer" name="customerCenter" method="get">
 	<div align="center">
 		<p>
 		<b>도움이 필요하신가요?</b><br>

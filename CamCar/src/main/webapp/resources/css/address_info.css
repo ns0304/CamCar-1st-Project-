@@ -5,16 +5,27 @@ body {
 }
 
 .addressInfoChange {
-    width: 70%;
+    display: none;
+    width: 50%;
     margin: auto;
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/*     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
 }
 
 .addressInfoChange> h1 {
 	text-align: left;
 }
+
 
 h1 {
     text-align: center;
@@ -121,10 +132,85 @@ h1 {
     background-color: #gray;
 }
 
+/*==================================================================================================*/
 
-/* /*------------------------주소변경페이지 팝업창-----------------------------*/ */
+/* 주소약관 동의 팝업 CSS */
 
-/* /* 팝업 스타일 */ */
+/* 팝업 스타일 */
+.popUp {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.popUpHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.popUpHeader h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.popUpContent tr {
+	background-color: #e0e0e0;
+	
+}
+.popUpHeader .close {
+    cursor: pointer;
+    font-size: 16px;
+}
+.popUpContent {
+    margin: 20px 0;
+}
+.popUp table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.popUp table, .popUp th, .popUp td {
+    border: 1px solid #ccc;
+}
+.popUp th, .popUp td {
+    padding: 8px;
+    text-align: center;
+}
+.popUpConfirm {
+    text-align: center;
+}
+.popUpConfirm button {
+    padding: 10px 20px;
+    background-color: #f68b1f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.popUpConfirm button:hover {
+    background-color: #f68b1f;
+}
+
+.confirmBtn { /* "확인했어요" 버튼 */
+	border-radius: 10px;
+}
+
+
+/* 주소약관 동의 팝업 CSS 끝 */
+
+
+
+
+
+/*==================================================================================================*/
+/* /*------------------------주소변경페이지 팝업창-----------------------------*/ 
+
+/* /* 팝업 스타일 */ 
 /* .popUp { */
 /*     display: none; */
 /*     position: fixed; */
