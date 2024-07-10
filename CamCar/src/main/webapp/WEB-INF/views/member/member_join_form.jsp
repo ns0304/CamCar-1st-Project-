@@ -240,8 +240,7 @@
 		});
 	});
 	
-	
-	
+		
 </script>
 </head>
 <body>	
@@ -249,218 +248,220 @@
 		<%-- top.jsp 페이지를 현재 페이지에 삽입 --%>
 		<jsp:include page="/WEB-INF/views//inc/top.jsp"></jsp:include>
 	</header>
-	<article>
-		<h1>회원 가입</h1>
-		<form action="MemberJoinPro" name="joinForm" method="post">
-			<section>
-				<table id="tb01"> 
-					<tr>
-						<td>아이디</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="mem_id" id="mem_id" size="15" placeholder="6자리 이상 입력" onblur="checkId()">
-							<input type="button" value="ID중복확인" id="btnCheckId" onclick="checkId2()">
-							<div id="checkIdResult"></div>
-						</td>
-					</tr>	
-					<tr>
-						<td>비밀번호</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="password" name="mem_passwd" id="mem_passwd" size="25" onblur="checkPasswd()" >
-							<span id="checkPasswdComplexResult"></span>
-							<div id="checkPasswdResult"></div>
-						</td>
-					</tr>	
-					<tr>
-						<td>비밀번호확인</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="password" name="mem_passwd2" id="mem_passwd2" size="25" onblur="checkSamePasswd()">
-							<div id="checkPasswd2Result"></div>
-						</td>
-					</tr>	
-					<tr>
-						<td>E-Mail</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" name="mem_email1" size="10" > @
-							<input type="text" name="mem_email2" size="10" >
-							<!-- 셀렉트박스 항목 변경 시 selectedDomain() 함수 호출 -->
-							<!-- 선택된 항목의 value 속성값이 함수 파라미터로 전달됨 -->
-							<select name="emailDomain" onchange="selectedDomain(this.value)" on>
-								<option value="">직접입력</option>
-								<option value="naver.com">naver.com</option>
-								<option value="gmail.com">gmail.com</option>
-								<option value="nate.com">nate.com</option>
-							</select>
-						</td>
-					</tr>	
-					<tr>
-						<td>주소</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="mem_post_code" id="mem_post_code" size="6" readonly>
-							<input type="button" value="주소검색" id="btnSearchAddress">
-							<br>
-							<input type="text" name="mem_add1" id="mem_add1" size="30" placeholder="기본주소" >
-							<br>
-							<input type="text" name="mem_add2" id="mem_add2" size="30" placeholder="상세주소">
-						</td>
-					</tr>	
-					<tr>
-						<td>이름</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="mem_name" size="6" id="mem_name" pattern="^[가-힣]{2,5}$" title="한글 2-5글자"></td>
-					</tr>	
-					<tr>
-						<td>주민등록번호</td>
-					</tr>
-					<tr>
-						<td id="tdjumin">(주민번호 입력 시 "-"를 입력해주세요)</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14">
-					</tr>
-					<tr>
-						<td>휴대폰 번호</td>
-					</tr>
-					<tr>
-						<td id="tdtel">(휴대폰 번호를 입력 시 "-"를 입력해주세요)</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13"></td>
-					</tr>	
-					<tr>
-						<td>휴대폰 번호 인증</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="tel_number_check" size="10" id="tel_number_check" >
-							<input type="button" value="인증완료" id="btnCertification"></td>
-					</tr>
-				</table>
-			</section>
-			<section>
-				<table id="tb02">			
-					<tr>
-						<td>운전자 이름</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" name="dri_name" id="dri_name" size="20" placeholder="운전자 이름을 입력해주세요" >
-						</td>
-					</tr>
-					<tr>
-						<td>운전자 전화번호</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
-						</td>
-					</tr>
-					<tr>
-						<td>운전자 생년월일</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" name="dri_birthday" id="dri_birthday" size="24" placeholder="운전자 생년월일을 입력해주세요" >
-						</td>
-					</tr>
-					<tr>
-						<td>면허종류</td>
-					</tr>
-					<tr>
-						<td>
-							<select name="lic_info" id="lic_info">
-								<option value="">면허종류를 선택해주세요</option>
-								<option value="2종보통">2종보통</option>
-								<option value="1종보통">1종보통</option>
-								<option value="1종특수-대형견인차(트레일러)">1종특수-대형견인차(트레일러)</option>
-								<option value="1종특수-구난차(레커)">1종특수-구난차(레커)</option>
-								<option value="1종특수-소형견인차">1종특수-소형견인차</option>
-								<option value="국제면허">국제면허</option>
-							</select>
-						</td>
-					</tr>	
-					<tr>
-						<td>면허번호</td>
-					</tr>
-					<tr>	
-						<td>
-							<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요" >
-						</td>
-					</tr>
-					<tr>
-						<td>발급일자</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20"  ></td>
-					</tr>	
-					<tr>
-						<td>만료일자</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20"  ></td>	
-					</tr>
-				</table>	
-			</section>
-			<section>
-				<table id="tb03">	
-					<tr>
-						<td>카드유형</td>
-						<td>카드번호</td>
-					</tr>
-					<tr>
-						<td>
-							<select name="CreitCard">
-								<option value="">카드종류를 선택해주세요</option>
-								<option value="개인카드">개인카드</option>
-								<option value="법인카드(기명)">법인카드(기명)</option>
-								<option value="법인카드(무기명)">법인카드(무기명)</option>
-							</select>
-						</td>
-						<td>
-							<input type="text" name="card_num" id="card_num" size="20" placeholder="카드번호를 입력해주세요">
-						</td>
-					</tr>
-					<tr>
-						<td>유효기간</td>
-						<td>비밀번호 앞 2자리</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="creditExpiration " placeholder="MM/YY" size="10" id="creditExpiration" ></td>
-						<td><input type="password" name="creditPasswd" size="2" id="creditPasswd" >**
-					</tr>	
-					<tr>
-						<td>생년월일 6자리</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="mem_birthday" id="mem_birthday" size="15" placeholder="숫자만입력해주세요">
-						</td>
-					</tr>
-						
-						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+	<main>
+		<article style="position: relative; top: 100px;">
+			<h1>회원 가입</h1>
+			<form action="MemberJoinPro" name="joinForm" method="post">
+				<section>
+					<table id="tb01"> 
 						<tr>
-						<td colspan="2" align="center">
-							<input type="submit" value="가입">
-<!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
-<!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->
-						</td>
-					</tr>
-				</table>
-			</section>	
-		</form>
-	</article>
+							<td>아이디</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="mem_id" id="mem_id" size="15" placeholder="6자리 이상 입력" onblur="checkId()">
+								<input type="button" value="ID중복확인" id="btnCheckId" onclick="checkId2()">
+								<div id="checkIdResult"></div>
+							</td>
+						</tr>	
+						<tr>
+							<td>비밀번호</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" name="mem_passwd" id="mem_passwd" size="25" onblur="checkPasswd()" >
+								<span id="checkPasswdComplexResult"></span>
+								<div id="checkPasswdResult"></div>
+							</td>
+						</tr>	
+						<tr>
+							<td>비밀번호확인</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="password" name="mem_passwd2" id="mem_passwd2" size="25" onblur="checkSamePasswd()">
+								<div id="checkPasswd2Result"></div>
+							</td>
+						</tr>	
+						<tr>
+							<td>E-Mail</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" name="mem_email1" size="10" > @
+								<input type="text" name="mem_email2" size="10" >
+								<!-- 셀렉트박스 항목 변경 시 selectedDomain() 함수 호출 -->
+								<!-- 선택된 항목의 value 속성값이 함수 파라미터로 전달됨 -->
+								<select name="emailDomain" onchange="selectedDomain(this.value)" on>
+									<option value="">직접입력</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="nate.com">nate.com</option>
+								</select>
+							</td>
+						</tr>	
+						<tr>
+							<td>주소</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="mem_post_code" id="mem_post_code" size="6" readonly>
+								<input type="button" value="주소검색" id="btnSearchAddress">
+								<br>
+								<input type="text" name="mem_add1" id="mem_add1" size="30" placeholder="기본주소" >
+								<br>
+								<input type="text" name="mem_add2" id="mem_add2" size="30" placeholder="상세주소">
+							</td>
+						</tr>	
+						<tr>
+							<td>이름</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="mem_name" size="6" id="mem_name" pattern="^[가-힣]{2,5}$" title="한글 2-5글자"></td>
+						</tr>	
+						<tr>
+							<td>주민등록번호</td>
+						</tr>
+						<tr>
+							<td id="tdjumin">(주민번호 입력 시 "-"를 입력해주세요)</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14">
+						</tr>
+						<tr>
+							<td>휴대폰 번호</td>
+						</tr>
+						<tr>
+							<td id="tdtel">(휴대폰 번호를 입력 시 "-"를 입력해주세요)</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13"></td>
+						</tr>	
+						<tr>
+							<td>휴대폰 번호 인증</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="tel_number_check" size="10" id="tel_number_check" >
+								<input type="button" value="인증완료" id="btnCertification"></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<table id="tb02">			
+						<tr>
+							<td>운전자 이름</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" name="dri_name" id="dri_name" size="20" placeholder="운전자 이름을 입력해주세요" >
+							</td>
+						</tr>
+						<tr>
+							<td>운전자 전화번호</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
+							</td>
+						</tr>
+						<tr>
+							<td>운전자 생년월일</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" name="dri_birthday" id="dri_birthday" size="24" placeholder="운전자 생년월일을 입력해주세요" >
+							</td>
+						</tr>
+						<tr>
+							<td>면허종류</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="lic_info" id="lic_info">
+									<option value="">면허종류를 선택해주세요</option>
+									<option value="2종보통">2종보통</option>
+									<option value="1종보통">1종보통</option>
+									<option value="1종특수-대형견인차(트레일러)">1종특수-대형견인차(트레일러)</option>
+									<option value="1종특수-구난차(레커)">1종특수-구난차(레커)</option>
+									<option value="1종특수-소형견인차">1종특수-소형견인차</option>
+									<option value="국제면허">국제면허</option>
+								</select>
+							</td>
+						</tr>	
+						<tr>
+							<td>면허번호</td>
+						</tr>
+						<tr>	
+							<td>
+								<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요" >
+							</td>
+						</tr>
+						<tr>
+							<td>발급일자</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20"  ></td>
+						</tr>	
+						<tr>
+							<td>만료일자</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20"  ></td>	
+						</tr>
+					</table>	
+				</section>
+				<section>
+					<table id="tb03">	
+						<tr>
+							<td>카드유형</td>
+							<td>카드번호</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="CreitCard">
+									<option value="">카드종류를 선택해주세요</option>
+									<option value="개인카드">개인카드</option>
+									<option value="법인카드(기명)">법인카드(기명)</option>
+									<option value="법인카드(무기명)">법인카드(무기명)</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" name="card_num" id="card_num" size="20" placeholder="카드번호를 입력해주세요">
+							</td>
+						</tr>
+						<tr>
+							<td>유효기간</td>
+							<td>비밀번호 앞 2자리</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="creditExpiration " placeholder="MM/YY" size="10" id="creditExpiration" ></td>
+							<td><input type="password" name="creditPasswd" size="2" id="creditPasswd" >**
+						</tr>	
+						<tr>
+							<td>생년월일 6자리</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="mem_birthday" id="mem_birthday" size="15" placeholder="숫자만입력해주세요">
+							</td>
+						</tr>
+							
+							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+							<tr>
+							<td colspan="2" align="center">
+								<input type="submit" value="가입">
+	<!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
+	<!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->
+							</td>
+						</tr>
+					</table>
+				</section>	
+			</form>
+		</article>
+	</main>
 	<footer>
 		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views//inc/bottom.jsp"></jsp:include>

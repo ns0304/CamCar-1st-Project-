@@ -117,31 +117,41 @@ $(document).ready(function() {
 		</div>
 		<div align="left" id="div02">자주 찾는 질문들을 모아봤어요</div>
 		<div id="div03" align="left">
-	        <input type="button" id="buttonA" width="500" value="단기렌터카 보험(차량손해 면책제도)에 대해 알고 싶어요.">
+	        <input type="button" id="buttonA" width="500" value="운전면허 분실 시 차량 대여가 불가한가요?">
 	        <br>
 	        <div id="contentArea1"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
-	        	<p>캠핑갈카는 모든 차량이 자동차 종합보험에 가입되어 있어요.<br><br><br>
-				   완전자차 선택시 고객부담금이 면제돼요.
-				   <보장범위><br><br>
-				    - 대인(타인에게 손해를 입힌 경우)<br>
-				      : 무한대<br><br>
-				    - 대물(타인의 차량에 손해를 입힌 경우)<br>
-				      : 건당 2천만원까지<br><br>
-				    - 자손(나의 손해가 발생한 경우)<br>
-				      : 인당 1천 5백만원까지
+	        	<p>홈페이지에서 예약 후 운전면허증을 분실하신 경우 출차 시<br>
+				   아래의 본인 확인 절차(택1)를 거친 후 차량 대여가 가능해요.<br><br>
+				   - 182(경찰민원콜센터)를 통해 수신한 문자(면허정보)를 신분증과 함께 제시<br>
+				   - 민원 24(앱)를 통해 조회된 면허정보를 신분증과 함께 제시<br>
+				   - IC 모바일 면허증 또는 PASS앱 모바일 면허증 제시<br><br><br>
+				   ※ 유선(전화) 예약이나 지점 방문 예약 시에는 반드시 재발급 후 실물 운전면허증을 지참해 주세요.
 				   </p>
 	    	</div>
-	        <input type="button" id="buttonB" value="휴차보상료에 대해 알고 싶어요."><br>
+	        <input type="button" id="buttonB" value="운전자 추가 등록(제2,3 운전자)은 어떻게 하나요?"><br>
 	        <div id="contentArea2"  class="contentArea">
 	        <!-- Pre-written content that will be displayed when Button A is clicked -->
-	        	<p>보험(차량손해면책제도) 가입 유무와 관계없이 사고로 인해 차량이 휴차할 경우,<br><br>
-				   수리 기간 동안 할인이 적용되지 않은 표준대여료(24시간 기준)의 50%에 해당하는 휴차보상료가 청구되며
-				   이는 임차인이 배상해야 해요.<br><br>
-				   (임대차 계약서 내 보험 보상 관련 약관에 따른 사항이에요.)<br><br>
-				   <b>※ 완전자차 가입 시 휴차보상료를 면제해 드려요.</b><br>
-				     &nbsp;&nbsp;&nbsp;
-				   <b>단, ‘완전 자차’ 보험을 가입했어도 전손 처리 혹은 폐차 시 휴차보상료가 부과 돼요.</b> 
+	        	<p>예약 상세 페이지에서 '운전자 추가 등록하기' URL을 보내 운전자 등록을 요청할 수 있어요.<br>
+				   등록이 필요한 분의 휴대폰 번호를 입력하면, 자동으로 카카오 알림톡이 발송돼요.<br>
+				   받는 분이 추가 운전자 정보를 입력하면, 예약자분도 예약상세 페이지에서 추가된 정보를 확인할 수 있어요.<br><br><br>
+				   ① 메인 상단 '예약확인' 클릭 ▶ ② 회원로그인(비회원일 경우, '비회원 예약확인' 클릭) ▶ ③예약내역 ▶ ④내 예약 ▶ ⑤예약<br>
+				   상세 內 '운전자 추가' 클릭▶ ⑥운전자 추가를 요청할 휴대폰 번호 입력 후 URL 보내기
+				   </p>
+	    	</div>
+	        <input type="button" id="buttonC" value="대여 자격 조건은 어떻게 되나요?"><br>
+	        <div id="contentArea3"  class="contentArea">
+	        <!-- Pre-written content that will be displayed when Button A is clicked -->
+	        	<p>차량별 대여 자격이 다르니 꼭 확인해주세요.<br><br>
+				  <b><9인승 이하 내연차 및 일반 EV></b><br>
+				   - 만 21세 이상<br>
+				   - 2종 보통면허 이상, 운전경력 1년 이상<br><br>
+				   <b><11인승 이상 내연차></b><br>
+				   - 만 26세 이상<br>
+				   - 1종 보통면허 이상, 운전경력 3년 이상<br><br>
+				   <b><캠핑카></b><br>
+				   - 11인승 이하의 일체형 캠핑카의 경우 2종 면허로 운행이 가능합니다.<br>
+				   - 11인승 이상의 일체형 캠핑카의 경우 1종 면허로 운행이 가능합니다.
 				   </p>
 	    	</div>
 	    </div>

@@ -37,8 +37,8 @@
 <!-- 				</tr> -->
 				<tr>
 					<td>
-						<input type="button" value="예약하기" onclick="location.href='Question_reserve'">
-						<input type="button" value="예약확인 / 변경" onclick="location.href='Question_check'">
+						<input type="button" value="예약 / 변경" onclick="location.href='Question_reserve'">
+						<input type="button" value="운전자" onclick="location.href='Question_drivers'">
 						<input type="button" value="보험" onclick="location.href='Question_insurance'">
 						<input type="button" value="고장 / 사고" onclick="location.href='Question_accident'">
 					</td>
