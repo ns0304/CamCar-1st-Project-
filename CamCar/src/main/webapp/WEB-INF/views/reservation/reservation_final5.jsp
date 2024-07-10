@@ -32,7 +32,7 @@
 					<li>
 						결제
 					</li>
-					<li>
+					<li id="reservationStepNow">
 						완료
 					</li>
 				</ul>
@@ -47,19 +47,29 @@
 				</div>
 				<div id="completeBtn">
 					<input type="button" value="예약 상세 조회">
-					<input type="button" value="홈으로 가기">
+					<input type="button" value="홈으로 가기"  onclick="location.href = './'" >
 				</div>
 			</div>
 
 
 		</section>
 		</main>
-
+	    <div class="insurancePopUp">
+	    	<fieldset class="popUpField">
+		        <div class="popUpHeader">
+			       	 <h2>보장내용을 알아볼까요?</h2>
+	   	             <span class="close" id="closePopup">&times;</span>
+		        </div>
+		        <div class="popUpMessage">
+		        </div>		        
+	        </fieldset>
+	    </div>	
+	    
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
 		 <nav>
 		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/main/chat.png"><br>
+		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
 		  채팅상담</a>
 		 </nav>
 		</aside>	

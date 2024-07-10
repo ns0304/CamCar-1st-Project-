@@ -91,7 +91,7 @@
 <!-- 		<aside class="chatBtn"> -->
 <!-- 		 <nav> -->
 <!-- 		  <a href="#sec01"> -->
-<%-- 		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/main/chat.png"><br> --%>
+<%-- 		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br> --%>
 <!-- 		  채팅상담</a> -->
 <!-- 		 </nav> -->
 <!-- 		</aside>	 -->

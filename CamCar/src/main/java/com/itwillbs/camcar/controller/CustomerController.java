@@ -1,5 +1,7 @@
 package com.itwillbs.camcar.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.CustomerService;
 
@@ -65,6 +69,14 @@ public class CustomerController {
 		return "inquiry/inquiry_write_form";
 	}
 	
+//	@PostMapping("InquiryWritePro")
+//	public String inquiryWritePro(@RequestParam Map<String, String> map) {
+//		int insertCount = service.registBoard(map); 
+//		
+//		
+//		return "customer/customer_list";
+//	}
+	
 	// 자주찾는 질문(예약)
 	// http://localhost:8081/camcar/Reservation
 	@GetMapping("Question_reserve")
@@ -72,12 +84,38 @@ public class CustomerController {
 		return "question/question_reserve";
 	}
 	
-	// 자주찾는 질문(예약_답변)
-	@GetMapping("Question_reserve_answer")
-	public String questionReserveAnswer() {
-		return "";
+	// 자주찾는 질문(예약확인/변경)
+	@GetMapping("Question_drivers")
+	public String questionCheck() {
+		return "question/question_drivers";
 	}
 	
+	// 자주찾는 질문(보험)
+	@GetMapping("Question_insurance")
+	public String questionInsurance() {
+		return "question/question_insurance";
+	}
 	
-	
+	// 자주찾는 질문(고장/사고)
+	@GetMapping("Question_accident")
+	public String questionAccident() {
+		return "question/question_accident";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

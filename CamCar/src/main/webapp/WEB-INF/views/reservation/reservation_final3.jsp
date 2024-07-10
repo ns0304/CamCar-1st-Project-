@@ -26,7 +26,7 @@
 					<li>
 						예약
 					</li>
-					<li>
+					<li id="reservationStepNow">
 						부가상품
 					</li>
 					<li>
@@ -82,8 +82,18 @@
 
 		</section>
 		<aside id="sideContent">
-<!-- 		<aside id="reservation_container"> -->
-			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include>
+			<form action="ReservationPay" name="reservation" method="post">
+				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+					<h5>000님의 여정</h5>     
+					<a href="#">수정</a>
+			          <h4>XX 지점</h4>
+			          <hr>
+			          <h4>mm:dd yy:MM ~ mm:dd yy:MM</h4>
+			          <hr>
+			          <h4>XX 지점</h4>
+			          
+			          <button type="submit">다음</button>			
+			</form>
 		</aside>
 		</main>
 
@@ -91,7 +101,7 @@
 		<aside class="chatBtn">
 		 <nav>
 		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/main/chat.png"><br>
+		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
 		  채팅상담</a>
 		 </nav>
 		</aside>	
