@@ -274,7 +274,7 @@ $(document).ready(function() {
 						<h3>차량이름</h3>
 					</div>
 					<div class="carImage">
-						<img src="resources/img/car/kia_ray.png">
+						<img src="${pageContext.request.servletContext.contextPath}/resources/img/car/kia_ray.png">
 					</div>
 				</div>
 				<div class="carList_bottom" style="display: flex;">

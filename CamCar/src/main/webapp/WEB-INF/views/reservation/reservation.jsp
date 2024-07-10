@@ -93,21 +93,41 @@ input[type=button]:hover, input[type=reset]:hover, #res_assembly {
 let map; // 지도 객체를 전역 변수로 선언
 
 $(document).ready(function() {
-		// 지도를 초기화하여 생성
-        initializeMap();
-		
-	// 각 지점 버튼 클릭 시 상세설명(레이어팝업) 열림/닫힘
-	$("#busan").click(function() {
-		$("#res_detail1").toggle();
-		if ($("#res_detail1").is(':visible')) {
-			resizeMap();	// 팝업창이 보이는 경우 지도 리사이즈
+	// 1. 각 지점 버튼 클릭 시 상세설명(레이어팝업) 열림/닫힘
+    $("#busan").click(function() {
+        // 상세 설명 창을 토글
+        $("#res_detail1").toggle();
+        
+        // 지도 컨테이너가 이미 존재하는지 확인
+        if (!$("#daumRoughmapContainer1720494911728").children().length) {
+            // 지도 노드가 존재하지 않으면 지도 렌더링
+            new daum.roughmap.Lander({
+                "timestamp" : "1720494911728",
+                "key" : "2jyf3",
+                "mapWidth" : "360",
+                "mapHeight" : "250"
+            }).render();
+        }
+    });
+
+	$("#seoul").click(function() {
+        // 상세 설명 창을 토글
+		$("#res_detail2").toggle();
+        
+        // 지도 컨테이너가 이미 존재하는지 확인
+        if (!$("#daumRoughmapContainer1720495062115").children().length) {
+            // 지도 노드가 존재하지 않으면 지도 렌더링
+            new daum.roughmap.Lander({
+                "timestamp" : "1720495062115",
+                "key" : "2jyf4",
+                "mapWidth" : "360",
+                "mapHeight" : "250"
+            }).render();
         }
 	});
-	$("#seoul").click(function() {
-		$("#res_detail2").toggle();
-	});
+	// ------------------------------------------------------------------------
 	
-	// 지점 선택 버튼 클릭 시 hidden에 value 값 저장되면서 상세설명 닫기
+	// 2. 지점 선택 버튼 클릭 시 hidden에 value 값 저장되면서 상세설명 닫기
 	$("#res_apply1").click(function() {
 		let brcInfo = $("#res_apply1").val();
 		let hidden = $("#brc_rent_name").val(brcInfo);	// hidden 필드에 값 저장
@@ -124,8 +144,9 @@ $(document).ready(function() {
 		$("#seoul").css("border", "2px solid #ccc");
 		$("#busan").css("border", "none");
 	});
+	// ------------------------------------------------------------------------
 	
-	// 차종 선택 시 전체선택 해제(기본은 전체선택)
+	// 3. 차종 선택 시 전체선택 해제(기본은 전체선택)
 	$("#campingCar").click(function() {
 		$("#checkAllCar").prop("checked", false);
 		$("label[for='checkAllCar']").css("border", "none");
@@ -155,13 +176,15 @@ $(document).ready(function() {
 	});
 	
 	
-	// 닫기(X) 클릭 시 팝업창 닫기
+	// ------------------------------------------------------------------------
+	// 4. 닫기(X) 클릭 시 팝업창 닫기
 	$(".close").click(function() {
 	    $("#res_detail1").hide();
 	    $("#res_detail2").hide();
 	});
 	
-	// submit 클릭 시 이벤트 처리 지점, 일정 미선택 시 
+	// ------------------------------------------------------------------------
+	// 5. submit 클릭 시 이벤트 처리 지점, 일정 미선택 시 
 	$("form").submit(function() {
 		if($("#brc_rent_name").val() == "") {
 			alert("지점을 선택해주세요!");
@@ -176,31 +199,15 @@ $(document).ready(function() {
 		// 위의 모든 조건 통과 시 submit 동작 수행(return true 생략)
 	});
 	
-	// reset 모양 클릭 시 carList 폼 리셋
+	// ------------------------------------------------------------------------
+	// 6. reset 모양 클릭 시 carList 폼 리셋
 	$(".reset").click(function() {
 	    $("#carList")[0].reset();
 	 });
 });
-
-// 지도 초기화 함수
-function initializeMap() {
-    var container = document.getElementById('daumRoughmapContainer1720494911728');
-    var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3
-    };
-    map = new kakao.maps.Map(container, options); // 지도 생성
-}
-
-// 지도 리사이즈 함수
-function resizeMap() {
-    setTimeout(function() { // 약간의 지연 후 리사이즈 처리
-        map.relayout(); // 지도 크기 재조정
-        map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667)); // 지도 중심 재설정
-    }, 100);
-}
 </script>
 
+<%-- ============================================================================= --%>
 <div class="resForm_wrap">
 	<form action="CarList" name="carList" id="carList" method="post">
 		<div id="res_sel" style="margin-bottom: 10px;">
@@ -208,6 +215,7 @@ function resizeMap() {
 <!-- 			<input type="reset" id="res_reset"><label for="res_reset" style="margin-right: 20px;">&#10226;</label> -->
 			<span class="reset" style="margin-right: 20px;">&#10226;</span>
 		</div>
+		<!-- ------- 지점 선택 영역 ---------------------------------------------- -->
 		<div id="brc_sel">
 			<a><img alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> 지점 선택</a>
 			<div class="brc_btn" align="center">
@@ -218,6 +226,7 @@ function resizeMap() {
 		</div>
 		<hr>
 		
+		<!-- ------- 일정 선택 영역 ---------------------------------------------- -->
 		<div id="schedule_sel">
 <!-- 			<a href="#">&#128467; 일정 선택</a><br> -->
 			<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> 일정 선택</a><br>
@@ -225,6 +234,7 @@ function resizeMap() {
 		</div>
 		<hr>
 		
+		<!-- ------- 차종 선택 영역 ---------------------------------------------- -->
 		<div id="car_sel">
 			<a><img alt="campingcar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/campingcar.png"> 차종 선택</a>
 			<div class="car_btn" align="center">
@@ -233,54 +243,44 @@ function resizeMap() {
 					<input type="checkbox" name="car_opt" id="campingCar" value="캠핑카"><label for="campingCar">캠핑카</label>
 					<input type="checkbox" name="car_opt" id="suv" value="SUV"><label for="suv">SUV</label>
 					<input type="checkbox" name="car_opt" id="smallCar" value="소형차"><label for="smallCar">소형차</label>
-					
-<!-- 					<input type="button" id="allCar" value="전체"> -->
-<!-- 					<input type="button" id="campingCar" value="캠핑차량"> -->
-<!-- 					<input type="button" id="suv" value="SUV"> -->
-<!-- 					<input type="button" id="smallCar" value="소형차"> -->
 				</div>
 			</div>
 		</div>
 		
 		
+		<!-- ------- 차량 조회 및 예약 버튼 -------------------------------------- -->
 		<div>
-<!-- 			<input type="submit" id="res_assembly" value="차량 조회하고 예약하기" disabled> -->
 			<input type="submit" id="res_assembly" value="차량 조회하고 예약하기">
 		</div>
 	</form>
 	
-	<!-- 지점 상세 정보 -->
+	<!-- ------- 지점 상세 정보(레이어팝업) -------------------------------------- -->
 	<div id="res_detail1">
 		<span class="close">&times;</span><br>
 		<div>
 			<div class="map">
-				<!-- 1. 지도 노드 -->
+				<!-- 지도 노드 -->
 				<div id="daumRoughmapContainer1720494911728" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 부산본점</b>
-		<p style="font-size: 14px;">부산점 상세정보<br> 위치, 이용시간 등등</p>
+		<p style="font-size: 14px;">주소<br> 부산 부산진구 동천로 109 삼한골든게이트 1층<br><br>
+									전화<br>051-1234-5678<br><br>
+									이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
 		<input type="button" name="apply" id="res_apply1" value="캠핑갈카 부산본점">
 	</div>
 	<div id="res_detail2">
 		<span class="close">&times;</span><br>
 		<div>
 			<div class="map">
-				<!-- 1. 지도 노드 -->
+				<!-- 지도 노드 -->
 				<div id="daumRoughmapContainer1720495062115" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-				<!-- 2. 실행 스크립트 -->
-				<script charset="UTF-8">
-					new daum.roughmap.Lander({
-						"timestamp" : "1720495062115",
-						"key" : "2jyf4",
-						"mapWidth" : "360",
-						"mapHeight" : "250"
-					}).render();
-				</script>
 			</div>
 		</div>
 		<b style="font-size: 18px;">캠핑갈카 서울지점</b>
-		<p style="font-size: 14px;">서울점 상세정보<br> 위치, 이용시간 등등</p>
+		<p style="font-size: 14px;">주소<br> 서울 용산구 한강대로 350 갑을빌딩 1층<br><br>
+									전화<br>02-1234-5678<br><br>
+									이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
 		<input type="button" name="apply" id="res_apply2" value="캠핑갈카 서울지점">
 	</div>
 

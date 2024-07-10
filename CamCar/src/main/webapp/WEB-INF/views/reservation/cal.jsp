@@ -65,12 +65,13 @@ $(document).ready(function() {
         
         
 
-        // 출발 시간 선택 시 숨겨진 필드 업데이트(timeStamp 형식)
+        // 출발 시간 선택 시 숨겨진 필드 업데이트(yy-mm-dd hh:MM)
         $("#start_time").on("change", function() {
             let dateTime = $("#start_date").val() + " " + $("#start_time").val();
             $("#res_rental_date").val(dateTime);
         });
 
+        // 도착 시간 선택 시 숨겨진 필드 업데이트(yy-mm-dd hh:MM)
         $("#end_time").on("change", function() {
             let dateTime = $("#end_date").val() + " " + $("#end_time").val();
             $("#res_return_date").val(dateTime);
@@ -84,7 +85,7 @@ $(document).ready(function() {
 });
 </script>
 
-
+<!-- 출발일시 선택 -->
 <label for="start_date">출발일 </label>
 <input type="text" id="start_date" readonly="readonly" placeholder="출발일 선택">
 <select id="start_time">
@@ -100,6 +101,7 @@ $(document).ready(function() {
 </select>
 <br>
 
+<!-- 도착일시 선택 -->
 <label for="end_date">도착일 </label>
 <input type="text" id="end_date" readonly="readonly" placeholder="도착일 선택">
 <select id="end_time">
