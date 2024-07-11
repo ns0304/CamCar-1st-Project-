@@ -77,21 +77,15 @@ $(document).ready(function() {
 								</td>
 							</tr>
 							<tr>
-								<th>변속타입</th>
+								<th>정원 *</th>
 								<td class="write_td_right">
-									<input type="text"id="car_shift_type" name="car_shift_type" />
+									<input type="number"id="car_riding" name="car_riding" min="1" max="15" required /> 명
 								</td>
 							</tr>
 							<tr>
 								<th>연료</th>
 								<td class="write_td_right">
 									<input type="text"id="car_fuel_type" name="car_fuel_type" />
-								</td>
-							</tr>
-							<tr>
-								<th>정원 *</th>
-								<td class="write_td_right">
-									<input type="number"id="car_riding" name="car_riding" min="1" max="15" required /> 명
 								</td>
 							</tr>
 							<tr>

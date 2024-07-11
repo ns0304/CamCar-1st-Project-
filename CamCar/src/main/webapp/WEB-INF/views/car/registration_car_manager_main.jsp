@@ -42,7 +42,17 @@
 <!-- 					 enctype="multipart/form-data"> -->
 						<table border="1" class="graph">
 							<tr>
-								<th width="80px" rowspan="16">차량이미지</th>
+									<th width="80px">차종 *</th>
+									<td class="write_td_right">
+										<select name="car_type">
+											<option value="캠핑카">캠핑카</option>
+											<option value="SUV">SUV</option>
+											<option value="소형차">소형차</option>
+										</select>
+									</td>
+	<!-- 								<td class="write_td_right"> -->
+	<!-- 									<input type="text"id="car_type" name="car_type" required /> -->
+	<!-- 								</td> -->
 							</tr>
 							<tr>
 								<th width="80px">차량코드</th>
@@ -51,17 +61,15 @@
 								</td>
 							</tr>
 							<tr>
-								<th width="50px">차량 번호</th>
+								<th width="80px">차량 지점 코드</th>
 								<td class="write_td_right">
-									<input type="text"id="car_number" name="car_number" required />
+<!-- 									<input type="text"id="board_subject" name="brc_idx" required /> -->
+									<select name="brc_idx">
+										<option value="5101">캠핑갈카 부산본점</option>
+										<option value="201">캠핑갈카 서울지점</option>
+									</select>
 								</td>
 							</tr>
-<!-- 							<tr> -->
-<!-- 								<th width="50px">제조사</th> -->
-<!-- 								<td class="write_td_right"> -->
-<!-- 									<input type="text"id="board_subject" name="board_subject" required /> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
 							<tr>
 								<th width="100px">모델명</th>
 								<td class="write_td_right">
@@ -69,17 +77,122 @@
 								</td>
 							</tr>
 							<tr>
+								<th width="50px">차량 번호</th>
+								<td class="write_td_right">
+									<input type="text"id="car_number" name="car_number" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="50px">제조사</th>
+								<td class="write_td_right">
+									<input type="text"id="car_company" name="car_company" required />
+								</td>
+							</tr>
+							<tr>
+								<th  width="50px">정원 *</th>
+								<td class="write_td_right">
+									<input type="number"id="car_riding" name="car_riding" min="1" max="15" required /> 명
+								</td>
+							</tr>
+							<tr>
+								<th width="50px">연료</th>
+								<td class="write_td_right">
+									<input type="text"id="car_fuel_type" name="car_fuel_type" />
+								</td>
+							</tr>
+							<tr>
+								<th width="50px">나이제한</th>
+								<td class="write_td_right">
+									<input type="number"id="car_age" name="car_age" min="20" max="30" required /> 이상
+								</td>
+							</tr>
+							<tr>
+								<th width="50px">면허종류 *</th>
+								<td class="write_td_right">
+									<input type="text"id="car_license" name="car_license" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="50px">운전경력제한</th>
+								<td class="write_td_right">
+									<input type="number"id="car_career" name="car_career" min="0" max="10" required /> 이상
+								</td>
+							</tr>
+							
+							<tr>
 								<th width="80px">연식</th>
 								<td class="write_td_right">
 									<input type="text"id="car_old" name="car_old" required />
 								</td>
 							</tr>
-<!-- 							<tr> -->
-<!-- 								<th width="80px">정원</th> -->
-<!-- 								<td class="write_td_right"> -->
-<!-- 									<input type="text"id="board_subject" name="board_subject" required /> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
+							<tr>
+								<th width="80px">반려동물 동승 여부</th>
+								<td class="write_td_right">
+									<input type="text"id="pet_opt" name="pet_opt" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">면허 종류</th>
+								<td class="write_td_right">
+									<input type="text"id="car_license" name="car_license" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">주중 대여료*</th>
+								<td class="write_td_right">
+									<input type="text"id="car_weekdays" name="car_weekdays" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">주말 대여료*</th>
+								<td class="write_td_right">
+									<input type="text"id="car_weekend" name="car_weekend" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진 아이디 *</th>
+								<td class="write_td_right">
+									<input type="number"id="car_image_id" name="car_image_id" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진1*</th>
+								<td class="write_td_right">
+									<input type="image"id="car_image1" name="car_image1" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진2*</th>
+								<td class="write_td_right">
+									<input type="image"id="car_image2" name="car_image2" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진3*</th>
+								<td class="write_td_right">
+									<input type="image"id="car_image3" name="car_image3" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진4*</th>
+								<td class="write_td_right">
+									<input type="image"id="car_image4" name="car_image4" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 사진5*</th>
+								<td class="write_td_right">
+									<input type="image"id="car_image5" name="car_image5" required />
+								</td>
+							</tr>
+							<tr>
+								<th width="80px">차량 상태</th>
+								<td class="write_td_right">
+									<input type="text"id="car_status" name="car_status" required />
+								</td>
+							</tr>
+							
+							
 <!-- 							<tr> -->
 <!-- 								<th width="80px">나이제한</th> -->
 <!-- 								<td class="write_td_right"> -->
@@ -92,28 +205,6 @@
 <!-- 									<input type="text"id="board_subject" name="board_subject" required /> -->
 <!-- 								</td> -->
 <!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<th width="80px">주중 대여료</th> -->
-<!-- 								<td class="write_td_right"> -->
-<!-- 									<input type="text"id="board_subject" name="board_subject" required /> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<th width="80px">주말 대여료</th> -->
-<!-- 								<td class="write_td_right"> -->
-<!-- 									<input type="text"id="board_subject" name="board_subject" required /> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-							<tr>
-								<th width="80px">차량 지점 코드</th>
-								<td class="write_td_right">
-<!-- 									<input type="text"id="board_subject" name="brc_idx" required /> -->
-									<select name="brc_idx">
-										<option value="5101">캠핑갈카 부산본점</option>
-										<option value="201">캠핑갈카 서울지점</option>
-									</select>
-								</td>
-							</tr>
 <!-- 							<tr> -->
 <!-- 								<th width="80px">차종</th> -->
 <!-- 								<td class="write_td_right"> -->
