@@ -1,5 +1,7 @@
 package com.itwillbs.camcar.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +48,8 @@ public class MemberService {
 	}
 	
 	//회원 비밀번호 변경
-	public int modifyPasswd(MemberVO member) {
-		return mapper.updatePasswd(member);
+	public int modifyPasswd(Map<String, String> map) {
+		return mapper.updatePasswd(map);
 	}
 
 

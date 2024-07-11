@@ -1,5 +1,7 @@
 package com.itwillbs.camcar.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.camcar.service.MemberService;
 import com.itwillbs.camcar.vo.DriverVO;
@@ -76,6 +80,28 @@ public class MemberController {
 		return "member/member_join_success";
 	}
 	
+	// "MemberCheckDupId" 서블릿 주소 매핑 - GET
+	// 이 때, 응답 데이터를 직접 생성하여 응답하려면 @ResponseBody 어노테이션 지정 후
+	// return 문 뒤에 응답 데이터를 지정하면 해당 데이터가 그대로 응답데이터(body)로 전송된다!
+	@ResponseBody
+	@GetMapping("MemberCheckDupId")
+	public String checkDupId(MemberVO member) {
+		System.out.println("id : " + member.getMem_id());
+		
+		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회
+		// => 파라미터 : MemberVO 객체   리턴타입 : MemberVO 객체
+		member = service.getMember(member);
+		
+		// 조회 결과 리턴된 MemberVO 객체가 있을 경우 아이디 중복, null 이면 사용 가능이므로
+		// MemberVO 객체가 null 이 아닐 경우 "true" 리턴, 아니면 "false" 리턴
+		if(member != null) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+	}
+
 	
 	// 로그인 페이지
 	// http://localhost:8081/camcar/MemberLogin
@@ -204,28 +230,32 @@ public class MemberController {
 //		return "member/member_pw_find";
 	}
 	
-//	// 비밀번호 재설정
-//	@PostMapping("PwRestFinal")
-//	public String pwResetFinal(@RequestParam Map<String, String> map, MemberVO member
-//								, BCryptPasswordEncoder passwordEncoder, Model model) {
-//		
-//		member = service.getMember(member); // // map이 있으니까 member에 덮어씌워도 상관없다
-//		
-//		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
-//		// => 조회된 상세정보의 암호화 된 패스워드와 입력받은 기존 패스워드 비교
-//		if(!passwordEncoder.matches(map.get("oldMem_passwd"), member.getMem_passwd())) { // 패스워드 불일치시
-//			model.addAttribute("msg", "수정 권한이 없습니다!");
-//			return "result/fail";
-//		}
-//		
-//		// 새 비밀번호 입력 여부를 확인하여 새 비밀번호 입력됐을 경우 암호화 수행 필요
-//		if(!map.get("mem_passwd").equals("")) { // 널스트링이 아니면 새 비밀번호 암호화 수행
-//			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
-////			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
-//		}
-//		
-//		
+	// 비밀번호 재설정
+	@PostMapping("PwRestFinal")
+	public String pwResetFinal(@RequestParam Map<String, String> map, MemberVO member
+								, BCryptPasswordEncoder passwordEncoder, Model model) {
+		
+		member = service.getMember(member); // // map이 있으니까 member에 덮어씌워도 상관없다
+		
+		// 새 비밀번호 입력 여부를 확인하여 새 비밀번호 입력됐을 경우 암호화 수행 필요
+		if(!map.get("mem_passwd").equals("")) { // 널스트링이 아니면 새 비밀번호 암호화 수행
+			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
+//			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
+		}
+		
+		int updateCount = service.modifyPasswd(map);
+		
+		if(updateCount > 0) {
+//			return "redirect:/MemberInfo";
+			model.addAttribute("msg", "패스워드 수정 성공!");
+			model.addAttribute("targetURL", "./");
+			return "result/success";
+		} else {
+			model.addAttribute("msg", "패스워드 수정 실패!");
+			return "result/fail";
+		}
+		
 //		return "member/member_pw_reset_final";
-//	}
+	}
 	
 }

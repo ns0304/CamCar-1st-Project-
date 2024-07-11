@@ -72,7 +72,7 @@
 							<option value="기타">기타</option>
 							</select>
 <%-- 						<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId}" required="required" /></td> --%>
-							<input type="text" name="board_name" value="${sessionScope.sId}" required="required" size="15" readonly="readonly">
+							<input type="text" name="mem_id" value="${sessionScope.sId}" required="required" size="15" readonly="readonly">
 						</td>
 					</tr>
 				<%-- 세션 아이디를 사용하여 작성자를 구별하므로 비밀번호는 불필요 --%>
@@ -83,17 +83,17 @@
 <!-- 					</td> -->
 <!-- 				</tr> -->
 				<tr>
-					<td class="write_td_left"><label for="board_subject">제목</label></td>
+					<td class="write_td_left"><label for="qna_inquery">제목</label></td>
 				</tr>
 				<tr>
-					<td class="write_td_right"><input type="text" id="board_subject" size="35" placeholder="한글 기준 2자 ~ 50자 사이로 입력해주세요" name="board_subject" required="required" /></td>
+					<td class="write_td_right"><input type="text" id="qna_inquery" size="35" placeholder="한글 기준 2자 ~ 50자 사이로 입력해주세요" name="qna_inquery" required="required" /></td>
 				</tr>
 				<tr>
-					<td class="write_td_left"><label for="board_content">내용</label></td>
+					<td class="write_td_left"><label for="qna_content">내용</label></td>
 				</tr>
 				<tr>
 					<td class="write_td_right">
-						<textarea id="board_content" name="board_content" rows="15" cols="40" placeholder="한글 기준 10자 이상 입력해주세요" required="required"></textarea>
+						<textarea id="qna_content" name="qna_content" rows="15" cols="40" placeholder="한글 기준 10자 이상 입력해주세요" required="required"></textarea>
 					</td>
 				</tr>
 			</table>

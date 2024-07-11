@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.itwillbs.camcar.mapper.CustomerMapper">
+
+	<insert id="insertInquiry">
+		<selectKey keyProperty="qna_number" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(qna_number), 0) -- qna_number 최대값 조회(null 일 경우 기본값 0 사용)
+			FROM qna
+		</selectKey>
+		
+		INSERT
+		INTO qna
+		VALUES (
+			#{qna_number} + 1    -- selectKey 를 통해 조회된 게시물 번호 + 1 값 사용
+			, 1                  -- qna_type_idx(1 = 예약/계약상담)
+			, #{qna_inquery}
+			, #{qna_content}
+			, #{qna_number} + 1  -- qna_re_ref(selectKey 를 통해 조회된 게시물 번호 + 1 값 사용)
+			, 0                  -- qna_re_lev
+			, 0                  -- qna_re_seq
+			, now()
+			,#{mem_id}
+		)
+	</insert>
+</mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.CustomerService;
+import com.itwillbs.camcar.vo.QnaVO;
 
 @Controller
 public class CustomerController {
@@ -69,13 +70,18 @@ public class CustomerController {
 		return "inquiry/inquiry_write_form";
 	}
 	
-//	@PostMapping("InquiryWritePro")
-//	public String inquiryWritePro(@RequestParam Map<String, String> map) {
-//		int insertCount = service.registBoard(map); 
-//		
-//		
+	@PostMapping("InquiryWritePro")
+	public String inquiryWritePro(QnaVO qna, Model model) {
+		int insertCount = service.registInquiry(qna);
+		
+		if(insertCount > 0) {
+			return "customer/customer_list";
+		} else {
+			model.addAttribute("msg", "글쓰기 실패!");
+			return "result/fail";
+		}
 //		return "customer/customer_list";
-//	}
+	}
 	
 	// 자주찾는 질문(예약)
 	// http://localhost:8081/camcar/Reservation

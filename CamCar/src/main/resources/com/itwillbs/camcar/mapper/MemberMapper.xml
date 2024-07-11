@@ -67,5 +67,15 @@
 		WHERE mem_id = #{mem_id}
 	</select>
 	
+	<!-- 회원 비밀번호 수정 - UPDATE -->
+	<update id="updatePasswd">
+		UPDATE member_info
+		SET 
+			mem_passwd = #{mem_passwd}
+		WHERE
+			mem_tel = #{mem_tel}
+		
+	</update>
+	
 	
 </mapper>

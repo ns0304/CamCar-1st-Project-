@@ -13,7 +13,8 @@
 		<%-- top.jsp 페이지를 현재 페이지에 삽입 --%>
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
-	<article>
+	<main>
+		<section>
 			<form action=PwResetPro method="post">
 				<section id="sec01">
 					<table>
@@ -62,8 +63,9 @@
 					</tr>
 					</table>
 				</section>
-			</form>	
-	</article>
+			</form>
+		</section>
+	</main>
 	<footer>
 		<%-- 회사 소개 영역(inc/botto.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views//inc/bottom.jsp"></jsp:include>

@@ -1,5 +1,7 @@
 package com.itwillbs.camcar.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.itwillbs.camcar.vo.DriverVO;
@@ -24,7 +26,7 @@ public interface MemberMapper {
 	MemberVO selectId(String mem_id);
 	
 	// 회원 비밀번호 변경
-	int updatePasswd(MemberVO member);
+	int updatePasswd(Map<String, String> map);
 	
 	
 	

@@ -13,8 +13,10 @@
 		<%-- top.jsp 페이지를 현재 페이지에 삽입 --%>
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
-	<article>
+	<main>
+		<section>
 			<h1>로그인</h1>
+			
 			<form action="MemberLoginPro" method="post">
 				<section>
 					<table>
@@ -35,14 +37,15 @@
 						<tr>
 							<td><input type="password" name="mem_passwd" size="18" required></td>
 							<td id="td02" onclick="location.href='MemberJoin'">회원가입&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<!-- 							<td></td> -->
+	<!-- 							<td></td> -->
 							<td id="td03"  onclick="location.href='Id_find'">아이디 찾기/</td>
 							<td id="td04" onclick="location.href='Passwd_find'">비밀번호 찾기</td>
 						</tr>	
 					</table>
 				</section>
 			</form>	
-	</article>
+		</section>
+	</main>
 	<footer>
 		<%-- 회사 소개 영역(inc/botto.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views//inc/bottom.jsp"></jsp:include>

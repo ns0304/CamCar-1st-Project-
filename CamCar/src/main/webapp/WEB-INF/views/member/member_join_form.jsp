@@ -51,18 +51,56 @@
 		// 정규표현식 문자열을 관리하는 객체(regex)의 exec() 메서드 호출하여
 		// 검사할 문자열을 전달하면 정규표현식 일치 여부 확인 가능
 		if(!regex.exec(mem_id)) { // 불일치
-			$("#checkIdResult").text("영문자, 숫자, 특수문자(_) 조합 4 ~ 16글자");
-			$("#checkIdResult").css("color", "red");
-			$("#mem_id").css("background", "lightpink");
-			
 			checkIdResult = false; // 아이디 검사 적합 여부 false(부적합) 값 저장
 		} else { // 일치
-			$("#checkIdResult").text("사용 가능한 아이디");
-			$("#checkIdResult").css("color", "green");
-			$("#mem_id").css("background", "");
-			
 			checkIdResult = true; // 아이디 검사 적합 여부 true(적합) 값 저장
 		}
+		
+		let msg = "";
+		let color = "";
+		let bgColor = "";
+		
+		// 정규표현식 규칙 검사 결과 판별
+		// => 불일치 시 불일치 메세지 출력 처리
+		// => 일치 시 AJAX 활용하여 아이디 중복 검사 요청 후 결과 처리
+		if(!checkIdResult) {
+			msg = "영문자, 숫자, 특수문자(_) 조합 4 ~ 16글자";
+			color = "red";
+			bgColor = "lightpink";
+		} else {
+			$.ajax({
+				type : "GET",
+				url : "MemberCheckDupId",
+				data : {
+					id : $("#mem_id").val()
+				},
+				success : function(result) {
+					console.log("result = " + result);
+					if(result.trim() == "true") {
+						msg = "이미 사용중인 아이디";
+						color = "red";
+						bgColor = "lightpink";
+					} else if(result.trim() == "false") {
+						msg = "사용 가능한 아이디";
+						color = "green";
+						bgColor = "";
+					}
+					
+					$("#checkIdResult").text(msg);
+					$("#checkIdResult").css("color", color);
+					$("#mem_id").css("background", bgColor);
+				}
+			});
+		}
+		
+		// AJAX 요청에 대한 코드 실행 시점 문제 발생으로 AJAX 응답 성공 시
+		// 기본값 널스트링 값이 저장된 채로 실행되므로 정확한 결과값이 표시되지 않는다!
+		// => 따라서, 현재 코드가 AJAX 요청 성공 시 처리하는 success 블럭에도 추가되어야한다!
+		
+		$("#checkIdResult").text(msg);
+		$("#checkIdResult").css("color", color);
+		$("#mem_id").css("background", bgColor);
+
 		
 	}
 	
