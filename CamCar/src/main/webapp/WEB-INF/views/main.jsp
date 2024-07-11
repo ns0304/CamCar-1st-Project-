@@ -122,14 +122,9 @@
 
 
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
-	<div class="chatCont">
-		<div class="chatBtn">
-			<a>
-				1:1<br>
-				문의
-			</a>
-		</div>
-	</div>
+		<aside class="chatBtn">
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+		</aside>
 	
 	<footer>
 		<!-- 회사 소개 영역 -->
