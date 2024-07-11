@@ -17,15 +17,11 @@ public class Car_ManageService {
 	@Autowired
 	private Car_ManageMapper mapper;
 
-	// 신규차량 등록 요청
-	public int registCar(CarVO car) {
-		return mapper.insertCar(car);
-	}
+	// 차량 정보 등록 요청
+//	public int registCar(CarVO car) {
+//		return mapper.insertCar(car);
+//	}
 
-	// 차량 모델 정보 등록 요청
-	public int registCarModel(CarModelVO carModel) {
-		return mapper.insertCarModel(carModel);
-	}
 	
 	public int getCarListCount(String searchType, String searchKeyword) {
 		return mapper.selectgetCarListCount(searchType, searchKeyword);

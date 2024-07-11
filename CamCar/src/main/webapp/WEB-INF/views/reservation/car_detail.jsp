@@ -125,12 +125,32 @@ $(document).ready(function() {
 						1년 이상
 						</div>
 					</div>
-					<br>
+					<br><br>
 					<div class="carDetail_review">
 					<p>이용자 리뷰</p>
 					<hr>
+					<div class="review1">
+						<p>전체적으로 만족스러워요</p>
+						<span><img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/smile.png"></span>
+					</div>
+					<div class="review2">
+						<p>차량 관리 상태가 좋아요</p>
+						<span><img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/smile.png"></span>
+					</div>
+					<div class="review3">
+						<p>차량 옵션이 많아요</p>
+						<span><img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/smile.png"></span>
+					</div>
+					<div class="review4">
+						<p>연비가 좋아요</p>
+						<span><img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/smile.png"></span>
+					</div>
+					<div class="review5">
+						<p>차박용으로 딱이예요</p>
+						<span><img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/smile.png"></span>
+					</div>
 					
-					<br><br><br><br><br>
+					<br><br>
 					</div>
 					<br>
 					<br>
@@ -139,10 +159,8 @@ $(document).ready(function() {
 						<hr>
 						<c:choose>
 							<%-- "캠핑갈카 부산본점" 일 경우 --%>
-							<c:when test="${fn:trim(param.brc_rent_name) == '캠핑갈카 부산본점'}">
-								<%-- 1. 지도 노드 -->
+							<c:when test="${fn:trim(param.brc_rent_name) eq '캠핑갈카 부산본점'}">
 								<div id="daumRoughmapContainer1720569672541" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-								<%-- 2. 실행 스크립트 --%>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720569672541",
@@ -156,9 +174,7 @@ $(document).ready(function() {
 							
 							<%-- "캠핑갈카 서울지점" 일 경우 --%>
 							<c:otherwise>
-								<%-- 1. 지도 노드 --%>
 								<div id="daumRoughmapContainer1720606882411" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-								<%-- 2. 실행 스크립트 --%>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720606882411",

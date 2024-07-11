@@ -8,7 +8,7 @@
 	<%-- 홈페이지 로고. 메인페이지로 이동 --%>
 	<nav class="header_menu">
 		<ul class="logo">
-			<li><a href="./"><img src="${pageContext.request.contextPath}/resources/images/logo.png"></a></li>
+			<li><a href="./"><img src="${pageContext.request.contextPath}/resources/img/camcar_logo.png"></a></li>
 		</ul>
 
 		<ul class="menu">

@@ -12,11 +12,8 @@ import com.itwillbs.camcar.vo.MemberVO;
 @Mapper
 public interface Car_ManageMapper {
 
-	// 신규 차량 등록
-	int insertCar(CarVO car);
-
-	// 차량 모델 정보 등록
-	int insertCarModel(CarModelVO carModel);
+	// 차량 정보 등록
+//	int insertCarModel(CarModelVO carModel);
 
 	int selectgetCarListCount(String searchType, String searchKeyword);
 
