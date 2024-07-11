@@ -83,7 +83,6 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<!-- 	<div id="container"> -->
 		<header>
 			<!-- 메뉴 -->
 			<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
@@ -137,7 +136,10 @@ $(document).ready(function() {
 			</div>
 
 		</section>
+		
+		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
+<%-- 			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include> --%>
 			<form action="ReservationFin" name="reservation" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
 					<h5>000님의 여정</h5>     
@@ -146,7 +148,7 @@ $(document).ready(function() {
 			          <hr>
 			          <h4>mm:dd yy:MM ~ mm:dd yy:MM</h4>
 			          <hr>
-			          <h4>XX 지점</h4>
+			          <h4>레이</h4>
 			          
 			          <button type="submit">다음</button>			
 			</form>
@@ -307,11 +309,7 @@ $(document).ready(function() {
 	    
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
-		 <nav>
-		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
-		  채팅상담</a>
-		 </nav>
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
 		</aside>	
 		
 		
@@ -319,7 +317,6 @@ $(document).ready(function() {
 		<!-- 회사 소개 영역 -->
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
 	</footer>
-<!-- 	</div> -->
 </body>
 </html>
 

@@ -12,7 +12,6 @@
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 </head>
 <body>
-<!-- 	<div id="container"> -->
 		<header>
 			<!-- 메뉴 -->
 			<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
@@ -66,19 +65,14 @@
 	    
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
-		 <nav>
-		  <a href="#sec01">
-		  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
-		  채팅상담</a>
-		 </nav>
-		</aside>	
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+		</aside>
 		
 		
 	<footer>
 		<!-- 회사 소개 영역 -->
-<%-- 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include> --%>
+		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
 	</footer>
-<!-- 	</div> -->
 </body>
 </html>
 

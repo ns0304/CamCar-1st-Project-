@@ -186,9 +186,23 @@ line-height: 30px;
 	border: 1px solid lightgray;	
 }
 
-#sideContent a{
+#sideContent .right{
 	float: right;
 }
+
+#sideContent .left{
+	float: left;
+}
+
+#sideContent .sideDiv{
+	margin-top: 30px;
+}
+
+#sideContent button{
+	display: block;
+	
+}
+
 #btnArea {
 	text-align: center;
 }
