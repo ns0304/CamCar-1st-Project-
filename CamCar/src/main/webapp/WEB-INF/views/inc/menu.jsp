@@ -23,7 +23,7 @@
 <!-- 		</h4> -->
 		<h2>게시글 관리</h2>
 		<h4>
-			<a href="board_ask" class="">1:1 문의 상담 내역</a>
+			<a href="qna_ask" class="">1:1 문의 상담 내역</a>
 		</h4>
 		<h4>
 			<a href=BoardList class="">공지사항 관리</a>

@@ -33,7 +33,8 @@ public class MemberController {
 	@PostMapping("MemberJoinPro")
 	public String joinPro(MemberVO member, Model model, BCryptPasswordEncoder passwordEncoder, DriverVO drivers) {
 		member.setMem_email(member.getMem_email1() + "@" + member.getMem_email2());
-//		System.out.println(member);
+		System.out.println(member);
+		System.out.println(drivers);
 		
 		// 평문(원문) 패스워드에 대한 해싱(Hashing = 단방향 암호화) 수행 후 결과값 문자열로 저장
 		String securePasswd = passwordEncoder.encode(member.getMem_passwd());
@@ -247,7 +248,7 @@ public class MemberController {
 		if(updateCount > 0) {
 //			return "redirect:/MemberInfo";
 			model.addAttribute("msg", "패스워드 수정 성공!");
-			model.addAttribute("targetURL", "./");
+			model.addAttribute("targetURL", "MemberLogin");
 			return "result/success";
 		} else {
 			model.addAttribute("msg", "패스워드 수정 실패!");

@@ -8,6 +8,7 @@ import lombok.Data;
 -- 운전자 정보
 create table drivers_info(
 	dri_idx int primary key auto_increment,	-- 운전자 번호
+	mem_id varchar(15),
 	dri_name varchar(30) not null,			-- 운전자 이름
 	dri_tel varchar(20) not null unique,	-- 운전자 전화번호
 	dri_birthday date not null,				-- 운전자 생년월일
@@ -22,6 +23,7 @@ create table drivers_info(
 public class DriverVO {
 	
 	private int dri_idx;
+	private String mem_id;
 	private String dri_name;
 	private String dri_tel;
 	private String dri_birthday;
