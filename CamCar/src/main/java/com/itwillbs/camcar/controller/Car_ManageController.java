@@ -57,9 +57,9 @@ public class Car_ManageController {
 		String subDir2 = ""; // 하위 디렉토리명을 저장할 변수 선언
 		
 		// carModel 이미지 등록 - 모델명 별 서브디렉토리 생성
-		subDir1 = carModel.getCar_model();
-		// car 이미지 등록 - 차량번호 별 서브디렉토리 생성
-		subDir2 = car.getCar_number();
+		subDir1 = "carModel" + "/" + carModel.getCar_model();
+		// car 이미지 등록 - 모델명/차량번호 별 서브디렉토리 생성
+		subDir2 = "car" + "/" + car.getCar_model() + "/ "+ car.getCar_number();
 		// 기존 실제 업로드 경로에 서브 디렉토리(모델명 경로) 결합
 		realPath1 += "/" + subDir1;
 		realPath2 += "/" + subDir2;
@@ -150,12 +150,16 @@ public class Car_ManageController {
 		int insertCount2 = service.registCar(car);
 		if(insertCount1 >= 0 || insertCount2 > 0) { // 성공
 			try {
-				if(!mModelImg.getOriginalFilename().equals("")) {
-					mModelImg.transferTo(new File(realPath1, ModelImg));
-				}				
-				if(!mLogoImg.getOriginalFilename().equals("")) {
-					mLogoImg.transferTo(new File(realPath1, LogoImg));
+				if(selectCount == 0) {
+					if(!mModelImg.getOriginalFilename().equals("")) {
+						mModelImg.transferTo(new File(realPath1, ModelImg));
+					}				
+					if(!mLogoImg.getOriginalFilename().equals("")) {
+						mLogoImg.transferTo(new File(realPath1, LogoImg));
+					}
 				}
+				
+				
 				if(!mCarImg1.getOriginalFilename().equals("")) {
 					mCarImg1.transferTo(new File(realPath2, mCarImg1.getOriginalFilename()));
 				}				
@@ -177,10 +181,10 @@ public class Car_ManageController {
 				e.printStackTrace();
 			}
 			
-			// 글목록(BoardList) 서블릿 주소 리다이렉트
+			// 차량목록(CarList) 서블릿 주소 리다이렉트
 			return "redirect:CarList";
 		} else { // 실패
-			// "글쓰기 실패!" 메세지 출력 및 이전 페이지 돌아가기 처리
+			// "차량 정보 등록 실패!" 메세지 출력 및 이전 페이지 돌아가기 처리
 			model.addAttribute("msg", "차량 정보 등록 실패!");
 			return "result/fail";
 		}
