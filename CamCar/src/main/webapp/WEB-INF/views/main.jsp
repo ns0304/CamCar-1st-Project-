@@ -48,15 +48,8 @@
 			<!-- okokokkokok 자주 묻는 질문 영역 okokokkokok-->	
 			<div id="mainQna">
 				<h3 id="qna">자주 묻는 질문</h3>
-<!-- 				임시 reservation 연결 -->
-				<a href="reservation/reservation_final2.jsp" class="extra">reservation_final2</a>
-				<a href="reservation/reservation_final3.jsp" class="extra">reservation_final3</a>
-				<a href="reservation/reservation_final4.jsp" class="extra">reservation_final4</a>
-				<a href="reservation/reservation_final5.jsp" class="extra">reservation_final5</a>
-				
-<!-- 				임시 reservation 연결 -->
-				
-				<div id="qnaContent">
+				<a href="Question_reserve" id="mainQnaMore">더보기</a>
+				<div id="qnaContent" class="clear">
 					<a href="Question_reserve" id="qnaContent1">렌터카 이용 중 반납시간을 연장하고 싶어요</a><hr>
 					<a href="Question_reserve" id="qnaContent2">예약 취소나 노쇼(No-show)시, 수수료는 얼마나 부과되나요</a><hr>
 					<a href="Question_reserve" id="qnaContent3">일정이 변경되어 예약을 변경하고 싶어요</a>
@@ -106,7 +99,7 @@
 		let bestImgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
 		let index2 = 1;
 		setInterval(function() {
-			document.querySelector("#bestImgSlide").src = "${pageContext.request.servletContext.contextPath}resources/img/best_slide/best_slide" + bestImgArr[index];
+			document.querySelector("#bestImgSlide").src = "${pageContext.request.servletContext.contextPath}/resources/img/best_slide/best_slide" + bestImgArr[index];
 			index2++;
 			if(index2 == bestImgArr.length) {
 				index2 = 0;
@@ -119,7 +112,6 @@
 <!-- 	<div id="kakaotalk"> -->
 <!-- 		<a href="">&#128488;</a> -->
 <!-- 	</div> -->
-
 
 	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
 		<aside class="chatBtn">
