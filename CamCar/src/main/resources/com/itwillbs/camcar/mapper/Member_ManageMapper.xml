@@ -58,4 +58,10 @@
 		SELECT COUNT(*)
 		FROM member_info
 	</select>
+	<select id="selectMemberInfoDetail" resultType="member">
+		SELECT*
+		FROM member_info
+	
+	</select>
+	
 </mapper>

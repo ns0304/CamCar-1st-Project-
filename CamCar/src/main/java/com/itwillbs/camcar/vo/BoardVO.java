@@ -28,28 +28,17 @@ public class BoardVO {
 	// 1) String 타입으로 지정할 변수는 실제 파일이 아닌 파일명을 다룰 용도로 사용
 	//    => 멤버변수명은 form 태그에서 지정한 파일 업로드 요소의 name 속성과 다르게,
 	//       DB 의 파일명 저장하는 컬럼명과 같게 지정
-	private String board_file1;
-	private String board_file2;
-	private String board_file3;
-	private String board_file4;
-	private String board_file5;
-	
-	private int board_num;
-	private String board_name;
-	private String board_subject;
-	private String board_content;
-	private int board_re_ref;
-	private int board_re_lev;
-	private int board_re_seq;
-	private int board_readcount;
+	private String bo_file;
+	private String bo_name;
+	private String bo_subject;
+	private String bo_content;
+	private int bo_re_ref;
+	private int bo_re_lev;
+	private int bo_re_seq;
+	private int bo_readcount;
 	private Timestamp board_date;
-	private String board_writer_ip;
 	
-	private MultipartFile file1;
-	private MultipartFile file2;
-	private MultipartFile file3;
-	private MultipartFile file4;
-	private MultipartFile file5;
+	private MultipartFile file;
 	
 }
 

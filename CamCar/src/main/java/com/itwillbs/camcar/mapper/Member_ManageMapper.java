@@ -18,6 +18,8 @@ public interface Member_ManageMapper {
 			@Param("searchKeyword") String searchKeyword, 
 			@Param("startRow") int startRow, 
 			@Param("listLimit")int listLimit);
+	//회원 상세 정보 조회
+	List<MemberVO> selectMemberInfoDetail();
 
 
 }
