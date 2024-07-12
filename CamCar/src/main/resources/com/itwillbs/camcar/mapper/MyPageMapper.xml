@@ -21,16 +21,29 @@
 		UPDATE member_info
 		SET
 			mem_status = 3
+			, mem_withdraw_date = now()
 		WHERE
 			mem_id = #{mem_id}
 	</update>
 	
 <!-- 	운전자 상세정보 조회 SELECT -->
-<!-- 	<select id="selectDriver" resultType="driver"> -->
-<!-- 		SELECT * -->
-<!-- 		FROM drivers_info -->
+	<select id="selectDriver" resultType="driver">
+<!-- 		SELECT  -->
+<!-- 			m.mem_id, d.dri_name, d.dri_tel, d.dri_birthday -->
+<!-- 			, d.lic_num, d,lic_info, d.lic_issue_date -->
+<!-- 			, d.lic_expiration_date -->
+<!-- 		FROM  -->
+<!-- 			drivers_info d -->
+<!-- 		JOIN  -->
+<!-- 			member_info m -->
+<!-- 		ON  -->
+<!-- 			m.mem_id = d.mem_id -->
 <!-- 		WHERE  -->
-<!-- 	</select> -->
+<!-- 			m.mem_id = #{mem_id} -->
+		SELECT *
+		FROM drivers_info
+		WHERE mem_id = #{id}
+	 </select>
 	
 	
 	

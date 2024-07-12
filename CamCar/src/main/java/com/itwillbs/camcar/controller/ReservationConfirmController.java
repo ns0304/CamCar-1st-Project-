@@ -34,4 +34,9 @@ public class ReservationConfirmController {
 		
 		return "reservation_list/Reservation_detail";
 	}
+	
+	@GetMapping("ReservationCancel")
+	public String reservationCancel() {
+		return "reservation_list/ReservationCancel";
+	}
 }

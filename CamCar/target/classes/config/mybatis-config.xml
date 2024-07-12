@@ -8,5 +8,6 @@
 		<typeAlias type="com.itwillbs.camcar.vo.MemberVO" alias="member"/>
 		<typeAlias type="com.itwillbs.camcar.vo.CarVO" alias="car"/>
 		<typeAlias type="com.itwillbs.camcar.vo.BoardVO" alias="bo"/>
+		<typeAlias type="com.itwillbs.camcar.vo.DriverVO" alias="driver"/>
 	</typeAliases>
 </configuration>

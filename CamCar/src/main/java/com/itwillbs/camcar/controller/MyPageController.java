@@ -45,17 +45,17 @@ public class MyPageController {
 	
 	// "changeAddress" 서블릿 주소 매핑 - GET
 		// => address_info.jsp 페이지 포워딩
-	@GetMapping("changeAddress")
-	public String changeAddress() {
-		return "mypage/address_info";
-	}
+//	@GetMapping("changeAddress")
+//	public String changeAddress() {
+//		return "mypage/address_info";
+//	}
 	
 	// "changeLicense" 서블릿 주소 매핑 - GET
 		// => license_info.jsp 페이지 포워딩
-	@GetMapping("changeLicense")
-	public String changeLicense() {
-		return "mypage/license_info";
-	}
+//	@GetMapping("changeLicense")
+//	public String changeLicense() {
+//		return "mypage/license_info";
+//	}
 	
 	// [ 마이페이지 ]
 		// "MemberInfo" 서블릿 주소 매핑 - GET
@@ -98,15 +98,16 @@ public class MyPageController {
 		//-------------------------
 		//
 		member.setMem_id(id);
-		member =service.getMember(member);
+		member = service.getMember(member);
 		
-//		driver = service.getDriver(driver);
+		driver = service.getDriver(driver, id);
 		
 //		driver = service.getD
 //		MemberVO member = service.getMember(member);
 		
 		// Model 객체에 MemberVO 객체 저장 후 mypage/myinfo.jsp 페이지 포워딩
 		model.addAttribute("member", member);
+		model.addAttribute("driver", driver);
 //		model.addAttribute("member", retrievedMember);
 		
 		return "mypage/myinfo";

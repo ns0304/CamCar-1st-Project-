@@ -26,7 +26,7 @@ public class MyPageService {
 	}
 	
 	// 운전자 정보 조회 요청
-//	public DriverVO getDriver(DriverVO driver) {
-//		return mapper.selectDriver(driver);
-//	}
+	public DriverVO getDriver(DriverVO driver, String id) {
+		return mapper.selectDriver(driver, id);
+	}
 }
