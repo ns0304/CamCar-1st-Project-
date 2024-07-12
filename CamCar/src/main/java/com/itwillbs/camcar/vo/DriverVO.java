@@ -11,7 +11,7 @@ create table drivers_info(
 	dri_name varchar(30) not null,			-- 운전자 이름
 	dri_tel varchar(20) not null unique,	-- 운전자 전화번호
 	dri_birthday date not null,				-- 운전자 생년월일
-	lic_num varchar(12) not null unique,	-- 면허증 번호
+	lic_num varchar(50) not null unique,	-- 면허증 번호
 	lic_info varchar(5) not null unique,	-- 면허증 정보
 	lic_issue_date date not null,			-- 면허증 발급일자
 	lic_expiration_date date not null		-- 면허증 만기일자

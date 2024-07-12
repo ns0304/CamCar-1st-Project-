@@ -276,7 +276,108 @@
 		        }
 		    }).open();
 		});
+		
+		$("#mem_name").on("blur", function() {
+			let name = $("#mem_name").val();
+			$("#dri_name").val(name);
+		});
+		
+		$("#mem_tel").on("blur", function() {
+			let tel = $("#mem_tel").val();
+			$("#dri_tel").val(tel);
+		});
+		
 	});
+	
+	//----------------------------------------------------------------------------------------------------
+	// 1-1 면허번호 입력란에 입력 후 빠져나갈 때 (blur) 면허번호 입력값 체크하기
+		function checkLicense() {
+		    // 면허번호 입력값 가져오기
+		    let licenseNum = $("#lic_num").val();
+
+		    // 면허번호 검증 결과 메시지 출력에 사용될 변수 선언++
+		    let msg = "";
+		    let color = "";
+
+		    // 면허번호 길이 및 종류 검증 : 한글, 숫자 조합 12자리
+		    let lengthRegex = /^[가-힣\d]{12}$/;
+
+		    if (lengthRegex.test(licenseNum)) { // 면허번호 길이 검사 적합
+		        msg = "적합한 번호";
+		        color = "green";
+		    } else { // 면허번호 검사 부적합
+		        msg = "면허번호를 입력해주세요";
+		        color = "red";
+		    }
+
+		    // 결과 메시지와 색상 설정
+		    $("#checkLicenseResult").text(msg);
+		    $("#checkLicenseResult").css("color", color);
+		}  // checkLicense() 함수 끝
+		
+		
+		// 1-2. 발급일자 입력란에 입력 후 빠져나갈 때(blur) 발급일자 입력값 체크하기
+		function checkIssueDate() {
+		    // 발급일자 입력값 가져오기
+		    let issueDate = $("#lic_issue_date").val();
+		    
+		    // 발급일자 길이 및 종류 검증 : YYYYMMDD 숫자 8자리
+		    let issueLengthRegex = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
+		    
+		    if(issueLengthRegex.test(issueDate)) { // 입력된 숫자 8자리 적합
+		        $("#checkIssueDateResult").text("적합한 양식입니다.");
+		        $("#checkIssueDateResult").css("color", "green");
+		    } else {
+		        // 월 일치 여부 규칙
+		        let monthRegex = /^\d{4}(0[1-9]|1[0-2])/; 
+		        
+		        // 일 일치 여부 규칙
+		        let dayRegex = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
+		        
+		        if (!monthRegex.test(issueDate)) { // 월 숫자 2자리 부적합
+		            $("#checkIssueDateResult").text("존재하지 않은 월을 입력했어요. 다시 입력해주세요");
+		            $("#checkIssueDateResult").css("color", "red");
+		        } else if (!dayRegex.test(issueDate)) { // 일 숫자 2자리 부적합
+		            $("#checkIssueDateResult").text("존재하지 않은 일을 입력했어요. 다시 입력해주세요");
+		            $("#checkIssueDateResult").css("color", "red");
+		        } else { // 입력된 값 부적합
+		            $("#checkIssueDateResult").text("발급일자를 입력해주세요");
+		            $("#checkIssueDateResult").css("color", "red");
+		        }
+		    }
+		}  // checkIssueDate() 함수 끝
+		
+		
+		// 1-3. 만료일자 입력란에 입력 후 빠져나갈 때(blur) 만료일자 입력값 체크하기
+		function checkExpDate() {
+		    // 만료일자 입력값 가져오기
+		    let expDate = $("#lic_expiration_date").val();
+		    
+		    // 만료일자 길이 및 종류 검증 : YYYYMMDD 숫자 8자리
+		    let expLengthRegex = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
+		    
+		    if(expLengthRegex.test(expDate)) { // 입력된 숫자 8자리 적합
+		        $("#checkExpDateResult").text("적합한 양식입니다.");
+		        $("#checkExpDateResult").css("color", "green");
+		    } else {
+		        // 월 일치 여부 규칙
+		        let monthRegex2 = /^\d{4}(0[1-9]|1[0-2])/; 
+		        
+		        // 일 일치 여부 규칙
+		        let dayRegex2 = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
+		        
+		        if (!monthRegex2.test(expDate)) { // 월 숫자 2자리 부적합
+		            $("#checkExpDateResult").text("존재하지 않은 월을 입력했어요. 다시 입력해주세요");
+		            $("#checkExpDateResult").css("color", "red");
+		        } else if (!dayRegex2.test(expDate)) { // 일 숫자 2자리 부적합
+		            $("#checkExpDateResult").text("존재하지 않은 일을 입력했어요. 다시 입력해주세요");
+		            $("#checkExpDateResult").css("color", "red");
+		        } else { // 입력된 값 부적합
+		            $("#checkExpDateResult").text("만료일자를 입력해주세요"); 
+		            $("#checkExpDateResult").css("color", "red");
+		        }
+		    }
+		} // checkExpDate() 함수 끝
 	
 		
 </script>
@@ -386,20 +487,20 @@
 				</section>
 				<section>
 					<table id="tb02">			
-						<tr>
-							<td>운전자 이름</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>운전자 이름</td> -->
+<!-- 						</tr> -->
 						<tr>	
 							<td>
-								<input type="text" name="dri_name" id="dri_name" size="20" placeholder="운전자 이름을 입력해주세요" >
+								<input type="hidden" name="dri_name" id="dri_name" size="20" placeholder="운전자 이름을 입력해주세요" >
 							</td>
 						</tr>
-						<tr>
-							<td>운전자 전화번호</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>운전자 전화번호</td> -->
+<!-- 						</tr> -->
 						<tr>	
 							<td>
-								<input type="text" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
+								<input type="hidden" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
 							</td>
 						</tr>
 						<tr>
@@ -407,7 +508,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" name="dri_birthday" id="dri_birthday" size="24" placeholder="운전자 생년월일을 입력해주세요" >
+								<input type="text" name="dri_birthday" id="dri_birthday" size="25" placeholder="운전자 생년월일을 입력해주세요" >
 							</td>
 						</tr>
 						<tr>
@@ -431,20 +532,32 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요" >
+								<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요"  onblur="checkLicense()" maxlength="12">
+								<div id="checkLicenseResult"></div>
 							</td>
 						</tr>
 						<tr>
 							<td>발급일자</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20"  ></td>
+							<td>
+								<input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20" onblur="checkIssueDate()" maxlength="8">
+								<div id="checkIssueDateResult"></div>
+							</td>
 						</tr>	
 						<tr>
 							<td>만료일자</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20"  ></td>	
+							<td>
+								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8">
+								<div id="checkExpDateResult"></div>
+							</td>	
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="mem_idx" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8">
+							</td>	
 						</tr>
 					</table>	
 				</section>

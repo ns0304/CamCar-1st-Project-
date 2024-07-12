@@ -15,7 +15,7 @@
 	</header>
 	<main>
 		<section>
-			<form action="PwRestFinal" method="post">
+			<form action="PwResetFinal" method="post">
 				<section id="sec01">
 					<table>
 						<tr>
@@ -30,10 +30,14 @@
 							<td><input type="password" name="mem_passwd" id="mem_passwd" size="10"></td>
 						</tr>
 						<tr>
-							<td id="td03">새 비밀번호 확인</td>
+							<td id="td04">새 비밀번호 확인</td>
 							<td><input type="password" name="mem_passwd2" id="mem_passwd2" size="10"></td>
 						</tr>
-						
+						<tr>
+							<td id="td06">전화번호</td>
+							<td><input type="text" name="mem_tel" id="mem_tel" size="10"></td>
+						</tr>
+<!-- 						<input type="hidden" name="mem_tel"> -->
 						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
 						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
 						<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>

@@ -231,16 +231,15 @@ public class MemberController {
 	}
 	
 	// 비밀번호 재설정
-	@PostMapping("PwRestFinal")
+	@PostMapping("PwResetFinal")
 	public String pwResetFinal(@RequestParam Map<String, String> map, MemberVO member
 								, BCryptPasswordEncoder passwordEncoder, Model model) {
-		
 		member = service.getMember(member); // // map이 있으니까 member에 덮어씌워도 상관없다
 		
 		// 새 비밀번호 입력 여부를 확인하여 새 비밀번호 입력됐을 경우 암호화 수행 필요
 		if(!map.get("mem_passwd").equals("")) { // 널스트링이 아니면 새 비밀번호 암호화 수행
 			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
-//			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
+			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
 		}
 		
 		int updateCount = service.modifyPasswd(map);
