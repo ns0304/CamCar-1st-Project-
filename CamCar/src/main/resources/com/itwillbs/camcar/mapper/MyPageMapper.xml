@@ -12,4 +12,27 @@
 		FROM member_info
 		WHERE mem_id = #{mem_id}
 	</select>
+	
+	
+	
+	<!-- 회원 탈퇴 - UPDATE -->
+	<!-- 아이디(id)가 일치하는 레코드의 회원상태(mem_status) 컬럼값을 3 으로 수정 -->
+	<update id="updateWithdrawMember">
+		UPDATE member_info
+		SET
+			mem_status = 3
+		WHERE
+			mem_id = #{mem_id}
+	</update>
+	
+<!-- 	운전자 상세정보 조회 SELECT -->
+<!-- 	<select id="selectDriver" resultType="driver"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM drivers_info -->
+<!-- 		WHERE  -->
+<!-- 	</select> -->
+	
+	
+	
+	
 </mapper>

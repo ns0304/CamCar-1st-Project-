@@ -32,7 +32,7 @@
 					</div>
 					<div class="reservationInfo">
 						<h3>쉐보레 스파크 1.0 가솔린</h3>
-						 <button class="detailsBtn" onclick="location.href='reservationDetail'">예약 상세 보기</button>
+						 <button class="detailsBtn" onclick="location.href='ReservationDetail'">예약 상세 보기</button>
 						 <p>예약 번호: AAAD-75486451</p>
                          <p>부산</p>
                          <p>08.12(금) 15:00 ~ 08.13(토) 15:00</p>
@@ -47,13 +47,13 @@
 				 </div>
 			</section>
 			<section class="questionSection">
-			 	<h2>1:1 문의내역</h2>
 			 	<div class="questionList">
 			 		<div class="questionContent">
-			 			<p>문의내역이 없습니다</p>
+					 	<h2>1:1 문의내역</h2>
+			 			<p>정확한 답변으로 안내해 드릴게요</p>
 			 		</div>
                 </div>
-                <button class="moreViewBtn">더보기</button>
+                <button class="moreViewBtn" onclick="location.href='QuestionList'">이동</button>
             </section>
 	        
         </div>
@@ -67,11 +67,25 @@
 		
 		
     <!-- 스크롤 따라 움직이는 카카오톡 1:1문의 아이콘 -->
-    <div align="right" class="kakaoQna"> 
-        <table border="1">
-            <tr><td><b>카카오톡<br>1:1문의</b></td></tr> 
-        </table>
-    </div>    
+<!--     <div align="right" class="kakaoQna">  -->
+<!--         <table border="1"> -->
+<!--             <tr><td><b>카카오톡<br>1:1문의</b></td></tr>  -->
+<!--         </table> -->
+<!--     </div>    -->
+    
+    
+    <!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
+	<div class="chatCont">
+		<div class="chatBtn">
+			<a>
+				1:1<br>
+				문의
+			</a>
+		</div>
+	</div>
+    
+    
+     
     <footer>
         <%-- 회사 소개 영역 --%>
         <jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>

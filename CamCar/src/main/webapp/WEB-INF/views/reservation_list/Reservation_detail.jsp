@@ -30,23 +30,47 @@
 					<table border="1" id="resList">
 						<tr>
 							<th>
-								<div class="">
-									<p>
-										홍길동(이름)
+								<div class="" align="left">
+									<p>홍길동(이름)${mem.mem_name}</p>
+									<p><span>예약번호</span>12314124512"${pay_info.res_idx}"</p>	
+									<p><span>지점</span>부산 혹은 서울"${brc.brc_name}"</p>	
+									<p><span>일시</span>"${res.res_rental_date}" ~ "${res.res_return_date}"</p>	
 				    					<a href="" class="res_done">예약완료</a>
-									</p>
+									
 								</div>
 								<hr>
-								<p>
-									예약 번호 &nbsp;&nbsp; <a>dddd-d123445</a><br>
-									일시 &nbsp;&nbsp; <a>08. 12(금) 15:00 ~ 08.13(화) 15:00</a><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;<a>부산</a><br>
-									차량 &nbsp;&nbsp; <a>스파크1.0가솔린</a><br>
-									 &nbsp;&nbsp;&nbsp;&nbsp; <a>2021년식 가솔린</a><br>
-									보험 &nbsp;&nbsp; <a>완전자차</a><br>
-									 &nbsp;&nbsp;&nbsp;&nbsp; 
-									 &nbsp;&nbsp; <a>사고 시 고객 부담 금액</a><br>
-								</p>
+								<div align="left">
+									<div>차량</div>
+									<div>
+										<p>
+											<span>스파크1.0가솔린</span><br>
+											<span>21년식 가솔린</span>
+										</p>
+									</div>
+								
+								</div>
+								<div align="left">
+									<div>보험</div>
+									<div>
+										<p>
+											<span>완전자차</span><br>
+											<span>사고 시 고객 부담 금액  </span>
+										</p>
+									</div>
+								
+								</div>
+<!-- 								<div> -->
+<!-- 									<p> -->
+<!-- 										예약 번호 &nbsp;&nbsp; <a>dddd-d123445</a><br> -->
+<!-- 										일시 &nbsp;&nbsp; <a>08. 12(금) 15:00 ~ 08.13(화) 15:00</a><br> -->
+<!-- 										&nbsp;&nbsp;&nbsp;&nbsp;<a>부산</a><br> -->
+<!-- 										차량 &nbsp;&nbsp; <a>스파크1.0가솔린</a><br> -->
+<!-- 										 &nbsp;&nbsp;&nbsp;&nbsp; <a>2021년식 가솔린</a><br> -->
+<!-- 										보험 &nbsp;&nbsp; <a>완전자차</a><br> -->
+<!-- 										 &nbsp;&nbsp;&nbsp;&nbsp;  -->
+<!-- 										 &nbsp;&nbsp; <a>사고 시 고객 부담 금액</a><br> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
 							</th>
 						</tr>
 					</table>
@@ -65,9 +89,24 @@
 							<tr>
 								<th>
 									<a>신용카드</a>&nbsp;<a>06.16(일) HH : MM</a>
-									
-									<a href="#">@@,@@@원</a>
 								</th>
+								<td><a href="#">@@,@@@원</a></td>
+							</tr>
+							<tr>
+								<th>
+									<a>표준가</a>
+								</th>
+								<td>
+									<a href="">@@,@@@원</a>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<a>보험료</a>
+								</th>
+								<td>
+									<a href="">@@,@@@원</a>
+								</td>
 							</tr>
 						</table>
 					</div>

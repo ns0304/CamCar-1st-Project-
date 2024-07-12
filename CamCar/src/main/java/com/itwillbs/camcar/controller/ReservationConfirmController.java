@@ -27,11 +27,11 @@ public class ReservationConfirmController {
 		return "customer_center";
 	}
 	
-	// "reservationDetail" 서블릿 주소 매핑 - GET
+	// "ReservationDetail" 서블릿 주소 매핑 - GET
 		// => reservation_detail.jsp 페이지 포워딩
-	@GetMapping("reservationDetail")
+	@GetMapping("ReservationDetail")
 	public String reservationDetail() {
 		
-		return "reservation_detail";
+		return "reservation_list/Reservation_detail";
 	}
 }

@@ -35,15 +35,7 @@
 								<span>
 								
 								<a>쉐보레 스파크 1.0 가솔린</a> 
-			<!-- 					<a href="#">예약 상세 보기</a> -->
-								
-			<!-- 					<div class=""> -->
-			    					<a href="reservationDetail"><button>예약 상세 보기</button></a>
-			<!-- 					</div> -->
-								
-			<!-- 					<div class=""> -->
-			    					
-			<!-- 					</div> -->
+			    					<a href="ReservationDetail"><button>예약 상세 보기</button></a>
 									<a href="ResEnd"><button>예약완료</button>	</a>
 								</span>
 							</td>

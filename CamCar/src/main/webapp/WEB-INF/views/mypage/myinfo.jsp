@@ -223,7 +223,7 @@ border-radius: 10px;
     display: flex; /* 버튼들을 플렉스 컨테이너로 설정 */
     justify-content: space-between; /* 버튼들을 양 끝으로 정렬 */
 }
-.cancelBtn, .continueBtn {
+.withdraw, .continueBtn {
     width: 48%; /* 버튼 너비 설정 */
     padding: 10px; /* 버튼 내부 여백 설정 */
     border: none; /* 버튼 테두리 없음 */
@@ -231,7 +231,7 @@ border-radius: 10px;
     cursor: pointer; /* 버튼에 커서 포인터 설정 */
     text-align: center; /* 버튼 텍스트 중앙 정렬 */
 }
-.cancelBtn {
+.withdraw {
     background-color: #ccc; /* 탈퇴 버튼 배경색 설정 */
     color: black; /* 탈퇴 버튼 텍스트 색상 설정 */
 }
@@ -391,7 +391,7 @@ $(document).ready(function() {
 		
 	//======================= 회원탈퇴 팝업창 =======================
 	//"회원탈퇴" 링크 클릭 시 팝업 표시
-	$(".memberInvalidate").click(function(event) {
+	$(".memberWithdraw").click(function(event) {
 	    event.preventDefault();
 	    $(".popUpLeaving").show();
 	});
@@ -488,7 +488,7 @@ $(document).ready(function() {
 // 1-1 면허번호 입력란에 입력 후 빠져나갈 때 (blur) 면허번호 입력값 체크하기
 	function checkLicense() {
 	    // 면허번호 입력값 가져오기
-	    let licenseNum = $("#license_number").val();
+	    let licenseNum = $("#lic_num").val();
 
 	    // 면허번호 검증 결과 메시지 출력에 사용될 변수 선언
 	    let msg = "";
@@ -514,7 +514,7 @@ $(document).ready(function() {
 	// 1-2. 발급일자 입력란에 입력 후 빠져나갈 때(blur) 발급일자 입력값 체크하기
 	function checkIssueDate() {
 	    // 발급일자 입력값 가져오기
-	    let issueDate = $("#issue_date").val();
+	    let issueDate = $("#lic_issue_date").val();
 	    
 	    // 발급일자 길이 및 종류 검증 : YYYYMMDD 숫자 8자리
 	    let issueLengthRegex = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
@@ -546,7 +546,7 @@ $(document).ready(function() {
 	// 1-3. 만료일자 입력란에 입력 후 빠져나갈 때(blur) 만료일자 입력값 체크하기
 	function checkExpDate() {
 	    // 만료일자 입력값 가져오기
-	    let expDate = $("#exp_date").val();
+	    let expDate = $("#lic_expiration_date").val();
 	    
 	    // 만료일자 길이 및 종류 검증 : YYYYMMDD 숫자 8자리
 	    let expLengthRegex = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
@@ -641,8 +641,8 @@ $(document).ready(function() {
 							<label><a href="javascript:confirmLogout()">로그아웃</a></label>
 						</div>
 						<hr>
-						<div class="memberInvalidate">
-							<label><a href="Invalidate">회원탈퇴</a></label>
+						<div class="memberWithdraw">
+							<label><a href="withdrawBtn">회원탈퇴</a></label>
 						</div>
 					</fieldset>
 				</form>
@@ -793,16 +793,16 @@ $(document).ready(function() {
                     <option value="international" <c:if test="${member.lic_info eq '국제면허'}">selected</c:if>>국제면허</option>
                 </select>
 
-                <label for="license_number">면허번호</label>
-                <input type="text" id="license_number" placeholder="면허번호를 입력해주세요" value="${member.lic_num}" onblur="checkLicense()" required maxlength="12">
+                <label for="lic_num">면허번호</label>
+                <input type="text" id="lic_num" name ="lic_num" placeholder="면허번호를 입력해주세요" value="${member.lic_num}" onblur="checkLicense()" required maxlength="12">
                 <a id="checkLicenseResult"></a><br>
 
-                <label for="issue_date">발급일자</label>
-                <input type="text" id="issue_date" placeholder="예) 20211001" value="${member.lic_issue_date}" onblur="checkIssueDate()" maxlength="8" required>
+                <label for="lic_issue_date">발급일자</label>
+                <input type="text" id="lic_issue_date" name="lic_issue_date" placeholder="예) 20211001" value="${member.lic_issue_date}" onblur="checkIssueDate()" maxlength="8" required>
 				<a id="checkIssueDateResult"></a><br>
 
-                  <label for="exp_date">만료일자</label>
-                  <input type="text" id="exp_date" placeholder="예) 20251231" value="${member.lic_expiration_date}" onblur="checkExpDate()" maxlength="8" required>
+                  <label for="lic_expiration_date">만료일자</label>
+                  <input type="text" id="lic_expiration_date" name="lic_expiration_date" placeholder="예) 20251231" value="${member.lic_expiration_date}" onblur="checkExpDate()" maxlength="8" required>
 				<a id="checkExpDateResult"></a><br>
 			<form name="licenseForm">	
                <div class="consent_list">
@@ -984,7 +984,7 @@ $(document).ready(function() {
             <label for="confirmCheck">위 내용을 확인했습니다</label>
         </div>
         <div class="leavingBtns">
-            <button class="cancelBtn">탈퇴</button>
+            <button class="withdraw" onclick="location.href='MemberWithdraw'">탈퇴</button>
             <button class="continueBtn">계속 이용할게요</button>
         </div>
     </div>
