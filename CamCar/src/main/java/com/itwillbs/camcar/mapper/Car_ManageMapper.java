@@ -22,12 +22,15 @@ public interface Car_ManageMapper {
 			@Param("startRow") int startRow, 
 			@Param("listLimit")int listLimit);
 	
+	// 같은 차량모델 있는지 조회
+	int selectSameModel(CarModelVO carModel);
 
 	// 차량 모델 정보 등록
 	int insertCarModel(CarModelVO carModel);
 
 	// 차량 정보 등록
 	int insertCar(CarVO car);
+
 
 	
 

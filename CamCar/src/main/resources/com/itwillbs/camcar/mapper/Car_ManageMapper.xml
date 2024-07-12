@@ -5,7 +5,31 @@
     
 <mapper namespace="com.itwillbs.camcar.mapper.Car_ManageMapper">
 	
+	<select id="selectSameModel">
+		SELECT count(*)
+		FROM car_model_info
+		WHERE car_model = #{car_model}
+	</select>
+	
 	<insert id="insertCarModel">
+		<!-- 이미 등록된 차량 모델일 경우 insert 생략 -->
+<!-- 		<choose> -->
+<!-- 			<when test="!((select count(*) from car_model_info where car_model = #{car_model}) > 0)"> -->
+<!-- 				INSERT INTO car_model_info -->
+<!-- 				(car_model, car_company, car_type, car_model_image, car_logo_image) -->
+<!-- 				VALUES ( -->
+<!-- 					#{car_model}, -->
+<!-- 					#{car_company}, -->
+<!-- 					#{car_type}, -->
+<!-- 					#{car_model_image}, -->
+<!-- 					#{car_logo_image} -->
+<!-- 				) -->
+<!-- 			</when> -->
+<!-- 			<otherwise> -->
+<!-- 				이미 등록된 모델이 있는 경우 아무 작업도 하지 않음 -->
+<!-- 			</otherwise> -->
+<!-- 		</choose> -->
+
 		INSERT INTO car_model_info
 		VALUES(
 			#{car_model}
@@ -13,7 +37,7 @@
 			,#{car_type}
 			,#{car_model_image}
 			,#{car_logo_image}
-		);
+		)
 	</insert>
 	
 	<insert id="insertCar">
@@ -29,7 +53,7 @@
 			,#{car_age}
 			,#{car_career}
 			,#{car_old}
-			,#{car_opt}
+			,#{pet_opt}
 			,#{car_license}
 			,#{car_weekdays}
 			,#{car_weekend}
@@ -39,7 +63,7 @@
 			,#{car_image4}
 			,#{car_image5}
 			,#{car_status}
-		);
+		)
 	</insert>
 	
 	

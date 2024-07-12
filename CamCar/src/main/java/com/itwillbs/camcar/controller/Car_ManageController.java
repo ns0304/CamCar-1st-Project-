@@ -140,9 +140,15 @@ public class Car_ManageController {
 		}
 		// =============================================================
 		// 차량모델정보, 차량 정보 등록 작업 요청
-		int insertCount1 = service.registCarModel(carModel);
+		// 만약, 같은 모델의 차량이 등록되어 있으면 차량 정보만 등록 요청
+		int selectCount = service.getSameModel(carModel);
+		
+		int insertCount1 = 0;
+		if(selectCount == 0) {
+			insertCount1 = service.registCarModel(carModel);
+		}
 		int insertCount2 = service.registCar(car);
-		if(insertCount1 > 0 || insertCount2 > 0) { // 성공
+		if(insertCount1 >= 0 || insertCount2 > 0) { // 성공
 			try {
 				if(!mModelImg.getOriginalFilename().equals("")) {
 					mModelImg.transferTo(new File(realPath1, ModelImg));

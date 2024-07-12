@@ -28,6 +28,10 @@ public class Car_ManageService {
 		return mapper.selectCarList(searchType, searchKeyword, startRow, listLimit);
 	}
 
+	// 같은 차량모델 있는지 조회 요청
+	public int getSameModel(CarModelVO carModel) {
+		return mapper.selectSameModel(carModel);
+	}
 
 	// 차량 모델 정보 등록 요청
 	public int registCarModel(CarModelVO carModel) {
@@ -38,6 +42,7 @@ public class Car_ManageService {
 	public int registCar(CarVO car) {
 		return mapper.insertCar(car);
 	}
+
 
 	
 
