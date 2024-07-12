@@ -13,7 +13,7 @@
 		</h4>
 		<h2>차량 관리</h2>
 		<h4>
-			<a href="Carlist" class="">차량 목록 조회</a>
+			<a href="CarList" class="">차량 목록 조회</a>
 		</h4>
 		<h4>
 			<a href="CarInfoRegistration" class="">차량 정보 등록</a>
