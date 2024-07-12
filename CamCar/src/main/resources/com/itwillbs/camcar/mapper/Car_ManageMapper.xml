@@ -5,6 +5,44 @@
     
 <mapper namespace="com.itwillbs.camcar.mapper.Car_ManageMapper">
 	
+	<insert id="insertCarModel">
+		INSERT INTO car_model_info
+		VALUES(
+			#{car_model}
+			,#{car_company}
+			,#{car_type}
+			,#{car_model_image}
+			,#{car_logo_image}
+		);
+	</insert>
+	
+	<insert id="insertCar">
+		INSERT INTO car_info
+		VALUES(
+			#{car_idx}
+			,#{brc_idx}
+			,#{car_model}
+			,#{car_number}
+			,#{car_company}
+			,#{car_riding}
+			,#{car_fuel_type}
+			,#{car_age}
+			,#{car_career}
+			,#{car_old}
+			,#{car_opt}
+			,#{car_license}
+			,#{car_weekdays}
+			,#{car_weekend}
+			,#{car_image1}
+			,#{car_image2}
+			,#{car_image3}
+			,#{car_image4}
+			,#{car_image5}
+			,#{car_status}
+		);
+	</insert>
+	
+	
 	<select id="selectCarList" resultType="car">
 		SELECT *
 		FROM car_info
