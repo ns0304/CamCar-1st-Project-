@@ -40,18 +40,19 @@
 				<div align="center">
 					<h1>차량 정보 등록</h1>
 					
+<!-- 					<form action="CarInfoRegistration" name="carInfoRegistration" method="post"> -->
 					<form action="CarInfoRegistration" name="carInfoRegistration" method="post" enctype="multipart/form-data">
 						<table border="1" class="graph">
-<!-- 							<tr> -->
-<!-- 								<th width="125px">차종 *</th> -->
-<!-- 								<td class="write_td_right" colspan="2"> -->
-<!-- 									<select name="car_type"> -->
-<!-- 										<option value="캠핑카">캠핑카</option> -->
-<!-- 										<option value="SUV">SUV</option> -->
-<!-- 										<option value="소형차">소형차</option> -->
-<!-- 									</select> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
+							<tr>
+								<th width="125px">차종 *</th>
+								<td class="write_td_right" colspan="2">
+									<select name="car_type">
+										<option value="캠핑카">캠핑카</option>
+										<option value="SUV">SUV</option>
+										<option value="소형차">소형차</option>
+									</select>
+								</td>
+							</tr>
 							<tr>
 								<th>차량코드 *</th>
 								<td class="write_td_right" colspan="2">
@@ -157,21 +158,21 @@
 									<input type="text"id="car_status" name="car_status" value="신규차량" required />
 								</td>
 							</tr>
-							
+							<%-- 파일 첨부 영역 --%>
 							<tr>
 								<th class="write_td_left" rowspan="2">메인 사진 등록</th>
 								<td class="write_td_right">차량모델 사진</td>
 								<td class="write_td_right">
 									<%-- 파일 첨부 형식은 input 태그의 type="file" 속성 활용 --%>
 									<%-- 주의! 파일 업로드를 위해 form 태그 속성에 enctype 속성 필수! --%>
-									<input type="file" name="car_model_image"><br>
+									<input type="file" name="model_image"><br>
 								</td>
 								
 							</tr>
 							<tr>
 								<td class="write_td_right">제조사 로고 사진</td>
 								<td class="write_td_right">
-									<input type="file" name="car_logo_image"><br>
+									<input type="file" name="logo_image"><br>
 								</td>
 								
 							</tr>
@@ -180,31 +181,31 @@
 								<th class="write_td_left" rowspan="5">사진 등록</th>
 								<td class="write_td_right">차량사진1</td>
 								<td>
-									<input type="file" name="car_image1">
+									<input type="file" name="image1">
 								</td>
 							</tr>
 							<tr>
 								<td class="write_td_right">차량사진2</td>
 								<td>
-									<input type="file" name="car_image2">
+									<input type="file" name="image2">
 								</td>
 							</tr>
 							<tr>
 								<td class="write_td_right">차량사진3</td>
 								<td>
-									<input type="file" name="car_image3">
+									<input type="file" name="image3">
 								</td>
 							</tr>
 							<tr>
 								<td class="write_td_right">차량사진4</td>
 								<td>
-									<input type="file" name="car_image4">
+									<input type="file" name="image4">
 								</td>
 							</tr>
 							<tr>
 								<td class="write_td_right">차량사진5</td>
 								<td>
-									<input type="file" name="car_image5">
+									<input type="file" name="image5">
 								</td>
 							</tr>
 						</table>

@@ -21,7 +21,7 @@
 </head>
 	<script type="text/javascript">
 		function correction(){
-			window.open('member_correction', '_parent ', 'width=300px,height=300px,left=750, top=200');
+			window.open('MemberInf', '_parent ', 'width=900px,height=900px,left=750, top=200');
 		}
 		
 	</script>
@@ -98,7 +98,7 @@
 								</th>
 								<th>${member.mem_sign_date}</th>
 								<th>${member.mem_withdraw_date}</th>
-								<th><input type="button" value="수정" onclick="correction()"></th>
+								<th><input type="button" value="상세정보 보기" onclick="correction()"></th>
 							</tr>
 							</c:forEach>
 						</table>

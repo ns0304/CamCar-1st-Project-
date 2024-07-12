@@ -1,6 +1,7 @@
 package com.itwillbs.camcar.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.camcar.vo.DriverVO;
 import com.itwillbs.camcar.vo.MemberVO;
@@ -16,5 +17,8 @@ public interface MyPageMapper {
 	int updateWithdrawMember(MemberVO member);
 	
 	// 운전자 정보 조회
-//	DriverVO selectDriver(DriverVO driver);
+	DriverVO selectDriver(
+			@Param("driver") DriverVO driver,
+			@Param("id") String id);
+	
 }

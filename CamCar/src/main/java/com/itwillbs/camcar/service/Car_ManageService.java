@@ -17,10 +17,6 @@ public class Car_ManageService {
 	@Autowired
 	private Car_ManageMapper mapper;
 
-	// 차량 정보 등록 요청
-//	public int registCar(CarVO car) {
-//		return mapper.insertCar(car);
-//	}
 
 	
 	public int getCarListCount(String searchType, String searchKeyword) {
@@ -31,6 +27,25 @@ public class Car_ManageService {
 		
 		return mapper.selectCarList(searchType, searchKeyword, startRow, listLimit);
 	}
+
+	// 같은 차량모델 있는지 조회 요청
+	public int getSameModel(CarModelVO carModel) {
+		return mapper.selectSameModel(carModel);
+	}
+
+	// 차량 모델 정보 등록 요청
+	public int registCarModel(CarModelVO carModel) {
+		return mapper.insertCarModel(carModel);
+	}
+
+	// 차량 정보 등록 요청
+	public int registCar(CarVO car) {
+		return mapper.insertCar(car);
+	}
+
+
+	
+
 
 
 	

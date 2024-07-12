@@ -20,6 +20,13 @@ public class Member_ManageService {
 	public List<MemberVO> getMemberList(String searchType, String searchKeyword, int startRow, int listLimit) {
 		return mapper.selectMemberList(searchType, searchKeyword, startRow, listLimit);
 	}
+	
+	//회원 상세 정보보기
+	public List<MemberVO> getMemberInfoDetail() {
+		return mapper.selectMemberInfoDetail();
+	}
+
+	
 
 
 

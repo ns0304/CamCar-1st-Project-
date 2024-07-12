@@ -26,7 +26,7 @@
 			<a href="qna_ask" class="">1:1 문의 상담 내역</a>
 		</h4>
 		<h4>
-			<a href="board_notice" class="">공지사항 관리</a>
+			<a href=BoardList class="">공지사항 관리</a>
 		</h4>
 		<h4>
 			<a href="" class="">서비스 게시글 관리</a>

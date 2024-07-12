@@ -34,7 +34,7 @@ public class CarVO {
 	private int car_age;
 	private int car_career;
 	private int car_old;
-	private char pet_opt;
+	private String pet_opt;
 	private String car_license;
 	private int car_weekdays;
 	private int car_weekend;

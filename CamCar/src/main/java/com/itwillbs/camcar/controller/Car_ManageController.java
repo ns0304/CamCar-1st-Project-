@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.camcar.service.Car_ManageService;
-import com.itwillbs.camcar.vo.BoardVO;
 import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
 import com.itwillbs.camcar.vo.PageInfo;
@@ -39,31 +36,162 @@ public class Car_ManageController {
 	public String carWriteForm(HttpSession session, Model model, HttpServletRequest request) {
 		return "car/registration_car_manager_main";
 	}
-	// [ 차량 정보 등록 ] 
 	
 	// *******************************************************************
 	// 최짐니 작업
-	// [ 차량 모델 정보(car_model_info) 등록 작업 ]
+	// [ 차량 정보(car_info) 등록 작업 ]
 	@GetMapping("CarInfoRegistration")
 	public String carInfoRegistration(HttpSession session, Model model, HttpServletRequest request) {
-		return "car/registration_car_manager_main";
+		return "car/registration_car";
 	}
 	
 	@PostMapping("CarInfoRegistration")
-	public String carInfoRegistrationPro(CarVO car, HttpServletRequest request, HttpSession session, Model model) {
-		
+	public String carInfoRegistrationPro(CarModelVO carModel, CarVO car, HttpServletRequest request, HttpSession session, Model model) {
+		System.out.println(carModel);
 		System.out.println(car);
-		System.out.println("차량코드 : " + car.getBrc_idx());
-//		System.out.println(carModel);
-//		System.out.println("모델명 : " + carModel.getCar_model());
-//		int insertCount = service.registCarModel(carModel);
-//		if(insertCount > 0) { // 성공
-//			return "redirect:/Carlist";
-//		} else { // 실패
-//			model.addAttribute("msg", "차량 정보 등록 실패!");
-//			return "result/fail";
-//		}
-		return "";
+		
+		
+		String realPath1 = session.getServletContext().getRealPath(uploadPath); // 가상의 경로 전달
+		String subDir1 = ""; // 하위 디렉토리명을 저장할 변수 선언
+		String realPath2 = session.getServletContext().getRealPath(uploadPath); // 가상의 경로 전달
+		String subDir2 = ""; // 하위 디렉토리명을 저장할 변수 선언
+		
+		// carModel 이미지 등록 - 모델명 별 서브디렉토리 생성
+		subDir1 = "carModel" + "/" + carModel.getCar_model();
+		// car 이미지 등록 - 모델명/차량번호 별 서브디렉토리 생성
+		subDir2 = "car" + "/" + car.getCar_model() + "/ "+ car.getCar_number();
+		// 기존 실제 업로드 경로에 서브 디렉토리(모델명 경로) 결합
+		realPath1 += "/" + subDir1;
+		realPath2 += "/" + subDir2;
+		
+		System.out.println("realPath1 : " + realPath1);
+		// => realPath1 : D:\itwill\Spring\workspace_spring5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CamCar\resources\ upload/레이
+		System.out.println("realPath2 : " + realPath2);
+		// => realPath2 : D:\itwill\Spring\workspace_spring5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CamCar\resources\ upload/119나3857
+		
+		try {
+			// 해당 디렉토리를 실제 경로에 생성(단, 존재하지 않을 경우에만 자동 생성)
+			Path path1 = Paths.get(realPath1); // 파라미터로 실제 업로드 경로 전달
+			Files.createDirectories(path1);	// 실제 경로 생성
+			Path path2 = Paths.get(realPath2); // 파라미터로 실제 업로드 경로 전달
+			Files.createDirectories(path2);	// 실제 경로 생성
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// ---------------------------------------------------------------------------------
+		// 실제 업로드 되는 파일 처리
+		MultipartFile mModelImg = carModel.getModel_image();
+		MultipartFile mLogoImg = carModel.getLogo_image();
+		
+		MultipartFile mCarImg1 = car.getImage1();
+		MultipartFile mCarImg2 = car.getImage2();
+		MultipartFile mCarImg3 = car.getImage3();
+		MultipartFile mCarImg4 = car.getImage4();
+		MultipartFile mCarImg5 = car.getImage5();
+		
+		// MultipartFile 객체의 getOriginalFile() 메서드 호출 시 업로드 한 원본 파일명 리턴
+		// => 주의! 업로드 파일이 존재하지 않으면 파일명에 null 값이 아닌 널스트링값 저장됨
+		System.out.println("차량모델사진 : " + mModelImg.getOriginalFilename());
+		System.out.println("제조사로고사진 : " + mLogoImg.getOriginalFilename());
+		
+		System.out.println("차량상세사진1 : " + mCarImg1.getOriginalFilename());
+		System.out.println("차량상세사진2 : " + mCarImg2.getOriginalFilename());
+		System.out.println("차량상세사진3 : " + mCarImg3.getOriginalFilename());
+		System.out.println("차량상세사진4 : " + mCarImg4.getOriginalFilename());
+		System.out.println("차량상세사진5 : " + mCarImg5.getOriginalFilename());
+		
+		// 업로드하는 파일명 중복되지 않도록 uuid 매번 생성하여 결합
+		String ModelImg = UUID.randomUUID().toString().substring(0, 8) + "_" + mModelImg.getOriginalFilename();
+		String LogoImg = UUID.randomUUID().toString().substring(0, 8) + "_" + mLogoImg.getOriginalFilename();
+		// 차량상세사진은 차량번호로 경로 만들었으므로 파일명 중복될 일 없음
+		
+		// 파일명 저장 전 CarModelVO 객체의 파일명에 해당하는 멤버변수값을 널스트링("") 으로 변경
+		carModel.setCar_model_image("");
+		carModel.setCar_logo_image("");
+		car.setCar_image1("");
+		car.setCar_image2("");
+		car.setCar_image3("");
+		car.setCar_image4("");
+		car.setCar_image5("");
+		
+		System.out.println("ModelImg : " + ModelImg);
+		
+		if(!mModelImg.getOriginalFilename().equals("")) {
+			carModel.setCar_model_image(subDir1 + "/" + ModelImg);
+		}
+		if(!mLogoImg.getOriginalFilename().equals("")) {
+			carModel.setCar_logo_image(subDir1 + "/" + LogoImg);
+		}
+		if(!mCarImg1.getOriginalFilename().equals("")) {
+			car.setCar_image1(subDir2 + "/" + mCarImg1.getOriginalFilename());
+		}
+		if(!mCarImg2.getOriginalFilename().equals("")) {
+			car.setCar_image2(subDir2 + "/" + mCarImg2.getOriginalFilename());
+		}
+		if(!mCarImg3.getOriginalFilename().equals("")) {
+			car.setCar_image3(subDir2 + "/" + mCarImg3.getOriginalFilename());
+		}
+		if(!mCarImg4.getOriginalFilename().equals("")) {
+			car.setCar_image4(subDir2 + "/" + mCarImg4.getOriginalFilename());
+		}
+		if(!mCarImg5.getOriginalFilename().equals("")) {
+			car.setCar_image5(subDir2 + "/" + mCarImg5.getOriginalFilename());
+		}
+		// =============================================================
+		// 차량모델정보, 차량 정보 등록 작업 요청
+		// 만약, 같은 모델의 차량이 등록되어 있으면 차량 정보만 등록 요청
+		int selectCount = service.getSameModel(carModel);
+		
+		int insertCount1 = 0;
+		if(selectCount == 0) {
+			insertCount1 = service.registCarModel(carModel);
+		}
+		int insertCount2 = service.registCar(car);
+		if(insertCount1 >= 0 || insertCount2 > 0) { // 성공
+			try {
+				if(selectCount == 0) {
+					if(!mModelImg.getOriginalFilename().equals("")) {
+						mModelImg.transferTo(new File(realPath1, ModelImg));
+					}				
+					if(!mLogoImg.getOriginalFilename().equals("")) {
+						mLogoImg.transferTo(new File(realPath1, LogoImg));
+					}
+				}
+				
+				
+				if(!mCarImg1.getOriginalFilename().equals("")) {
+					mCarImg1.transferTo(new File(realPath2, mCarImg1.getOriginalFilename()));
+				}				
+				if(!mCarImg2.getOriginalFilename().equals("")) {
+					mCarImg2.transferTo(new File(realPath2, mCarImg2.getOriginalFilename()));
+				}			
+				if(!mCarImg3.getOriginalFilename().equals("")) {
+					mCarImg3.transferTo(new File(realPath2, mCarImg3.getOriginalFilename()));
+				}				
+				if(!mCarImg4.getOriginalFilename().equals("")) {
+					mCarImg4.transferTo(new File(realPath2, mCarImg4.getOriginalFilename()));
+				}				
+				if(!mCarImg5.getOriginalFilename().equals("")) {
+					mCarImg5.transferTo(new File(realPath2, mCarImg5.getOriginalFilename()));
+				}				
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			// 차량목록(CarList) 서블릿 주소 리다이렉트
+			return "redirect:CarList";
+		} else { // 실패
+			// "차량 정보 등록 실패!" 메세지 출력 및 이전 페이지 돌아가기 처리
+			model.addAttribute("msg", "차량 정보 등록 실패!");
+			return "result/fail";
+		}
+		
+		// =============================================================
+		
+//		return "";
 	}
 	// *******************************************************************
 	@GetMapping("Carlist")

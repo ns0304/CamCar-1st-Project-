@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -422,13 +423,13 @@ $(document).ready(function() {
     $("#btnSearchAddress").click(function() {
         new daum.Postcode({
             oncomplete: function(data) { 
-                $("#post_code").val(data.zonecode);
+                $("#mem_post_code").val(data.zonecode);
                 let address = data.address;
                 if(data.buildingName !== ''){
                    address += "(" + data.buildingName + ")";
                 }
-                $("#basic_address").val(address);
-                $("#detail_address").focus();
+                $("#mem_add1").val(address);
+                $("#mem_add2").focus();
             }
         }).open();
     });
@@ -606,7 +607,7 @@ $(document).ready(function() {
 					<fieldset>
 						<div>
 							<p>아이디</p>
-							<input type="text" name="id" value="${member.mem_id}" readonly>
+							<input type="text" id="mem_id" name="mem_id" value="${member.mem_id}" readonly>
 						</div>
 						<hr>
 						<div>
@@ -615,7 +616,7 @@ $(document).ready(function() {
 						</div>
 						<div>
 							<span>휴대폰 번호</span><a href="changePhoneNum" class="changePhoneNum">본인 인증 후 변경</a>
-							<input type="text" name="phoneNumber" value="${member.mem_tel}" readonly>
+							<input type="text" id="mem_tel" name="mem_tel" value="${member.mem_tel}" readonly>
 						</div>
 					</fieldset>
 					<br>
@@ -705,17 +706,17 @@ $(document).ready(function() {
                         <p>주소</p>
                     </div>
                     <div class="address_section">
-                        <label for="post_code"></label>
-                        <input type="text" placeholder="우편번호" value="${member.mem_post_code}" id="post_code" name="post_code" required readonly>
+                        <label for="mem_post_code"></label>
+                        <input type="text" placeholder="우편번호" value="${member.mem_post_code}" id="mem_post_code" name="mem_post_code" required readonly>
                         <button type="button" class="searchBtn" id="btnSearchAddress">주소검색</button>
                     </div>
                     <div class="address_section">
-                        <label for="basic_address"></label>
-                        <input type="text" placeholder="주소" value="${member.mem_add1}" id="basic_address" name="basic_address" required>
+                        <label for="mem_add1"></label>
+                        <input type="text" placeholder="주소" value="${member.mem_add1}" id="mem_add1" name="mem_add1" required>
                     </div>
                     <div class="address_section">
-                        <label for="detail_address"></label>
-                        <input type="text" placeholder="상세주소" value="${member.mem_add2}" id="detail_address" name="detail_address" >
+                        <label for="mem_add2"></label>
+                        <input type="text" placeholder="상세주소" value="${member.mem_add2}" id="mem_add2" name="mem_add2" >
                     </div>
                 </fieldset>
                 <fieldset class="agreement_section" id="agree_section">
@@ -783,26 +784,26 @@ $(document).ready(function() {
             	<label for="license_name"></label>
                 <label for="license-type">면허종류</label>
                 <select id="license-type">
-                    <option value="" selected>면허종류를 선택해주세요</option>
+                    <option value="">면허종류를 선택해주세요</option>
                     <!-- 면허 종류 -->
-                    <option value="2_ordinary" <c:if test="${member.lic_info eq '2종보통'}">selected</c:if>>2종보통</option>
-                    <option value="1_ordinary" <c:if test="${member.lic_info eq '1종보통'}">selected</c:if>>1종보통</option>
-                    <option value="1_special_rescue" <c:if test="${member.lic_info eq '1종특수 - 구난차'}">selected</c:if>>1종특수 - 구난차</option>
-                    <option value="1_special_big" <c:if test="${member.lic_info eq '1종특수 - 대형견인차(트레일러)'}">selected</c:if>>1종특수 - 대형견인차(트레일러)</option>
-                    <option value="1_special_small" <c:if test="${member.lic_info eq '1종특수 - 소형견인차'}">selected</c:if>>1종특수 - 소형견인차</option>
-                    <option value="international" <c:if test="${member.lic_info eq '국제면허'}">selected</c:if>>국제면허</option>
+                    <option value="2종보통" <c:if test="${driver.lic_info eq '2종보통'}">selected</c:if>>2종보통</option>
+                    <option value="1종보통" <c:if test="${driver.lic_info eq '1종보통'}">selected</c:if>>1종보통</option>
+                    <option value="1종특수 - 구난차" <c:if test="${driver.lic_info eq '1종특수 - 구난차'}">selected</c:if>>1종특수 - 구난차</option>
+                    <option value="1종특수 - 대형견인차(트레일러)" <c:if test="${driver.lic_info eq '1종특수 - 대형견인차(트레일러)'}">selected</c:if>>1종특수 - 대형견인차(트레일러)</option>
+                    <option value="1종특수 - 소형견인차" <c:if test="${driver.lic_info eq '1종특수 - 소형견인차'}">selected</c:if>>1종특수 - 소형견인차</option>
+                    <option value="국제면허" <c:if test="${driver.lic_info eq '국제면허'}">selected</c:if>>국제면허</option>
                 </select>
 
                 <label for="lic_num">면허번호</label>
-                <input type="text" id="lic_num" name ="lic_num" placeholder="면허번호를 입력해주세요" value="${member.lic_num}" onblur="checkLicense()" required maxlength="12">
+                <input type="text" id="lic_num" name ="lic_num" placeholder="면허번호를 입력해주세요" value="${driver.lic_num}" onblur="checkLicense()" required maxlength="12">
                 <a id="checkLicenseResult"></a><br>
 
                 <label for="lic_issue_date">발급일자</label>
-                <input type="text" id="lic_issue_date" name="lic_issue_date" placeholder="예) 20211001" value="${member.lic_issue_date}" onblur="checkIssueDate()" maxlength="8" required>
+                <input type="text" id="lic_issue_date" name="lic_issue_date" placeholder="예) 20211001" value="${driver.lic_issue_date}" onblur="checkIssueDate()" maxlength="8" required>
 				<a id="checkIssueDateResult"></a><br>
 
                   <label for="lic_expiration_date">만료일자</label>
-                  <input type="text" id="lic_expiration_date" name="lic_expiration_date" placeholder="예) 20251231" value="${member.lic_expiration_date}" onblur="checkExpDate()" maxlength="8" required>
+                  <input type="text" id="lic_expiration_date" name="lic_expiration_date" placeholder="예) 20251231" value="${driver.lic_expiration_date}" onblur="checkExpDate()" maxlength="8" required>
 				<a id="checkExpDateResult"></a><br>
 			<form name="licenseForm">	
                <div class="consent_list">

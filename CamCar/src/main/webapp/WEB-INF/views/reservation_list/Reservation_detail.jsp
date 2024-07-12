@@ -77,7 +77,7 @@
 				</div>
 				<br>
 				<div align="center" class="resCancelBtn">
-					<input type="button" id="res_cancelBtn" value="예약취소" onclick="location.href='reservationCancel'"><br>
+					<input type="button" id="res_cancelBtn" value="예약취소" onclick="location.href='ReservationCancel'"><br>
 				</div>
 					
 	<!------------------------------- 	상세내역 끝 ---------------------------------------->

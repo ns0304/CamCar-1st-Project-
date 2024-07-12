@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.details, .agreement, .payment-info {
+    margin-bottom: 20px;
+}
+
+.section {
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+.complete-btn, .cancel-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.complete-btn:hover, .cancel-btn:hover {
+    background-color: #0056b3;
+}
+
+.warning {
+    background-color: #ffeb3b;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.agreement-details {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.agreement-details ul {
+    padding-left: 20px;
+}
+
+.agreement-details ul li {
+    list-style-type: disc;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-box {
+    background-color: #f1f1f1;
+    padding: 10px;
+    width: 48%;
+}
+
+.payment-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-info table, .payment-info th, .payment-info td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}

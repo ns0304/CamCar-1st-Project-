@@ -1,5 +1,6 @@
 package com.itwillbs.camcar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.Member_ManageService;
@@ -61,4 +63,23 @@ public class Member_ManageController {
 		return"member/member_manager_main";
 		
 	}
+	//회원 상세정보 조회
+	@GetMapping("MemberInf")
+	public String boardDetail(MemberVO member, Model model) {
+		
+		// 조회 결과가 없을 경우 "존재하지 않는 게시물입니다" 출력 및 이전페이지 돌아가기 처리
+		if(member == null) {
+			model.addAttribute("msg", "존재하지 않는 게시물입니다");
+			return "result/fail";
+		}
+		List<MemberVO> memberInfoDetail = service.getMemberInfoDetail();
+		// Model 객체에 조회 결과 저장
+		System.out.println("member상세 정보" + memberInfoDetail);
+		model.addAttribute("memberInfoDetail", memberInfoDetail);
+		
+		return"member/member_inf";
+	}
+	
+	
+	
 }
