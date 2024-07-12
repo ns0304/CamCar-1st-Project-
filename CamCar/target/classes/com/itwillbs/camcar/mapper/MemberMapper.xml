@@ -35,11 +35,12 @@
 		INTO drivers_info
 		VALUES (
 			null
+			,#{mem_id}
 			,#{dri_name}
 			,#{dri_tel}
 			,#{dri_birthday}
-			,#{lic_info}
 			,#{lic_num}
+			,#{lic_info}
 			,#{lic_issue_date}
 			,#{lic_expiration_date}
 		)

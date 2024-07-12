@@ -72,7 +72,7 @@
 				type : "GET",
 				url : "MemberCheckDupId",
 				data : {
-					id : $("#mem_id").val()
+					mem_id : $("#mem_id").val()
 				},
 				success : function(result) {
 					console.log("result = " + result);
@@ -552,11 +552,6 @@
 							<td>
 								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8">
 								<div id="checkExpDateResult"></div>
-							</td>	
-						</tr>
-						<tr>
-							<td>
-								<input type="text" name="mem_idx" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8">
 							</td>	
 						</tr>
 					</table>	
