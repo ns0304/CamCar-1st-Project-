@@ -22,8 +22,8 @@ public class Member_ManageService {
 	}
 	
 	//회원 상세 정보보기
-	public List<MemberVO> getMemberInfoDetail() {
-		return mapper.selectMemberInfoDetail();
+	public MemberVO getMemberInfoDetail(MemberVO member) {
+		return mapper.selectMemberInfoDetail(member);
 	}
 
 	

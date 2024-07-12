@@ -27,42 +27,42 @@
 				<div align="center">
 					<h1>회원 상세정보</h1>
 					<table border="1">
-						<c:forEach var="member" items="${memberInfoDetail}">
-						<tr>
-							<th>이름</th>
-							<td>${member.mem_name}</td>
-						</tr>
-						<tr>
-							<th>아이디</th>
-							<td>${member.mem_id}</td>
-						</tr>
-						<tr>
-							<th>주소</th>
-						    <td>${member.mem_add2}</td>
-						</tr>
-						<tr>
-							<th>우편번호</th>
-							<td>${member.mem_post_code}</td>
-						</tr>	
-						<tr>
-							<th>E-Mail</th>
-							<td>${member.mem_email}</td>
-						</tr>
-						<tr>
-							<th>가입일</th>
-							<td>${member.mem_sign_date}</td>
-						</tr>
-						<tr>
-							<th>생년월일</th>
-							<td>
-								<c:set var="jumin" value="${member.mem_jumin}"/>
-									${fn:substring(jumin,0,6)}
-							</td>
-						</tr>
-							<th>전화번호</th>
-							<td>${member.mem_tel}</td>
-						</tr>
-						</c:forEach>
+						
+							<tr>
+								<th>이름</th>
+								<td>${member.mem_name}</td>
+							</tr>
+							<tr>
+								<th>아이디</th>
+								<td>${member.mem_id}</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+							    <td>${member.mem_add2}</td>
+							</tr>
+							<tr>
+								<th>우편번호</th>
+								<td>${member.mem_post_code}</td>
+							</tr>	
+							<tr>
+								<th>E-Mail</th>
+								<td>${member.mem_email}</td>
+							</tr>
+							<tr>
+								<th>가입일</th>
+								<td>${member.mem_sign_date}</td>
+							</tr>
+							<tr>
+								<th>생년월일</th>
+								<td>
+									<c:set var="jumin" value="${member.mem_jumin}"/>
+										${fn:substring(jumin,0,6)}
+								</td>
+							</tr>
+								<th>전화번호</th>
+								<td>${member.mem_tel}</td>
+							</tr>
+						
 					</table>
 				</div>
 			</div>

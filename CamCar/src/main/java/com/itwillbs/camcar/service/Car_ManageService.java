@@ -43,6 +43,11 @@ public class Car_ManageService {
 		return mapper.insertCar(car);
 	}
 
+	// 차량 상세 정보 조회 요청
+	public CarVO getCarListDetail(int car_idx) {
+		return mapper.selectCarListDetail(car_idx);
+	}
+
 
 	
 

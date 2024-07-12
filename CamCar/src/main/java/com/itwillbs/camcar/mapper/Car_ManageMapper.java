@@ -31,6 +31,9 @@ public interface Car_ManageMapper {
 	// 차량 정보 등록
 	int insertCar(CarVO car);
 
+	// 차량 상세정보 조회
+	CarVO selectCarListDetail(int car_idx);
+
 
 	
 

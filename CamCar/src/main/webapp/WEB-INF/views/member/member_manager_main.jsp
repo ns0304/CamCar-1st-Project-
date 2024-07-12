@@ -20,8 +20,8 @@
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 </head>
 	<script type="text/javascript">
-		function correction(){
-			window.open('MemberInf', '_parent ', 'width=900px,height=900px,left=750, top=200');
+		function correction(mem_id){
+			window.open('MemberInf?mem_id=' + mem_id, '_parent ', 'width=900px,height=900px,left=750, top=200');
 		}
 		
 	</script>
@@ -98,7 +98,7 @@
 								</th>
 								<th>${member.mem_sign_date}</th>
 								<th>${member.mem_withdraw_date}</th>
-								<th><input type="button" value="상세정보 보기" onclick="correction()"></th>
+								<th><input type="button" value="상세정보 보기" onclick="correction('${member.mem_id}')"></th>
 							</tr>
 							</c:forEach>
 						</table>

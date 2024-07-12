@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -181,8 +182,8 @@ public class Car_ManageController {
 				e.printStackTrace();
 			}
 			
-			// 차량목록(CarList) 서블릿 주소 리다이렉트
-			return "redirect:CarList";
+			// 차량목록(CarListBoard) 서블릿 주소 리다이렉트
+			return "redirect:CarListBoard";
 		} else { // 실패
 			// "차량 정보 등록 실패!" 메세지 출력 및 이전 페이지 돌아가기 처리
 			model.addAttribute("msg", "차량 정보 등록 실패!");
@@ -194,45 +195,32 @@ public class Car_ManageController {
 //		return "";
 	}
 	// *******************************************************************
-	@GetMapping("Carlist")
-	public String CarListForm(
+	//차량 목록 조회
+	@GetMapping("CarListBoard")
+	public String CarList(CarVO car, HttpSession session,
 			@RequestParam(defaultValue = "") String searchType,
 			@RequestParam(defaultValue = "") String searchKeyword,
 			@RequestParam(defaultValue = "1") int pageNum, 
 			Model model) {
-		return"car/car_manager_main";
-	}
-	
-	
-	@PostMapping("Carlist")
-	public String CarList(
-			@RequestParam(defaultValue = "") String searchType,
-			@RequestParam(defaultValue = "") String searchKeyword,
-			@RequestParam(defaultValue = "1") int pageNum, 
-			Model model) {
-		System.out.println("carlist");
+//		System.out.println("carlist");
 //		System.out.println("검색타입 : " + searchType);
 //		System.out.println("검색어 : " + searchKeyword);
 //		System.out.println("페이지번호 : " + pageNum);
 		// --------------------------------------------------------------------
 		// 페이징 처리를 위해 조회 목록 갯수 조절에 사용될 변수 선언
-		int listLimit = 10; // 페이지 당 게시물 수
+		int listLimit = 8; // 페이지 당 게시물 수
 		int startRow = (pageNum - 1) * listLimit; // 조회할 게시물의 행 번호
 		
 		// 페이징 처리를 위한 계산 작업
-		// BoardListService - getBoardListCount() 메서드 호출하여 전체 게시물 수 조회 요청
-		// => 파라미터 : 검색타입, 검색어   리턴타입 : int(listCount)
 		int listCount = service.getCarListCount(searchType, searchKeyword);
-		int pageListLimit = 3; // 임시) 페이지 당 페이지 번호 갯수를 3개로 지정(1 2 3 or 4 5 6)
+		int pageListLimit = 3; 
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
 		int endPage = startPage + pageListLimit -1;
-		
 		// 최대 페이지번호(maxPage) 값의 기본값을 1로 설정하기 위해 계산 결과가 0 이면 1 로 변경
 		if(maxPage == 0) {
 			maxPage = 1;
 		}
-		
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
@@ -241,7 +229,7 @@ public class Car_ManageController {
 		// "해당 페이지는 존재하지 않습니다!" 출력 및 1페이지로 이동하도록 처리
 		if(pageNum < 1 || pageNum > maxPage) {
 			model.addAttribute("msg", "해당 페이지는 존재하지 않습니다!");
-			model.addAttribute("targetURL", "BoardList?pageNum=1");
+			model.addAttribute("targetURL", "CarListBoard?pageNum=1");
 			return "result/fail";
 		}
 		List<CarVO> carList = service.getCarList(searchType, searchKeyword, startRow, listLimit);
@@ -252,8 +240,39 @@ public class Car_ManageController {
 		// 게시물 목록과 페이징 정보를 Model 객체에 저장
 		model.addAttribute("carList", carList);
 		model.addAttribute("pageInfo", pageInfo);
+		System.out.println("최지민 + 진성민의 합작 : " + carList);
 		
 		return "car/car_manager_main";
 	}
+	//차량 상세 조회
+	@GetMapping("CarModify")
+	public String carModify(int car_idx, Model model) {
+		CarVO car = service.getCarListDetail(car_idx);
+		if(car == null) {
+			model.addAttribute("msg", "존재하지 않는 차량입니다");
+			return "result/fail";
+		}
+		List<String> fileList = new ArrayList<String>();
+		fileList.add(car.getCar_image1());
+		fileList.add(car.getCar_image2());
+		fileList.add(car.getCar_image3());
+		fileList.add(car.getCar_image4());
+		fileList.add(car.getCar_image5());
+		model.addAttribute("fileList", fileList);
+		
+		// Model 객체에 조회 결과 저장
+		model.addAttribute("car", car);
+		
+		return"car/modify_car";
+	}
 	
+	//차량 리스트 정보 삭제
+	@GetMapping("CarInfoDelete")
+	public String carInfoDelete(int car_idx, @RequestParam(defaultValue = "1") int pageNum,
+			HttpSession session, Model model) throws Exception {
+		
+		CarVO car = service.getCarListDetail(car_idx);
+		
+		return"";
+	}
 }

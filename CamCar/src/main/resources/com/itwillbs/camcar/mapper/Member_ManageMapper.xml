@@ -59,9 +59,12 @@
 		FROM member_info
 	</select>
 	<select id="selectMemberInfoDetail" resultType="member">
-		SELECT*
+		SELECT *
 		FROM member_info
+		WHERE mem_id = #{mem_id} -- bybatis mem_id값 가져오기
+		
 	
 	</select>
+	
 	
 </mapper>

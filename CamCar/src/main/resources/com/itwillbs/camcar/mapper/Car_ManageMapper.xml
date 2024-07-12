@@ -11,35 +11,7 @@
 		WHERE car_model = #{car_model}
 	</select>
 	
-	<insert id="insertCarModel">
-		<!-- 이미 등록된 차량 모델일 경우 insert 생략 -->
-<!-- 		<choose> -->
-<!-- 			<when test="!((select count(*) from car_model_info where car_model = #{car_model}) > 0)"> -->
-<!-- 				INSERT INTO car_model_info -->
-<!-- 				(car_model, car_company, car_type, car_model_image, car_logo_image) -->
-<!-- 				VALUES ( -->
-<!-- 					#{car_model}, -->
-<!-- 					#{car_company}, -->
-<!-- 					#{car_type}, -->
-<!-- 					#{car_model_image}, -->
-<!-- 					#{car_logo_image} -->
-<!-- 				) -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				이미 등록된 모델이 있는 경우 아무 작업도 하지 않음 -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-
-		INSERT INTO car_model_info
-		VALUES(
-			#{car_model}
-			,#{car_company}
-			,#{car_type}
-			,#{car_model_image}
-			,#{car_logo_image}
-		)
-	</insert>
-	
+	<!-- 차량 등록 -->
 	<insert id="insertCar">
 		INSERT INTO car_info
 		VALUES(
@@ -66,7 +38,7 @@
 		)
 	</insert>
 	
-	
+	<!-- 차량 정보 조회 리스트 -->
 	<select id="selectCarList" resultType="car">
 		SELECT *
 		FROM car_info
@@ -75,6 +47,12 @@
 	<select id="selectgetCarListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM car_info
+	</select>
+	
+	<select id="selectCarListDetail">
+		SELECT*
+		FROM car_info
+		WHERE car_idx = #{car_idx}
 	</select>
 	
 </mapper>
