@@ -250,6 +250,7 @@ $(document).ready(function() {
 	
 	<main>
 		<section>
+		<form action="CarDetail" name="carDetail" id="carDetail" method="post">
 			<!-- 필터 영역 -->
 			<div class="top_filter_wrap">
 				<div class="filter_result_wrap">
@@ -265,53 +266,56 @@ $(document).ready(function() {
 				</div>
 			</div>
 			
-			<!-- 차량 리스트 영역 -->
-			<div class="carList_wrap">
-				<div class="carList_top">	<!-- 차량정보 상단 -->
-					<div class="carName">
-						<a><img src="resources/img/logo/kia.svg"><br>
-						제조사</a>
-						<h3>차량이름</h3>
+			<!-- ---------- 차량 리스트 영역 ---------- -->
+			<c:forEach var="model" items="${carModelList}">
+			
+				<div class="carList_wrap">
+					<div class="carList_top">	<!-- 차량정보 상단 -->
+						<div class="carName">
+							<!-- 로고사진 -->
+							<a><img src="${pageContext.request.contextPath}/resources/upload/${model.car_logo_image}"><br>
+							${model.car_company}</a>
+							<h3>${model.car_model}</h3>
+						</div>
+						<div class="carImage">
+							<img src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
+						</div>
 					</div>
-					<div class="carImage">
-						<img src="${pageContext.request.servletContext.contextPath}/resources/img/car/kia_ray.png">
+					<div class="carList_bottom" style="display: flex;">
+							<div class="carName_detail">
+								<p class="main_name">차량이름 연료</p>
+								<span>연식 / 연료 / 탑승인원 / 운전자조건</span>
+								
+								<input type="hidden" name="car_info" value="차량이름 연료">
+								<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
+								<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+								<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+								
+							</div>
+							<div class="pay_detail">
+								<span class="main_name" style="font-size: 20px;">00,000원</span>
+								<input type="submit" value="예약">
+	<!-- 							<input type="button" value="예약"> -->
+							</div>
 					</div>
-				</div>
-				<div class="carList_bottom" style="display: flex;">
-					<form action="CarDetail" name="carDetail" id="carDetail" method="post">
+					<div class="carList_bottom" style="display: flex;">
 						<div class="carName_detail">
 							<p class="main_name">차량이름 연료</p>
 							<span>연식 / 연료 / 탑승인원 / 운전자조건</span>
-							
-							<input type="hidden" name="car_info" value="차량이름 연료">
-							<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
-							<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-							<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-							
 						</div>
 						<div class="pay_detail">
 							<span class="main_name" style="font-size: 20px;">00,000원</span>
-							<input type="submit" value="예약">
-<!-- 							<input type="button" value="예약"> -->
+							<input type="button" value="예약">
 						</div>
-					</form>
-				</div>
-				<div class="carList_bottom" style="display: flex;">
-					<div class="carName_detail">
-						<p class="main_name">차량이름 연료</p>
-						<span>연식 / 연료 / 탑승인원 / 운전자조건</span>
-					</div>
-					<div class="pay_detail">
-						<span class="main_name" style="font-size: 20px;">00,000원</span>
-						<input type="button" value="예약">
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 				
 			
 			<div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			</div>
+		</form>
 		</section>
 		
 		<!-- 예약 일정 영역 -->
