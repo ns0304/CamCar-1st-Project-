@@ -66,13 +66,15 @@ public class ReservationController {
 		return "reservation/car_list";
 	}
 	
-	@GetMapping("CarDetail")
+	// "CarDetail" 서블릿 주소 매핑 - POST
+	@PostMapping("CarDetail")
 	public String carDetailPro(
-			@RequestParam Map<String, String> map, int car_idx, Model model) {
-		System.out.println("지점 : " + map.get("brc_rent_name"));
+			@RequestParam Map<String, String> map, Model model) {
 		System.out.println("대여일시 : " + map.get("res_rental_date"));
 		System.out.println("반납일시 : " + map.get("res_return_date"));
-		System.out.println("차량정보 : " + map.get("car_info"));
+		System.out.println("차량코드 : " + map.get("car_idx"));
+		
+		int car_idx = Integer.parseInt(map.get("car_idx"));
 		
 		// 차량 상세정보 조회 요청
 		CarVO carDetail = service.getCarDetail(car_idx);

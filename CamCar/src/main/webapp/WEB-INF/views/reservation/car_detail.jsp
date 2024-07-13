@@ -81,6 +81,10 @@
 	width: 20%;
 	box-sizing: border-box;
 }
+/* 지도 크기 */
+.mapImg {
+	width: 720px; height: 360px;
+}
 
 </style>
 
@@ -127,38 +131,38 @@ $(document).ready(function() {
 					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image5}" id="img5" class="changeImg"></div>
 				</div>
 				<div class="carDetail_info">
-					<p>차량 정보</p>
+					<p style="font-size: 18px;">차량 정보</p>
 					<hr>
 					<div style="display: flex;">
 						<div class="fuel">
 						<img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/fuel.png">
 						연료<br>
-						가솔린
+						${carDetail.car_fuel_type}
 						</div>
 						<div class="persons">
 						<img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/persons.png">
 						승차인원<br>
-						5명
+						${carDetail.car_riding}명
 						</div>
 						<div class="carYear">
 						<img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/carYear.png">
 						연식<br>
-						2024
+						${carDetail.car_old}
 						</div>
 						<div class="driverAge">
 						<img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/driverAge21.png">
 						운전자나이<br>
-						만 21세 이상
+						만 ${carDetail.car_age}세 이상
 						</div>
 						<div class="driverEx">
 						<img class="icon" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/driverEx1.png">
 						운전경력<br>
-						1년 이상
+						${carDetail.car_career}년 이상
 						</div>
 					</div>
 					<br><br>
 					<div class="carDetail_review">
-					<p>이용자 리뷰</p>
+					<p style="font-size: 18px;">이용자 리뷰</p>
 					<hr>
 					<div class="review1">
 						<p>전체적으로 만족스러워요</p>
@@ -186,12 +190,12 @@ $(document).ready(function() {
 					<br>
 					<br>
 					<div class="carDetail_brc">
-						<p>인수 및 반납장소</p>
+						<p style="font-size: 18px;">인수 및 반납장소</p>
 						<hr>
 						<c:choose>
 							<%-- "캠핑갈카 부산본점" 일 경우 --%>
-							<c:when test="${fn:trim(param.brc_rent_name) eq '캠핑갈카 부산본점'}">
-								<div id="daumRoughmapContainer1720569672541" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+							<c:when test="${carDetail.brc_idx eq 5101}">
+								<div id="daumRoughmapContainer1720569672541" class="root_daum_roughmap root_daum_roughmap_landing mapImg"></div>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720569672541",
@@ -200,12 +204,16 @@ $(document).ready(function() {
 										"mapHeight" : "360"
 									}).render();
 								</script>
-								
+								<b style="font-size: 18px;">캠핑갈카 부산본점</b>
+								<p>주소<br> 부산 부산진구 동천로 109 삼한골든게이트 1층<br><br>
+								전화<br>051-1234-5678<br><br>
+								이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
+				
 							</c:when>
 							
 							<%-- "캠핑갈카 서울지점" 일 경우 --%>
 							<c:otherwise>
-								<div id="daumRoughmapContainer1720606882411" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+								<div id="daumRoughmapContainer1720606882411" class="root_daum_roughmap root_daum_roughmap_landing mapImg"></div>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
 										"timestamp" : "1720606882411",
@@ -222,9 +230,6 @@ $(document).ready(function() {
 					
 				</div>
 			</div>
-			<div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			</div>
 		</section>
 		
 		<!-- 예약 일정 영역 -->
@@ -234,11 +239,16 @@ $(document).ready(function() {
 					<b>회원님과 함께하는 여정</b><br><br>
 				</div>
 				<div id="schedule_wrap">
-					<a><img class="icon" alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> ${param.brc_rent_name}</a>
+					<a><img class="icon" alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> 
+						<c:choose>
+							<c:when test="${carDetail.brc_idx eq 5101}">캠핑갈카 부산본점</c:when>
+							<c:otherwise>캠핑갈카 서울지점</c:otherwise>
+						</c:choose>
+					</a>
 					<hr>
 					<a><img class="icon" alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
 					<hr>
-					<a><img class="icon" alt="campingcar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/campingcar.png"> ${param.car_info}</a>
+					<a><img class="icon" alt="campingcar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/campingcar.png"> ${carDetail.car_model}</a>
 				</div>
 				<div id="pay_wrap" >
 					<h3>00,000원</h3>

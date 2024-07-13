@@ -397,16 +397,18 @@ $(document).ready(function() {
 										${car.car_license} 이상
 									</span>
 									
-									<!-- 일정정보(지점, 대여일시) 전달  -->
-									<input type="hidden" name="car_info" value="${car.car_model} ${car.car_fuel_type}">
-									<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
+									<!-- 일정정보(대여일시) 전달  -->
+<%-- 									<input type="text" name="res_rental_date" value="${param.res_rental_date}"> --%>
+<%-- 									<input type="text" name="res_return_date" value="${param.res_return_date}"> --%>
 									<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 									<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+									<input type="hidden" name="car_idx" value="${car.car_idx}">
 									
 								</div>
 								<div class="pay_detail">
 									<span class="main_name" style="font-size: 20px;">${car.car_weekdays}원</span>
-									<input type="button" value="예약" onclick="location.href='CarDetail?car_idx=${car.car_idx}'">
+									<input type="submit" value="예약">
+<%-- 									<input type="button" value="예약" onclick="location.href='CarDetail?car_idx=${car.car_idx}'"> --%>
 								</div>
 							</div>
 						</c:if>
@@ -428,6 +430,7 @@ $(document).ready(function() {
 				<span style="float: right;"><a href="update_res" id="update_res">수정</a></span>
 				<hr>
 				<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
+				<span style="float: right;"><a href="update_cal" id="update_cal">수정</a></span>
 				<div class="center">
 					<input type="reset" id="research" value="재검색">
 				</div>
@@ -503,10 +506,6 @@ $(document).ready(function() {
 								<c:if test="${car_opt.equals('소형차')}"> checked</c:if>
 							</c:forEach>
 							><label for="smallCar">소형차</label></li>
-						
-<!-- 							<li><input type="button" id="campingCar" value="캠핑카"></li> -->
-<!-- 							<li><input type="button" id="suv" value="SUV"></li> -->
-<!-- 							<li><input type="button" id="smallCar" value="소형차"></li> -->
 						</ul>
 					</div>
 				</li>
