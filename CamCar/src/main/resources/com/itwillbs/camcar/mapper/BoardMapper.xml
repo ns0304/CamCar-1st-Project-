@@ -6,18 +6,23 @@
 <mapper namespace="com.itwillbs.camcar.mapper.BoardMapper">
 <!-- 공지사항 글 등록 -->
 	<insert id="insertBoard">
+		<selectKey keyProperty="bo_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(bo_idx), 0) -- board_num 최대값 조회(null 일 경우 기본값 0 사용)
+				FROM board_notice
+		</selectKey>
 		<!-- 새 글 번호와 참조글 번호는 <selectKey> 를 통회 조회한 #{board_num} 값 사용 -->
 		INSERT
 		INTO board_notice
 		VALUES (
-			#{bo_subject}
-			, #{bo_content}
-			, #{bo_file}
+			#{bo_idx} + 1
+			, #{bo_subject}
 			, #{bo_re_ref} + 1  -- bo_re_ref(selectKey 를 통회 조회된 게시물 번호 + 1 값 사용)
 			, 0                 -- bo_re_lev
 			, 0                 -- bo_re_seq
-			, 0                 -- bo_readcount
+			, #{bo_content}
+			, #{bo_file}
 			, now()
+			, 0                 -- bo_readcount
 		)
 	</insert>
 	
@@ -53,8 +58,7 @@
 			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
 			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
 	</select>
-	
-	
+
 	
 	
 	

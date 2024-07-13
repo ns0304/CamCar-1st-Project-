@@ -70,6 +70,7 @@ public class CustomerController {
 		return "inquiry/inquiry_write_form";
 	}
 	
+	// 1:1 문의 글쓰기
 	@PostMapping("InquiryWritePro")
 	public String inquiryWritePro(QnaVO qna, Model model) {
 		int insertCount = service.registInquiry(qna);

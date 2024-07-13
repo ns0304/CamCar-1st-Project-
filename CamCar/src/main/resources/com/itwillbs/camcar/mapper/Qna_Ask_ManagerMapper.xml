@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 게시물 목록 조회  -->    
+<mapper namespace="com.itwillbs.camcar.mapper.Qna_Ask_ManagerMapper">
+	<select id="selectQnaList" resultType="qna">
+		SELECT *
+		FROM qna
+		ORDER BY
+			qna_re_ref DESC
+			, qna_re_seq ASC
+		LIMIT
+			#{startRow}     
+			, #{listLimit}
+	</select>
+	
+	<!-- 전체 게시물 갯수 조회 -->
+	<!-- 글 목록 조회 시 검색 기능 추가 -->
+	<select id="selectQnaListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM qna
+		<if test="!searchKeyword.equals('')">
+			WHERE 
+			<choose>
+				<when test="searchType.equals('inquery')">
+					qna_inquery LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('content')">
+					qna_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('inquery_content')">
+					qna_inquery LIKE CONCAT('%', #{searchKeyword}, '%')
+					OR qna_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('name')">
+					mem_id LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<otherwise>
+					1 = 1  -- WHERE 절을 포함시키되 조건을 걸고 싶지 않을 경우 활용 가능한 조건식(무조건 true 가 나오는 식이면 OK)
+				</otherwise>
+			</choose>
+		</if>
+		
+		ORDER BY
+			qna_re_ref DESC
+			, qna_re_seq ASC
+		LIMIT
+			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
+			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
+	</select>
+</mapper>

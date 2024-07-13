@@ -10,7 +10,10 @@ import com.itwillbs.camcar.vo.QnaVO;
 @Mapper
 public interface Qna_Ask_ManagerMapper {
 
+	
 	List<QnaVO> selectQnaList(			
+			@Param("searchType") String searchType,
+			@Param("searchKeyword") String searchKeyword,
 			@Param("startRow") int startRow,
 			@Param("listLimit") int listLimit);
 
