@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
+<!-- gg -->
 <aside>
 	<div class="mainList" style="margin-top: 100px;">
 		<h5>
