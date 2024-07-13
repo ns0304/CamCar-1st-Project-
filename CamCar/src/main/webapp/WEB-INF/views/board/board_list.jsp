@@ -79,7 +79,7 @@
 	</header>
 
 	<!-- 게시판 리스트 -->
-	<h2>게시판 글 목록</h2>
+	<h2>캠핑갈카 공지사항</h2>
 	<section id="buttonArea">
 		<%-- ============================================================================ --%>
 		<%-- ======================= [ 게시물 검색 기능 추가 ] ========================== --%>
@@ -103,7 +103,6 @@
 			<tr id="tr_top">
 				<td width="100px">번호</td>
 				<td>제목</td>
-				<td width="150px">작성자</td>
 				<td width="150px">날짜</td>
 				<td width="100px">조회수</td>
 			</tr>
@@ -117,25 +116,24 @@
 			</c:if>
 			<%-- ================================================ --%>
 			<%-- JSTL 과 EL 활용하여 글목록 표시 작업 반복(boardList 객체 활용) --%>
-			<c:forEach var="board" items="${boardList}">
+			<c:forEach var="bo" items="${boardList}">
 				<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 				<tr>
-					<td>${board.board_num}</td>
+					<td>${bo.bo_idx}</td>
 					<td id="subject">
 						<%-- ========= 답글 관련 처리 ======== --%>
 						<%-- board_re_lev 값이 0 보다 크면 답글이므로 들여쓰기 후 이미지(re.gif) 표시 --%>
 						<%-- ex) lev = 1 일 때 2칸, lev = 2 일 때 4칸 들여쓰기 --%>
-						<c:if test="${board.board_re_lev > 0}">
-							<c:forEach begin="1" end="${board.board_re_lev}">
+						<c:if test="${bo.bo_re_lev > 0}">
+							<c:forEach begin="1" end="${bo.bo_re_lev}">
 								&nbsp;&nbsp;
 							</c:forEach>
 							<img src="images/re.gif">
 						</c:if>
 						<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail) --%>
 						<%-- 파라미터 : 글번호(board_num), 페이지번호(pageNum) --%>
-						<a href="BoardDetail?board_num=${board.board_num}&pageNum=${pageNum}">${board.board_subject}</a>
+						<a href="BoardDetail?board_num=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</a>
 					</td>
-					<td>${board.board_name}</td>
 					<td>
 						<%--
 						JSTL - format(fmt) 라이브러리를 활용하여 날짜 및 시각 형식(포맷) 변경
@@ -152,9 +150,8 @@
 						m : 분(mm : 분 2자리)
 						s : 초(ss : 초 2자리) 
 						--%>
-						<fmt:formatDate value="${board.board_date}" pattern="yy-MM-dd HH:mm" />
+						<fmt:formatDate value="${bo.bo_sysdate}" pattern="yyyy-MM-dd" />
 					</td>
-					<td>${board.board_readcount}</td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty boardList}">
@@ -168,7 +165,7 @@
 		<%-- 현재 페이지 번호(pageNum)가 URL 파라미터로 전달되므로 ${pageNum} 활용(미리 저장된 변수값) --%>
 		<%-- 단, 현재 페이지 번호가 1 보다 클 경우에만 동작(아니면, 버튼 비활성화 처리) --%>
 		<input type="button" value="이전" 
-				onclick="location.href='BoardList?pageNum=${pageNum - 1}'"
+				onclick="location.href='board_list?pageNum=${pageNum - 1}'"
 				<c:if test="${pageNum <= 1}">disabled</c:if>>
 		
 		<%-- 계산된 페이지 번호가 저장된 PageInfo 객체(pageInfo)를 통해 페이지 번호 출력 --%>
@@ -181,7 +178,7 @@
 					<b>${i}</b> <%-- 현재 페이지 번호 --%>
 				</c:when>
 				<c:otherwise>
-					<a href="BoardList?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
+					<a href="board_list?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -192,7 +189,7 @@
 		<%-- 두 가지 경우의 수에 따라 버튼을 달리 생성하지 않고, disabled 만 추가 여부 설정 --%>
 		<%-- pageNum 파라미터값이 최대 페이지번호 이상일 때 disabled 속성 추가 --%>
 		<input type="button" value="다음" 
-				onclick="location.href='BoardList?pageNum=${pageNum + 1}'"
+				onclick="location.href='board_list?pageNum=${pageNum + 1}'"
 				<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
 	</section>
 	<footer>

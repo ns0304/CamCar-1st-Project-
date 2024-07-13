@@ -1,11 +1,13 @@
 package com.itwillbs.camcar.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.Qna_Ask_ManagerService;
@@ -63,7 +65,7 @@ public class Qna_Ask_ManagerController {
 		// BoardService - getBoardList() 메서드 호출하여 게시물 목록 조회 요청
 		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 수
 		// => 리턴타입 : List<BoardVO>(boardList)
-		List<QnaVO> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
+		List<Map<String, Object>> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
 //		System.out.println(boardList);
 		// --------------------------------------------------------------------
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
@@ -73,6 +75,45 @@ public class Qna_Ask_ManagerController {
 		model.addAttribute("pageInfo", pageInfo);
 		
 		
-		return"board/qna_ask";
+		return"board/qna_manage_list";
 	}
+	
+	// 1:1 문의 게시글 상세보기
+	@GetMapping("QnaDetail")
+	public String qnaDetail(int qna_number, Model model) {
+		
+		QnaVO qna = service.getQna(qna_number);
+		System.out.println(qna);
+		
+		// 조회 결과가 없을 경우 "존재하지 않는 게시물입니다" 출력 및 이전페이지 돌아가기 처리
+		if(qna == null) {
+			model.addAttribute("msg", "존재하지 않는 게시물입니다");
+			return "result/fail";
+		}
+		
+		// Model 객체에 조회 결과 저장
+		model.addAttribute("qna", qna);
+		
+		return "board/qna_detail_form";
+	}
+ 	
+	@GetMapping("QnaReply")
+	public String qnaReply() {
+		
+		return "board/qna_reply_form";
+	}
+	
+	@PostMapping("QnaReplyPro")
+	public String qnaReply(QnaVO qna, Model model) {
+		
+		int insertCount = service.registManagerInquiry(qna);
+		
+		if(insertCount > 0) {
+			return "board/qna_manage_list";
+		} else {
+			model.addAttribute("msg", "글쓰기 실패!");
+			return "result/fail";
+		}
+	}
+	
 }

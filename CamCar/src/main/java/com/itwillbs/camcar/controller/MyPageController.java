@@ -131,14 +131,14 @@ public class MyPageController {
 		// 만약, 두 패스워드가 다르면, "수정권한이 없습니다!" 출력 
 		member = service.getMember(member);
 		System.out.println("member : " + member);
-		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
-			model.addAttribute("msg", "수정 권한이 없습니다!");
-		}
+//		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
+//			model.addAttribute("msg", "수정 권한이 없습니다!");
+//		}
 		//------------------------------------------------------------------------------
 		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
 		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
-		if(!map.get("passwd").equals("")) {
-			map.put("passwd", passwordEncoder.encode(map.get("passwd")));
+		if(!map.get("mem_passwd").equals("")) {
+			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
 			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
 		}
 		

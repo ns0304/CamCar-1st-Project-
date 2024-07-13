@@ -2,6 +2,8 @@ package com.itwillbs.camcar.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,8 +116,8 @@ public class MemberController {
 	// 로그인 성공창(메인)
 	// http://localhost:8080/camcar/MemberLoginPro
 	@PostMapping("MemberLoginPro")
-	public String memberLoginPro(MemberVO member, Model model, HttpSession session,
-								BCryptPasswordEncoder passwordEncoder) {
+	public String memberLoginPro(MemberVO member, Model model, HttpSession session, String rememberId,
+								BCryptPasswordEncoder passwordEncoder, HttpServletResponse response) {
 		
 		MemberVO dbMember = service.getMember(member);
 //		System.out.println(dbMember);
@@ -135,6 +137,23 @@ public class MemberController {
 			
 			// 세션 타이머 1시간으로 변경
 			session.setMaxInactiveInterval(60 * 60); // 60초 * 60분 = 3600
+			
+			// ---------- 코드 중복 제거 ----------
+			// 1. javax.servlet.http.Cookie 객체 생성
+			Cookie cookie = new Cookie("rememberId", member.getMem_id());
+			System.out.println("rememberId : " + rememberId);
+			// 2. 파라미터로 전달받은 rememberId 변수값 체크
+			if(rememberId != null) {
+				// 2-1. 아이디 기억하기 체크 시 : 쿠키 유효기간 30일로 설정
+				cookie.setMaxAge(60 * 60 * 24 * 30); // 30일(60초 * 60분 * 24시간 * 30일)
+			} else { 
+				// 2-2. 아이디 기억하기 미체크 시 : 쿠키 삭제 위해 유효기간을 0 으로 설정
+				cookie.setMaxAge(0);
+			}
+			
+			// 3. 클라이언트측으로 쿠키 정보를 전송하기 위해
+			//    응답 객체를 관리하는 HttpServletResponse 객체의 addCookie() 메서드로 쿠키 추가
+			response.addCookie(cookie);
 			
 //			if(session.getAttribute("prevURL") == null) {
 //				return "redirect:/";

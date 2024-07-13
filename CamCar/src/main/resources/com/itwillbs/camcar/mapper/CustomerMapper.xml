@@ -15,7 +15,7 @@
 		INTO qna
 		VALUES (
 			#{qna_number} + 1    -- selectKey 를 통해 조회된 게시물 번호 + 1 값 사용
-			, 1                  -- qna_type_idx(1 = 예약/계약상담)
+			, #{qna_type_idx}    -- qna_type_idx(1 = 예약/계약상담)
 			, #{qna_inquery}
 			, #{qna_content}
 			, #{qna_number} + 1  -- qna_re_ref(selectKey 를 통해 조회된 게시물 번호 + 1 값 사용)
@@ -25,4 +25,60 @@
 			,#{mem_id}
 		)
 	</insert>
+	
+	<!-- 전체 게시물 수 조회 - SELECT -->
+	<!-- 검색 기능 추가를 위해 검색어에 따른 결과 게시물 수 조회 -->
+	<select id="selectBoardListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM board_notice
+		<if test="!searchKeyword.equals('')">
+			WHERE 
+			<choose>
+				<when test="searchType.equals('subject')">
+					bo_subject LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('content')">
+					bo_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('subject_content')">
+					bo_subject LIKE CONCAT('%', #{searchKeyword}, '%')
+					OR bo_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<otherwise>
+					1 = 1  -- WHERE 절을 포함시키되 조건을 걸고 싶지 않을 경우 활용 가능한 조건식(무조건 true 가 나오는 식이면 OK)
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="selectBoardList" resultType="bo">
+		SELECT *
+		FROM board_notice
+		<if test="!searchKeyword.equals('')">
+			WHERE 
+			<choose>
+				<when test="searchType.equals('subject')">
+					bo_subject LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('content')">
+<!-- 					board_content LIKE '%${searchKeyword}%' -->
+					bo_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('subject_content')">
+					bo_subject LIKE CONCAT('%', #{searchKeyword}, '%')
+					OR bo_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<otherwise>
+					1 = 1  -- WHERE 절을 포함시키되 조건을 걸고 싶지 않을 경우 활용 가능한 조건식(무조건 true 가 나오는 식이면 OK)
+				</otherwise>
+			</choose>
+		</if>
+		
+		ORDER BY
+			bo_re_ref DESC
+			, bo_re_seq ASC
+		LIMIT
+			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
+			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
+	</select>
 </mapper>

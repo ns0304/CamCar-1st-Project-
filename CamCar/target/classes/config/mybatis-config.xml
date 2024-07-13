@@ -12,4 +12,8 @@
 		<typeAlias type="com.itwillbs.camcar.vo.BoardVO" alias="bo"/>
 		<typeAlias type="com.itwillbs.camcar.vo.DriverVO" alias="driver"/>
 	</typeAliases>
+<!-- 날짜형식 변환 설정 -->
+<!--     <typeHandlers> -->
+<!--         <typeHandler handler="org.apache.ibatis.type.DateTypeHandler" javaType="java.util.Date" jdbcType="TIMESTAMP"/> -->
+<!--     </typeHandlers> -->
 </configuration>

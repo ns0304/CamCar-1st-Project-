@@ -63,13 +63,13 @@
 					</tr>
 					<tr>
 						<td>
-							<select name="category">
-							<option value="예약/계약상담">예약/계약상담</option>
-							<option value="차량인도">차량인도</option>
-							<option value="정비/사고">정비/사고</option>
-							<option value="결제">결제</option>
-							<option value="계약변경/종료">계약변경/종료</option>
-							<option value="기타">기타</option>
+							<select name="qna_type_idx">
+							<option value="1">예약/계약상담</option>
+							<option value="2">차량인도</option>
+							<option value="3">정비/사고</option>
+							<option value="4">결제</option>
+							<option value="5">계약변경/종료</option>
+							<option value="6">기타</option>
 							</select>
 <%-- 						<td class="write_td_right"><input type="text" name="board_name" value="${sessionScope.sId}" required="required" /></td> --%>
 							<input type="text" name="mem_id" value="${sessionScope.sId}" required="required" size="15" readonly="readonly">

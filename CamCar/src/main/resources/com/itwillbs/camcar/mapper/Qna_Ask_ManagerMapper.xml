@@ -8,6 +8,30 @@
 	<select id="selectQnaList" resultType="qna">
 		SELECT *
 		FROM qna
+		<!--  
+		SELECT mem_id, qna_type_name, qna_inquery, qna_number, qna_date
+		FROM qna
+		JOIN qna_type
+		ON qna.qna_type_idx = qna_type.qna_type_idx-->
+		<if test="!searchKeyword.equals('')">
+			WHERE 
+			<choose>
+				<when test="searchType.equals('subject')">
+					qna_inquery LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('content')">
+<!-- 					board_content LIKE '%${searchKeyword}%' -->
+					qna_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchType.equals('subject_content')">
+					qna_subject LIKE CONCAT('%', #{searchKeyword}, '%')
+					OR qna_content LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<otherwise>
+					1 = 1  -- WHERE 절을 포함시키되 조건을 걸고 싶지 않을 경우 활용 가능한 조건식(무조건 true 가 나오는 식이면 OK)
+				</otherwise>
+			</choose>
+		</if>
 		ORDER BY
 			qna_re_ref DESC
 			, qna_re_seq ASC
@@ -42,12 +66,12 @@
 				</otherwise>
 			</choose>
 		</if>
-		
-		ORDER BY
-			qna_re_ref DESC
-			, qna_re_seq ASC
-		LIMIT
-			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
-			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
+	</select>
+	
+	<!-- 1:1 문의 게시물 상세보기 -->
+	<select id="selectQnaDetail" resultType="qna">
+		SELECT * 
+		FROM qna
+		WHERE qna_number = #{qna_number}
 	</select>
 </mapper>

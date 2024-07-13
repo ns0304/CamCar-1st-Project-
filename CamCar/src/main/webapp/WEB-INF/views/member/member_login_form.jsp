@@ -24,7 +24,7 @@
 							<td>아이디</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_id" required size="18"></td>
+							<td><input type="text" name="mem_id" required size="18" value="${cookie.rememberId.value}"></td>
 							<th id="th01" align="left" colspan="3" rowspan="3"><input type="submit" value="로그인" style="height: 70px;width: 170px;"></th>
 						</tr>
 						<tr>
