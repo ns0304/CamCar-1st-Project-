@@ -212,7 +212,10 @@ $(document).ready(function() {
 				<div id="pay_wrap" >
 					<h3>00,000원</h3>
 				</div>
-				
+					<input type="hidden" name="car_info" value="${param.car_info}">
+					<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
+					<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+					<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 				<div class="center">
 					<input type="submit" id="reservation" value="예약하기">
 				</div>
