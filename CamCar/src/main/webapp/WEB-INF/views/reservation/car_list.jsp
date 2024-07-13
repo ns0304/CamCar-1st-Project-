@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,8 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<%-- 카카오지도 설치 스크립트 --%>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 
 <style type="text/css">
 /* ---- 우측 예약 일정 영역 ---- */
@@ -108,6 +110,48 @@
 	border-radius: 5px;
     cursor: pointer;
 }
+
+
+/* 지점 상세 설명 팝업창 */
+#res_detail {
+	display: none;
+	position: absolute;
+	overflow: scroll;
+    right: 8px;
+    top: 90px;
+	z-index: 30;
+	background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  	border-radius: 12px;
+  	width: 400px; height: 500px;
+  	box-sizing: border-box;
+}
+#res_detail1, #res_detail2 {
+  	padding: 20px;
+  	margin: 5px;
+  	border: 1px solid #ccc;
+  	border-radius: 12px;
+  	
+}
+
+/* 팝업창 내 버튼, 예약하기 버튼 */
+#res_apply1, #res_apply2, #res_assembly {
+    width: 95%;
+    color: white;
+    cursor: pointer;
+    background-color: #81C147;
+}
+.map {
+	width: 100%;
+	height: 250px;
+	border: 1px solid;
+}
+.close {
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+}
+
 /* --------- 필터 팝업창 ---------- */
 .filter_op_wrap, .driver_condition, .btn_group {
     list-style-type: none; /* 리스트 스타일 제거 */
@@ -188,13 +232,71 @@
     cursor: pointer;
 }
 
-
-	
+input[type=button], input[type=reset], #res_assembly {
+    cursor: pointer;
+	height: 40px;
+	margin: 10px;
+	border-radius: 5px;
+	border: none;
+}
+input[type=button]:hover, input[type=reset]:hover, #res_assembly {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 
 </style>
 
 <script type="text/javascript">
 $(document).ready(function() {
+
+	// 1. 각 지점 버튼 클릭 시 상세설명(레이어팝업) 열림/닫힘
+    $("#update_res").click(function() {
+    	event.preventDefault();	// href 링크로 이동하지 않도록 함
+        // 상세 설명 창을 토글
+        $("#res_detail").toggle();
+        
+        // 지도 컨테이너가 이미 존재하는지 확인
+        if (!$("#daumRoughmapContainer1720494911728").children().length) {
+            // 지도 노드가 존재하지 않으면 지도 렌더링
+            new daum.roughmap.Lander({
+                "timestamp" : "1720494911728",
+                "key" : "2jyf3",
+                "mapWidth" : "360",
+                "mapHeight" : "250"
+            }).render();
+        }
+        // 지도 컨테이너가 이미 존재하는지 확인
+        if (!$("#daumRoughmapContainer1720495062115").children().length) {
+            // 지도 노드가 존재하지 않으면 지도 렌더링
+            new daum.roughmap.Lander({
+                "timestamp" : "1720495062115",
+                "key" : "2jyf4",
+                "mapWidth" : "360",
+                "mapHeight" : "250"
+            }).render();
+        }
+	});
+	// ------------------------------------------------------------------------
+	
+	// 2. 지점 선택 버튼 클릭 시 hidden에 value 값 저장되면서 상세설명 닫기
+	$("#res_apply1").click(function() {
+		let brcInfo = $("#res_apply1").val();
+		let hidden = $("#brc_rent_name").val(brcInfo);	// hidden 필드에 값 저장
+		$("#busan").css("border", "2px solid #ccc");
+		$("#seoul").css("border", "none");
+	    $("#res_detail").hide();
+	});
+	$("#res_apply2").click(function() {
+		let brcInfo = $("#res_apply2").val();
+		let hidden = $("#brc_rent_name").val(brcInfo);	// hidden 필드에 값 저장
+	    $("#res_detail2").hide();
+		$("#seoul").css("border", "2px solid #ccc");
+		$("#busan").css("border", "none");
+	    $("#res_detail").hide();
+	});
+	
+	
+	
+	
 	// "필터" 버튼 클릭 시 레이어 팝업 표시
     $(".filter").click(function(event) {
         event.preventDefault();
@@ -323,16 +425,52 @@ $(document).ready(function() {
 					<b>회원님과 함께하는 여정</b><br><br>
 				</div>
 				<a><img alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> ${param.brc_rent_name}</a>
-				<span></span>
+				<span style="float: right;"><a href="update_res" id="update_res">수정</a></span>
 				<hr>
 				<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
 				<div class="center">
 					<input type="reset" id="research" value="재검색">
 				</div>
 			</form>
+			<!-- ------- 지점 상세 정보(레이어팝업) -------------------------------------- -->
+			<div id="res_detail">
+				<div id="res_detail1">
+					<span class="close">&times;</span><br>
+					<div>
+						<div class="map">
+							<!-- 지도 노드 -->
+							<div id="daumRoughmapContainer1720494911728" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+						</div>
+					</div>
+					<br><br>
+					<b style="font-size: 18px;">캠핑갈카 부산본점</b>
+					<p style="font-size: 14px;">주소<br> 부산 부산진구 동천로 109 삼한골든게이트 1층<br><br>
+												전화<br>051-1234-5678<br><br>
+												이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
+					<input type="button" name="apply" id="res_apply1" value="캠핑갈카 부산본점">
+				</div>
+				<br>
+				<div id="res_detail2">
+					<div>
+						<div class="map">
+							<!-- 지도 노드 -->
+							<div id="daumRoughmapContainer1720495062115" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+						</div>
+					</div>
+					<br><br>
+					<b style="font-size: 18px;">캠핑갈카 서울지점</b>
+					<p style="font-size: 14px;">주소<br> 서울 용산구 한강대로 350 갑을빌딩 1층<br><br>
+												전화<br>02-1234-5678<br><br>
+												이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
+					<input type="button" name="apply" id="res_apply2" value="캠핑갈카 서울지점">
+				</div>
+			</div>
+			<!-- --------------------------------------------------------------------------- -->
 		</aside>
 		
 	</main>
+
+	
 	
 	<!-- layerPopup(필터 팝업창) -->
 	<div class="layerPopup_wrap">

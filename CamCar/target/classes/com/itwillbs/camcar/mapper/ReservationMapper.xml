@@ -6,21 +6,24 @@
 <mapper namespace="com.itwillbs.camcar.mapper.ReservationMapper">
 
 	<!-- 차량 모델 리스트 조회 -->
-	<select id="selectModelList" resultType="carModel">
+	<select id="selectModelList">
 		SELECT *
 		FROM car_model_info
 		ORDER BY car_model
 	</select>
 
-	<!-- 차량 상세 리스트 조회 -->
-	<select id="selectCarList" resultType="car">
+	<select id="selectCarList">
 		SELECT *
 		FROM car_info
 		WHERE brc_idx = #{brc_idx}
 		ORDER BY car_model
 	</select>
 
-
+	<select id="selectCarDetail">
+		SELECT *
+		FROM car_info
+		WHERE car_idx = #{car_idx}
+	</select>
 
 
 </mapper>

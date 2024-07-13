@@ -74,9 +74,17 @@ public class ReservationController {
 		System.out.println("반납일시 : " + map.get("res_return_date"));
 		System.out.println("차량정보 : " + map.get("car_info"));
 		
+		// 차량 상세정보 조회 요청
+		CarVO carDetail = service.getCarDetail(car_idx);
 		
+		// 조회 결과가 없을 경우 "차량이 조회되지 않습니다" 출력 및 이전페이지 돌아가기 처리
+		if(carDetail == null) {
+			model.addAttribute("msg", "차량이 조회되지 않습니다");
+			return "result/fail";
+		}
 		
-		
+		// Model 객체에 조회 결과 저장
+		model.addAttribute("carDetail", carDetail);
 		
 		
 		return "reservation/car_detail";

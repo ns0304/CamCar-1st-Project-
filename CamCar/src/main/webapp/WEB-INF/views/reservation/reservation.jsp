@@ -221,7 +221,6 @@ $(document).ready(function() {
 			<div class="brc_btn" align="center">
 				<input type="button" id="busan" value="부산">
 				<input type="button" id="seoul" value="서울">
-<!-- 				<input type="hidden" id="brc_idx" name="brc_idx" value="">  -->
 				<input type="hidden" id="brc_rent_name" name="brc_rent_name" value=""> <!-- 숨겨진 입력 필드 -->
 			</div>
 		</div>
@@ -264,6 +263,7 @@ $(document).ready(function() {
 				<div id="daumRoughmapContainer1720494911728" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 			</div>
 		</div>
+		<br><br>
 		<b style="font-size: 18px;">캠핑갈카 부산본점</b>
 		<p style="font-size: 14px;">주소<br> 부산 부산진구 동천로 109 삼한골든게이트 1층<br><br>
 									전화<br>051-1234-5678<br><br>
@@ -278,6 +278,7 @@ $(document).ready(function() {
 				<div id="daumRoughmapContainer1720495062115" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 			</div>
 		</div>
+		<br><br>
 		<b style="font-size: 18px;">캠핑갈카 서울지점</b>
 		<p style="font-size: 14px;">주소<br> 서울 용산구 한강대로 350 갑을빌딩 1층<br><br>
 									전화<br>02-1234-5678<br><br>

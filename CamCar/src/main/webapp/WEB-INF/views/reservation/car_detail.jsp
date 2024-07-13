@@ -54,13 +54,25 @@
 	width: 15px; height: 15px;
 }
 /* ---------------------------------------------- */
+
 /* ----------------- 차량상세 ------------------- */
 /* ---- carDetail_top ---- */
-.carDetail_image {
+.carDetail_image img {
 	width: 100%;
 	height: 400px;
-	border: 1px solid green;	/* 임시 */
+	object-fit:cover;
 }
+.carDetail_images img {
+	width: 120px; height: 70px;
+	margin: 10px 0 20px 0;
+	object-fit:cover;
+}
+/* 선택된 이미지 border 처리 */
+.selected {
+    border: 2px solid #ccc;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
 .fuel, .persons, .carYear, .driverAge, .driverEx {
 	border: 1px solid #ccc;
 	border-radius: 12px;
@@ -74,7 +86,19 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    
+    // 첫 번째 이미지에 selected 클래스 추가
+	$("#img1").addClass("selected");
+	
+    $(".changeImg").click(function() {
+		let newSrc = $(this).attr('src'); 
+    	$("#mainImg").attr('src', newSrc);
+    	
+    	// 모든 changeImg 클래스 요소에서 selected 클래스를 제거
+        $(".changeImg").removeClass("selected");
+
+        // 클릭된 이미지에 selected 클래스 추가
+        $(this).addClass("selected");
+	});
     
 });
 </script>
@@ -89,11 +113,18 @@ $(document).ready(function() {
 	<main>
 		<section>
 			<div class="title_wrap">
-				<h2>${param.car_info}</h2>
+				<h2>${carDetail.car_model}</h2>
 			</div>
-			<div class="carDetail_top">
+			<div class="carDetail">
 				<div class="carDetail_image">
-					<img src="${pageContext.request.servletContext.contextPath}/resources/img/car/kia_ray.png">
+					<img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image1}" id="mainImg">
+				</div>
+				<div class="carDetail_images" style="display: flex; justify-content: space-between;">
+					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image1}" id="img1" class="changeImg" selected></div>
+					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image2}" id="img2" class="changeImg"></div>
+					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image3}" id="img3" class="changeImg"></div>
+					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image4}" id="img4" class="changeImg"></div>
+					<div><img src="${pageContext.request.contextPath}/resources/upload/${carDetail.car_image5}" id="img5" class="changeImg"></div>
 				</div>
 				<div class="carDetail_info">
 					<p>차량 정보</p>
