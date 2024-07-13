@@ -16,7 +16,8 @@ import com.itwillbs.camcar.vo.QnaVO;
 public class Qna_Ask_ManagerController {
 	@Autowired
 	private Qna_Ask_ManagerService service;
-
+	
+	// [ 글 목록 비즈니스 로직 ]
 	@GetMapping("qna_ask")
 	public String qnaAsk(
 			@RequestParam(defaultValue = "") String searchType,
@@ -24,14 +25,14 @@ public class Qna_Ask_ManagerController {
 			@RequestParam(defaultValue = "1") int pageNum, 
 			Model model) {
 		
-//		System.out.println("검색타입 : " + searchType);
-//		System.out.println("검색어 : " + searchKeyword);
-//		System.out.println("페이지번호 : " + pageNum);
+		System.out.println("검색타입 : " + searchType);
+		System.out.println("검색어 : " + searchKeyword);
+		System.out.println("페이지번호 : " + pageNum);
 		// --------------------------------------------------------------------
 		// 페이징 처리를 위해 조회 목록 갯수 조절에 사용될 변수 선언
 		int listLimit = 10; // 페이지 당 게시물 수
 		int startRow = (pageNum - 1) * listLimit; // 조회할 게시물의 행 번호
-		
+		System.out.println("startRow : " + startRow);
 		// 페이징 처리를 위한 계산 작업
 		// BoardListService - getBoardListCount() 메서드 호출하여 전체 게시물 수 조회 요청
 		// => 파라미터 : 검색타입, 검색어   리턴타입 : int(listCount)
@@ -55,14 +56,14 @@ public class Qna_Ask_ManagerController {
 		// "해당 페이지는 존재하지 않습니다!" 출력 및 1페이지로 이동하도록 처리
 		if(pageNum < 1 || pageNum > maxPage) {
 			model.addAttribute("msg", "해당 페이지는 존재하지 않습니다!");
-			model.addAttribute("targetURL", "BoardList?pageNum=1");
+			model.addAttribute("targetURL", "qna_ask?pageNum=1");
 			return "result/fail";
 		}
 		// --------------------------------------------------------------------
 		// BoardService - getBoardList() 메서드 호출하여 게시물 목록 조회 요청
 		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 수
 		// => 리턴타입 : List<BoardVO>(boardList)
-		List<QnaVO> qnaList = service.getQnaList(startRow, listLimit);
+		List<QnaVO> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
 //		System.out.println(boardList);
 		// --------------------------------------------------------------------
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
