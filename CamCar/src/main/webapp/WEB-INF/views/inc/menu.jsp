@@ -18,9 +18,6 @@
 		<h4>
 			<a href="CarInfoRegistration" class="">차량 정보 등록</a>
 		</h4>
-<!-- 		<h4> -->
-<!-- 			<a href="CarModelRegistration" class="">차량 모델 정보 등록</a> -->
-<!-- 		</h4> -->
 		<h2>게시글 관리</h2>
 		<h4>
 			<a href="qna_ask" class="">1:1 문의 상담 내역</a>
