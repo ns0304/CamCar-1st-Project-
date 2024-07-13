@@ -1,5 +1,7 @@
 package com.itwillbs.camcar.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +21,20 @@ public class MyPageService {
 		return mapper.selectMember(member);
 	}
 	
-	// 회원 탈퇴 요청
-	public int withdrawMember(MemberVO member) {
-		return mapper.updateWithdrawMember(member);
-		
-	}
 	
 	// 운전자 정보 조회 요청
 	public DriverVO getDriver(DriverVO driver, String id) {
 		return mapper.selectDriver(driver, id);
+	}
+	
+	// 회원 정보 수정 요청
+	public int modifyMember(Map<String, String> map) {
+		return mapper.updateMember(map);
+	}
+	
+	// 회원 탈퇴 요청
+	public int withdrawMember(MemberVO member) {
+		return mapper.updateWithdrawMember(member);
+		
 	}
 }

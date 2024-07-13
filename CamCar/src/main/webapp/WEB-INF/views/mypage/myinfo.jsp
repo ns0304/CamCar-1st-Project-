@@ -653,30 +653,34 @@ $(document).ready(function() {
 	<!----------------------------- 비밀번호 변경 팝업 ----------------------------->
     <div class="passwdPopUp">
     	<fieldset class="changeField">
+    		<form action="MyInfoModify" method="POST">
+					<input type="text" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">	
 	        <div class=popUpHeader>
 	        	<h2>새로운 비밀번호를 입력해주세요</h2>
 	        	<span class="close">&times;</span>
 	        </div>
-	        <div class="popUpOldPasswd">
-	            <a>기존 비밀번호</a>
-                <input type="password" name="oldPasswd" id="mem_passwd" onblur="checkPasswd()" required><br>
-                <a>기존 비밀번호를 입력해주세요</a>
-	        </div>
+<!-- 	        <div class="popUpOldPasswd"> -->
+<!-- 	            <a>기존 비밀번호</a> -->
+<!--                 <input type="password" name="oldPasswd" id="mem_passwd" onblur="checkPasswd()" required><br> -->
+<!--                 <a>기존 비밀번호를 입력해주세요</a> -->
+<!-- 	        </div> -->
 	        <br>
 	        <div class="popUpNewPasswd">
 	            <a>새 비밀번호</a>
-                <input type="password" name="passwd" id="passwd" onblur="checkPasswd()" required><br>
+                <input type="password" name="mem_passwd" id="mem_passwd" onblur="checkPasswd()" required><br>
                 <a>영문, 숫자, 특수문자 포함 10 ~ 20자 이내</a>
 	        </div>
 	        <br>
 	        <div class="popUpNewPasswdConfirm">
 	            <a>새 비밀번호 확인</a>
-	            <input type="password" name="passwd2" id="passwd2" onblur="checkSamePasswd()" required>
+	            <input type="password" name="mem_passwd2" id="mem_passwd2" onblur="checkSamePasswd()" required>
 	        </div>
 	        <br>
 	        <div class="popUpChangePasswd" >
-	            <button class="confirmBtn">새로운 비밀번호를 입력해 주세요</button>
+<!-- 	            <button class="confirmBtn" onclick="location.href='MyInfoModify'">새로운 비밀번호를 입력해 주세요</button> -->
+					<input type="submit" value="새로운 비밀번호를 입력해 주세요">
 	        </div>
+	        </form>
         </fieldset>
     </div>
     <!----------------------------- 비밀번호 변경 팝업 끝 ----------------------------->

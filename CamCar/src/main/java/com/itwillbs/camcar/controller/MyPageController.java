@@ -1,14 +1,18 @@
 package com.itwillbs.camcar.controller;
 
 import java.io.Console;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.MyPageService;
 import com.itwillbs.camcar.vo.DriverVO;
@@ -81,7 +85,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 	
-	// [내 정보 관리 - 조회]
+	// [ 내 정보 관리 - 조회 ]
 	// "myInfo" 서블릿 주소 매핑 - GET
 	@GetMapping("myInfo")
 	public String myInfo(MemberVO member, HttpSession session, Model model, DriverVO driver) {
@@ -97,25 +101,63 @@ public class MyPageController {
 		
 		//-------------------------
 		//
-		member.setMem_id(id);
+		member.setMem_id(id); // 세션 아이디 저장
+		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
 		member = service.getMember(member);
-		
 		driver = service.getDriver(driver, id);
 		
-//		driver = service.getD
+		
 //		MemberVO member = service.getMember(member);
 		
-		// Model 객체에 MemberVO 객체 저장 후 mypage/myinfo.jsp 페이지 포워딩
+		// Model 객체에 MemberVO, DriverVO 객체 저장 후 mypage/myinfo.jsp 페이지 포워딩
 		model.addAttribute("member", member);
 		model.addAttribute("driver", driver);
-//		model.addAttribute("member", retrievedMember);
 		
 		return "mypage/myinfo";
 		
 		
 	}
 	
-	
+	// [ 내정보 관리 - 수정 ]
+	@PostMapping("MyInfoModify")
+	public String myyInfoModify(@RequestParam Map<String, String> map, MemberVO member, BCryptPasswordEncoder passwordEncoder, Model model) {
+		// 파라미터 매핑용 Map타입을 선언한 상태에서 MemberVo 타입 파라미터도 선언 시 
+		// 두 객체 모두 파라미터 데이터가 저장됨.
+		System.out.println("map : " + map);
+		System.out.println("member : " + member);
+		
+		//MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
+		// => 조회된 상세정보의 암호화 된 패스워드와 입력받은 기존 패스워드 비교 
+		// 만약, 두 패스워드가 다르면, "수정권한이 없습니다!" 출력 
+		member = service.getMember(member);
+		System.out.println("member : " + member);
+		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
+			model.addAttribute("msg", "수정 권한이 없습니다!");
+		}
+		//------------------------------------------------------------------------------
+		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
+		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
+		if(!map.get("passwd").equals("")) {
+			map.put("passwd", passwordEncoder.encode(map.get("passwd")));
+			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
+		}
+		
+		
+		// MemberService - modifyMember() 메서드 호출하여 회원정보 수정 요청
+		int updateCount = service.modifyMember(map);
+		
+		// 수정 요청 결과 판별 
+		// 성공 시 "myInfo" 서블릿 주소 전달, 메세지 : 회원정보 수정 성공(success.jsp)
+ 		if(updateCount > 0) {
+ 			model.addAttribute("msg", "회원정보 수정 성공!");
+ 			model.addAttribute("targetURL", "myInfo");
+ 			return "result/successs";
+ 		}  else {
+			model.addAttribute("msg", "회원정보 수정 실패!");
+			return "result/fail";
+ 		}
+		
+	}
 	
 	
 	
