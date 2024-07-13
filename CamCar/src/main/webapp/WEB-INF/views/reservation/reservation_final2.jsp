@@ -156,20 +156,21 @@ $(document).ready(function() {
 		
 		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
-<%-- 			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include> --%>
 			<form action="ReservationAdd" name="reservation" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
-					<div>
-						<h5>000님의 여정</h5>     
-						<a href="">수정</a>
-						<a>XX</a>지점
-				          <hr>
-						<a>mm:dd yy:MM ~ mm:dd yy:MM</a>
-				          <hr>
-						<a>차량종류</a>
+					<div class="sideDiv">
+						000님의 여정       
+						<div class="clear">
+							<a>XX</a>지점
+					          <hr>
+							<a>mm:dd yy:MM ~ mm:dd yy:MM</a>
+					          <hr>
+							<a>차량종류</a>
 						</div>
 					</div>
-		          <button type="submit">다음</button>			
+					<div class="nextBtnArea">
+			          <button type="submit" id="nexBtn">다음</button>
+		          </div>			
 			</form>
 		</aside>
 		</main>

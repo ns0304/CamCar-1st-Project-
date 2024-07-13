@@ -21,6 +21,18 @@ ul {
 	
 }
 
+.nextBtnArea {
+    display: flex; 
+    justify-content: center; 
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+#nexBtn {
+	width: 230px;
+	height: 40px;
+}
+
 #contents h2 {
 	float: left;
 }

@@ -47,7 +47,7 @@
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit1" class="campEtcKitBtnIn">
 			<img
-				src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/kit_1.jpg"
+				src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_1.jpg"
 				alt="Camping Set"><br> 스노우라인 블랙에디션<br> 테이블(2인용) +
 			릴렉스체어 2개<br> 일 12,000원<br>
 		</button>
@@ -56,7 +56,7 @@
 	</div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit2" class="campEtcKitBtnIn">
-		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/kit_2.jpg" alt="Camping Set"><br>
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_2.jpg" alt="Camping Set"><br>
    		    스노우라인 블랙에디션<br>
 		    테이블(2인용) + 릴렉스체어 2개<br>
 		    일 12,000원<br>
@@ -65,7 +65,7 @@
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit3" class="campEtcKitBtnIn">
-		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/kit_3.jpg" alt="Camping Set"><br>
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_3.jpg" alt="Camping Set"><br>
    		    스노우라인 블랙에디션<br>
 		    테이블(2인용) + 릴렉스체어 2개<br>
 		    일 12,000원<br>
@@ -74,7 +74,7 @@
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit4" class="campEtcKitBtnIn">
-		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/kit_4.jpg" alt="Camping Set"><br>
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_4.jpg" alt="Camping Set"><br>
    		    스노우라인 블랙에디션<br>
 		    테이블(2인용) + 릴렉스체어 2개<br>
 		    일 12,000원<br>
@@ -83,7 +83,34 @@
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit5" class="campEtcKitBtnIn">
-		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/kit_5.jpg" alt="Camping Set"><br>
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_5.jpg" alt="Camping Set"><br>
+   		    스노우라인 블랙에디션<br>
+		    테이블(2인용) + 릴렉스체어 2개<br>
+		    일 12,000원<br>
+		</button><br>
+  		    <input type="button" value="선택" class="select">
+    </div>
+	<div class="campEtcKitBtn">
+		<button id="campEtcKit5" class="campEtcKitBtnIn">
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_6.jpg" alt="Camping Set"><br>
+   		    스노우라인 블랙에디션<br>
+		    테이블(2인용) + 릴렉스체어 2개<br>
+		    일 12,000원<br>
+		</button><br>
+  		    <input type="button" value="선택" class="select">
+    </div>
+	<div class="campEtcKitBtn">
+		<button id="campEtcKit5" class="campEtcKitBtnIn">
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_7.jpg" alt="Camping Set"><br>
+   		    스노우라인 블랙에디션<br>
+		    테이블(2인용) + 릴렉스체어 2개<br>
+		    일 12,000원<br>
+		</button><br>
+  		    <input type="button" value="선택" class="select">
+    </div>
+	<div class="campEtcKitBtn">
+		<button id="campEtcKit5" class="campEtcKitBtnIn">
+		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_8.jpg" alt="Camping Set"><br>
    		    스노우라인 블랙에디션<br>
 		    테이블(2인용) + 릴렉스체어 2개<br>
 		    일 12,000원<br>

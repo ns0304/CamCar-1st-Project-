@@ -18,6 +18,7 @@
     top: 40%;
     transform: translate(-50%, -50%);
     width: 600px;
+    height: 600px;
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 20px;
@@ -26,7 +27,8 @@
 }
 
 .popUpHeader {
-    display: flex;
+	margin-bottom: 20px;  
+	display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -45,10 +47,13 @@
      margin: 1px 0;
      margin-bottom: 1px; 
      margin-top: 1px; 
+     width: 100%;
+     height: calc(100% - 40px); /* 패딩을 제외한 높이 */
+     box-sizing: border-box;
  } 
  
 .popUpMessage {
-	max-height: 600px;
+    max-height: calc(100% - 50px); /* 헤더와 여백을 고려한 높이 조정 */
 	overflow-y: auto;
 }
 
@@ -139,18 +144,50 @@ $(document).ready(function() {
 		
 		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
-<%-- 			<jsp:include page="/WEB-INF/views/reservation/sideContent.jsp"></jsp:include> --%>
 			<form action="ReservationFin" name="reservation" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
-					<h5>000님의 여정</h5>     
-					<a href="#">수정</a>
-			          <h4>XX 지점</h4>
-			          <hr>
-			          <h4>mm:dd yy:MM ~ mm:dd yy:MM</h4>
-			          <hr>
-			          <h4>레이</h4>
-			          
-			          <button type="submit">다음</button>			
+					<div class="sideDiv">
+						000님의 여정       
+						<div class="clear">
+							<a>XX</a>지점
+					          <hr>
+							<a>mm:dd yy:MM ~ mm:dd yy:MM</a>
+					          <hr>
+							<a>차량종류</a>
+						</div>
+					</div>
+					<div class="sideDiv">	
+						운전자      
+						<div class="clear">
+							<a>운전자이름</a><br>
+							<hr>							
+							<a>면허종류</a>/<a>생년월일</a>
+						</div>
+					</div>	
+					<div class="sideDiv">	
+						부가상품     
+						<div class="clear">
+							<a>부가상품분류명</a><br>
+							<hr>
+							<a>부가상품명1</a>/<a>세부이름</a><br>
+							<a>부가상품명2</a>/<a>세부이름</a>
+						</div>
+					</div>	
+					<div class="sideDiv">	
+						결제내역<br>
+						표준가<a>000</a>원
+						<hr>
+						보험료<a>000</a>원<br>
+						 - 부가상품명1<a>000</a>원<br>		
+						 - 부가상품명2<a>000</a>원<br>		
+						<hr>
+						부가상품대여료<a>000</a>원
+						<hr>
+						총 결제금액<a>000</a>원
+					</div>	
+					<div class="nextBtnArea">
+			          <button type="submit" id="nexBtn">다음</button>		
+		          </div>			          
 			</form>
 		</aside>
 		</main>
