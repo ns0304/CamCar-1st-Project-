@@ -60,7 +60,7 @@ public class Car_ManageController {
 		// carModel 이미지 등록 - 모델명 별 서브디렉토리 생성
 		subDir1 = "carModel" + "/" + carModel.getCar_model();
 		// car 이미지 등록 - 모델명/차량번호 별 서브디렉토리 생성
-		subDir2 = "car" + "/" + car.getCar_model() + "/ "+ car.getCar_number();
+		subDir2 = "car" + "/" + car.getCar_model() + "/" + car.getCar_number();
 		// 기존 실제 업로드 경로에 서브 디렉토리(모델명 경로) 결합
 		realPath1 += "/" + subDir1;
 		realPath2 += "/" + subDir2;
@@ -102,10 +102,6 @@ public class Car_ManageController {
 		System.out.println("차량상세사진4 : " + mCarImg4.getOriginalFilename());
 		System.out.println("차량상세사진5 : " + mCarImg5.getOriginalFilename());
 		
-		// 업로드하는 파일명 중복되지 않도록 uuid 매번 생성하여 결합
-		String ModelImg = UUID.randomUUID().toString().substring(0, 8) + "_" + mModelImg.getOriginalFilename();
-		String LogoImg = UUID.randomUUID().toString().substring(0, 8) + "_" + mLogoImg.getOriginalFilename();
-		// 차량상세사진은 차량번호로 경로 만들었으므로 파일명 중복될 일 없음
 		
 		// 파일명 저장 전 CarModelVO 객체의 파일명에 해당하는 멤버변수값을 널스트링("") 으로 변경
 		carModel.setCar_model_image("");
@@ -116,13 +112,12 @@ public class Car_ManageController {
 		car.setCar_image4("");
 		car.setCar_image5("");
 		
-		System.out.println("ModelImg : " + ModelImg);
 		
 		if(!mModelImg.getOriginalFilename().equals("")) {
-			carModel.setCar_model_image(subDir1 + "/" + ModelImg);
+			carModel.setCar_model_image(subDir1 + "/" + mModelImg.getOriginalFilename());
 		}
 		if(!mLogoImg.getOriginalFilename().equals("")) {
-			carModel.setCar_logo_image(subDir1 + "/" + LogoImg);
+			carModel.setCar_logo_image(subDir1 + "/" + mLogoImg.getOriginalFilename());
 		}
 		if(!mCarImg1.getOriginalFilename().equals("")) {
 			car.setCar_image1(subDir2 + "/" + mCarImg1.getOriginalFilename());
@@ -153,10 +148,10 @@ public class Car_ManageController {
 			try {
 				if(selectCount == 0) {
 					if(!mModelImg.getOriginalFilename().equals("")) {
-						mModelImg.transferTo(new File(realPath1, ModelImg));
+						mModelImg.transferTo(new File(realPath1, mModelImg.getOriginalFilename()));
 					}				
 					if(!mLogoImg.getOriginalFilename().equals("")) {
-						mLogoImg.transferTo(new File(realPath1, LogoImg));
+						mLogoImg.transferTo(new File(realPath1, mLogoImg.getOriginalFilename()));
 					}
 				}
 				
