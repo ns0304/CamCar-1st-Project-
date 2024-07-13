@@ -30,7 +30,7 @@
 				<!-- 게시판 리스트 -->
 				<h2>캠핑갈카 공지사항</h2>
 				<section id="listForm">
-					<table>
+					<table border="1">
 						<tr id="tr_top">
 							<td>공지 사항 제목</td>
 							<td width="150px">날짜</td>
@@ -44,14 +44,20 @@
 						<c:forEach var="bo" items="${boardList}">
 							<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 							<tr>
-								<td>${bo.bo_content}</td>
+								<td>${bo.bo_subject}</td>
 								<td><fmt:formatDate value="${bo.bo_sysdate}"
 										pattern="yy-MM-dd HH:mm" /></td> 
 							</tr>
 						</c:forEach>
 					</table>
 				</section>
-
+				<br>
+				<%-- ==========================공지사항 글 등록 페이징 처리 영역======================= --%>
+				<section id="BoardWrite">
+					<input type="button" value="공지사항 글 등록"
+						onclick="location.href='BoardWrite'">
+				</section>
+				<br>
 				<%-- ========================== 페이징 처리 영역 ========================== --%>
 				<section id="pageList">
 					<input type="button" value="이전"
@@ -76,10 +82,6 @@
 						onclick="location.href='BoardList?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
 				</section>
-				<section id="BoardWrite">
-					<input type="button" value="공지사항 글 등록"
-						onclick="location.href='BoardWrite'">
-				</section>
 			</div>
 		</section>
 	</main>
@@ -89,16 +91,3 @@
 	</footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

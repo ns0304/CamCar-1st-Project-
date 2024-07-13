@@ -36,7 +36,7 @@ public class BoardController {
 	private String uploadPath = "/resources/upload"; 
 	
 	@GetMapping("BoardWrite")
-	public String boardWriteForm(HttpSession session, Model model, HttpServletRequest request) {
+	public String boardmanagerWriteForm(HttpSession session, Model model, HttpServletRequest request) {
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 필수!");
 			model.addAttribute("targetURL", "MemberLogin");
@@ -52,7 +52,7 @@ public class BoardController {
 	}
 	// [ 글쓰기 비즈니스 로직 처리 ] 
 	@PostMapping("BoardWrite")
-	public String boardWritePro(BoardVO bo, HttpServletRequest request, HttpSession session, Model model) {
+	public String boardmanagerWritePro(BoardVO bo, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println(bo);
 		String realPath = session.getServletContext().getRealPath(uploadPath); // 가상의 경로 전달
 		String subDir = ""; // 하위 디렉토리명을 저장할 변수 선언
@@ -107,7 +107,7 @@ public class BoardController {
 	// ====================================================================
 	// [ 글 목록 비즈니스 로직 ]
 	@GetMapping("BoardList")
-	public String boardList(
+	public String boardmanagerList(
 			@RequestParam(defaultValue = "") String searchType,
 			@RequestParam(defaultValue = "") String searchKeyword,
 			@RequestParam(defaultValue = "1") int pageNum, 
@@ -158,7 +158,7 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageInfo", pageInfo);
 		
-		return "board/board_list";
+		return "board/board_manager_list";
 	}
 
 		
