@@ -221,6 +221,7 @@ $(document).ready(function() {
 			<div class="brc_btn" align="center">
 				<input type="button" id="busan" value="부산">
 				<input type="button" id="seoul" value="서울">
+<!-- 				<input type="hidden" id="brc_idx" name="brc_idx" value="">  -->
 				<input type="hidden" id="brc_rent_name" name="brc_rent_name" value=""> <!-- 숨겨진 입력 필드 -->
 			</div>
 		</div>

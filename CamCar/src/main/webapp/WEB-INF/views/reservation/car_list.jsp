@@ -273,48 +273,46 @@ $(document).ready(function() {
 					<div class="carList_top">	<!-- 차량정보 상단 -->
 						<div class="carName">
 							<!-- 로고사진 -->
-							<a><img src="${pageContext.request.contextPath}/resources/upload/${model.car_logo_image}"><br>
-							${model.car_company}</a>
+							<img src="${pageContext.request.contextPath}/resources/upload/${model.car_logo_image}"><br>
+							<a>${model.car_company}</a>
 							<h3>${model.car_model}</h3>
 						</div>
 						<div class="carImage">
 							<img src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
 						</div>
 					</div>
-					<div class="carList_bottom" style="display: flex;">
-							<div class="carName_detail">
-								<p class="main_name">차량이름 연료</p>
-								<span>연식 / 연료 / 탑승인원 / 운전자조건</span>
-								
-								<input type="hidden" name="car_info" value="차량이름 연료">
-								<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
-								<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-								<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-								
+					<!-- ---------- 차량 상세 리스트 영역 ---------- -->
+					<c:forEach var="car" items="${carList}">
+						<c:if test="${model.car_model eq car.car_model}">
+							<div class="carList_bottom" style="display: flex;">
+								<div class="carName_detail">
+									<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
+									<span>
+										${car.car_old} / 
+										반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
+										<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
+										정원 ${car.car_riding}명 / 
+										${car.car_license} 이상
+									</span>
+									
+									<!-- 일정정보(지점, 대여일시) 전달  -->
+									<input type="hidden" name="car_info" value="${car.car_model} ${car.car_fuel_type}">
+									<input type="hidden" name="brc_rent_name" value="${param.brc_rent_name}">
+									<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+									<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+									
+								</div>
+								<div class="pay_detail">
+									<span class="main_name" style="font-size: 20px;">${car.car_weekdays}원</span>
+									<input type="button" value="예약" onclick="location.href='CarDetail?car_idx=${car.car_idx}'">
+								</div>
 							</div>
-							<div class="pay_detail">
-								<span class="main_name" style="font-size: 20px;">00,000원</span>
-								<input type="submit" value="예약">
-	<!-- 							<input type="button" value="예약"> -->
-							</div>
-					</div>
-					<div class="carList_bottom" style="display: flex;">
-						<div class="carName_detail">
-							<p class="main_name">차량이름 연료</p>
-							<span>연식 / 연료 / 탑승인원 / 운전자조건</span>
-						</div>
-						<div class="pay_detail">
-							<span class="main_name" style="font-size: 20px;">00,000원</span>
-							<input type="button" value="예약">
-						</div>
-					</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</c:forEach>
-				
+			<!-- ---------------------------------------------------------------------------------------- -->
 			
-			<div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			</div>
 		</form>
 		</section>
 		
@@ -325,6 +323,7 @@ $(document).ready(function() {
 					<b>회원님과 함께하는 여정</b><br><br>
 				</div>
 				<a><img alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> ${param.brc_rent_name}</a>
+				<span></span>
 				<hr>
 				<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
 				<div class="center">

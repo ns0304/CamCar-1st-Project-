@@ -1,6 +1,5 @@
 package com.itwillbs.camcar.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.ReservationService;
 import com.itwillbs.camcar.vo.CarModelVO;
-import com.itwillbs.camcar.vo.ReservationVO;
+import com.itwillbs.camcar.vo.CarVO;
 
 
 @Controller
@@ -48,32 +47,40 @@ public class ReservationController {
 		// model 객체에 조회 결과 저장
 		model.addAttribute("carModelList", carModelList);
 		
-		// -----------------------------------------------------------------------------------
-		// 모델명 상세 정보 조회 요청(select)
-//		CarModelVO carModelDetail = service.getCarModel(car_model);
-//		model.addAttribute("carModelDetail", carModelDetail);
-//		System.out.println("carModelDetail : " + carModelDetail);
-		// -----------------------------------------------------------------------------------
-		// 뷰페이지에서 파일 목록의 효율적 처리를 위해 파일명만 별도로 List 객체에 저장
-//		List<String> fileCarModelList = new ArrayList<String>();
-//		fileCarModelList.add(carModel.getCar_model_image());
-//		fileCarModelList.add(carModel.getCar_logo_image());
-//		// Model 객체에 차량모델 리스트, 파일 목록 저장
-//		model.addAttribute("fileCarModelList", fileCarModelList);
-//		System.out.println("fileCarModelList : " + fileCarModelList);
+		// 메인에서 선택 된 지점에 따라 지점코드 부여
+		int brc_idx = 0;
+		if(map.get("brc_rent_name").equals("캠핑갈카 부산본점")) {
+			brc_idx = 5101;
+		} else if(map.get("brc_rent_name").equals("캠핑갈카 서울지점")) {
+			brc_idx = 201;
+		}
+		
+		System.out.println("brc_idx : " + brc_idx);
+		
+		// 차량 상세 리스트 조회 요청(select)
+		List<CarVO> carList = service.getCarList(brc_idx);
+		// model 객체에 조회 결과 저장
+		model.addAttribute("carList", carList);
+		
 		
 		return "reservation/car_list";
 	}
 	
-	@PostMapping("CarDetail")
+	@GetMapping("CarDetail")
 	public String carDetailPro(
-			@RequestParam Map<String, String> map) {
+			@RequestParam Map<String, String> map, int car_idx, Model model) {
 		System.out.println("지점 : " + map.get("brc_rent_name"));
 		System.out.println("대여일시 : " + map.get("res_rental_date"));
 		System.out.println("반납일시 : " + map.get("res_return_date"));
 		System.out.println("차량정보 : " + map.get("car_info"));
 		
+		
+		
+		
+		
+		
 		return "reservation/car_detail";
 	}
+	
 	
 }
