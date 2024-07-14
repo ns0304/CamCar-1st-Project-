@@ -86,7 +86,6 @@ a {
 							<td width="90px">날짜</td>
 							<td>상세보기</td>
 						</tr>
-
 						<c:set var="pageNum" value="1" />
 						<c:if test="${not empty param.pageNum}">
 							<c:set var="pageNum" value="${param.pageNum}" />
@@ -94,6 +93,7 @@ a {
 						<%-- JSTL 과 EL 활용하여 글목록 표시 작업 반복(qnaList 객체 활용) --%>
 						<c:forEach var="qna" items="${qnaList}">
 							<%-- qnaList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
+						<c:if test="${sessionScope.sId eq qna.mem_id}">
 							<tr>
 								<td>${qna.mem_id}</td>
 								<td>${qna.qna_type_idx}</td>
@@ -103,6 +103,7 @@ a {
 								<td><input type="button" value="보기"
 									onclick="location.href='MyQuestionDetail?qna_number=${qna.qna_number}'"></td>
 							</tr>
+						</c:if>
 						</c:forEach>
 					</table>
 				</section>

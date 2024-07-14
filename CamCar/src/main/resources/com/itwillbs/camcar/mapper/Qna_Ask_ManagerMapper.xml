@@ -3,16 +3,21 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<!-- 게시물 목록 조회  -->    
 <mapper namespace="com.itwillbs.camcar.mapper.Qna_Ask_ManagerMapper">
-	<select id="selectQnaList" resultType="hashmap">
-		<!--  SELECT *
-		FROM qna-->
+	<!-- 게시물 목록 조회  -->    
+<!-- 	<resultMap type="java.util.HashMap" id="someResultMap"> -->
+<!-- 	    <result column="qna_date" property="qna" jdbcType="TIMESTAMP"/> -->
+<!-- 	</resultMap> -->
+	
+<!-- 	<select id="selectQnaList" resultMap="someResultMap"> -->
+<!-- 		SELECT mem_id, qna_type_name, qna_inquery, qna_number, qna.qna_date -->
+<!-- 		FROM qna -->
+<!-- 		JOIN qna_type -->
+<!-- 		ON qna.qna_type_idx = qna_type.qna_type_idx -->
 		
-		SELECT mem_id, qna_type_name, qna_inquery, qna_number, qna_date
+	<select id="selectQnaList" resultType="qna">
+		SELECT *
 		FROM qna
-		JOIN qna_type
-		ON qna.qna_type_idx = qna_type.qna_type_idx
 		<if test="!searchKeyword.equals('')">
 			WHERE 
 			<choose>

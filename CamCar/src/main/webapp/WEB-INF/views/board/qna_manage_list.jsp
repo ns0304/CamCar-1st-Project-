@@ -48,7 +48,21 @@
 							<%-- qnaList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 							<tr>
 								<td>${qna.mem_id}</td>
-								<td>${qna.qna_type_name}</td>
+								<td>
+									<c:choose>
+										<c:when test="${qna.qna_type_idx eq 1}">예약/예약상담</c:when>
+										<c:when test="${qna.qna_type_idx eq 2}">차량인도</c:when>
+										<c:when test="${qna.qna_type_idx eq 3}">정비/사고</c:when>
+										<c:when test="${qna.qna_type_idx eq 4}">결제</c:when>
+										<c:when test="${qna.qna_type_idx eq 5}">계약변경/종료</c:when>
+										<c:when test="${qna.qna_type_idx eq 6}">기타</c:when>
+									</c:choose>
+								</td>
+								<%-- 
+								<td>
+								<fmt:parseDate value="${orderTicket.order_ticket_date}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${parsedDateTime}"/>
+								</td>--%>
 								<td>${qna.qna_inquery}</td>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>

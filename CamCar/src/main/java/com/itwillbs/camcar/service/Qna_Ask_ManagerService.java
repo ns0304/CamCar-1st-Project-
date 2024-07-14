@@ -15,7 +15,10 @@ public class Qna_Ask_ManagerService {
 	private Qna_Ask_ManagerMapper mapper;
 
 	// 1:1 게시물 목록 조회 요청
-	public List<Map<String, Object>> getQnaList(String searchType, String searchKeyword, int startRow, int listLimit) {
+//	public List<Map<String, Object>> getQnaList(String searchType, String searchKeyword, int startRow, int listLimit) {
+//		return mapper.selectQnaList(searchType, searchKeyword, startRow, listLimit);
+//	}
+	public List<QnaVO> getQnaList(String searchType, String searchKeyword, int startRow, int listLimit) {
 		return mapper.selectQnaList(searchType, searchKeyword, startRow, listLimit);
 	}
 	

@@ -67,7 +67,8 @@ public class Qna_Ask_ManagerController {
 		// BoardService - getBoardList() 메서드 호출하여 게시물 목록 조회 요청
 		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 수
 		// => 리턴타입 : List<BoardVO>(boardList)
-		List<Map<String, Object>> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
+//		List<Map<String, Object>> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
+		List<QnaVO> qnaList = service.getQnaList(searchType, searchKeyword, startRow, listLimit);
 //		System.out.println(boardList);
 		// --------------------------------------------------------------------
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);

@@ -12,7 +12,12 @@ import com.itwillbs.camcar.vo.QnaVO;
 public interface Qna_Ask_ManagerMapper {
 
 	// 1:1 문의 게시물 목록 조회
-	List<Map<String, Object>> selectQnaList(			
+//	List<Map<String, Object>> selectQnaList(			
+//			@Param("searchType") String searchType,
+//			@Param("searchKeyword") String searchKeyword,
+//			@Param("startRow") int startRow,
+//			@Param("listLimit") int listLimit);
+	List<QnaVO> selectQnaList(			
 			@Param("searchType") String searchType,
 			@Param("searchKeyword") String searchKeyword,
 			@Param("startRow") int startRow,
