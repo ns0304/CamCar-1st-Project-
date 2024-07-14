@@ -126,9 +126,25 @@
 			=> 동적 SQL 필요
 			-->
 			mem_passwd = #{mem_passwd}
+			mem_post_code = #{mem_post_code}
+			mem_add1 = #{mem_add1}
+			mem_add2 = #{mem_add2}
 			
 		WHERE
 			mem_tel = #{mem_tel}
+			
+<!-- 		UPDATE member_info -->
+<!-- 		SET -->
+		
+<!-- 			새 패스워드(mem_passwd) 입력 여부에 따라 패스워드 UPDATE 여부가 결정되어야 한다! -->
+<!-- 			=> 동적 SQL 필요 -->
+<!-- 			--> -->
+<!-- 			mem_post_code = #{mem_post_code} -->
+<!-- 			mem_add1 = #{mem_add1} -->
+<!-- 			mem_add2 = #{mem_add2} -->
+			
+<!-- 		WHERE -->
+<!-- 			1 = 1 -->
 	</update>
 	
 

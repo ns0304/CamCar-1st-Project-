@@ -198,7 +198,7 @@ public class MyPageController {
 	
 	// [ 내정보 관리 - 수정 ]
 	@PostMapping("MyInfoModify")
-	public String myyInfoModify(@RequestParam Map<String, String> map, MemberVO member, BCryptPasswordEncoder passwordEncoder, Model model) {
+	public String myInfoModify(@RequestParam Map<String, String> map, MemberVO member, BCryptPasswordEncoder passwordEncoder, Model model) {
 		// 파라미터 매핑용 Map타입을 선언한 상태에서 MemberVo 타입 파라미터도 선언 시 
 		// 두 객체 모두 파라미터 데이터가 저장됨.
 		System.out.println("map : " + map);
@@ -209,11 +209,11 @@ public class MyPageController {
 		// 만약, 두 패스워드가 다르면, "수정권한이 없습니다!" 출력 
 		member = service.getMember(member);
 		System.out.println("member : " + member);
-		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
-			model.addAttribute("msg", "수정 권한이 없습니다!");
-			System.out.println("member : " + member);
-			return "result/fail";
-		}
+//		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
+//			model.addAttribute("msg", "수정 권한이 없습니다!");
+//			System.out.println("member : " + member);
+//			return "result/fail";
+//		}
 		//------------------------------------------------------------------------------
 		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
 		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
@@ -221,7 +221,9 @@ public class MyPageController {
 			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
 			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
 		}
-		
+		map.put("mem_post_code", map.get("mem_post_code"));
+		map.put("mem_add1", map.get("mem_add1"));
+		map.put("mem_add2", map.get("mem_add2"));
 		
 		// MemberService - modifyMember() 메서드 호출하여 회원정보 수정 요청
 		int updateCount = service.modifyMember(map);
