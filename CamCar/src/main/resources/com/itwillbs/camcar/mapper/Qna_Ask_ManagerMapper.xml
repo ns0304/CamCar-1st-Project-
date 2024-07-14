@@ -77,4 +77,12 @@
 		DELETE FROM qna
 		WHERE qna_number = #{qna_number}
 	</delete>
+	
+	<update id="updateQna">
+		UPDATE qna
+		SET
+			qna_reply = #{qna_reply}
+		WHERE
+			qna_number = #{qna_number}
+	</update>
 </mapper>

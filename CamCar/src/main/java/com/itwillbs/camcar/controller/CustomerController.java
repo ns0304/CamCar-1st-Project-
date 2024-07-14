@@ -86,6 +86,22 @@ public class CustomerController {
 		return "board/board_list";
 	}
 	
+	// 공지사항 상세보기 페이지
+	@GetMapping("boardDetail")
+	public String boardDetail(int bo_idx, Model model) {
+		
+		BoardVO bo = service.getBoard(bo_idx, true);
+		
+		if(bo == null) {
+			model.addAttribute("msg", "존재하지 않는 게시물입니다");
+			return "result/fail";
+		}
+		
+		// Model 객체에 조회 결과 저장
+		model.addAttribute("bo", bo);
+		
+		return "board/board_view";
+	}
 	
 	// 1:1 문의 페이지
 	// http://localhost:8081/camcar/Inquiry

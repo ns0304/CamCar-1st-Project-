@@ -25,5 +25,12 @@ public interface CustomerMapper {
 			@Param("searchKeyword") String searchKeyword, // searchKeyword 변수의 파라미터명을 "searchKeyword" 로 지정 
 			@Param("startRow") int startRow, // startRow 변수의 파라미터명을 "startRow" 로 지정
 			@Param("listLimit") int listLimit);
+	
+	// 공지사항 게시글 상세정보 조회
+	BoardVO selectBoardDetail(int board_num);
+	
+	// 공지사항 게시글 조회수 증가
+	void updateReadcount(BoardVO bo);
+
 
 }
