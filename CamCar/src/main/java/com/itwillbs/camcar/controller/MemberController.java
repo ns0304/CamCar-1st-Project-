@@ -162,12 +162,20 @@ public class MemberController {
 //				return "redirect:" + session.getAttribute("prevURL");
 //			}
 			
+			// 관리자(admin) 일 경우 관리자 메인으로 리다이렉트
 			if(dbMember.getMem_id().equals("admin")) {
-				return "manager_main";
+				return "redirect:/ManagerMain";
 			}
 			return "redirect:/";
 		}
 	}
+	
+	@GetMapping("ManagerMain")
+	public String managerMain() {
+		return "manager_main";
+	}
+	
+	
 	
 	// 로그아웃
 	// http://localhost:8080/camcar/MemberLogout

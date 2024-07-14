@@ -43,6 +43,9 @@
 					<li><a href="MemberInfo">${sessionScope.sId}</a> 님</li>
 					<%-- 하이퍼링크 상에서 자바스크립트 함수 호출 시 "javascript:함수명()" 형태로 호출 --%>
 					<li><a href="javascript:confirmLogout()">로그아웃</a></li>
+					<c:if test="${sessionScope.sId eq 'admin'}">
+					<li><a href="ManagerMain">관리자메인</a></li>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</ul>
