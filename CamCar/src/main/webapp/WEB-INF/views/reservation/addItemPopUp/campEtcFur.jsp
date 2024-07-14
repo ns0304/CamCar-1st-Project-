@@ -46,10 +46,10 @@
 <div id ="campEtcPopUp4">
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit1" class="campEtcKitBtnIn">
-			<img
-				src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_1.jpg"
-				alt="Camping Set"><br> 스노우라인 블랙에디션<br> 테이블(2인용) +
-			릴렉스체어 2개<br> 일 12,000원<br>
+			<img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_1.jpg" alt="Camping Set"><br> 
+			스노우라인 블랙에디션<br> 테이블(2인용) +
+			릴렉스체어 2개<br>
+			일 12,000원<br>
 		</button>
 		<br>
 	    <input type="button" value="선택" class="select">

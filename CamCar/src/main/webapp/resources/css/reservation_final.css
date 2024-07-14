@@ -71,38 +71,68 @@ main{
 .clear {clear: both;
 }
 
-#insurance {padding-top: 0px;
-display: inline-block;
-border: 1px solid blue;
-height: 350px;
+/* #insurance {padding-top: 0px; */
+/* display: inline-block; */
+/* border: 1px solid blue; */
+/* height: 350px; */
+/* } */
+
+/* #insurance h3 {padding-top: 10px; */
+/* margin-bottom: 0px;} */
+
+/* .insuranceList { */
+/* 	border: 1px solid red; */
+/* 	border-radius: 5px; */
+/* 	height: 200px; */
+/* 	width: 200px; */
+/* 	position: relative; */
+/* 	text-align: center; */
+/* 	margin-right: 10px; */
+/* 	line-height: 40px; */
+/* 	padding-top: 10px; */
+/* } */
+
+/* .insuranceList input[type="button"] { */
+/* 	width: 80px;	 */
+/* 	height: 40px;	 */
+/* } */
+
+/* .insuranceList h3{ */
+/* 	margin-bottom: 20px; */
+/* } */
+
+/* #insurance1 { */
+/*     margin-top: 0px; */
+/* } */
+
+#insurance {
+	margin-left: 40px;
 }
 
-#insurance h3 {padding-top: 10px;
-margin-bottom: 0px;}
+/* .insuranceList { */
+/* 	display: none; */
+/* } */
 
-.insuranceList {
-	border: 1px solid red;
-	border-radius: 5px;
-	height: 200px;
-	width: 200px;
-	position: relative;
+.insuranceRadio {
 	text-align: center;
-	margin-right: 10px;
-	line-height: 40px;
-	padding-top: 10px;
-}
-
-.insuranceList input[type="button"] {
-	width: 80px;	
-	height: 40px;	
-}
-
-.insuranceList h3{
-	margin-bottom: 20px;
-}
-
-#insurance1 {
-    margin-top: 0px;
+	height: auto;
+	background-color: lightgray;
+	border-radius: 10px;
+	box-sizing:border-box;
+	display:inline-block;
+	height: 150px;
+	width: 200px;
+	margin: 10px;
+} 
+ 
+.insuranceRadio .customer {
+	display: box;
+	padding: 20px;
+	box-sizing:border-box;
+	background-color: white;
+	border-radius: 10px;
+	height: 10px;
+	margin-top: 50px;
 }
 
 #insuranceDetail {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,33 +198,43 @@ $(document).ready(function() {
 			<form action="ReservationPay" name="reservation" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
 					<div class="sideDiv">
-						000님의 여정       
+						<ul></ul>
+<!-- 						이름으로 바꿔야 함        -->
+						<a>${sId}님의 여정</a>     
 						<div class="clear">
-							<a>XX</a>지점
+							<a>
+							<c:choose>
+								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
+								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+							</c:choose>
+							</a>
 					          <hr>
-							<a>mm:dd yy:MM ~ mm:dd yy:MM</a>
+							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
 					          <hr>
-							<a>차량종류</a>
+							<a>${carDetail.car_model}</a>
 						</div>
 					</div>
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>운전자이름</a><br>
+							<a>${driver.dri_name}님</a><br>
 							<hr>							
-							<a>면허종류</a>/<a>생년월일</a>
+							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	
 						결제내역<br>
-						표준가<a>000</a>원
+						표준가<a>${param.rentalFee}</a>원
 						<hr>
-						보험료<a>000</a>원
+						보험료<a>${param.rentalFee2} - ${param.rentalFee}</a>원
 						<hr>
-						총 결제금액<a>000</a>원
+						총 결제금액<a>${param.rentalFee2}</a>원
 					</div>	
+						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">						
 					<div class="nextBtnArea">
-			          <button type="submit" id="nexBtn">다음</button>		
+						<button type="submit" id="nexBtn">다음</button>		
 		          </div>
 			</form>
 		</aside>
@@ -230,7 +242,7 @@ $(document).ready(function() {
 		
 		
 <!-- 부가상품 팝업 영역 -->
-	<!-- [ 캠핑 - 세트 ] -->
+<!-- [ 캠핑 - 세트 ] -->
 	    <div class="campSetPopUp2">
 	    	<fieldset class="popUpField">
 		        <div class="popUpHeader">
@@ -265,7 +277,7 @@ $(document).ready(function() {
 	        </fieldset>
 	    </div>	
 
-	<!-- [ 캠핑 - 개별 - 퍼니처 ] -->
+<!-- [ 캠핑 - 개별 - 퍼니처 ] -->
 	    <div class="campEtcPopUp1">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -278,7 +290,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 침낭/매트 ] --> -->
+<!-- [ 캠핑 - 개별 - 침낭/매트 ] -->
 	    <div class="campEtcPopUp2">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -291,7 +303,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 화로/BBQ ] --> -->
+<!-- [ 캠핑 - 개별 - 화로/BBQ ] -->
 	    <div class="campEtcPopUp3">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -304,7 +316,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 키친 ] --> -->
+<!-- [ 캠핑 - 개별 - 키친 ] -->
 	    <div class="campEtcPopUp4">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -317,7 +329,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 라이팅 ] --> -->
+<!-- [ 캠핑 - 개별 - 라이팅 ] -->
 	    <div class="campEtcPopUp5">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -330,7 +342,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 계절용품 ] --> -->
+<!-- [ 캠핑 - 개별 - 계절용품 ] -->
 	    <div class="campEtcPopUp6">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -343,7 +355,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 캠핑 - 개별 - 기타 ] --> -->
+<!-- [ 캠핑 - 개별 - 기타 ] --> 
 	    <div class="campEtcPopUp7">
 	    	<div class="popUpField">
 		        <div class="popUpHeader">
@@ -356,7 +368,7 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-<!-- 	<!-- [ 기본 - 카시트 ] --> -->
+<!-- [ 기본 - 카시트 ] --> 
 	    <div class="basicPopUp1">
 	    	<fieldset class="popUpField">
 		        <div class="popUpHeader">
@@ -369,7 +381,7 @@ $(document).ready(function() {
 	        </fieldset>
 	    </div>
 
-<!-- 	<!-- [ 기본 - 유모차 ] --> -->
+<!-- [ 기본 - 유모차 ] --> 
 	    <div class="basicPopUp2">
 	    	<fieldset class="popUpField">
 		        <div class="popUpHeader">
@@ -382,7 +394,7 @@ $(document).ready(function() {
 	        </fieldset>
 	    </div>
 
-<!-- 	<!-- [ 기본 - 휠체어 ] --> -->
+<!-- [ 기본 - 휠체어 ] --> 
 	    <div class="basicPopUp3">
 	    	<fieldset class="popUpField">
 		        <div class="popUpHeader">

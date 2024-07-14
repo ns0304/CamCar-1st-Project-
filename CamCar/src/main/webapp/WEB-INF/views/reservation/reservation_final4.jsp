@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,9 +131,9 @@ $(document).ready(function() {
 							<input type="checkbox" name="all_check" onclick="checkbox_allCheck()" > 모든 필수/선택 약관을 확인하고 전체 동의합니다. <br>
 							<hr>
 							<input type="checkbox" name="cb"> 고유식별정보 수집 및 이용 동의(필수)<a class="detail" id="detail1">보기</a> <br>
-							<input type="checkbox" name="cb"> 대여자격 확인 및 동의(필수)<a class="detail" id="detail2">보기</a><br>
+1							<input type="checkbox" name="cb"> 대여자격 확인 및 동의(필수)<a class="detail" id="detail2">보기</a><br>
 							<input type="checkbox" name="cb"> 개인정보 수집 및 이용 동의(필수)<a class="detail" id="detail3">보기</a><br>
-							<input type="checkbox" name="cb"> 개인정보 제3자 제공 동의(필수)<a class="detail" id="detail4">보기</a><br>
+1							<input type="checkbox" name="cb"> 개인정보 제3자 제공 동의(필수)<a class="detail" id="detail4">보기</a><br>
 							<input type="checkbox" name="cb"> 고유식별정보 제3자 제공에 관한 동의(필수) <a class="detail" id="detail5">보기</a><br>
 							<input type="checkbox" name="cb"> 자동차 표준 대여약관(필수) <a class="detail" id="detail6">보기</a><br>
 							<input type="checkbox" name="cb"> 취소 및 위약금 규정 동의(필수)<a class="detail" id="detail7">보기</a>
@@ -147,13 +149,19 @@ $(document).ready(function() {
 			<form action="ReservationFin" name="reservation" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
 					<div class="sideDiv">
-						000님의 여정       
+<!-- 						이름으로 바꿔야 함        -->
+						<a>${sId}님의 여정</a>      
 						<div class="clear">
-							<a>XX</a>지점
+							<a>
+							<c:choose>
+								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
+								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+							</c:choose>
+							</a>
 					          <hr>
-							<a>mm:dd yy:MM ~ mm:dd yy:MM</a>
+							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
 					          <hr>
-							<a>차량종류</a>
+							<a>${carDetail.car_model}</a>
 						</div>
 					</div>
 					<div class="sideDiv">	
@@ -185,8 +193,11 @@ $(document).ready(function() {
 						<hr>
 						총 결제금액<a>000</a>원
 					</div>	
+						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">					
 					<div class="nextBtnArea">
-			          <button type="submit" id="nexBtn">다음</button>		
+						<button type="submit" id="nexBtn">다음</button>		
 		          </div>			          
 			</form>
 		</aside>

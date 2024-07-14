@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,8 +42,8 @@
 					예약번호 <span>XXXXX</span>
 					<h3><span>OOO</span>님, 예약이 완료되었습니다</h3>
 					<hr>
-					<span>월 일 00:00 ~ 월 일 00:00</span>에 이용하실<br>
-					<span>차량이름</span>예약이 완료되었습니다
+					<a>${param.res_rental_date} ~ ${param.res_return_date}</a>에 이용하실<br>
+					<a>${carDetail.car_model}</a>예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
 					<input type="button" value="예약 상세 조회">
@@ -67,7 +69,6 @@
 		<aside class="chatBtn">
 			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
 		</aside>
-		
 		
 	<footer>
 		<!-- 회사 소개 영역 -->
