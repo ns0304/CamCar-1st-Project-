@@ -654,16 +654,16 @@ $(document).ready(function() {
     <div class="passwdPopUp">
     	<fieldset class="changeField">
     		<form action="MyInfoModify" method="POST">
-					<input type="text" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">	
+					<input type="hidden" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">	
 	        <div class=popUpHeader>
 	        	<h2>새로운 비밀번호를 입력해주세요</h2>
 	        	<span class="close">&times;</span>
 	        </div>
-<!-- 	        <div class="popUpOldPasswd"> -->
-<!-- 	            <a>기존 비밀번호</a> -->
-<!--                 <input type="password" name="oldPasswd" id="mem_passwd" onblur="checkPasswd()" required><br> -->
-<!--                 <a>기존 비밀번호를 입력해주세요</a> -->
-<!-- 	        </div> -->
+	        <div class="popUpOldPasswd">
+	            <a>기존 비밀번호</a>
+                <input type="password" name="oldPasswd" id="oldPasswd" onblur="checkPasswd()" required><br>
+                <a>기존 비밀번호를 입력해주세요</a>
+	        </div>
 	        <br>
 	        <div class="popUpNewPasswd">
 	            <a>새 비밀번호</a>

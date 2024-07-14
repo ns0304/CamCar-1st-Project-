@@ -53,7 +53,7 @@
 			 			<p>정확한 답변으로 안내해 드릴게요</p>
 			 		</div>
                 </div>
-                <button class="moreViewBtn" onclick="location.href='QuestionList'">이동</button>
+                <button class="moreViewBtn" onclick="location.href='MyQuestionList'">이동</button>
             </section>
 	        
         </div>
