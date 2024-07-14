@@ -26,4 +26,7 @@ public interface Qna_Ask_ManagerMapper {
 	// 1:1 문의 게시글 상세보기
 	QnaVO selectQnaDetail(int qna_number);
 	
+	// 1:1 문의 게시글 
+	int deleteQna(int qna_number);
+	
 }

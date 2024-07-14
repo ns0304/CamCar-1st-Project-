@@ -32,9 +32,6 @@
 				</otherwise>
 			</choose>
 		</if>
-		ORDER BY
-			qna_re_ref DESC
-			, qna_re_seq ASC
 		LIMIT
 			#{startRow}     
 			, #{listLimit}
@@ -74,4 +71,10 @@
 		FROM qna
 		WHERE qna_number = #{qna_number}
 	</select>
+	
+	<!-- 1:1 문의 게시물 삭제 -->
+	<delete id="deleteQna">
+		DELETE FROM qna
+		WHERE qna_number = #{qna_number}
+	</delete>
 </mapper>
