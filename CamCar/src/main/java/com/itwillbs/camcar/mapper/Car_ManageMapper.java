@@ -13,11 +13,11 @@ import com.itwillbs.camcar.vo.MemberVO;
 public interface Car_ManageMapper {
 
 	// 차량 정보 등록
-//	int insertCarModel(CarModelVO carModel);
-
 	int selectgetCarListCount(String searchType, String searchKeyword);
 
-	List<CarVO> selectCarList(@Param("searchType") String searchType,
+	//차량 목록 갯수 조회
+	List<CarVO> selectCarList(
+			@Param("searchType") String searchType,
 			@Param("searchKeyword") String searchKeyword, 
 			@Param("startRow") int startRow, 
 			@Param("listLimit")int listLimit);
@@ -33,6 +33,8 @@ public interface Car_ManageMapper {
 
 	// 차량 상세정보 조회
 	CarVO selectCarListDetail(int car_idx);
+	//차량 삭제
+	int cardeleteBoard(int car_idx);
 
 
 	

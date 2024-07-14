@@ -24,6 +24,12 @@ public interface BoardMapper {
 	int selectBoardListCount(
 			@Param("searchType") String searchType, 
 			@Param("searchKeyword") String searchKeyword);
+	//공지사항 상세 정보 조회
+	BoardVO selectBoardManageDetail(int bo_idx);
+	//공지사항 삭제
+	int deleteBoard(int bo_idx);
+	//공지사항 수정
+	int updateBoard(BoardVO bo);
 
 
 

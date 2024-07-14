@@ -121,8 +121,6 @@ public class BoardController {
 		int startRow = (pageNum - 1) * listLimit; // 조회할 게시물의 행 번호
 		
 		// 페이징 처리를 위한 계산 작업
-		// BoardListService - getBoardListCount() 메서드 호출하여 전체 게시물 수 조회 요청
-		// => 파라미터 : 검색타입, 검색어   리턴타입 : int(listCount)
 		int listCount = service.getBoardListCount(searchType, searchKeyword);
 		int pageListLimit = 3; // 임시) 페이지 당 페이지 번호 갯수를 3개로 지정(1 2 3 or 4 5 6)
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
@@ -160,9 +158,142 @@ public class BoardController {
 		
 		return "board/board_manager_list";
 	}
-
+	//공지사항 리스트 상세보기
+		@GetMapping("BoardDetail")
+		public String boardListDetail(int bo_idx, Model model) {
+			
+			BoardVO bo = service.getBoardManageDetail(bo_idx, true);
+			System.out.println("제발 좀 떠봐라 임마 : " + bo);
+			if(bo == null) {
+				model.addAttribute("msg", "존재하지 않는 게시물입니다");
+				return "result/fail";
+			}
+			model.addAttribute("bo", bo);	
+			return "board/board_manage_detailview";
+		}
+		// 공지사항 리스트 삭제
+		@GetMapping("BoardDelete")
+		public String boardDelete(
+				int bo_idx, @RequestParam(defaultValue = "1") int pageNum,
+				HttpSession session, Model model) throws Exception {
+//			System.out.println("board_num : " + board_num);
+//			System.out.println("pageNum : " + pageNum);
+			
+			// 미 로그인 처리
+			String id = (String)session.getAttribute("sId");
+			if(id == null) {
+				model.addAttribute("msg", "로그인 필수!");
+				model.addAttribute("targetURL", "MemberLogin");
+				return "result/fail";
+			}
+			// ----------------------------------------------------------------------
+			// 게시물 삭제 시 실제 업로드 된 파일도 삭제해야하므로 
+			// DB 에서 게시물 정보 삭제 전 파일명을 미리 조회하기 위해
+			// BoardService - getBoard() 메서드 재사용하여 게시물 상세정보 조회 요청
+			// => 주의! 조회수 증가되지 않도록 두번째 파라미터값 false 값 전달
+			BoardVO bo = service.getBoardManageDetail(bo_idx, false);
+//			System.out.println(board);
+			
+			// 게시물이 존재하지 않거나, 조회된 게시물의 작성자가 자신이 아닐 경우
+			// "잘못된 접근입니다!" 출력 및 이전 페이지 돌아가기 처리
+			// => 조회된 게시물의 작성자 판별 시 세션 아이디와 비교
+			if(bo == null) {
+				model.addAttribute("msg", "잘못된 접근입니다!");
+				return "result/fail";
+			}
+			// --------------------------------------------------------------------
+			// BoardService - removeBoard() 메서드 호출하여 글 삭제 작업 요청
+			// => 파라미터 : 글번호   리턴타입 : int(deleteCount)
+			int deleteCount = service.deleteBoard(bo_idx);
+			
+			// 삭제 결과 판별하여 처리
+			if(deleteCount > 0) {
+				// --------------------------------------------------------------------
+				// DB에서 게시물 정보 삭제 완료 시 실제 업로드 된 파일 삭제 처리 추가
+				// 실제 업로드 경로 알아내기
+				String realPath = session.getServletContext().getRealPath(uploadPath);
+				
+//				System.out.println("삭제할 파일명1 : " + board.getBoard_file1());
+//				System.out.println("삭제할 파일명2 : " + board.getBoard_file2());
+//				System.out.println("삭제할 파일명3 : " + board.getBoard_file3());
+				// 파일 삭제에 사용될 파일명(최대 3개)를 List 또는 배열에 저장하여 처리 코드 중복 제거
+				
+				model.addAttribute("msg", "삭제 성공!");
+				model.addAttribute("targetURL", "BoardList?pageNum=" + pageNum);
+				return "result/success";
+			} else {
+				model.addAttribute("msg", "삭제 실패!");
+				return "result/fail";
+			}
+			
+		}
+		// [ 글 수정 ]
+		@GetMapping("BoardModify")
+		public String boardModifyForm(int bo_idx, HttpSession session, Model model) {
+			// 미 로그인 처리
+			String id = (String)session.getAttribute("sId");
+			if(id == null) {
+				model.addAttribute("msg", "로그인 필수!");
+				model.addAttribute("targetURL", "MemberLogin");
+				return "result/fail";
+			}
+			// ----------------------------------------------------------------
+			// BoardService - getBoard() 메서드 재사용하여 게시물 1개 정보 조회
+			// => 조회수 증가되지 않도록 두번째 파라미터값 false 값 전달
+			BoardVO bo = service.getBoardManageDetail(bo_idx, false);
+//			System.out.println(board);
+			
+			// 게시물이 존재하지 않거나, 
+			// 조회된 게시물의 작성자(board_name) 와 세션아이디가 다를 경우
+			// "잘못된 접근입니다!" 출력 후 이전페이지로 돌아가기 처리
+			if(bo == null) {
+				model.addAttribute("msg", "잘못된 접근입니다!");
+				return "result/fail";
+			}
+			
+			// 조회 결과 게시물 정보 저장
+			model.addAttribute("bo", bo);
+			
+			return "board/board_manager_modify_form";
+		}
 		
-	
+		// [ 공지사항 수정 ]
+		@PostMapping("BoardModify")
+		public String boardModifyPro(
+				BoardVO bo,
+				@RequestParam(defaultValue = "1") String pageNum,
+				HttpSession session, Model model) throws Exception {
+			System.out.println(bo);
+			
+			// 실제 업로드 경로 알아내기
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+			
+			// 날짜별 서브디렉토리 생성하여 기본 경로에 결합
+			String subDir = ""; // 하위 디렉토리명을 저장할 변수 선언
+			LocalDate today = LocalDate.now();
+			String datePattern = "yyyy/MM/dd"; // 형식 변경에 사용할 패턴 문자열 지정
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern(datePattern);
+			subDir = today.format(dtf); // LocalDate - DateTimeFormatter
+			realPath += "/" + subDir;
+			Path path = Paths.get(realPath); // 파라미터로 실제 업로드 경로 전달
+			// ------------------------------------------------------------------
+			// BoardService - modifyBoard() 메서드 호출하여 글 수정 작업 요청
+			// => 파라미터 : BoardVO 객체   리턴타입 : int(updateCount)
+			int updateCount = service.modifyBoard(bo);
+			
+			// DB 작업 요청 처리 결과 판별하여
+			// 성공 시 실제 파일 업로드 처리 후 글 상세정보 조회 페이지 리다이렉트
+			// 실패 시 "글 수정 실패!" 출력 후 이전페이지 돌아가기 처리
+			if(updateCount > 0) {
+			
+				// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
+				return "redirect:/BoardDetail?bo_idx=" + bo.getBo_idx() + "&pageNum=" + pageNum;
+			} else {
+				model.addAttribute("msg", "글 수정 실패!");
+				return "result/fail";
+			}
+			
+		}
 	
 	
 		

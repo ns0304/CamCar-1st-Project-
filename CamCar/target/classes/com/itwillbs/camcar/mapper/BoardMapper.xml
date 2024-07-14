@@ -84,7 +84,39 @@
 		</if>
 	</select>
 	
+	<!-- 공지사항 상세정보  -->
+   <select id="selectBoardManageDetail" resultType="bo">
+		SELECT * 
+		FROM board_notice
+		WHERE bo_idx = #{bo_idx}
+	</select>
 	
+	<!-- 공지사항 삭제  -->
+	<delete id="deleteBoard">
+		DELETE 
+		FROM board_notice
+		WHERE bo_idx = #{bo_idx}
+	</delete>
+
+	<!-- 공지사항 파일 삭제  -->
+	<update id="deleteBoardFile">
+		UPDATE board_notice
+		SET
+			bo_file = CASE WHEN bo_file = #{bo_file} THEN '' ELSE bo_file 
+		END
+		WHERE 
+			bo_idx = #{bo_idx}
+	</update>
+	
+	<!-- 공지사항 수정-->
+	<update id="updateBoard">
+		UPDATE board_notice
+		SET
+			bo_subject = #{bo_subject}
+			, bo_content = #{bo_content}
+		WHERE
+			bo_idx = #{bo_idx}	
+	</update>
 	
 	
 	

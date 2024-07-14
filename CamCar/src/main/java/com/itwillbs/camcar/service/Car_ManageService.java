@@ -17,16 +17,17 @@ public class Car_ManageService {
 	@Autowired
 	private Car_ManageMapper mapper;
 
-
-	
-	public int getCarListCount(String searchType, String searchKeyword) {
-		return mapper.selectgetCarListCount(searchType, searchKeyword);
-	}
-
+	//차량 목록 조회 요청
 	public List<CarVO> getCarList(String searchType, String searchKeyword, int startRow, int listLimit) {
 		
 		return mapper.selectCarList(searchType, searchKeyword, startRow, listLimit);
 	}
+	
+	//차량 총 갯수 조회 요청
+	public int getCarListCount(String searchType, String searchKeyword) {
+		return mapper.selectgetCarListCount(searchType, searchKeyword);
+	}
+
 
 	// 같은 차량모델 있는지 조회 요청
 	public int getSameModel(CarModelVO carModel) {
@@ -47,6 +48,12 @@ public class Car_ManageService {
 	public CarVO getCarListDetail(int car_idx) {
 		return mapper.selectCarListDetail(car_idx);
 	}
+	// 차량 삭제 
+	public int cardeleteBoard(int car_idx) {
+		return mapper.cardeleteBoard(car_idx);
+	}
+
+	
 
 
 	

@@ -216,6 +216,7 @@ public class Car_ManageController {
 		if(maxPage == 0) {
 			maxPage = 1;
 		}
+		
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
@@ -240,7 +241,7 @@ public class Car_ManageController {
 		return "car/car_manager_main";
 	}
 	//차량 상세 조회
-	@GetMapping("CarModify")
+	@GetMapping("CarDetailView")
 	public String carModify(int car_idx, Model model) {
 		CarVO car = service.getCarListDetail(car_idx);
 		if(car == null) {
@@ -258,16 +259,31 @@ public class Car_ManageController {
 		// Model 객체에 조회 결과 저장
 		model.addAttribute("car", car);
 		
-		return"car/modify_car";
+		return"car/car_detailview";
 	}
 	
 	//차량 리스트 정보 삭제
 	@GetMapping("CarInfoDelete")
 	public String carInfoDelete(int car_idx, @RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model) throws Exception {
-		
 		CarVO car = service.getCarListDetail(car_idx);
-		
-		return"";
+		int CardeleteCount = service.cardeleteBoard(car_idx);
+		// 삭제 결과 판별하여 처리
+		if(CardeleteCount > 0) {
+			// --------------------------------------------------------------------
+			// DB에서 게시물 정보 삭제 완료 시 실제 업로드 된 파일 삭제 처리 추가
+			// 실제 업로드 경로 알아내기
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+//			System.out.println("삭제할 파일명1 : " + board.getBoard_file1());
+//			System.out.println("삭제할 파일명2 : " + board.getBoard_file2());
+//			System.out.println("삭제할 파일명3 : " + board.getBoard_file3());
+			// 파일 삭제에 사용될 파일명(최대 3개)를 List 또는 배열에 저장하여 처리 코드 중복 제거
+			model.addAttribute("msg", "삭제 성공!");
+			model.addAttribute("targetURL", "CarListBoard?pageNum=" + pageNum);
+			return "result/closepage";
+		} else {
+			model.addAttribute("msg", "삭제 실패!");
+			return "result/fail";
+		}
 	}
 }

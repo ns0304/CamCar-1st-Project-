@@ -42,17 +42,30 @@
 	<select id="selectCarList" resultType="car">
 		SELECT *
 		FROM car_info
+		LIMIT
+			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
+			, #{listLimit}
 	</select>
 	
+	<!-- 차량 정보 페이징처리 -->
 	<select id="selectgetCarListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM car_info
 	</select>
 	
-	<select id="selectCarListDetail">
+	<!-- 차량 상세정보 -->
+	<select id="selectCarListDetail" resultType="car">
 		SELECT*
 		FROM car_info
 		WHERE car_idx = #{car_idx}
 	</select>
+	
+	<!-- 차량 삭제  -->
+	<delete id="cardeleteBoard">
+		DELETE 
+		FROM car_info
+		WHERE car_idx = #{car_idx}
+	</delete>
+		
 	
 </mapper>

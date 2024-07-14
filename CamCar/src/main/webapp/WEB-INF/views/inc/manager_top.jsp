@@ -12,9 +12,9 @@
 		</ul>
 
 		<ul class="menu">
-			<li><a href="member_management">회원관리</a></li>
-			<li><a href="car_management">차량관리</a></li>
-			<li><a href="board_management">게시글관리</a></li>
+			<li><a href="memberList">회원관리</a></li>
+			<li><a href="CarListBoard">차량관리</a></li>
+			<li><a href="BoardList">게시글관리</a></li>
 		</ul>
 	
 		<%-- 로그인 여부(= 세션 아이디 존재 여부) 판별하여 각각 다른 링크 표시 --%>

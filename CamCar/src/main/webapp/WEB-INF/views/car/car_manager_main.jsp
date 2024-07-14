@@ -18,7 +18,7 @@
 </head>
 <script type="text/javascript">
 		function correction(car_idx){
-			window.open('CarModify?car_idx=' + car_idx, '_parent ', 'width=900px,height=900px,left=750, top=200');
+			window.open('CarDetailView?car_idx=' + car_idx, '_parent ', 'width=900px,height=900px,left=750, top=200');
 		}
 		
 </script>
@@ -32,6 +32,7 @@
 		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
 		<section>
 			<div align="center">
+			<!-- 차량 목록 조회 -->
 				<h1>차량 목록 조회</h1>
 				<form action="CarListBoard" name="joinForm" method="get">
 					<div id="info_car"></div>
@@ -45,12 +46,12 @@
 							<th>상세조회</th>
 						</tr>
 
-					<c:forEach var="car" items="${carList}">
-
 						<c:set var="pageNum" value="1" />
 						<c:if test="${not empty param.pageNum}">
 							<c:set var="pageNum" value="${param.pageNum}" />
 						</c:if>
+						
+					<c:forEach var="car" items="${carList}">
 						<tr>
 								<th>${car.car_idx}</th>
 								<th>${car.car_number}</th>
@@ -62,10 +63,9 @@
 					</c:forEach>
 					</table>
 				</form>
-			</div>
 			<br>
 			<%-- 페이징 처리 --%>
-			<div id="pageList" align="center">
+			<section id="pageList">
 				<input type="button" value="이전"
 					onclick="location.href='CarListBoard?pageNum=${pageNum - 1}'"
 					<c:if test="${pageNum <= 1}">disabled</c:if>>
@@ -83,6 +83,7 @@
 				<input type="button" value="다음"
 					onclick="location.href='CarListBoard?pageNum=${pageNum + 1}'"
 					<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
+			</section>
 			</div>
 		</section>
 	</main>
