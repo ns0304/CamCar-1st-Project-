@@ -243,6 +243,10 @@ input[type=button]:hover, input[type=reset]:hover, #res_assembly {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+.car_idx {
+	display: none;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -338,7 +342,16 @@ $(document).ready(function() {
         $('input[type="checkbox"]').prop('checked', false);
     });
     
-    
+    // ******************************************************************    
+    // 예약 버튼 클릭 시
+    $(".resBtn").on("click", function() {
+         // 모든 체크박스 언체크
+         $("input[type='checkbox'].car_idx").prop("checked", false);
+         // 클릭한 버튼의 부모 요소에서 체크박스 체크
+         $(this).closest(".carList_bottom").find("input[type='checkbox'].car_idx").prop("checked", true);
+         // 폼 제출
+         $("#carDetail").submit();
+     });
     
 });
 </script>
@@ -402,12 +415,14 @@ $(document).ready(function() {
 <%-- 									<input type="text" name="res_return_date" value="${param.res_return_date}"> --%>
 									<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 									<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-									<input type="hidden" name="car_idx" value="${car.car_idx}">
+<%-- 									<input type="hidden" name="car_idx" value="${car.car_idx}"> --%>
 									
 								</div>
 								<div class="pay_detail">
+									<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx }">
 									<span class="main_name" style="font-size: 20px;">${car.car_weekdays}원</span>
-									<input type="submit" value="예약">
+									<input type="submit" value="예약" class="resBtn">
+									
 <%-- 									<input type="button" value="예약" onclick="location.href='CarDetail?car_idx=${car.car_idx}'"> --%>
 								</div>
 							</div>
