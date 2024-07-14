@@ -1,91 +1,134 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC 게시판</title>
+<title>1:1 문의 게시물</title>
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
-<link href="${pageContext.request.contextPath }/resources/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	#modifyForm {
+	#articleForm {
 		width: 500px;
-		height: 450px;
 		margin: auto;
 	}
 	
-	h1 {
+	h2 {
 		text-align: center;
 	}
 	
 	table {
-		margin: auto;
-		width: 450px;
+		border: 1px solid black;
+		border-collapse: collapse; 
+	 	width: 500px;
 	}
 	
-	.td_left {
-		width: 150px;
-		background: orange;
+	th {
 		text-align: center;
 	}
 	
-	.td_right {
-		width: 300px;
-		background: skyblue;
+	td {
+		width: 150px;
+		text-align: center;
 	}
 	
-	#commandCell {
+	#basicInfoArea {
+		height: auto;
+		text-align: center;
+	}
+	
+	#board_file {
+		height: auto;
+		font-size: 12px;
+	}
+	
+	#articleContentArea {
+		background: orange;
+		margin-top: 10px;
+		height: 350px;
+		text-align: center;
+		overflow: auto;
+		white-space: pre-line;
+	}
+	
+	#commandList {
+		margin: auto;
+		width: 500px;
 		text-align: center;
 	}
 </style>
+<script type="text/javascript">
+	function confirmDelete() {
+		// 삭제 버튼 클릭 시 확인창(confirm dialog)을 통해 "삭제하시겠습니까?" 출력 후
+		// 다이얼로그의 확인 버튼 클릭 시 "BoardDelete.bo" 서블릿 요청
+		// => 파라미터 : 글번호, 페이지번호
+		if(confirm("삭제하시겠습니까?")) {
+			location.href = "QnaDelete?qna_number=${qna.qna_number}&pageNum=${param.pageNum}";
+		}
+	}
+</script>
 </head>
 <body>
 	<header>
 		<!-- Login, Join 링크 표시 영역 -->
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
-	<!-- 게시판 글 수정 -->
-	<article id="replyForm">
-		<h1>게시판 답글 작성</h1>
-		<form action="QnaReplyPro" name="replyForm" method="post">
-		<%-- 입력받지 않은 글번호, 페이지번호는 input 태그의 hidden 속성으로 파라미터에 포함시킬 수 있음 --%>
-			<input type="hidden" name="board_num" value="${qna.qna_number}">
-			<input type="hidden" name="pageNum" value="${param.pageNum}">
-			<%-- 답글 작성에 필요한 원본글에 대한 추가 정보(참조글 번호, 들여쓰기 레벨, 순서번호)도 전달 --%>
-			<input type="hidden" name="board_re_ref" value="${qna.board_re_ref}">
-			<input type="hidden" name="board_re_lev" value="${board.board_re_lev}">
-			<input type="hidden" name="board_re_seq" value="${board.board_re_seq}">
-			<table>
-				<tr>
-					<td class="td_left"><label for="board_name">글쓴이</label></td>
-					<td class="td_right">
-						<%-- 글쓴이(작성자)는 세션 아이디값 그대로 출력(읽기 전용) --%>
-						<input type="text" name="board_name" value="${sessionScope.sId}" readonly required />
-					</td>
-				</tr>
-				<%-- 제목, 내용 입력란은 DB에서 조회된 데이터(BoardBean 객체)를 표시 --%>
-				<tr>
-					<td class="td_left"><label for="board_subject">제목</label></td>
-					<td class="td_right">
-						<input type="text" id="board_subject" name="board_subject" value="${board.board_subject}" required />
-					</td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="board_content">내용</label></td>
-					<td class="td_right">
-						<textarea id="board_content" name="board_content" rows="15" cols="40" required>${board.board_content}</textarea>
-					</td>
-				</tr>
-			</table>
-			<section id="commandCell">
-				<input type="submit" value="답글등록">&nbsp;&nbsp;
-				<input type="reset" value="다시쓰기">&nbsp;&nbsp;
-				<input type="button" value="취소" onclick="history.back()">
-			</section>
-		</form>
-	</article>
+	<main>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
+		<!-- 게시판 상세내용 보기 -->
+		<section id="articleForm">
+			<form action="QnaReplyPro" name="QnaReplyPro" method="post">
+				<h2>1:1 문의글 상세내용 보기</h2>
+				<div id="basicInfoArea">
+					<table border="1">
+					<tr><th width="70">제 목</th><td colspan="3">${qna.qna_inquery}</td></tr>
+					<tr>
+						<th width="70">작성자</th><td>${qna.mem_id}</td>
+						<%-- 작성일시 출력 형식은 ex) 2024-06-04 12:30 --%>
+						<th width="70">작성일시</th>
+						<td><fmt:formatDate value="${qna.qna_date}" pattern="yyyy-MM-dd"/></td>
+					</tr>
+					<tr>
+						<th colspan="4">문의내용</th>
+					</tr>
+					<tr>
+						<td colspan="4" style="height: 100px;">${qna.qna_content}</td>
+					</tr>
+					</table>
+				</div>
+				<!-- 답변 영역 -->
+				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
+				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
+				<c:if test="${sessionScope.sId eq 'admin'}">
+					<div id="articleReplyArea">
+						<b>답변</b>
+						<textarea rows="10" cols="67" name=""></textarea>
+						<input type="submit" value="등록">
+						<input type="button" value="돌아가기" onclick="history.back()">
+					</div>
+				</c:if>
+			</form>
+		</section>
+	</main>
+	<footer>
+		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
+		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
+	</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 

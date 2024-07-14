@@ -24,7 +24,9 @@
 		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
 	</header>
 	<main>
-		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
 		<section>
 			<div align="center">
 				<!-- 게시판 리스트 -->

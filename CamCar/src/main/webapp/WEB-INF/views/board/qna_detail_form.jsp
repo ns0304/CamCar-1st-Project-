@@ -78,6 +78,9 @@
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
 	<main>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
 		<!-- 게시판 상세내용 보기 -->
 		<article id="articleForm">
 			<h2>1:1 문의글 상세내용 보기</h2>
@@ -90,12 +93,18 @@
 					<th width="70">작성일시</th>
 					<td><fmt:formatDate value="${qna.qna_date}" pattern="yyyy-MM-dd"/></td>
 				</tr>
+				<tr>
+					<th colspan="4">문의내용</th>
+				</tr>
+				<tr>
+					<td colspan="4" style="height: 100px;">${qna.qna_content}</td>
+				</tr>
 				</table>
 			</section>
 			<%-- 게시물 본문 출력 영역 --%>
-			<section id="articleContentArea">
-				${qna.qna_content}
-			</section>
+<!-- 			<section id="articleContentArea"> -->
+<%-- 				${qna.qna_content} --%>
+<!-- 			</section> -->
 			<section id="commandCell">
 				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
 				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
@@ -108,8 +117,7 @@
 					<%-- 자바스크립트 confirmDelete() 메서드 호출하여 확인 후 비즈니스 로직 요청 --%>
 					<input type="button" value="삭제" onclick="confirmDelete()">
 				</c:if>
-				<%-- 목록 버튼은 항상 표시하고, 클릭 시 "BoardList.bo" 서블릿 요청(파라미터 : 페이지번호) --%>
-				<input type="button" value="목록" onclick="location.href='Qna_ask?pageNum=${param.pageNum}'">
+				<input type="button" value="돌아가기" onclick="history.back()">
 			</section>
 		</article>
 	</main>

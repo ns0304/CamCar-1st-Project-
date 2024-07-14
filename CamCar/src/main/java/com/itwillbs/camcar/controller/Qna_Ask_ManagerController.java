@@ -3,6 +3,8 @@ package com.itwillbs.camcar.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,7 +100,10 @@ public class Qna_Ask_ManagerController {
 	}
  	
 	@GetMapping("QnaReply")
-	public String qnaReply() {
+	public String qnaReply(int qna_number, Model model) {
+		QnaVO qna = service.getQna(qna_number);
+		
+		model.addAttribute("qna", qna);
 		
 		return "board/qna_reply_form";
 	}
@@ -115,5 +120,38 @@ public class Qna_Ask_ManagerController {
 			return "result/fail";
 		}
 	}
+	
+	@GetMapping("QnaDelete")
+	public String qnaDelete(
+			int qna_number, @RequestParam(defaultValue = "1") int pageNum,
+			HttpSession session, Model model) {
+		
+		
+		QnaVO qna = service.getQna(qna_number);
+		String id = (String)session.getAttribute("sId");
+		
+		System.out.println(qna);
+		
+		if(qna == null || !id.equals("admin")) {
+			model.addAttribute("msg", "관리자가 아닙니다!");
+			return "result/fail";
+		}
+		
+		int deleteCount = service.removeQna(qna_number);
+		
+		// 삭제 결과 판별하여 처리
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "삭제 성공!");
+			model.addAttribute("targetURL", "qna_ask?pageNum=" + pageNum);
+			return "result/success";
+		} else {
+			model.addAttribute("msg", "삭제 실패!");
+			return "result/fail";
+		}
+		
+	}
+	
+	
+	
 	
 }

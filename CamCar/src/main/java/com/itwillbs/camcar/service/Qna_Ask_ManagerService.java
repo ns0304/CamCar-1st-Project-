@@ -34,6 +34,11 @@ public class Qna_Ask_ManagerService {
 	public QnaVO getQna(int qna_number) {
 		return mapper.selectQnaDetail(qna_number);
 	}
+	
+	// 1:1 문의 게시글 삭제
+	public int removeQna(int qna_number) {
+		return mapper.deleteQna(qna_number);
+	}
 
 	
 }
