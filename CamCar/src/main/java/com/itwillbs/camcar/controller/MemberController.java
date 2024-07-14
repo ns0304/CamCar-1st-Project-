@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -231,8 +232,9 @@ public class MemberController {
 		if(dbMember == null) { // !member.getMem_tel().equals(mem_tel)
 			model.addAttribute("msg", "없는 아이디입니다");
 			return "result/fail";
-			
+
 		} else {
+//			model.addAttribute("mem_id", mem_id); // model에 아이디값 저장
 			model.addAttribute("dbMember", dbMember); // model에 아이디값 저장
 			return "member/member_pw_find_pro";
 		}
@@ -243,9 +245,7 @@ public class MemberController {
 	// 전화번호로 비밀번호 찾기
 	@PostMapping("PwResetPro")
 	public String pwResetPro(MemberVO member,String mem_tel, Model model) {
-		
 		MemberVO dbMember = service.isExistTel(mem_tel);
-		
 		if(dbMember == null) { // !member.getMem_tel().equals(mem_tel)
 			model.addAttribute("msg", "없는 전화번호입니다");
 			return "result/fail";

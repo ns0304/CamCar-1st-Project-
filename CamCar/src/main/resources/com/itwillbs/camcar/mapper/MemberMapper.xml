@@ -75,7 +75,7 @@
 			mem_passwd = #{mem_passwd}
 		WHERE
 			mem_tel = #{mem_tel}
-		
+
 	</update>
 	
 	

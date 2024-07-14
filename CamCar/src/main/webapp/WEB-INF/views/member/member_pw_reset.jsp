@@ -128,6 +128,7 @@
 		<section>
 			<form action="PwResetFinal" method="post">
 				<input type="hidden" name="mem_tel" value="${dbMember.mem_tel}" id="mem_tel" size="10">	
+				<input type="hidden" name="mem_id" value="${dbMember.mem_id}" id="mem_tel" size="10">	
 				<section id="sec01">
 					<table>
 						<tr>

@@ -16,6 +16,7 @@
 	<main>
 		<section>
 			<form action=PwResetPro method="post">
+				<input type="hidden" name="mem_id" value="${param.mem_id}" id="mem_tel" size="10">
 				<section id="sec01">
 					<table>
 						<tr>

@@ -3,6 +3,7 @@ package com.itwillbs.camcar.mapper;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.camcar.vo.DriverVO;
 import com.itwillbs.camcar.vo.MemberVO;
