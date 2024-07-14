@@ -1,13 +1,17 @@
 package com.itwillbs.camcar.controller;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,62 +39,91 @@ public class ReservationController {
 		System.out.println("지점 : " + map.get("brc_rent_name"));
 		System.out.println("대여일시 : " + map.get("res_rental_date"));
 		System.out.println("반납일시 : " + map.get("res_return_date"));
+		
+		// 선택한 차량 옵션 출력
+		List<String> car_optList = null;
 		if(car_opt != null) {	// 차량 하나이상 선택 시
-			List<String> car_optList = Arrays.asList(car_opt);
+			car_optList = Arrays.asList(car_opt);
 			model.addAttribute("car_optList", car_optList);
 		}
-//		System.out.println("차량선택 : " + map.get("car_opt"));
 		
 		// -----------------------------------------------------------------------------------
 		// 차량 모델 리스트 조회 요청(select)
-		List<CarModelVO> carModelList = service.getCarModelList();
-		// model 객체에 조회 결과 저장
+        Map<String, Object> params = new HashMap<>();
+        params.put("car_optList", car_optList);
+
+		List<CarModelVO> carModelList = service.getCarModelList(params);
 		model.addAttribute("carModelList", carModelList);
 		
-		// 메인에서 선택 된 지점에 따라 지점코드 부여
-		int brc_idx = 0;
-		if(map.get("brc_rent_name").equals("캠핑갈카 부산본점")) {
-			brc_idx = 5101;
-		} else if(map.get("brc_rent_name").equals("캠핑갈카 서울지점")) {
-			brc_idx = 201;
-		}
+		// =================================================================================
+		// [ 차량 요금 계산 ]
 		
-		System.out.println("brc_idx : " + brc_idx);
+		// 대여 시작일시와 반납 종료일시 문자열을 LocalDateTime으로 변환
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime startDate = LocalDateTime.parse(map.get("res_rental_date"), formatter);
+		LocalDateTime endDate = LocalDateTime.parse(map.get("res_return_date"), formatter);
+		
+		// =================================================================================
+		
+		// 메인에서 선택 된 지점에 따라 지점코드 부여
+		int brc_idx = map.get("brc_rent_name").equals("캠핑갈카 부산본점") ? 5101 : 201;
 		
 		// 차량 상세 리스트 조회 요청(select)
 		List<CarVO> carList = service.getCarList(brc_idx);
+		
+
+        // [ 차량 요금 계산 ]
+        Map<Integer, Long> carFeeMap = new HashMap<>();
+        for (CarVO car : carList) {
+            long totalFee = calculateTotalFee(car, startDate, endDate);
+            carFeeMap.put(car.getCar_idx(), totalFee);
+        }
+
+		
+		
 		// model 객체에 조회 결과 저장
 		model.addAttribute("carList", carList);
+		model.addAttribute("carFeeMap", carFeeMap);
+		
+		
+		
+		
+		
+		
 		
 		
 		return "reservation/car_list";
 	}
 	
-	// "CarDetail" 서블릿 주소 매핑 - POST
-	@PostMapping("CarDetail")
-	public String carDetailPro(
-			@RequestParam Map<String, String> map, Model model) {
-		System.out.println("대여일시 : " + map.get("res_rental_date"));
-		System.out.println("반납일시 : " + map.get("res_return_date"));
-		System.out.println("차량코드 : " + map.get("car_idx"));
-		
-		int car_idx = Integer.parseInt(map.get("car_idx"));
-		
-		// 차량 상세정보 조회 요청
-		CarVO carDetail = service.getCarDetail(car_idx);
-		
-		// 조회 결과가 없을 경우 "차량이 조회되지 않습니다" 출력 및 이전페이지 돌아가기 처리
-		if(carDetail == null) {
-			model.addAttribute("msg", "차량이 조회되지 않습니다");
-			return "result/fail";
-		}
-		
-		// Model 객체에 조회 결과 저장
-		model.addAttribute("carDetail", carDetail);
-		
-		
-		return "reservation/car_detail";
-	}
+	// [ 총 이용시간에 따른 요금 계산하는 메서드 ]
+    private long calculateTotalFee(CarVO car, LocalDateTime startDate, LocalDateTime endDate) {
+        long totalHours = ChronoUnit.HOURS.between(startDate, endDate);
+
+        long totalWeekdayHours = 0;
+        long totalWeekendHours = 0;
+
+        LocalDateTime tempDate = startDate;
+
+        while (tempDate.isBefore(endDate)) {
+            if (isWeekend(tempDate)) {
+                totalWeekendHours++;
+            } else {
+                totalWeekdayHours++;
+            }
+            tempDate = tempDate.plusHours(1);
+        }
+
+        long weekdayFee = totalWeekdayHours * car.getCar_weekdays();
+        long weekendFee = totalWeekendHours * car.getCar_weekend();
+
+        return weekdayFee + weekendFee;
+    }
+
+    private boolean isWeekend(LocalDateTime date) {
+        int dayOfWeek = date.getDayOfWeek().getValue();
+        // 월요일이 1, 일요일이 7이므로, 주말(금~일)은 5, 6, 7
+        return (dayOfWeek == 5 || dayOfWeek == 6 || dayOfWeek == 7);
+    }
 	
 	
 }

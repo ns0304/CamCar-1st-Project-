@@ -9,9 +9,18 @@
 	<select id="selectModelList">
 		SELECT *
 		FROM car_model_info
+		WHERE 1=1
+		    <if test="car_optList != null and car_optList.size() > 0">	-- car_optList가 있을 경우
+		        AND car_type IN
+		        <foreach item="item" index="index" collection="car_optList" open="(" separator="," close=")">
+		            #{item}
+		        </foreach>
+		    </if>
+			
 		ORDER BY car_model
 	</select>
 
+	<!-- 차량 상세 리스트 조회 -->
 	<select id="selectCarList">
 		SELECT *
 		FROM car_info
@@ -19,6 +28,7 @@
 		ORDER BY car_model
 	</select>
 
+	<!-- 차량 상세 정보 조회 -->
 	<select id="selectCarDetail">
 		SELECT *
 		FROM car_info

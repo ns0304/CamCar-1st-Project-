@@ -381,54 +381,49 @@ $(document).ready(function() {
 				</div>
 			</div>
 			
+			
 			<!-- ---------- 차량 리스트 영역 ---------- -->
 			<c:forEach var="model" items="${carModelList}">
-			
-				<div class="carList_wrap">
-					<div class="carList_top">	<!-- 차량정보 상단 -->
-						<div class="carName">
-							<!-- 로고사진 -->
-							<img src="${pageContext.request.contextPath}/resources/upload/${model.car_logo_image}"><br>
-							<a>${model.car_company}</a>
-							<h3>${model.car_model}</h3>
-						</div>
-						<div class="carImage">
-							<img src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
-						</div>
-					</div>
-					<!-- ---------- 차량 상세 리스트 영역 ---------- -->
-					<c:forEach var="car" items="${carList}">
-						<c:if test="${model.car_model eq car.car_model}">
-							<div class="carList_bottom" style="display: flex;">
-								<div class="carName_detail">
-									<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
-									<span>
-										${car.car_old} / 
-										반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
-										<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
-										정원 ${car.car_riding}명 / 
-										${car.car_license} 이상
-									</span>
-									
-									<!-- 일정정보(대여일시) 전달  -->
-<%-- 									<input type="text" name="res_rental_date" value="${param.res_rental_date}"> --%>
-<%-- 									<input type="text" name="res_return_date" value="${param.res_return_date}"> --%>
-									<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-									<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-<%-- 									<input type="hidden" name="car_idx" value="${car.car_idx}"> --%>
-									
-								</div>
-								<div class="pay_detail">
-									<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx }">
-									<span class="main_name" style="font-size: 20px;">${car.car_weekdays}원</span>
-									<input type="submit" value="예약" class="resBtn">
-									
-<%-- 									<input type="button" value="예약" onclick="location.href='CarDetail?car_idx=${car.car_idx}'"> --%>
-								</div>
+				<%-- carModelSet에 포함된 모델만 렌더링 --%>
+					<div class="carList_wrap">
+						<div class="carList_top">	<!-- 차량정보 상단 -->
+							<div class="carName">
+								<!-- 로고사진 -->
+								<img src="${pageContext.request.contextPath}/resources/upload/${model.car_logo_image}"><br>
+								<a>${model.car_company}</a>
+								<h3>${model.car_model}</h3>
 							</div>
-						</c:if>
-					</c:forEach>
-				</div>
+							<div class="carImage">
+								<img src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
+							</div>
+						</div>
+						<!-- ---------- 차량 상세 리스트 영역 ---------- -->
+						<c:forEach var="car" items="${carList}">
+							<c:if test="${model.car_model eq car.car_model}">
+								<div class="carList_bottom" style="display: flex;">
+									<div class="carName_detail">
+										<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
+										<span>
+											${car.car_old} / 
+											반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
+											<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
+											정원 ${car.car_riding}명 / 
+											${car.car_license} 이상
+										</span>
+										
+										<!-- 일정정보(대여일시) 전달  -->
+										<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+										<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+									</div>
+									<div class="pay_detail">
+										<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
+										<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
+										<input type="submit" value="예약" class="resBtn">
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
 			</c:forEach>
 			<!-- ---------------------------------------------------------------------------------------- -->
 			

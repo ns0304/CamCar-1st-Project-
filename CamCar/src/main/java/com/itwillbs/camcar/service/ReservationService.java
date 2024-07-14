@@ -1,6 +1,7 @@
 package com.itwillbs.camcar.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class ReservationService {
 	private ReservationMapper mapper;
 
 	// 차량 모델 리스트 조회 요청
-	public List<CarModelVO> getCarModelList() {
-		return mapper.selectModelList();
+	public List<CarModelVO> getCarModelList(Map<String, Object> params) {
+		return mapper.selectModelList(params);
 	}
 
 	// 차량 상세 리스트 조회 요청
