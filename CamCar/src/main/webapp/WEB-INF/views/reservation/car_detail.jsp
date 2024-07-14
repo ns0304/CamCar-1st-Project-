@@ -251,7 +251,7 @@ $(document).ready(function() {
 					<a><img class="icon" alt="campingcar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/campingcar.png"> ${carDetail.car_model}</a>
 				</div>
 				<div id="pay_wrap" >
-					<h3>${carDetail.car_weekend}원</h3>
+					<h3>${param.rentalFee}원</h3>
 				</div>
 					<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 					<input type="hidden" name="res_return_date" value="${param.res_return_date}">

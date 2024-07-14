@@ -79,18 +79,9 @@ public class ReservationController {
             carFeeMap.put(car.getCar_idx(), totalFee);
         }
 
-		
-		
 		// model 객체에 조회 결과 저장
 		model.addAttribute("carList", carList);
 		model.addAttribute("carFeeMap", carFeeMap);
-		
-		
-		
-		
-		
-		
-		
 		
 		return "reservation/car_list";
 	}
@@ -124,6 +115,32 @@ public class ReservationController {
         // 월요일이 1, 일요일이 7이므로, 주말(금~일)은 5, 6, 7
         return (dayOfWeek == 5 || dayOfWeek == 6 || dayOfWeek == 7);
     }
-	
+
+ // "CarDetail" 서블릿 주소 매핑 - POST
+ 	@PostMapping("CarDetail")
+ 	public String carDetailPro(
+ 			@RequestParam Map<String, String> map, Model model) {
+ 		System.out.println("대여일시 : " + map.get("res_rental_date"));
+ 		System.out.println("반납일시 : " + map.get("res_return_date"));
+ 		System.out.println("차량코드 : " + map.get("car_idx"));
+ 		System.out.println("차량코드 : " + map.get("rentalFee"));
+ 		
+ 		int car_idx = Integer.parseInt(map.get("car_idx"));
+ 		
+ 		// 차량 상세정보 조회 요청
+ 		CarVO carDetail = service.getCarDetail(car_idx);
+ 		
+ 		// 조회 결과가 없을 경우 "차량이 조회되지 않습니다" 출력 및 이전페이지 돌아가기 처리
+ 		if(carDetail == null) {
+ 			model.addAttribute("msg", "차량이 조회되지 않습니다");
+ 			return "result/fail";
+ 		}
+ 		
+ 		// Model 객체에 조회 결과 저장
+ 		model.addAttribute("carDetail", carDetail);
+ 		
+ 		
+ 		return "reservation/car_detail";
+ 	}
 	
 }
