@@ -258,6 +258,7 @@ $(document).ready(function() {
 					<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 					<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 					<input type="hidden" name="car_idx" value="${carDetail.car_idx}">
+					<input type="hidden" name="rentalFee" value="${param.rentalFee}">
 				<div class="center">
 					<input type="submit" id="reservation" value="예약하기">
 				</div>
