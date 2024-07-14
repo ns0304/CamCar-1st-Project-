@@ -10,28 +10,23 @@
 	bottom: 250px;
 }
 
-.SlideImg {
+.SlideImg, .slideBestImg {
 /* 	width: 720px; */
 	height: 500px;
-	border: 2px solid red;	/* 임시 */
+	border: 2px solid #ccc;	/* 임시 */
 	overflow: hidden;
 }
 
-.slideBestImg {
-	height: 500px;
-	border: 2px solid red;	/* 임시 */	
-	overflow: hidden;
-}
 
 /* okokok 차박 베스트 장소 이미지 사이즈 조절 okokok */
-.slideBestImg > img {
+.SlideImg img, .slideBestImg img {
 	height: 500px;
 	object-fit:cover;
 }
 
 /* 자주 묻는 질문 영역 */
 #mainQna {
-	border: 1px solid yellow;
+	border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
     box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */

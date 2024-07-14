@@ -7,6 +7,26 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/login_form.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#loginForm {
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	margin: 0 100px;
+	padding: 20px;
+}
+#loginBtn {
+	 height: 90px;
+	 width: 170px; 
+	 margin: 20px 0 10px 0;
+	 border: none;
+	 border-radius: 12px;
+	 background-color: #ccc;
+	 font-size: 18px;
+}
+#loginBtn:hover {
+	 background-color: #59b9a9;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -15,35 +35,28 @@
 	</header>
 	<main>
 		<section>
-			<h1>로그인</h1>
-			
-			<form action="MemberLoginPro" method="post">
-				<section>
-					<table>
-						<tr>
-							<td>아이디</td>
-						</tr>
-						<tr>
-							<td><input type="text" name="mem_id" required size="18" value="${cookie.rememberId.value}"></td>
-							<th id="th01" align="left" colspan="3" rowspan="3"><input type="submit" value="로그인" style="height: 70px;width: 170px;"></th>
-						</tr>
-						<tr>
-							<td id="td01"><input type="checkbox" name="rememberId">아이디 저장</td>
-							<!-- checkbox 생성 시 value 속성 지정하지 않으면 체크값이 "on", 미체크 시 null -->
-						</tr>	
-						<tr>
-							<td>비밀번호</td>
-						</tr>
-						<tr>
-							<td><input type="password" name="mem_passwd" size="18" required></td>
-							<td id="td02" onclick="location.href='MemberJoin'">회원가입&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	<!-- 							<td></td> -->
-							<td id="td03"  onclick="location.href='Id_find'">아이디 찾기/</td>
-							<td id="td04" onclick="location.href='Passwd_find'">비밀번호 찾기</td>
-						</tr>	
-					</table>
-				</section>
-			</form>	
+			<div style="text-align: center;">
+				<h1>로그인</h1>
+			</div>
+			<div id="loginForm">
+				<form action="MemberLoginPro" method="post">
+					<div style="display: flex; justify-content: center;">
+						<div style="margin-right: 20px;">
+							<b>아이디</b><br>
+							<input type="text" name="mem_id" required size="18" value="${cookie.rememberId.value}"><br>
+							<input type="checkbox" name="rememberId" style="margin-bottom: 10px;">아이디 저장<br>
+							<b>비밀번호</b><br>
+							<input type="password" name="mem_passwd" size="18" required>
+						</div>
+						<div>
+							<input type="submit" value="로그인" id="loginBtn"><br>
+							<a onclick="location.href='MemberJoin'" style="font-size: 12px;">회원가입&nbsp;&nbsp;&nbsp;&nbsp;</a>
+							<a onclick="location.href='Id_find'" style="font-size: 12px;">아이디 찾기/</a>
+							<a onclick="location.href='Passwd_find'" style="font-size: 12px;">비밀번호 찾기</a>
+						</div>
+					</div>
+				</form>	
+			</div>
 		</section>
 	</main>
 	<footer>

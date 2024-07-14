@@ -13,8 +13,7 @@
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <%-- 카카오지도 설치 스크립트 --%>
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.jsc"></script>
-
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <style type="text/css">
 /* ---- 우측 예약 일정 영역 ---- */
 #schedule_container {
@@ -26,7 +25,7 @@
 	border-radius: 12px;
 	padding: 20px;
 	margin-left: 15px;
-	width: 420px; height: 300px;
+	width: 420px; height: 340px;
 	box-sizing: border-box;
 	z-index: 10;
 }
@@ -195,33 +194,36 @@ $(document).ready(function() {
 						<c:choose>
 							<%-- "캠핑갈카 부산본점" 일 경우 --%>
 							<c:when test="${carDetail.brc_idx eq 5101}">
-								<div id="daumRoughmapContainer1720569672541" class="root_daum_roughmap root_daum_roughmap_landing mapImg"></div>
+								<div id="daumRoughmapContainer1720976634983" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
-										"timestamp" : "1720569672541",
-										"key" : "2jysz",
+										"timestamp" : "1720976634983",
+										"key" : "2k2bw",
 										"mapWidth" : "720",
 										"mapHeight" : "360"
 									}).render();
 								</script>
-								<b style="font-size: 18px;">캠핑갈카 부산본점</b>
+								<br><b style="font-size: 18px;">캠핑갈카 부산본점</b>
 								<p>주소<br> 부산 부산진구 동천로 109 삼한골든게이트 1층<br><br>
 								전화<br>051-1234-5678<br><br>
 								이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
-				
 							</c:when>
 							
 							<%-- "캠핑갈카 서울지점" 일 경우 --%>
 							<c:otherwise>
-								<div id="daumRoughmapContainer1720606882411" class="root_daum_roughmap root_daum_roughmap_landing mapImg"></div>
+								<div id="daumRoughmapContainer1720976586469" class="root_daum_roughmap root_daum_roughmap_landing"></div>
 								<script charset="UTF-8">
 									new daum.roughmap.Lander({
-										"timestamp" : "1720606882411",
-										"key" : "2kz7g",
+										"timestamp" : "1720976586469",
+										"key" : "2k2bv",
 										"mapWidth" : "720",
 										"mapHeight" : "360"
 									}).render();
 								</script>
+								<br><b style="font-size: 18px;">캠핑갈카 서울지점</b>
+								<p>주소<br> 서울 용산구 한강대로 350 갑을빌딩 1층<br><br>
+								전화<br>02-1234-5678<br><br>
+								이용 가능한 시간<br>대여 07:00 ~ 22:30<br>반납 06:00 ~ 21:30</p>
 							</c:otherwise>
 						</c:choose>
 					

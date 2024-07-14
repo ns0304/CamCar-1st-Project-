@@ -378,9 +378,53 @@
 		        }
 		    }
 		} // checkExpDate() 함수 끝
-	
+		
+		
+		// ===========================================================================
+		// 회원가입 창 hide, show
+		document.addEventListener("DOMContentLoaded", function() {
+		    // 다음 버튼 클릭 시 회원정보 입력 창 닫히고 운전면허 정보 입력 창 열림
+		    document.getElementById("next1").addEventListener("click", function() {
+		        document.querySelector(".joinForm1").style.display = "none";
+		        document.querySelector(".joinForm2").style.display = "block";
+		    });
+		    
+		    // 다음 버튼 클릭 시 운전면허 정보 입력 창 닫히고 카드정보 입력 창 열림
+		    document.getElementById("next2").addEventListener("click", function() {
+		        document.querySelector(".joinForm2").style.display = "none";
+		        document.querySelector(".joinForm3").style.display = "block";
+		    });
+
+			// 이전 버튼 클릭 시 운전면허 정보 입력 창 닫히고 회원정보 입력 창 열림
+		    document.getElementById("prev1").addEventListener("click", function() {
+		        document.querySelector(".joinForm2").style.display = "none";
+		        document.querySelector(".joinForm1").style.display = "block";
+		    });
+		    
+		    // 이전 버튼 클릭 시 카드정보 입력 창 닫히고 운전면허 정보 입력 창 열림
+		    document.getElementById("prev2").addEventListener("click", function() {
+		        document.querySelector(".joinForm3").style.display = "none";
+		        document.querySelector(".joinForm2").style.display = "block";
+		    });
+		});
+
 		
 </script>
+<style type="text/css">
+.joinForm1, .joinForm2, .joinForm3 {
+	padding: 20px 60px;
+	border: 1.5px solid #ccc;
+	border-radius: 12px;
+	width: 600px;
+	box-sizing: border-box;
+}
+.joinForm2, .joinForm3 {
+	display: none;
+}
+
+
+</style>
+
 </head>
 <body>	
 	<header>
@@ -389,9 +433,9 @@
 	</header>
 	<main>
 		<article style="position: relative; top: 100px;">
-			<h1>회원 가입</h1>
+			<h1 align="center">회원 가입</h1>
 			<form action="MemberJoinPro" name="joinForm" method="post">
-				<section>
+				<section class="joinForm1">
 					<table id="tb01"> 
 						<tr>
 							<td>아이디</td>
@@ -483,26 +527,16 @@
 							<td><input type="text" name="tel_number_check" size="10" id="tel_number_check" >
 								<input type="button" value="인증완료" id="btnCertification"></td>
 						</tr>
+						<tr>
+									<td align="center"><br><input type="button" id="next1" value="다음" ></td>
+						</tr>
 					</table>
 				</section>
-				<section>
-					<table id="tb02">			
-<!-- 						<tr> -->
-<!-- 							<td>운전자 이름</td> -->
-<!-- 						</tr> -->
-						<tr>	
-							<td>
+				
+				<section class="joinForm2">
 								<input type="hidden" name="dri_name" id="dri_name" size="20" placeholder="운전자 이름을 입력해주세요" >
-							</td>
-						</tr>
-<!-- 						<tr> -->
-<!-- 							<td>운전자 전화번호</td> -->
-<!-- 						</tr> -->
-						<tr>	
-							<td>
 								<input type="hidden" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
-							</td>
-						</tr>
+					<table id="tb02">			
 						<tr>
 							<td>운전자 생년월일</td>
 						</tr>
@@ -554,9 +588,15 @@
 								<div id="checkExpDateResult"></div>
 							</td>	
 						</tr>
+						<tr>
+							<td align="center"><br><input type="button" id="prev1" value="이전" >
+							<input type="button" id="next2" value="다음" ></td>
+						</tr>
+
 					</table>	
 				</section>
-				<section>
+				
+				<section class="joinForm3">
 					<table id="tb03">	
 						<tr>
 							<td>카드유형</td>
@@ -598,6 +638,7 @@
 							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
 							<tr>
 							<td colspan="2" align="center">
+								<br><input type="button" id="prev2" value="이전" >&nbsp;
 								<input type="submit" value="가입">
 	<!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
 	<!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->

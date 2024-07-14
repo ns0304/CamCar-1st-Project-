@@ -40,7 +40,7 @@
 				<c:otherwise> <%-- 로그인 상태일 경우 --%>
 					<%-- 회원 아이디, 로그아웃 링크 표시 --%>
 					<%-- 아이디 클릭 시 회원 상세정보 조회를 위한 "MemberInfo" 서블릿 요청 --%>
-					<li><a href="MemberInfo">${sessionScope.sId}</a> 님</li>
+					<li><a href="MemberInfo">${sessionScope.sId} 님</a></li>
 					<%-- 하이퍼링크 상에서 자바스크립트 함수 호출 시 "javascript:함수명()" 형태로 호출 --%>
 					<li><a href="javascript:confirmLogout()">로그아웃</a></li>
 					<c:if test="${sessionScope.sId eq 'admin'}">

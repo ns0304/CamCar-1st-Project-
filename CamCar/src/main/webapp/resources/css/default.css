@@ -29,9 +29,6 @@ header {
 	align-items: center; /* 수직 중앙 정렬 */
 }
 
-.logo li, .menu li, .member li {
-	margin-right: 20px;
-}
 
 .menu {
 	margin: 0; /* margin 제거 */
@@ -39,10 +36,16 @@ header {
 
 .menu a, .member a {
 	white-space: nowrap;
+	padding: 10px 20px;
 }
 
-.menu a:hover, .member a:hover {
-	color: #81C147;
+.menu a:hover {
+	color: white;
+	background-color: #59b9a9;
+	border-radius: 8px;
+}
+.member a:hover {
+	color: #59b9a9;
 }
 
 .member a {
@@ -66,12 +69,12 @@ header {
 /* ------- 공통 ------- */
 
 /* ------ 임시(영역구분하기 위해) ------ */
-main {
-	border: 1px solid red;
-}
-main>section {
-	border: 1px solid blue;
-}
+/* main { */
+/* 	border: 1px solid red; */
+/* } */
+/* main>section { */
+/* 	border: 1px solid blue; */
+/* } */
 /* ------------------------------------ */
 
 /* 하이퍼링크 밑줄 제거 */

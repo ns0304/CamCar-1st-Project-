@@ -8,8 +8,25 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <%-- <link href="${pageContext.request.servletContext.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css"> --%>
 <style type="text/css">
-#form01 {
-	padding-right: 500px;
+#findPw_wrap {
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 10px 30px;
+}
+#next {
+	padding: 10px 30px;
+	border: none;
+	border-radius: 12px;
+	background-color: #ccc;
+}
+#next:hover {
+	background-color: #59b9a9;
+}
+#sec02 {
+	background-color: #f1f3f5;
+	border-radius: 12px;
+	margin: 10px 60px;
+	padding: 10px;
 }
 </style>
 </head>
@@ -20,38 +37,36 @@
 	</header>
 		<main>
 			<section>
-				<form action="PwFindPro" method="post" id="form01">
-					<section id="sec01">
-						<table>
-							<tr>
-								<td id="td01">비밀번호 재설정</td>
-							</tr>
-							<tr>
-								<td id="td02">찾고자 하는 아이디를 입력해주세요</td>
-							</tr>
-						</table>
-					</section>	
-					<section id="sec02">
-						<table border="1">
-							<tr>
-								<td id="td03">아이디</td>
-								<td><input type="text" name="mem_id" id="mem_id" size="10"></td>
-							</tr>
-							
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr>
-							<td id="td04">
-								<input type="submit" value="다음">
-	<!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
-	<!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->
-							</td>
-						</tr>
-						</table>
-					</section>
-				</form>
+				<div id="findPw_wrap">
+					<form action="PwFindPro" method="post" id="form01">
+						<section id="sec01">
+							<table>
+								<tr>
+									<td id="td01"><h2>비밀번호 재설정</h2></td>
+								</tr>
+								<tr>
+									<td id="td02">찾고자 하는 아이디를 입력해주세요</td>
+								</tr>
+							</table>
+						</section>	
+						<section id="sec02">
+							<div style="display: flex; justify-content: center;">
+								<table>
+									<tr>
+										<td id="td03">아이디</td>
+										<td><input type="text" name="mem_id" id="mem_id" size="10"></td>
+									</tr>
+									
+									<tr>
+									<td id="td04" colspan="2">
+										<br><input type="submit" value="다음" id="next">
+									</td>
+								</tr>
+								</table>
+							</div>
+						</section>
+					</form>
+				</div>
 			</section>
 		</main>
 	<footer>

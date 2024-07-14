@@ -40,7 +40,7 @@
     width: 95%;
     color: white;
     cursor: pointer;
-    background-color: #81C147;
+    background-color: #59b9a9;
 }
 .map {
 	width: 100%;

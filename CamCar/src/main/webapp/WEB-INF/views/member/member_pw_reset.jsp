@@ -117,6 +117,28 @@
 	}
 	//========================================================================================================
 </script>
+<style type="text/css">
+#findPw_wrap3 {
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 10px 30px;
+}
+#next {
+	padding: 10px 30px;
+	border: none;
+	border-radius: 12px;
+	background-color: #ccc;
+}
+#next:hover {
+	background-color: #59b9a9;
+}
+#sec02 {
+	background-color: #f1f3f5;
+	border-radius: 12px;
+	margin: 10px 60px;
+	padding: 10px;
+}
+</style>
 
 </head>
 <body>
@@ -126,43 +148,45 @@
 	</header>
 	<main>
 		<section>
-			<form action="PwResetFinal" method="post">
-				<input type="hidden" name="mem_tel" value="${dbMember.mem_tel}" id="mem_tel" size="10">	
-				<input type="hidden" name="mem_id" value="${dbMember.mem_id}" id="mem_tel" size="10">	
-				<section id="sec01">
-					<table>
-						<tr>
-							<td id="td01">비밀번호 재설정</td>
-						</tr>
-					</table>
-				</section>	
-				<section id="sec02">
-					<table>
-						<tr>
-							<td id="td03">새 비밀번호</td>
-							<td>
-								<input type="password" name="mem_passwd" id="mem_passwd" size="10" onblur="checkPasswd()" required>
-								<span id="checkPasswdComplexResult"></span>
-								<div id="checkPasswdResult"></div>
-							</td>
-						</tr>
-						<tr>
-							<td id="td04">새 비밀번호 확인</td>
-							<td>
-								<input type="password" name="mem_passwd2" id="mem_passwd2" size="10" onblur="checkSamePasswd()" required>
-								<div id="checkPasswd2Result"></div>
-							</td>
-						</tr>
-						<tr>
-							<td id="td04">
-								<input type="submit" value="다음">
-	<!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
-	<!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->
-							</td>
-						</tr>
-					</table>
-				</section>
-			</form>
+			<div id="findPw_wrap3">
+				<form action="PwResetFinal" method="post">
+					<input type="hidden" name="mem_tel" value="${dbMember.mem_tel}" id="mem_tel" size="10">	
+					<input type="hidden" name="mem_id" value="${dbMember.mem_id}" id="mem_tel" size="10">	
+					<section id="sec01">
+						<table>
+							<tr>
+								<td id="td01"><h2>비밀번호 재설정</h2></td>
+							</tr>
+						</table>
+					</section>	
+					<section id="sec02">
+						<div style="display: flex; justify-content: center;">
+							<table>
+								<tr>
+									<td id="td03">새 비밀번호</td>
+									<td>
+										<input type="password" name="mem_passwd" id="mem_passwd" size="15" maxlength="10" onblur="checkPasswd()" required>
+										<span id="checkPasswdComplexResult"></span>
+										<div id="checkPasswdResult"></div>
+									</td>
+								</tr>
+								<tr>
+									<td id="td04">새 비밀번호 확인</td>
+									<td>
+										<input type="password" name="mem_passwd2" id="mem_passwd2" size="15" maxlength="10" onblur="checkSamePasswd()" required>
+										<div id="checkPasswd2Result"></div>
+									</td>
+								</tr>
+								<tr>
+									<td id="td04" colspan="2" align="center">
+										<br><input type="submit" value="다음" id="next">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+				</form>
+			</div>
 		</section>
 	</main>
 	<footer>

@@ -7,6 +7,28 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/id_find.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#findId_wrap {
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 10px 30px;
+}
+#moveLogin {
+	padding: 10px 30px;
+	border: none;
+	border-radius: 12px;
+	background-color: #ccc;
+}
+#moveLogin:hover {
+	background-color: #59b9a9;
+}
+#findId_wrap_ {
+	background-color: #f1f3f5;
+	border-radius: 12px;
+	margin: 10px 60px;
+	padding: 10px;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -15,25 +37,26 @@
 	</header>
 	<main>
 		<section>
-			<h1>회원님의 아이디를 찾았어요!</h1>
+			<h1 align="center">회원님의 아이디를 찾았어요!</h1>
+			<div id="findId_wrap_" style="display: flex; justify-content: center;">
 				<table id="table01">
 					<tr>
-						<td width="70">아이디 : </td><td>${dbMember.mem_id}</td>
+						<td>아이디 : </td><td>${dbMember.mem_id}</td>
 <%-- 							<td><input type="text" name="id_name" value="${sessionScope.sId}" required="required" size="15"></td> --%>
 					</tr>
 					<tr>
-						<td width="70">가입일 : </td><td>${dbMember.mem_sign_date}</td>
+						<td>가입일 : </td><td>${dbMember.mem_sign_date}</td>
 					</tr>	
-				</table>
-				<table id="table02">
 					<tr>
-						<td id="td04">
-							<input type="button" value="로그인하러 가기" onclick="location.href='MemberLogin'">
+						<td colspan="2" align="center">
+							<br>
+							<input type="button" value="로그인하러 가기" onclick="location.href='MemberLogin'" id="moveLogin">
 <!-- 						<input type="button" value="다음" onclick="location.href='MemberJoin_two'"> -->
 <!-- 						<input type="button" value="돌아가기" onclick="history.back()"> -->
 						</td>
 					</tr>
-				</table>	
+				</table>
+			</div>
 		</section>
 	</main>
 	<footer>

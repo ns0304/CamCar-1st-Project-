@@ -24,7 +24,7 @@
 	border-radius: 12px;
 	padding: 20px;
 	margin-left: 15px;
-	width: 420px; height: 400px;
+	width: 420px; height: 200px;
 	box-sizing: border-box;
 	z-index: 10;
 	
@@ -56,7 +56,7 @@
 	position: relative;
     font-size: 12px;
     line-height: 18px;
-    background: #94cd86;
+    background: #4fd8b7;
     padding: 8px 16px;
     margin-right:5px;
     color: #fff;
@@ -104,7 +104,7 @@
 .pay_detail input {	/* "예약" 버튼 */
     padding: 10px 25px;
     margin: 0 10px;
-    background-color: #81C147;
+    background-color: #59b9a9;
     color: white;
     border: none;
 	border-radius: 5px;
@@ -586,8 +586,8 @@ $(document).ready(function() {
 		</div>
 		
 		<div class="layerPopup_btn">
-			<input type="button" name="reset" class="reset" value="초기화" style="background-color: gray;">
-			<input type="button" name="apply" class="apply" value="적용하기" style="background-color: #81C147;">
+			<input type="button" name="reset" class="reset" value="초기화" style="background-color: #ccc;">
+			<input type="button" name="apply" class="apply" value="적용하기" style="background-color: #59b9a9;">
 		</div>
 	</div>
 	
