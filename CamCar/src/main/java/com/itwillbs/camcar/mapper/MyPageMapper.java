@@ -44,6 +44,9 @@ public interface MyPageMapper {
 			@Param("searchType") String searchType,
 			@Param("searchKeyword") String searchKeyword);
 
+	// 나의 1:1 문의글 삭제
+	int deleteMyQna(int qna_number);
+
 
 
 

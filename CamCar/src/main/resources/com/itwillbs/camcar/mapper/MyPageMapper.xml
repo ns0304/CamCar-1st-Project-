@@ -38,15 +38,19 @@
 			, #{listLimit}
 	</select>
 
-
-
 	<!-- 1:1 문의 게시물 상세보기 -->
-	<select id="selectQnaDetail" resultType="qna">
+	<select id="selectMyQnaDetail" resultType="qna">
 		SELECT *
 		FROM qna
 		WHERE qna_number = #{qna_number}
 	</select>
-
+	
+	<!-- 1:1 문의 게시물 삭제 -->
+	<delete id="deleteMyQna">
+		DELETE FROM qna
+		WHERE qna_number = #{qna_number}
+	</delete>
+	
 	<!-- 전체 게시물 갯수 조회 -->
 	<!-- 글 목록 조회 시 검색 기능 추가 -->
 	<select id="selectQnaListCount" resultType="int">

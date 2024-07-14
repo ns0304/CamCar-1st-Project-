@@ -45,15 +45,20 @@ public class MyPageService {
 		return mapper.selectQnaList(searchType, searchKeyword, startRow, listLimit);
 	}
 
-	// 나의 1:1 문의 게시물 상세보기 요청
-	public QnaVO getmyQna(int qna_number) {
-		return mapper.selectMyQnaDetail(qna_number);
-	}
-
 
 	// 나의 1:1 문의 총 게시물 조회 요청
 	public int getQnaListCount(String searchType, String searchKeyword) {
 		return mapper.selectQnaListCount(searchType, searchKeyword);
+	}
+
+	// 나의 1:1 문의글 상세보기
+	public QnaVO getMyQna(int qna_number) {
+		return mapper.selectMyQnaDetail(qna_number);
+	}
+
+	// 나의 1:1 문의글 삭제
+	public int removeMyQna(int qna_number) {
+		return mapper.deleteMyQna(qna_number);
 	}
 	
 	

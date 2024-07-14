@@ -48,7 +48,7 @@
 							<%-- qnaList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 							<tr>
 								<td>${qna.mem_id}</td>
-								<td>${qna.qna_type_idx}</td>
+								<td>${qna.qna_type_name}</td>
 								<td>${qna.qna_inquery}</td>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>

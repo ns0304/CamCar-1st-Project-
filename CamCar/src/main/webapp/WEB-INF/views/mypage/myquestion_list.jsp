@@ -100,8 +100,8 @@ a {
 								<td>${qna.qna_inquery}</td>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>
-								<td><input type="button" value="수정"
-									onclick="location.href='QnaDetail?qna_number=${qna.qna_number}'"></td>
+								<td><input type="button" value="보기"
+									onclick="location.href='MyQuestionDetail?qna_number=${qna.qna_number}'"></td>
 							</tr>
 						</c:forEach>
 					</table>
