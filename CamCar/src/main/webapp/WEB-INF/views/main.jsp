@@ -34,7 +34,7 @@
 				<div class="slideScope">
 					<div class="slideData">
 						<div class="slideBestImg">
-							<img src="${pageContext.request.servletContext.contextPath}/resources/img/best_place/best_place1.jpg" id="bestImgSlide">
+							<img src="${pageContext.request.servletContext.contextPath}/resources/img/best_slide/best_slide1.jpg" id="bestImgSlide">
 						</div>
 						<div class="slideCont">
 							<p class="subTit"></p>
@@ -93,9 +93,8 @@
 			}
 			
 		}, 3000);
-	</script>
-		<!-- okokokkokok 차박 베스트 장소 이미지 슬라이드 구현 okokokkokok-->	
-	<script type="text/javascript">
+		
+		<!-- 차박 베스트 장소 이미지 슬라이드 구현 -->	
 		let bestImgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
 		let index2 = 1;
 		setInterval(function() {
@@ -104,7 +103,7 @@
 			if(index2 == bestImgArr.length) {
 				index2 = 0;
 			}
-		}, 1000);	
+		}, 3000);	
 	
 	</script>
 	
