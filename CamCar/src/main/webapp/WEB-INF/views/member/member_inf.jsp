@@ -17,6 +17,15 @@
 	rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+table th, table td {
+	padding: 10px;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<header>

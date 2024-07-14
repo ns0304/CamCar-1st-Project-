@@ -4,9 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑갈카 관리자</title>
 <%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+table th, table td {
+	padding: 10px;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<header>

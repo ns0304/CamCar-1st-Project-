@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑갈카 관리자</title>
 <%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
 
 <link

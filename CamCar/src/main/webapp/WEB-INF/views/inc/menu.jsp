@@ -25,8 +25,5 @@
 		<h4>
 			<a href="BoardList" class="">공지사항 관리</a>
 		</h4>
-		<h4>
-			<a href="" class="">서비스 게시글 관리</a>
-		</h4>
 	</div>
 </aside>

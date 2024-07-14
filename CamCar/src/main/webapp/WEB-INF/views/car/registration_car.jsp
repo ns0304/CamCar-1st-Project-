@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑갈카 관리자</title>
 <%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
 
 <link
@@ -18,6 +18,15 @@
 	rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+}
+table th, table td {
+	padding: 10px;
+	text-align: center;
+}
+</style>
 </head>
 <script type="text/javascript">
 	function correction() {
