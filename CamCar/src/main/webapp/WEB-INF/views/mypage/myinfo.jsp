@@ -659,11 +659,11 @@ $(document).ready(function() {
 	        	<h2>새로운 비밀번호를 입력해주세요</h2>
 	        	<span class="close">&times;</span>
 	        </div>
-	        <div class="popUpOldPasswd">
-	            <a>기존 비밀번호</a>
-                <input type="password" name="oldPasswd" id="oldPasswd" onblur="checkPasswd()" required><br>
-                <a>기존 비밀번호를 입력해주세요</a>
-	        </div>
+<!-- 	        <div class="popUpOldPasswd"> -->
+<!-- 	            <a>기존 비밀번호</a> -->
+<!--                 <input type="password" name="oldPasswd" id="oldPasswd" onblur="checkPasswd()" required><br> -->
+<!--                 <a>기존 비밀번호를 입력해주세요</a> -->
+<!-- 	        </div> -->
 	        <br>
 	        <div class="popUpNewPasswd">
 	            <a>새 비밀번호</a>
@@ -706,6 +706,7 @@ $(document).ready(function() {
             </div>
             <form action="MyInfoModify" method="post">
             	<input type="hidden" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">
+            	<input type="hidden" name="mem_id" value="${member.mem_id}" id="mem_id" size="10">
                 <fieldset class="address_section" id="address_section">
                 	
                     <div class="address_section">

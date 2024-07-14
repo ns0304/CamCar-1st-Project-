@@ -60,6 +60,16 @@ public class MyPageService {
 	public int removeMyQna(int qna_number) {
 		return mapper.deleteMyQna(qna_number);
 	}
+
+
+	// 비밀번호 변경 요청
+	public int modifyMemPasswd(Map<String, String> map) {
+		return mapper.updateMemPasswd(map);
+	}
 	
+	// 주소 변경 요청
+	public int modifyMemAdd(Map<String, String> map) {
+		return mapper.updateMemAdd(map);
+	}
 	
 }

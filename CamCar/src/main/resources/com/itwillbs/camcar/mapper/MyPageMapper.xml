@@ -120,37 +120,21 @@
 	 </select>
 	
 	<!-- 회원 정보 수정 - UPDATE -->
-	<!-- 이름, 비밀번호(옵션), 우편번호, 주소1, 주소2, 이메일(결합필요), 직업, 성별, 취미, 가입동기 -->
-	<update id="updateMember">
+	<!-- 비밀번호 변경 -->
+	<update id="updateMemPasswd">
 		UPDATE member_info
-		SET
-		
-			<!-- 
-			새 패스워드(mem_passwd) 입력 여부에 따라 패스워드 UPDATE 여부가 결정되어야 한다!
-			=> 동적 SQL 필요
-			-->
-			mem_passwd = #{mem_passwd}
+		SET mem_passwd = #{mem_passwd}
+		WHERE mem_tel = #{mem_tel}
+	</update>
+	
+	<update id="updateMemAdd">
+		UPDATE member_info
+		SET 
 			mem_post_code = #{mem_post_code}
 			mem_add1 = #{mem_add1}
 			mem_add2 = #{mem_add2}
-			
-		WHERE
+		WHERE 
 			mem_tel = #{mem_tel}
-			
-<!-- 		UPDATE member_info -->
-<!-- 		SET -->
-		
-<!-- 			새 패스워드(mem_passwd) 입력 여부에 따라 패스워드 UPDATE 여부가 결정되어야 한다! -->
-<!-- 			=> 동적 SQL 필요 -->
-<!-- 			--> -->
-<!-- 			mem_post_code = #{mem_post_code} -->
-<!-- 			mem_add1 = #{mem_add1} -->
-<!-- 			mem_add2 = #{mem_add2} -->
-			
-<!-- 		WHERE -->
-<!-- 			1 = 1 -->
 	</update>
-	
-
 	
 </mapper>

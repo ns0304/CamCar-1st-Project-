@@ -48,6 +48,13 @@ public interface MyPageMapper {
 	int deleteMyQna(int qna_number);
 
 
+	// 비밀번호 변경
+	int updateMemPasswd(Map<String, String> map);
+
+	// 주소 변경
+	int updateMemAdd(Map<String, String> map);
+
+
 
 
 }
