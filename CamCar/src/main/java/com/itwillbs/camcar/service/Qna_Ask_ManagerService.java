@@ -39,6 +39,12 @@ public class Qna_Ask_ManagerService {
 	public int removeQna(int qna_number) {
 		return mapper.deleteQna(qna_number);
 	}
+	
+	// 1:1 문의 게시글 답변
+	public int modifyQna(QnaVO dbQna) {
+		return mapper.updateQna(dbQna);
+	}
+
 
 	
 }

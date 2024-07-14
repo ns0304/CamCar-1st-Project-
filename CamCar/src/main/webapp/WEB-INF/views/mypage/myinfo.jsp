@@ -704,8 +704,10 @@ $(document).ready(function() {
             <div class="infoBox">
                 <p>약관에 동의해야 주소정보를 저장할 수 있어요</p>
             </div>
-            <form action="submitAddress" method="post">
+            <form action="MyInfoModify" method="post">
+            	<input type="hidden" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">
                 <fieldset class="address_section" id="address_section">
+                	
                     <div class="address_section">
                         <p>주소</p>
                     </div>

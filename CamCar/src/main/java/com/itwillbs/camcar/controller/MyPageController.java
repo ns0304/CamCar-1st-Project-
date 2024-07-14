@@ -151,9 +151,55 @@ public class MyPageController {
 		return "mypage/myquestion_list";
 	}
 	
+	@GetMapping("MyQuestionDetail")
+	public String myQuestionDetail(int qna_number, Model model) {
+		
+		QnaVO qna = service.getMyQna(qna_number);
+		
+		// 조회 결과가 없을 경우 "존재하지 않는 게시물입니다" 출력 및 이전페이지 돌아가기 처리
+		if(qna == null) {
+			model.addAttribute("msg", "존재하지 않는 게시물입니다");
+			return "result/fail";
+		}
+		
+		// Model 객체에 조회 결과 저장
+		model.addAttribute("qna", qna);
+		
+		return "mypage/mypage_qna_detail";
+	}
 	
-	
-	
+	// 나의 1:1 문의글 삭제
+	@GetMapping("MyQuestionDelete")
+	public String myQuestionDelete(
+			int qna_number, @RequestParam(defaultValue = "1") int pageNum,
+			HttpSession session, Model model) {
+		
+		QnaVO qna = service.getMyQna(qna_number);
+		String id = (String)session.getAttribute("sId");
+		
+		if(id == null) {
+			model.addAttribute("msg", "로그인 필수!");
+			model.addAttribute("targetURL", "MemberLogin");
+			return "result/fail";
+		}
+		
+		if(qna == null || !id.equals(qna.getMem_id())) {
+			model.addAttribute("msg", "로그인 필수!");
+			return "result/fail";
+		}
+		
+		int deleteCount = service.removeMyQna(qna_number);
+		
+		// 삭제 결과 판별하여 처리
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "삭제 성공!");
+			model.addAttribute("targetURL", "MyQuestionList?pageNum=" + pageNum);
+			return "result/success";
+		} else {
+			model.addAttribute("msg", "삭제 실패!");
+			return "result/fail";
+		}
+	}
 	
 	
 	
@@ -198,7 +244,7 @@ public class MyPageController {
 	
 	// [ 내정보 관리 - 수정 ]
 	@PostMapping("MyInfoModify")
-	public String myyInfoModify(@RequestParam Map<String, String> map, MemberVO member, BCryptPasswordEncoder passwordEncoder, Model model) {
+	public String myInfoModify(@RequestParam Map<String, String> map, MemberVO member, BCryptPasswordEncoder passwordEncoder, Model model) {
 		// 파라미터 매핑용 Map타입을 선언한 상태에서 MemberVo 타입 파라미터도 선언 시 
 		// 두 객체 모두 파라미터 데이터가 저장됨.
 		System.out.println("map : " + map);
@@ -209,11 +255,11 @@ public class MyPageController {
 		// 만약, 두 패스워드가 다르면, "수정권한이 없습니다!" 출력 
 		member = service.getMember(member);
 		System.out.println("member : " + member);
-		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
-			model.addAttribute("msg", "수정 권한이 없습니다!");
-			System.out.println("member : " + member);
-			return "result/fail";
-		}
+//		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
+//			model.addAttribute("msg", "수정 권한이 없습니다!");
+//			System.out.println("member : " + member);
+//			return "result/fail";
+//		}
 		//------------------------------------------------------------------------------
 		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
 		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
@@ -221,7 +267,9 @@ public class MyPageController {
 			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
 			System.out.println("map : " + map); // passwd 항목 암호화 결과 확인
 		}
-		
+		map.put("mem_post_code", map.get("mem_post_code"));
+		map.put("mem_add1", map.get("mem_add1"));
+		map.put("mem_add2", map.get("mem_add2"));
 		
 		// MemberService - modifyMember() 메서드 호출하여 회원정보 수정 요청
 		int updateCount = service.modifyMember(map);

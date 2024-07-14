@@ -109,14 +109,21 @@ public class Qna_Ask_ManagerController {
 	}
 	
 	@PostMapping("QnaReplyPro")
-	public String qnaReply(QnaVO qna, Model model) {
+	public String qnaReplyPro(QnaVO qna, 
+			@RequestParam int qna_number,
+			@RequestParam(defaultValue = "1") String pageNum,
+			Model model) {
+		QnaVO dbQna = service.getQna(qna_number);
 		
-		int insertCount = service.registManagerInquiry(qna);
+		System.out.println("qna : " + qna);
+		System.out.println("dbQna : " + dbQna);
+		int updateCount = service.modifyQna(dbQna);
 		
-		if(insertCount > 0) {
-			return "board/qna_manage_list";
+		if(updateCount > 0) {
+			// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
+			return "redirect:/QnaDetail?qna_number=" + qna_number + "&pageNum=" + pageNum;
 		} else {
-			model.addAttribute("msg", "글쓰기 실패!");
+			model.addAttribute("msg", "답변 실패!");
 			return "result/fail";
 		}
 	}

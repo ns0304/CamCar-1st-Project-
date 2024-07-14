@@ -17,60 +17,7 @@
 <!-- 	rel="stylesheet" type="text/css"> -->
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
-<style type="text/css">
-	#listForm {
-		width: 1024px;
-		max-height: 610px;
-		margin: auto;
-	}
-	
-	h2 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 1024px;
-	}
-	
-	#tr_top {
-		background: orange;
-		text-align: center;
-	}
-	
-	table td {
-		text-align: center;
-	}
-	
-	#pageList {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#emptyArea {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#buttonArea {
-		margin: auto;
-		width: 1024px;
-		text-align: right;
-	}
-	
-	/* 하이퍼링크 밑줄 제거 */
-	a {
-		text-decoration: none;
-	}
-	
-	/* 제목 열 좌측 정렬 및 여백 설정 */
-	#subject {
-		text-align: left;
-		padding-left: 20px;
-	}
-</style>
+
 </head>
 <body>
 	<header>
@@ -94,17 +41,16 @@
 			</select>
 			<input type="text" name="searchKeyword" value="${param.searchKeyword}">
 			<input type="submit" value="검색">
-			<input type="button" value="글쓰기" onclick="location.href='BoardWrite'" />
 		</form>
 		<%-- ============================================================================ --%>
 	</section>
 	<section id="listForm">
 		<table>
 			<tr id="tr_top">
-				<td width="100px">번호</td>
-				<td>제목</td>
-				<td width="150px">날짜</td>
-				<td width="100px">조회수</td>
+				<td width="100px" align="center">번호</td>
+				<td align="center">제목</td>
+				<td width="150px" align="center">날짜</td>
+				<td width="100px" align="center">조회수</td>
 			</tr>
 			<%-- ================================================ --%>
 			<%-- 페이지번호(pageNum 파라미터) 가져와서 저장(없을 경우 기본값 1로 설정) --%>
@@ -119,39 +65,16 @@
 			<c:forEach var="bo" items="${boardList}">
 				<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 				<tr>
-					<td>${bo.bo_idx}</td>
-					<td id="subject">
-						<%-- ========= 답글 관련 처리 ======== --%>
-						<%-- board_re_lev 값이 0 보다 크면 답글이므로 들여쓰기 후 이미지(re.gif) 표시 --%>
-						<%-- ex) lev = 1 일 때 2칸, lev = 2 일 때 4칸 들여쓰기 --%>
-						<c:if test="${bo.bo_re_lev > 0}">
-							<c:forEach begin="1" end="${bo.bo_re_lev}">
-								&nbsp;&nbsp;
-							</c:forEach>
-							<img src="images/re.gif">
-						</c:if>
+					<td align="center">${bo.bo_idx}</td>
+					<td id="subject" align="center">
 						<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail) --%>
 						<%-- 파라미터 : 글번호(board_num), 페이지번호(pageNum) --%>
-						<a href="BoardDetail?board_num=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</a>
+						<a href="boardDetail?bo_idx=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</a>
 					</td>
-					<td>
-						<%--
-						JSTL - format(fmt) 라이브러리를 활용하여 날짜 및 시각 형식(포맷) 변경
-						1) <fmt:formatDate> : Date 등의 날짜 및 포맷 객체의 날짜 형식 변경
-						   => <fmt:formatDate value="${날짜 및 시각 객체}" pattern="표현패턴">
-						   => 자바의 SimpleDateFormat 등의 포맷팅 클래스와 동일한 역할 수행
-						2) <fmt:parseDate> : String 객체의 날짜 형식 변경
-						----------------------------------------------------------------------
-						[ 날짜 및 시각 형식을 지정하는 패턴 문자 ]
-						y : 연도(yy : 연도 2자리, yyyy : 연도 4자리)
-						M : 월(MM : 월 2자리)
-						d : 일(dd : 일 2자리)
-						H : 시(HH : 24시간제, hh : 12시간제)
-						m : 분(mm : 분 2자리)
-						s : 초(ss : 초 2자리) 
-						--%>
+					<td align="center">
 						<fmt:formatDate value="${bo.bo_sysdate}" pattern="yyyy-MM-dd" />
 					</td>
+					<td align="center">${bo.bo_readcount}</td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty boardList}">

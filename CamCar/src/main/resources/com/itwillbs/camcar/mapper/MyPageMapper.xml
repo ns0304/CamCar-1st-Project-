@@ -38,15 +38,19 @@
 			, #{listLimit}
 	</select>
 
-
-
 	<!-- 1:1 문의 게시물 상세보기 -->
-	<select id="selectQnaDetail" resultType="qna">
+	<select id="selectMyQnaDetail" resultType="qna">
 		SELECT *
 		FROM qna
 		WHERE qna_number = #{qna_number}
 	</select>
-
+	
+	<!-- 1:1 문의 게시물 삭제 -->
+	<delete id="deleteMyQna">
+		DELETE FROM qna
+		WHERE qna_number = #{qna_number}
+	</delete>
+	
 	<!-- 전체 게시물 갯수 조회 -->
 	<!-- 글 목록 조회 시 검색 기능 추가 -->
 	<select id="selectQnaListCount" resultType="int">
@@ -126,9 +130,25 @@
 			=> 동적 SQL 필요
 			-->
 			mem_passwd = #{mem_passwd}
+			mem_post_code = #{mem_post_code}
+			mem_add1 = #{mem_add1}
+			mem_add2 = #{mem_add2}
 			
 		WHERE
 			mem_tel = #{mem_tel}
+			
+<!-- 		UPDATE member_info -->
+<!-- 		SET -->
+		
+<!-- 			새 패스워드(mem_passwd) 입력 여부에 따라 패스워드 UPDATE 여부가 결정되어야 한다! -->
+<!-- 			=> 동적 SQL 필요 -->
+<!-- 			--> -->
+<!-- 			mem_post_code = #{mem_post_code} -->
+<!-- 			mem_add1 = #{mem_add1} -->
+<!-- 			mem_add2 = #{mem_add2} -->
+			
+<!-- 		WHERE -->
+<!-- 			1 = 1 -->
 	</update>
 	
 

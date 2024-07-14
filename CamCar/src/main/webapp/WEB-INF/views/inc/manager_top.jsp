@@ -20,7 +20,7 @@
 		<%-- 로그인 여부(= 세션 아이디 존재 여부) 판별하여 각각 다른 링크 표시 --%>
 		<%-- EL 의 sessionScope 내장 객체에 접근하여 "sId" 속성값 존재 여부 판별 --%>
 		<ul class="member">
-			<li><a>ooo님 안녕하세요</a></li>
+			<li><a>${sessionScope.sId} 환영합니다</a></li>
 		</ul>
 	</nav>
 	<hr>

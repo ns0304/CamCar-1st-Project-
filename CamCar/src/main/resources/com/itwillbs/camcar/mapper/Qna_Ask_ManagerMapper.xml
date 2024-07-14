@@ -5,14 +5,14 @@
     
 <!-- 게시물 목록 조회  -->    
 <mapper namespace="com.itwillbs.camcar.mapper.Qna_Ask_ManagerMapper">
-	<select id="selectQnaList" resultType="qna">
-		SELECT *
-		FROM qna
-		<!--  
+	<select id="selectQnaList" resultType="hashmap">
+		<!--  SELECT *
+		FROM qna-->
+		
 		SELECT mem_id, qna_type_name, qna_inquery, qna_number, qna_date
 		FROM qna
 		JOIN qna_type
-		ON qna.qna_type_idx = qna_type.qna_type_idx-->
+		ON qna.qna_type_idx = qna_type.qna_type_idx
 		<if test="!searchKeyword.equals('')">
 			WHERE 
 			<choose>
@@ -77,4 +77,12 @@
 		DELETE FROM qna
 		WHERE qna_number = #{qna_number}
 	</delete>
+	
+	<update id="updateQna">
+		UPDATE qna
+		SET
+			qna_reply = #{qna_reply}
+		WHERE
+			qna_number = #{qna_number}
+	</update>
 </mapper>

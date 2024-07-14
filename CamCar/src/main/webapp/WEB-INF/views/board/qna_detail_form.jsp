@@ -82,7 +82,7 @@
 			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
 		</aside>
 		<!-- 게시판 상세내용 보기 -->
-		<article id="articleForm">
+		<section id="articleForm">
 			<h2>1:1 문의글 상세내용 보기</h2>
 			<section id="basicInfoArea">
 				<table border="1">
@@ -101,10 +101,6 @@
 				</tr>
 				</table>
 			</section>
-			<%-- 게시물 본문 출력 영역 --%>
-<!-- 			<section id="articleContentArea"> -->
-<%-- 				${qna.qna_content} --%>
-<!-- 			</section> -->
 			<section id="commandCell">
 				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
 				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
@@ -119,7 +115,7 @@
 				</c:if>
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</section>
-		</article>
+		</section>
 	</main>
 	<footer>
 		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
