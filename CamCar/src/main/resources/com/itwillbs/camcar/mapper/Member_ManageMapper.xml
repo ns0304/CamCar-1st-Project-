@@ -26,10 +26,8 @@
 			, null                -- 탈퇴일자
 			, 1                   -- 회원상태
 			, 'N'                 -- 메일인증여부
-
 		)
 	</insert>
-	<!-- 지민이는 왜 500이 뜰까 정말이지 의문이다. -->
 	<!-- 전체 회원정보 조회 -->
 	<!-- 회원정보 게시물 검색기능 -->
 	<select id="selectMemberList" resultType="member">
@@ -49,6 +47,8 @@
 				</otherwise>
 			</choose>
 		</if>
+		ORDER BY
+			mem_idx DESC
 		LIMIT
 			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
 			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
@@ -58,13 +58,10 @@
 		SELECT COUNT(*)
 		FROM member_info
 	</select>
+	<!-- 회원 상세정보 조회 -->
 	<select id="selectMemberInfoDetail" resultType="member">
 		SELECT *
 		FROM member_info
 		WHERE mem_id = #{mem_id} -- bybatis mem_id값 가져오기
-		
-	
 	</select>
-	
-	
 </mapper>

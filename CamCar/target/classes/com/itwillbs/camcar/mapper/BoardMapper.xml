@@ -51,6 +51,7 @@
 		ORDER BY
 			bo_re_ref DESC
 			, bo_re_seq ASC
+			, bo_idx DESC
 		LIMIT
 			#{startRow}     -- Mapper 내의 메서드에서 @Param("startRow") 로 지정한 파라미터명 사용
 			, #{listLimit}  -- Mapper 내의 메서드에서 @Param("listLimit") 로 지정한 파라미터명 사용
@@ -116,6 +117,19 @@
 			, bo_content = #{bo_content}
 		WHERE
 			bo_idx = #{bo_idx}	
+	</update>
+	
+	<!-- 조회수 처리 -->
+	<update id="updateReadcount">
+		<!-- <selectKey> 태그는 위치와 상관없이 order 속성값에 따라 실행 시점이 결정됨 -->
+		<selectKey keyProperty="bo_readcount" resultType="int" order="AFTER">
+			SELECT bo_readcount
+			FROM board_notice
+			WHERE bo_idx = #{bo_idx}
+		</selectKey>
+		UPDATE board_notice
+		SET bo_readcount = bo_readcount + 1
+		WHERE bo_idx = #{bo_idx}
 	</update>
 	
 	

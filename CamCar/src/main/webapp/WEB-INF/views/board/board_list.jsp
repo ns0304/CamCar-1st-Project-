@@ -17,60 +17,7 @@
 <!-- 	rel="stylesheet" type="text/css"> -->
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
-<style type="text/css">
-	#listForm {
-		width: 1024px;
-		max-height: 610px;
-		margin: auto;
-	}
-	
-	h2 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 1024px;
-	}
-	
-	#tr_top {
-		background: orange;
-		text-align: center;
-	}
-	
-	table td {
-		text-align: center;
-	}
-	
-	#pageList {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#emptyArea {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#buttonArea {
-		margin: auto;
-		width: 1024px;
-		text-align: right;
-	}
-	
-	/* 하이퍼링크 밑줄 제거 */
-	a {
-		text-decoration: none;
-	}
-	
-	/* 제목 열 좌측 정렬 및 여백 설정 */
-	#subject {
-		text-align: left;
-		padding-left: 20px;
-	}
-</style>
+
 </head>
 <body>
 	<header>
@@ -100,10 +47,10 @@
 	<section id="listForm">
 		<table>
 			<tr id="tr_top">
-				<td width="100px">번호</td>
-				<td>제목</td>
-				<td width="150px">날짜</td>
-				<td width="100px">조회수</td>
+				<td width="100px" align="center">번호</td>
+				<td align="center">제목</td>
+				<td width="150px" align="center">날짜</td>
+				<td width="100px" align="center">조회수</td>
 			</tr>
 			<%-- ================================================ --%>
 			<%-- 페이지번호(pageNum 파라미터) 가져와서 저장(없을 경우 기본값 1로 설정) --%>
@@ -118,16 +65,16 @@
 			<c:forEach var="bo" items="${boardList}">
 				<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 				<tr>
-					<td>${bo.bo_idx}</td>
-					<td id="subject">
+					<td align="center">${bo.bo_idx}</td>
+					<td id="subject" align="center">
 						<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail) --%>
 						<%-- 파라미터 : 글번호(board_num), 페이지번호(pageNum) --%>
 						<a href="boardDetail?bo_idx=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</a>
 					</td>
-					<td>
+					<td align="center">
 						<fmt:formatDate value="${bo.bo_sysdate}" pattern="yyyy-MM-dd" />
 					</td>
-					<td>${bo.bo_readcount}</td>
+					<td align="center">${bo.bo_readcount}</td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty boardList}">
