@@ -21,10 +21,10 @@
 	let checkPasswd2Result = false;
 	// =============================================================
 	// 1. ID 중복확인 버튼 클릭 시 새 창(check_id.jsp) 띄우기
-	function checkId2() {
-// 		window.open("member/check_id.jsp", "id_check", "width=300,height=200");
-		window.open("MemberCheckId", "id_check", "width=500,height=300");
-	}
+// 	function checkId2() {
+// // 		window.open("member/check_id.jsp", "id_check", "width=300,height=200");
+// 		window.open("MemberCheckId", "id_check", "width=500,height=300");
+// 	}
 	
 	// 2. ID 입력 후 빠져나갈 때(blur) 아이디 입력값 체크하기
 	function checkId() {
@@ -287,6 +287,22 @@
 			$("#dri_tel").val(tel);
 		});
 		
+		
+		
+		
+	    // "보기" 링크 클릭 시 팝업 표시
+	    $("#agree").click(function(event) {
+	        event.preventDefault();
+	        $(".popUp").show();
+	    });
+
+	    // 팝업 닫기
+	    $(".popUp .close, .popUpConfirm button").click(function() {
+	        $(".popUp").hide();
+	    });
+		
+		
+		
 	});
 	
 	//----------------------------------------------------------------------------------------------------
@@ -425,6 +441,72 @@
 
 </style>
 
+<style>
+/* 팝업 스타일 */
+.popUp {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.popUpHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.popUpHeader h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.popUpContent tr {
+	background-color: #e0e0e0;
+	
+}
+.popUpHeader .close {
+    cursor: pointer;
+    font-size: 16px;
+}
+.popUpContent {
+    margin: 20px 0;
+}
+.popUp table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.popUp table, .popUp th, .popUp td {
+    border: 1px solid #ccc;
+}
+.popUp th, .popUp td {
+    padding: 8px;
+    text-align: center;
+}
+.popUpConfirm {
+    text-align: center;
+}
+.popUpConfirm button {
+    padding: 10px 20px;
+    background-color: #f68b1f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.popUpConfirm button:hover {
+    background-color: #f68b1f;
+}
+
+.confirmBtn { /* "확인했어요" 버튼 */
+	border-radius: 10px;
+}
+</style>
+
 </head>
 <body>	
 	<header>
@@ -442,8 +524,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="mem_id" id="mem_id" size="15" placeholder="6자리 이상 입력" onblur="checkId()">
-								<input type="button" value="ID중복확인" id="btnCheckId" onclick="checkId2()">
+								<input type="text" name="mem_id" id="mem_id" size="15" placeholder="6자리 이상 입력" onblur="checkId()" required="required">
 								<div id="checkIdResult"></div>
 							</td>
 						</tr>	
@@ -452,7 +533,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="password" name="mem_passwd" id="mem_passwd" size="25" onblur="checkPasswd()" >
+								<input type="password" name="mem_passwd" id="mem_passwd" size="25" onblur="checkPasswd()" required="required">
 								<span id="checkPasswdComplexResult"></span>
 								<div id="checkPasswdResult"></div>
 							</td>
@@ -462,7 +543,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="password" name="mem_passwd2" id="mem_passwd2" size="25" onblur="checkSamePasswd()">
+								<input type="password" name="mem_passwd2" id="mem_passwd2" size="25" onblur="checkSamePasswd()" required="required">
 								<div id="checkPasswd2Result"></div>
 							</td>
 						</tr>	
@@ -471,8 +552,8 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" name="mem_email1" size="10" > @
-								<input type="text" name="mem_email2" size="10" >
+								<input type="text" name="mem_email1" size="10" required="required"> @
+								<input type="text" name="mem_email2" size="10" required="required">
 								<!-- 셀렉트박스 항목 변경 시 selectedDomain() 함수 호출 -->
 								<!-- 선택된 항목의 value 속성값이 함수 파라미터로 전달됨 -->
 								<select name="emailDomain" onchange="selectedDomain(this.value)" on>
@@ -488,19 +569,19 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="mem_post_code" id="mem_post_code" size="6" readonly>
+								<input type="text" name="mem_post_code" id="mem_post_code" size="6" readonly required="required">
 								<input type="button" value="주소검색" id="btnSearchAddress">
 								<br>
-								<input type="text" name="mem_add1" id="mem_add1" size="30" placeholder="기본주소" >
+								<input type="text" name="mem_add1" id="mem_add1" size="30" placeholder="기본주소" required="required">
 								<br>
-								<input type="text" name="mem_add2" id="mem_add2" size="30" placeholder="상세주소">
+								<input type="text" name="mem_add2" id="mem_add2" size="30" placeholder="상세주소" required="required">
 							</td>
 						</tr>	
 						<tr>
 							<td>이름</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_name" size="6" id="mem_name" pattern="^[가-힣]{2,5}$" title="한글 2-5글자"></td>
+							<td><input type="text" name="mem_name" size="6" id="mem_name" pattern="^[가-힣]{2,5}$" title="한글 2-5글자" required="required"></td>
 						</tr>	
 						<tr>
 							<td>주민등록번호</td>
@@ -509,7 +590,7 @@
 							<td id="tdjumin">(주민번호 입력 시 "-"를 입력해주세요)</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14">
+							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14" required="required">
 						</tr>
 						<tr>
 							<td>휴대폰 번호</td>
@@ -518,7 +599,7 @@
 							<td id="tdtel">(휴대폰 번호를 입력 시 "-"를 입력해주세요)</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13"></td>
+							<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13" required="required"></td>
 						</tr>	
 						<tr>
 							<td>휴대폰 번호 인증</td>
@@ -542,7 +623,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" name="dri_birthday" id="dri_birthday" size="25" placeholder="운전자 생년월일을 입력해주세요" >
+								<input type="text" name="dri_birthday" id="dri_birthday" size="25" placeholder="운전자 생년월일을 입력해주세요" required="required" maxlength="6">
 							</td>
 						</tr>
 						<tr>
@@ -566,7 +647,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요"  onblur="checkLicense()" maxlength="12">
+								<input type="text" name="lic_num" id="lic_num" size="20" placeholder="면허번호를 입력해주세요"  onblur="checkLicense()" maxlength="12" required="required">
 								<div id="checkLicenseResult"></div>
 							</td>
 						</tr>
@@ -575,7 +656,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20" onblur="checkIssueDate()" maxlength="8">
+								<input type="text" name="lic_issue_date" id="lic_issue_date" placeholder="예) 20211010" size="20" onblur="checkIssueDate()" maxlength="8" required="required">
 								<div id="checkIssueDateResult"></div>
 							</td>
 						</tr>	
@@ -584,7 +665,7 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8">
+								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8" required="required">
 								<div id="checkExpDateResult"></div>
 							</td>	
 						</tr>
@@ -631,12 +712,16 @@
 								<input type="text" name="mem_birthday" id="mem_birthday" size="15" placeholder="숫자만입력해주세요">
 							</td>
 						</tr>
-							
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							<tr>
+						
+						<tr>
+							<td>약관동의</td>
+						</tr>
+						<tr>
+							<td><input type="button" id="agree" value="약관동의" required="required"></td>
+						</tr>
+						
+						
+						<tr>
 							<td colspan="2" align="center">
 								<br><input type="button" id="prev2" value="이전" >&nbsp;
 								<input type="submit" value="가입">
@@ -649,6 +734,36 @@
 			</form>
 		</article>
 	</main>
+						 <!-- 회원가입 약관동의 팝업 -->
+					    <div class="popUp">
+					        <div class="popUpHeader">
+					            <h2>개인정보 수집 및 이용 동의(필수)</h2>
+					            <span class="close">&times;</span>
+					        </div>
+					        <div class="popUpContent">
+					            <table>
+					                <tr>
+					                    <th>수집항목</th>
+					                    <th>수집·이용 목적</th>
+					                    <th>보유기간</th>
+					                </tr>
+					                <tr>
+					                    <td>주소</td>
+					                    <td>과태료 또는 채권 발행 시 고지서 발송</td>
+					                    <td>회원탈퇴 후 즉시 또는 계약에 따른 거래관계의 종료 후 5년까지</td>
+					                </tr>
+					            </table>
+					            <p>고객님께서는 동의를 거부할 권리가 있으며, 동의하지 않아도 캠핑갈카 회원서비스 이용이 가능하지만 
+					            미리 입력하시면 차량예약 시 자동으로 입력되어 더욱 간편하게 이용하실 수 있습니다.</p>
+					        </div>
+					        <div>
+					        	<input type="checkbox" id="check" required="required">
+					        	<label for="check">약관동의(필수)</label>
+					        </div>
+					        <div class="popUpConfirm">
+					            <button class="confirmBtn">확인했어요</button>
+					        </div>
+					    </div>
 	<footer>
 		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views//inc/bottom.jsp"></jsp:include>

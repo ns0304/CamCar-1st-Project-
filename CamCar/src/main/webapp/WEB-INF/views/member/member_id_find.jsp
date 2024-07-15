@@ -67,7 +67,7 @@
 											<option value="+82">+82</option>
 										</select>
 									</td>
-									<td><input type="text" name="mem_tel" id="mem_tel" size="10"></td>
+									<td><input type="text" name="mem_tel" id="mem_tel" size="10" required="required"></td>
 									<th id="th01" align="left"><input type="submit" value="인증번호 받기" ></th>
 								</tr>	
 								<tr>
