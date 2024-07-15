@@ -24,6 +24,8 @@ table {
 }
 table th, table td {
 	padding: 10px;
+}
+table th {
 	text-align: center;
 }
 </style>
@@ -54,7 +56,7 @@ table th, table td {
 						<table border="1" class="graph">
 							<tr>
 								<th width="125px">차종 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<select name="car_type">
 										<option value="캠핑카">캠핑카</option>
 										<option value="SUV">SUV</option>
@@ -64,13 +66,13 @@ table th, table td {
 							</tr>
 							<tr>
 								<th>차량코드 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="text"id="car_idx" name="car_idx" required />
 								</td>
 							</tr>
 							<tr>
 								<th>차량 지점 코드 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 <!-- 									<input type="text"id="board_subject" name="brc_idx" required /> -->
 									<select name="brc_idx">
 										<option value="5101">캠핑갈카 부산본점</option>
@@ -80,55 +82,55 @@ table th, table td {
 							</tr>
 							<tr>
 								<th>모델명 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="text"id="car_model" name="car_model" required />
 								</td>
 							</tr>
 							<tr>
 								<th>차량번호 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="text"id="car_number" name="car_number" required />
 								</td>
 							</tr>
 							<tr>
 								<th>제조사</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="text"id="car_company" name="car_company" />
 								</td>
 							</tr>
 							<tr>
 								<th>정원</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="number"id="car_riding" name="car_riding" min="1" max="15" /> 명
 								</td>
 							</tr>
 							<tr>
 								<th>연료</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="text"id="car_fuel_type" name="car_fuel_type" />
 								</td>
 							</tr>
 							<tr>
 								<th>나이제한</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="number"id="car_age" name="car_age" min="20" max="30" /> 세 이상 (만 나이)
 								</td>
 							</tr>
 							<tr>
 								<th>운전경력제한</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="number" id="car_career" name="car_career" min="0" max="10" /> 년 이상
 								</td>
 							</tr>
-							<tr>
+							<tr align="center">
 								<th>연식</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<input type="number" id="car_old" name="car_old" />
 								</td>
 							</tr>
 							<tr>
 								<th>반려동물<br>동승 여부 *</th>
-								<td class="write_td_right" colspan="2">
+								<td class="write_td_right" colspan="2" align="left">
 									<select name="pet_opt" id="pet_opt">
 										<option value="N">불가능</option>
 										<option value="Y">가능</option>
