@@ -827,7 +827,8 @@ $(document).ready(function() {
                        <input type="checkbox" id="consentCollect" name="consent" required>
                        <label for="consentCollect">고유식별정보 수집 및 이용 동의(필수)</label>
                        <span><a href="#" class="agree2">보기</a></span>
-                   </div>
+                   </d
+                   iv>
                 </div>
             </form>
         </div>
