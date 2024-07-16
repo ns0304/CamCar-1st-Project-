@@ -75,7 +75,7 @@
 <body>
 	<header>
 		<!-- Login, Join 링크 표시 영역 -->
-		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
 	</header>
 	<main>
 		<aside>
@@ -100,12 +100,21 @@
 					<td colspan="4" style="height: 100px;">${qna.qna_content}</td>
 				</tr>
 				</table>
+				<!-- 답변 영역 -->
+				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
+				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
+				<c:if test="${not empty qna.qna_reply}">
+					<div id="articleReplyArea">
+						<b>답변</b>
+						<textarea rows="10" cols="67" name="qna_reply">${qna.qna_reply}</textarea>
+					</div>
+				</c:if>
 			</section>
 			<section id="commandCell">
 				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
 				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
 				<c:if test="${sessionScope.sId eq 'admin'}">
-					<input type="button" value="답변" onclick="location.href='QnaReply?qna_number=${qna.qna_number}&pageNum=${param.pageNum}'">
+					<input type="button" value="답변/수정" onclick="location.href='QnaReply?qna_number=${qna.qna_number}&pageNum=${param.pageNum}'">
 					<%-- 임시) 삭제 버튼 클릭 시 BoardDeleteForm.bo 서블릿 요청(삭제 폼 페이지 포워딩) --%>
 					<%-- 파라미터 : 글번호(board_num) --%>
 <%-- 					<input type="button" value="삭제" onclick="location.href='BoardDeleteForm.bo?board_num=${board.board_num}'"> --%>
@@ -113,7 +122,7 @@
 					<%-- 자바스크립트 confirmDelete() 메서드 호출하여 확인 후 비즈니스 로직 요청 --%>
 					<input type="button" value="삭제" onclick="confirmDelete()">
 				</c:if>
-				<input type="button" value="돌아가기" onclick="history.back()">
+				<input type="button" value="목록" onclick="location.href='qna_ask?pageNum=${param.pageNum}'">
 			</section>
 		</section>
 	</main>

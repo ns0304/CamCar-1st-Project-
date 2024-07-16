@@ -83,6 +83,7 @@
 		WHERE qna_number = #{qna_number}
 	</delete>
 	
+	<!-- 1:1 문의 답글 -->
 	<update id="updateQna">
 		UPDATE qna
 		SET

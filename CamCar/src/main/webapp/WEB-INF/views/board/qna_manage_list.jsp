@@ -46,6 +46,7 @@ table th, table td {
 							<td>작성자</td>
 							<td>문의유형</td>
 							<td>제목</td>
+							<td width="90px">답변유무</td>
 							<td width="90px">날짜</td>
 							<td>상세보기</td>
 						</tr>
@@ -75,6 +76,12 @@ table th, table td {
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${parsedDateTime}"/>
 								</td>--%>
 								<td>${qna.qna_inquery}</td>
+								<c:if test="${not empty qna.qna_reply}">
+								<td><b>답변완료</b></td>
+								</c:if>
+								<c:if test="${empty qna.qna_reply}">
+								<td>답변대기</td>
+								</c:if>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>
 								<td><input type="button" value="수정"

@@ -111,18 +111,15 @@ public class Qna_Ask_ManagerController {
 	
 	@PostMapping("QnaReplyPro")
 	public String qnaReplyPro(QnaVO qna, 
-			@RequestParam int qna_number,
-			@RequestParam(defaultValue = "1") String pageNum,
-			Model model) {
-		QnaVO dbQna = service.getQna(qna_number);
+			@RequestParam(defaultValue = "1") String pageNum, Model model) {
 		
 		System.out.println("qna : " + qna);
-		System.out.println("dbQna : " + dbQna);
-		int updateCount = service.modifyQna(dbQna);
+		
+		int updateCount = service.modifyQna(qna);
 		
 		if(updateCount > 0) {
 			// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
-			return "redirect:/QnaDetail?qna_number=" + qna_number + "&pageNum=" + pageNum;
+			return "redirect:/QnaDetail?qna_number=" + qna.getQna_number() + "&pageNum=" + pageNum;
 		} else {
 			model.addAttribute("msg", "답변 실패!");
 			return "result/fail";
