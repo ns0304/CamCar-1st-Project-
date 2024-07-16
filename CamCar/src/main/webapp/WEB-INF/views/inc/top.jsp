@@ -24,7 +24,7 @@
 		<ul class="menu">
 			<li><a href="./">예약</a></li>
 			<li><a href="ReservationList">예약확인</a></li>
-			<li><a href="Service">서비스</a></li>
+		
 			<li><a href="Customer">고객센터</a></li>
 		</ul>
 	

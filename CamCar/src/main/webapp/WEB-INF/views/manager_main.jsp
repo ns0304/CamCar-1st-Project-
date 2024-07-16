@@ -28,7 +28,7 @@
     };
 
     const popularModelsData = {
-        labels: ['Model A', 'Model B', 'Model C', 'Model D'],
+        labels: ['레이', '카니발(하이 리무진)', '카니발', '스타리아(아클란S)'],
         datasets: [{
             label: 'Popular Models',
             data: [30, 20, 40, 10],
