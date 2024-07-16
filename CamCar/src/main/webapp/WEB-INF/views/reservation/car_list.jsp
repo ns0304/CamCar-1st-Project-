@@ -423,8 +423,8 @@ $(document).ready(function() {
 						</div>
 						<!-- ---------- 차량 상세 리스트 영역 ---------- -->
 						<c:forEach var="car" items="${carList}">
-							<c:forEach var="resCar" items="${resCarList}">
-								<c:if test="${model.car_model eq car.car_model}">
+							<c:if test="${model.car_model eq car.car_model}">
+								<c:forEach var="resCar" items="${resCarList}">
 									<c:choose>
 										<%-- 이미 예약된 차량일 경우 --%>
 										<c:when test="${resCar.car_idx eq car.car_idx}">	
@@ -477,8 +477,8 @@ $(document).ready(function() {
 											</div>
 										</c:otherwise>
 									</c:choose>
-								</c:if>
-							</c:forEach>
+								</c:forEach>
+							</c:if>
 						</c:forEach>
 					</div>
 			</c:forEach>

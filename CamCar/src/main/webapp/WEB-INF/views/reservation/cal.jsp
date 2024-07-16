@@ -15,6 +15,12 @@ $(document).ready(function() {
         // 오늘 날짜
         let today = new Date();
         let todayFormatted = $.datepicker.formatDate('yy-mm-dd', today);
+        // 내일 날짜 설정
+		let tomorrow = new Date(today);
+		tomorrow.setDate(today.getDate() + 1);
+		
+		// 내일 날짜를 'yyyy-MM-dd' 형식으로 포맷
+		let tomorrowFormatted = $.datepicker.formatDate('yy-mm-dd', tomorrow);
 
         // 90일 후 날짜 계산
         let maxDate = new Date();
@@ -45,7 +51,7 @@ $(document).ready(function() {
                 $('#end_date').datepicker('option', 'maxDate', endDateMax);
 
                 // 숨겨진 필드에 출발일 넣기
-                $("#res_rental_date").val(selectedDate);
+                updateRentalDateTime();
             }
         });
 
@@ -59,27 +65,46 @@ $(document).ready(function() {
             },
             onSelect: function(selectedDate) {
                 // 숨겨진 필드에 도착일 넣기
-                $("#res_return_date").val(selectedDate);
+                updateReturnDateTime();
             }
         });
-        
-        
 
-        // 출발 시간 선택 시 숨겨진 필드 업데이트(yy-mm-dd hh:MM)
-        $("#start_time").on("change", function() {
-            let dateTime = $("#start_date").val() + " " + $("#start_time").val();
-            $("#res_rental_date").val(dateTime);
+        // 출발 시간 선택 시 숨겨진 필드 업데이트(yyyy-MM-dd HH:mm)
+        $("#start_date, #start_time").on("change", function() {
+        	updateRentalDateTime();
+//         	let dateTime = $("#start_date").val() + " " + $("#start_time").val();
+//             $("#res_rental_date").val(dateTime);
         });
 
-        // 도착 시간 선택 시 숨겨진 필드 업데이트(yy-mm-dd hh:MM)
-        $("#end_time").on("change", function() {
-            let dateTime = $("#end_date").val() + " " + $("#end_time").val();
-            $("#res_return_date").val(dateTime);
+        // 도착 시간 선택 시 숨겨진 필드 업데이트(yyyy-MM-dd HH:mm)
+        $("#end_date, #end_time").on("change", function() {
+        	updateReturnDateTime();
+//         	let dateTime = $("#end_date").val() + " " + $("#end_time").val();
+//             $("#res_return_date").val(dateTime);
         });
 
-        // 출발일, 도착일 초기값 설정
+        function updateRentalDateTime() {
+            let date = $("#start_date").val();
+            let time = $("#start_time").val();
+            if (date && time) {
+                let dateTime = date + " " + time;
+                $("#res_rental_date").val(dateTime);
+            }
+        }
+
+        function updateReturnDateTime() {
+            let date = $("#end_date").val();
+            let time = $("#end_time").val();
+            if (date && time) {
+                let dateTime = date + " " + time;
+                $("#res_return_date").val(dateTime);
+            }
+        }
+        
+		// 출발일, 도착일 초기값 설정
         $("#start_date").val(todayFormatted);
-        $("#end_date").val(todayFormatted);
+        $("#end_date").val(tomorrowFormatted);
+        
     });
     
 });
