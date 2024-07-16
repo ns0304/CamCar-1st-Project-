@@ -110,6 +110,7 @@ a {
 				<br>
 				<%-- ========================== 페이징 처리 영역 ========================== --%>
 				<section id="pageList">
+<%-- 				<c:if test="${sessionScope.sId eq qna.mem_id}"> --%>
 					<input type="button" value="이전"
 						onclick="location.href='MyQuestionList?pageNum=${pageNum - 1}'"
 						<c:if test="${pageNum <= 1}">disabled</c:if>>
@@ -131,6 +132,7 @@ a {
 					<input type="button" value="다음"
 						onclick="location.href='MyQuestionList?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
+<%-- 				</c:if> --%>
 				</section>
 			</div>
 		</section>

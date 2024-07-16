@@ -44,8 +44,8 @@ public class Qna_Ask_ManagerService {
 	}
 	
 	// 1:1 문의 게시글 답변
-	public int modifyQna(QnaVO dbQna) {
-		return mapper.updateQna(dbQna);
+	public int modifyQna(QnaVO qna) {
+		return mapper.updateQna(qna);
 	}
 
 

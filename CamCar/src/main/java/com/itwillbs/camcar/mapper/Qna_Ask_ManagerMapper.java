@@ -35,6 +35,6 @@ public interface Qna_Ask_ManagerMapper {
 	int deleteQna(int qna_number);
 	
 	// 1:1 문의 게시글 답변
-	int updateQna(QnaVO dbqna);
+	int updateQna(QnaVO qna);
 	
 }
