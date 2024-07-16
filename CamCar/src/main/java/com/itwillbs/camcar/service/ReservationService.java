@@ -1,5 +1,6 @@
 package com.itwillbs.camcar.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,11 @@ public class ReservationService {
 	// 차량 상세 리스트 조회 요청
 	public List<CarVO> getCarList(int brc_idx) {
 		return mapper.selectCarList(brc_idx);
+	}
+
+	// 해당 일정에 선택된 차량 리스트 조회 요청
+	public List<CarVO> getResCarList(int brc_idx, LocalDateTime startDate, LocalDateTime endDate) {
+		return mapper.selectResCarList(brc_idx, startDate, endDate);
 	}
 
 	// 차량 상세정보 조회 요청

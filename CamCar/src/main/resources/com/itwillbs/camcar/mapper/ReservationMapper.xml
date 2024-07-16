@@ -27,7 +27,25 @@
 		WHERE brc_idx = #{brc_idx}
 		ORDER BY car_model
 	</select>
-
+	
+	<!-- 해당 일정에 예약된 차량 리스트 조회 -->
+	<select id="selectResCarList">
+	<![CDATA[
+		SELECT *
+		FROM car_info c
+		WHERE 
+			brc_idx = #{brc_idx}
+		AND EXISTS (
+			SELECT 1 FROM res_info r
+			WHERE r.car_idx = c.car_idx
+			AND (
+		        (r.res_rental_date <= #{endDate} AND r.res_return_date >= #{startDate})
+		    )
+		)
+		ORDER BY c.car_model
+	]]>
+	</select>
+	
 	<!-- 차량 상세 정보 조회 -->
 	<select id="selectCarDetail">
 		SELECT *

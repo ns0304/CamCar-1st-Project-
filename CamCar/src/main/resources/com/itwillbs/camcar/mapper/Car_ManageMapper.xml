@@ -20,7 +20,7 @@
 			,#{car_type}
 			,#{car_model_image}
 			,#{car_logo_image}
-		);
+		)
 	</insert>
 	
 	<!-- 차량 등록 -->

@@ -1,6 +1,5 @@
 package com.itwillbs.camcar.controller;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -71,6 +70,8 @@ public class ReservationController {
 		// 차량 상세 리스트 조회 요청(select)
 		List<CarVO> carList = service.getCarList(brc_idx);
 		
+		// 해당 일정에 선택된 차량 리스트 조회 요청 (따로 조회 후 disabled 처리)
+		List<CarVO> resCarList = service.getResCarList(brc_idx, startDate, endDate);
 
         // [ 차량 요금 계산 ]
         Map<Integer, Long> carFeeMap = new HashMap<>();
@@ -81,6 +82,7 @@ public class ReservationController {
 
 		// model 객체에 조회 결과 저장
 		model.addAttribute("carList", carList);
+		model.addAttribute("resCarList", resCarList);
 		model.addAttribute("carFeeMap", carFeeMap);
 		
 		return "reservation/car_list";
@@ -116,7 +118,7 @@ public class ReservationController {
         return (dayOfWeek == 5 || dayOfWeek == 6 || dayOfWeek == 7);
     }
 
- // "CarDetail" 서블릿 주소 매핑 - POST
+    // "CarDetail" 서블릿 주소 매핑 - POST
  	@PostMapping("CarDetail")
  	public String carDetailPro(
  			@RequestParam Map<String, String> map, Model model) {
