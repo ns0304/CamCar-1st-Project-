@@ -19,6 +19,9 @@
 	let checkIdResult = false;
 	let checkPasswdResult = false;
 	let checkPasswd2Result = false;
+	let checkLicenseResult = false;
+	let checkIssueDateResult = false;
+	let checkExpDateResult = false;
 	// =============================================================
 	// 1. ID 중복확인 버튼 클릭 시 새 창(check_id.jsp) 띄우기
 // 	function checkId2() {
@@ -237,7 +240,28 @@
 				alert("패스워드 확인 항목이 일치하지 않습니다!");
 				$("#mem_passwd2").focus();
 				return false; // submit 동작 취소
+				
+			} else if(!checkPasswdResult) {
+				alert("패스워드를 부적합하게 입력했습니다.");
+				$("#mem_passwd").focus();
+				return false;
+				
+			} else if(!checkLicenseResult) {
+				alert("면허번호를 바르게 입력해주세요.");
+				$("#lic_num").focus();
+				return false;
+				
+			} else if(!checkIssueDateResult) {
+				alert("발급일자를 바르게 입력해주세요.");
+				$("#lic_issue_date").focus();
+				return false;
+				
+			} else if(!checkExpDateResult) {
+				alert("만료일자를 바르게 입력해주세요.");
+				$("#lic_expiration_date").focus();
+				return false;
 			}
+			
 			
 		});
 		
@@ -321,9 +345,11 @@
 		    if (lengthRegex.test(licenseNum)) { // 면허번호 길이 검사 적합
 		        msg = "적합한 번호";
 		        color = "green";
+		        checkLicenseResult = true;
 		    } else { // 면허번호 검사 부적합
 		        msg = "면허번호를 입력해주세요";
 		        color = "red";
+			    checkLicenseResult = false;
 		    }
 
 		    // 결과 메시지와 색상 설정
@@ -343,6 +369,7 @@
 		    if(issueLengthRegex.test(issueDate)) { // 입력된 숫자 8자리 적합
 		        $("#checkIssueDateResult").text("적합한 양식입니다.");
 		        $("#checkIssueDateResult").css("color", "green");
+		        checkIssueDateResult = true;
 		    } else {
 		        // 월 일치 여부 규칙
 		        let monthRegex = /^\d{4}(0[1-9]|1[0-2])/; 
@@ -353,12 +380,15 @@
 		        if (!monthRegex.test(issueDate)) { // 월 숫자 2자리 부적합
 		            $("#checkIssueDateResult").text("존재하지 않은 월을 입력했어요. 다시 입력해주세요");
 		            $("#checkIssueDateResult").css("color", "red");
+		            checkIssueDateResult = false;
 		        } else if (!dayRegex.test(issueDate)) { // 일 숫자 2자리 부적합
 		            $("#checkIssueDateResult").text("존재하지 않은 일을 입력했어요. 다시 입력해주세요");
 		            $("#checkIssueDateResult").css("color", "red");
+		            checkIssueDateResult = false;
 		        } else { // 입력된 값 부적합
 		            $("#checkIssueDateResult").text("발급일자를 입력해주세요");
 		            $("#checkIssueDateResult").css("color", "red");
+		            checkIssueDateResult = false;
 		        }
 		    }
 		}  // checkIssueDate() 함수 끝
@@ -375,6 +405,7 @@
 		    if(expLengthRegex.test(expDate)) { // 입력된 숫자 8자리 적합
 		        $("#checkExpDateResult").text("적합한 양식입니다.");
 		        $("#checkExpDateResult").css("color", "green");
+		        checkExpDateResult = true;
 		    } else {
 		        // 월 일치 여부 규칙
 		        let monthRegex2 = /^\d{4}(0[1-9]|1[0-2])/; 
@@ -385,12 +416,15 @@
 		        if (!monthRegex2.test(expDate)) { // 월 숫자 2자리 부적합
 		            $("#checkExpDateResult").text("존재하지 않은 월을 입력했어요. 다시 입력해주세요");
 		            $("#checkExpDateResult").css("color", "red");
+		            checkExpDateResult = false;
 		        } else if (!dayRegex2.test(expDate)) { // 일 숫자 2자리 부적합
 		            $("#checkExpDateResult").text("존재하지 않은 일을 입력했어요. 다시 입력해주세요");
 		            $("#checkExpDateResult").css("color", "red");
+		            checkExpDateResult = false;
 		        } else { // 입력된 값 부적합
 		            $("#checkExpDateResult").text("만료일자를 입력해주세요"); 
 		            $("#checkExpDateResult").css("color", "red");
+		            checkExpDateResult = false;
 		        }
 		    }
 		} // checkExpDate() 함수 끝
@@ -438,6 +472,9 @@
 	display: none;
 }
 
+#need {
+	margin-bottom: 20px;
+}
 
 </style>
 
@@ -518,9 +555,10 @@
 			<h1 align="center">회원 가입</h1>
 			<form action="MemberJoinPro" name="joinForm" method="post">
 				<section class="joinForm1">
-					<table id="tb01"> 
+					<table id="tb01">
+						<tr id="need"><td><b>(*)는 필수입력란!</b></td></tr>
 						<tr>
-							<td>아이디</td>
+							<td>아이디(*)</td>
 						</tr>
 						<tr>
 							<td>
@@ -529,7 +567,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>비밀번호</td>
+							<td>비밀번호(*)</td>
 						</tr>
 						<tr>
 							<td>
@@ -539,7 +577,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>비밀번호확인</td>
+							<td>비밀번호확인(*)</td>
 						</tr>
 						<tr>	
 							<td>
@@ -548,7 +586,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>E-Mail</td>
+							<td>E-Mail(*)</td>
 						</tr>
 						<tr>	
 							<td>
@@ -565,7 +603,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>주소</td>
+							<td>주소(*)</td>
 						</tr>
 						<tr>
 							<td>
@@ -578,13 +616,13 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>이름</td>
+							<td>이름(*)</td>
 						</tr>
 						<tr>
 							<td><input type="text" name="mem_name" size="6" id="mem_name" pattern="^[가-힣]{2,5}$" title="한글 2-5글자" required="required"></td>
 						</tr>	
 						<tr>
-							<td>주민등록번호</td>
+							<td>주민등록번호(*)</td>
 						</tr>
 						<tr>
 							<td id="tdjumin">(주민번호 입력 시 "-"를 입력해주세요)</td>
@@ -593,7 +631,7 @@
 							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14" required="required">
 						</tr>
 						<tr>
-							<td>휴대폰 번호</td>
+							<td>휴대폰 번호(*)</td>
 						</tr>
 						<tr>
 							<td id="tdtel">(휴대폰 번호를 입력 시 "-"를 입력해주세요)</td>
@@ -619,7 +657,7 @@
 								<input type="hidden" name="dri_tel" id="dri_tel" size="24" placeholder="운전자 전화번호를 입력해주세요" >
 					<table id="tb02">			
 						<tr>
-							<td>운전자 생년월일</td>
+							<td>운전자 생년월일(*)</td>
 						</tr>
 						<tr>	
 							<td>
@@ -627,7 +665,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>면허종류</td>
+							<td>면허종류(*)</td>
 						</tr>
 						<tr>
 							<td>
@@ -643,7 +681,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>면허번호</td>
+							<td>면허번호(*)</td>
 						</tr>
 						<tr>	
 							<td>
@@ -652,7 +690,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>발급일자</td>
+							<td>발급일자(*)</td>
 						</tr>
 						<tr>
 							<td>
@@ -661,7 +699,7 @@
 							</td>
 						</tr>	
 						<tr>
-							<td>만료일자</td>
+							<td>만료일자(*)</td>
 						</tr>
 						<tr>
 							<td>
