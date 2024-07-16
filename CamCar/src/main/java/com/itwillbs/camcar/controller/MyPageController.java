@@ -258,11 +258,11 @@ public class MyPageController {
 		
 		System.out.println("member222 : " + member);
 		
-		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
-			model.addAttribute("msg", "수정 권한이 없습니다!");
-			System.out.println("member : " + member);
-			return "result/fail";
-		}
+//		if(!passwordEncoder.matches(map.get("oldPasswd"), member.getMem_passwd())) { // 패스워드 불일치 
+//			model.addAttribute("msg", "수정 권한이 없습니다!");
+//			System.out.println("member : " + member);
+//			return "result/fail";
+//		}
 		//------------------------------------------------------------------------------
 		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
 		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요

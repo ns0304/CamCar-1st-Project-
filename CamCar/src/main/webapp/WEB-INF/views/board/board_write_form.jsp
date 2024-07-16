@@ -16,7 +16,7 @@
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 
-
+<!-- 오목이란 5개가 한줄이 되게 하면 이기는 게임입니다. -->
 
 </head>
 <body>
