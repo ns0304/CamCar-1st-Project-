@@ -77,10 +77,10 @@ table th, table td {
 								</td>--%>
 								<td>${qna.qna_inquery}</td>
 								<c:if test="${not empty qna.qna_reply}">
-								<td><b>답변완료</b></td>
+								<td>답변완료</td>
 								</c:if>
 								<c:if test="${empty qna.qna_reply}">
-								<td>답변대기</td>
+								<td style="color: blue;"><b>답변대기</b></td>
 								</c:if>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>

@@ -84,12 +84,12 @@
 		<section id="articleForm">
 			<form action="QnaReplyPro" name="QnaReplyPro" method="post">
 				<h2>1:1 문의글 상세내용 보기</h2>
+				<input type="hidden" name="qna_number" value="${qna.qna_number}" id="qna_number" size="10">
 				<div id="basicInfoArea">
 					<table border="1">
 					<tr><th width="70">제 목</th><td colspan="3">${qna.qna_inquery}</td></tr>
 					<tr>
 <%-- 						<td>qna_number</td><td>${qna.qna_number}</td> --%>
-						<input type="hidden" name="qna_number" value="${qna.qna_number}" id="qna_number" size="10">
 						<th width="70">작성자</th><td>${qna.mem_id}</td>
 						<%-- 작성일시 출력 형식은 ex) 2024-06-04 12:30 --%>
 						<th width="70">작성일시</th>
@@ -109,7 +109,7 @@
 				<c:if test="${sessionScope.sId eq 'admin'}">
 					<div id="articleReplyArea">
 						<b>답변</b>
-						<textarea rows="10" cols="67" name="qna_reply"></textarea>
+						<textarea rows="10" cols="67" name="qna_reply">${qna.qna_reply}</textarea>
 						<input type="submit" value="등록">
 						<input type="button" value="돌아가기" onclick="history.back()">
 					</div>
