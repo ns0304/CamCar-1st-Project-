@@ -139,12 +139,11 @@
     width: 95%;
     color: white;
     cursor: pointer;
-    background-color: #81C147;
+    background-color: #59b9a9;
 }
 .map {
 	width: 100%;
 	height: 250px;
-	border: 1px solid;
 }
 .close {
     cursor: pointer;
@@ -175,6 +174,7 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     z-index: 1000;
     overflow: scroll;
+    overflow-x: hidden;
     border-radius: 12px;
 }
 .layerPopup_header {
@@ -264,7 +264,7 @@ $(document).ready(function() {
             new daum.roughmap.Lander({
                 "timestamp" : "1720494911728",
                 "key" : "2jyf3",
-                "mapWidth" : "360",
+                "mapWidth" : "330",
                 "mapHeight" : "250"
             }).render();
         }
@@ -274,7 +274,7 @@ $(document).ready(function() {
             new daum.roughmap.Lander({
                 "timestamp" : "1720495062115",
                 "key" : "2jyf4",
-                "mapWidth" : "360",
+                "mapWidth" : "330",
                 "mapHeight" : "250"
             }).render();
         }
@@ -313,15 +313,19 @@ $(document).ready(function() {
     });
     
     // ******************************************************************
-    // 수정 필요
-    // "적용하기" 버튼 클릭 시 선택된 필터 적용시키고 레이어 팝업 닫기
+    // 수정 필요 **************
+    // 3. "적용하기" 버튼 클릭 시 선택된 필터 적용시키고 레이어 팝업 닫기
     $(".apply").click(function() {
     	// 선택된 필터 텍스트를 저장할 배열
-        let selectedFilters = [];
+        let filters = {};
 
         // 체크된 필터 항목들을 반복하며 배열에 추가
         $('input[type="checkbox"]:checked').each(function() {
-            selectedFilters.push($(this).val());
+            var name = $(this).attr('name');
+            if (!filters[name]) {
+                filters[name] = [];
+            }
+            filters[name].push($(this).val());
         });
 
         // 선택된 필터가 있는지 확인
@@ -331,19 +335,34 @@ $(document).ready(function() {
             $('.filter_result_wrap').text(filterText);
         }
     	
+        // 선택된 필터를 다시 서버로 전송
+        $.ajax({
+            url: '/CarList',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(filters),
+            success: function(data) {
+                var carList = $('#carList');
+                carList.empty();
+                data.forEach(function(car) {
+                    carList.append('<p>' + car.name + ' - ' + car.type + '</p>');
+                });
+                $('.layerPopup_wrap').hide();
+            }
+        });
+        
     	
-        $(".layerPopup_wrap").hide();
     });
     // ******************************************************************
     
-    // "초기화" 버튼 클릭 이벤트
+    // 4. "초기화" 버튼 클릭 이벤트
     $('.reset').click(function() {
         // 모든 체크박스 체크 해제
         $('input[type="checkbox"]').prop('checked', false);
     });
     
-    // ******************************************************************    
-    // 예약 버튼 클릭 시
+    // ---------------------
+    // 5. 예약 버튼 클릭 시
     $(".resBtn").on("click", function() {
          // 모든 체크박스 언체크
          $("input[type='checkbox'].rentalFee").prop("checked", false);
@@ -488,7 +507,7 @@ $(document).ready(function() {
 
 	
 	
-	<!-- layerPopup(필터 팝업창) -->
+	<!-- ------ layerPopup(필터 팝업창) ---------------------------------------------------- -->
 	<div class="layerPopup_wrap">
 		<div class="layerPopup_header">
 			<div>

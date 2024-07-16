@@ -45,7 +45,6 @@
 .map {
 	width: 100%;
 	height: 250px;
-	border: 1px solid;
 }
 .reset, .close {
     cursor: pointer;
