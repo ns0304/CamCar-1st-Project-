@@ -224,15 +224,18 @@ $(document).ready(function() {
 					</div>	
 					<div class="sideDiv">	
 						결제내역<br>
-						표준가<a>${param.rentalFee}</a>원
+						표준가 <a>${param.rentalFee}</a>원
 						<hr>
-						보험료<a>${param.rentalFee2} - ${param.rentalFee}</a>원
+						보험료 <a>${param.insFee}</a>원
 						<hr>
-						총 결제금액<a>${param.rentalFee2}</a>원
+						총 결제금액 <a>${rentalInsFee}</a>원
 					</div>	
 						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">						
+						<input type="hidden" name="rentalFee" value="${param.rentalFee}">	
+						<input type="hidden" name="car_idx" value="${param.car_idx}">					
+						<input type="hidden" name="insFee" value="${param.insFee}">						
+						<input type="hidden" name="rentalInsFee" value="${rentalInsFee}">						
 					<div class="nextBtnArea">
 						<button type="submit" id="nexBtn">다음</button>		
 		          </div>

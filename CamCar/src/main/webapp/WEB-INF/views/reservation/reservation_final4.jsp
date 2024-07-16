@@ -12,6 +12,113 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/reservation_final.css" rel="stylesheet" type="text/css">
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<!-- 포트원 결제 (카카오페이) -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<script>
+      function mypaymentKakao() {
+    	var myAmount = document.getElementById('finalFee').innerText;
+    	console.log("The amount is: " + myAmount);
+        IMP.init("imp33031510"); // Example: imp00000000
+        IMP.request_pay(
+          {
+            // param
+            pg: "kakaopay",
+            pay_method: "card",
+            name: "캠핑갈카 렌트비용 결제",
+            amount: myAmount,
+            buyer_email: "gildong@gmail.com",
+            buyer_name: "홍길동",
+            buyer_tel: "010-4242-4242",
+            buyer_addr: "서울특별시 강남구 신사동",
+            buyer_postcode: "01181"
+//             m_redirect_url: "", // 모바일 결제후 리다이렉트될 주소!!
+          }, async (rsp) => {
+            // callback
+            if (rsp.success) {
+            	console.log(rsp);
+              // 결제 성공시
+              try {
+                const response = await axios.post(
+                  "http://localhost:3000/api/savePayment", // GraphQL 엔드포인트로 변경
+                  {
+                    mem_idx: response.mem_idx,
+                    mem_id: response.mem_id,
+                    impUid: rsp.imp_uid,
+                    amount: rsp.paid_amount,
+                    pay_method: rsp.pay_method,
+                    payment_status: 'paid'
+                  },
+                  {
+                    headers: {
+                      authorization: "Bearer 액세스토큰", // 필요에 따라 토큰 변경
+                      'Content-Type': 'application/json'
+                    }
+                  }
+                );
+                if (response.status === 200) {
+                  alert('결제 완료!');
+                  window.location.reload();
+                } else {
+                  alert(`DB 저장 실패: [${response.status}] 관리자에게 문의하세요.`);
+                }
+              } catch (error) {
+                alert(`결제 성공 후 처리 중 오류 발생: ${error.message}`);
+              }
+            } else {
+            	console.log(rsp);
+              // 결제 실패시
+              alert(`결제 실패: ${rsp.error_msg}`);
+            }
+          }
+        );
+      }
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    function payment() {
+        $('input[name="paymentMethod"]').on('click', function() {
+            if ($(this).val() === '네이버페이') {
+                var confirmNaver = confirm('네이버페이로 결제하시겠습니까?');
+                if (confirmNaver) {
+                    // Functionality for confirmation
+                    handleConfirm();
+                } else {
+                    // Functionality for cancellation
+                    handleCancel();
+                }
+            } else if ($(this).val() === '카카오페이') {
+            	
+            	
+            } else if ($(this).val() === '신용/체크카드') {
+            	
+            	
+            }
+        });
+    }
+
+    // Function to handle confirmation
+    function handleConfirm() {
+        // Add your confirmation logic here
+        console.log('Payment confirmed with 네이버페이');
+        alert('네이버페이로 결제가 진행됩니다.');
+    }
+
+    // Function to handle cancellation
+    function handleCancel() {
+        // Add your cancellation logic here
+        console.log('Payment cancelled');
+        alert('결제가 취소되었습니다.');
+    }
+
+    // Call the pay function to set up the event handlers
+    pay();
+});
+</script>
+<!-- 포트원 결제 (카카오페이) -->
 <style type="text/css">
 .agreementPopUp1, .agreementPopUp2, .agreementPopUp3, .agreementPopUp4, .agreementPopUp5, .agreementPopUp6, .agreementPopUp7 {
     display: none;
@@ -58,6 +165,7 @@
     max-height: calc(100% - 50px); /* 헤더와 여백을 고려한 높이 조정 */
 	overflow-y: auto;
 }
+
 
 </style>
 <script type="text/javascript">
@@ -118,9 +226,18 @@ $(document).ready(function() {
 					<h3>결제방법</h3>
 					<div id="paymentOption">
 						<div id ="paymentBtn">
-							<input type="button" value="신용/체크카드" id="paymentBtn1">
-							<input type="button" value="카카오페이" id="paymentBtn2">
-							<input type="button" value="네이버페이" id="paymentBtn3">
+							<label><input type="button" name="paymentMethod" id="paymentCard" class="paymentBtnAll" value="신용/체크카드"> </label>
+							<label><input type="button" name="paymentMethod" id="paymentKakao" class="paymentBtnAll" value="카카오페이"> </label>
+							<label><input type="button" name="paymentMethod" id="paymentNaver" class="paymentBtnAll" value="네이버페이"> </label>
+<!-- 						    <button id="paymentCard" class="paymentBtnAll" onclick="mypaymentCard()">신용/체크카드</button> 결제하기 버튼 생성 -->
+<!-- 						    <button id="paymentKakao" class="paymentBtnAll" onclick="mypaymentKakao()">카카오페이</button> 결제하기 버튼 생성 -->
+<!-- 						    <button id="paymentNaver" class="paymentBtnAll" onclick="mypaymentNaver()">네이버페이</button> 결제하기 버튼 생성 -->
+<!-- 						    <button id="payment" class="paymentBtnAll">카카오페이</button> 결제하기 버튼 생성 -->
+<!-- 						    <button id="payment" class="paymentBtnAll">카카오페이</button> 결제하기 버튼 생성 -->
+
+<!-- 							<input type="button" value="신용/체크카드" id="paymentBtn1" > -->
+<!-- 							<input type="button" value="카카오페이" id="paymentBtn2"> -->
+<!-- 							<input type="button" value="네이버페이" id="paymentBtn3"> -->
 						</div>
 					</div>
 				</div>	
@@ -131,9 +248,9 @@ $(document).ready(function() {
 							<input type="checkbox" name="all_check" onclick="checkbox_allCheck()" > 모든 필수/선택 약관을 확인하고 전체 동의합니다. <br>
 							<hr>
 							<input type="checkbox" name="cb"> 고유식별정보 수집 및 이용 동의(필수)<a class="detail" id="detail1">보기</a> <br>
-1							<input type="checkbox" name="cb"> 대여자격 확인 및 동의(필수)<a class="detail" id="detail2">보기</a><br>
+							<input type="checkbox" name="cb"> 대여자격 확인 및 동의(필수)<a class="detail" id="detail2">보기</a><br>
 							<input type="checkbox" name="cb"> 개인정보 수집 및 이용 동의(필수)<a class="detail" id="detail3">보기</a><br>
-1							<input type="checkbox" name="cb"> 개인정보 제3자 제공 동의(필수)<a class="detail" id="detail4">보기</a><br>
+							<input type="checkbox" name="cb"> 개인정보 제3자 제공 동의(필수)<a class="detail" id="detail4">보기</a><br>
 							<input type="checkbox" name="cb"> 고유식별정보 제3자 제공에 관한 동의(필수) <a class="detail" id="detail5">보기</a><br>
 							<input type="checkbox" name="cb"> 자동차 표준 대여약관(필수) <a class="detail" id="detail6">보기</a><br>
 							<input type="checkbox" name="cb"> 취소 및 위약금 규정 동의(필수)<a class="detail" id="detail7">보기</a>
@@ -167,9 +284,9 @@ $(document).ready(function() {
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>운전자이름</a><br>
+							<a>${driver.dri_name}님</a><br>
 							<hr>							
-							<a>면허종류</a>/<a>생년월일</a>
+							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	
@@ -183,21 +300,23 @@ $(document).ready(function() {
 					</div>	
 					<div class="sideDiv">	
 						결제내역<br>
-						표준가<a>000</a>원
+						표준가 <a>${param.rentalFee}</a>원
 						<hr>
-						보험료<a>000</a>원<br>
-						 - 부가상품명1<a>000</a>원<br>		
-						 - 부가상품명2<a>000</a>원<br>		
+						보험료 <a>${param.insFee}</a>원						
 						<hr>
-						부가상품대여료<a>000</a>원
+						부가상품료 <a>000</a>원<br>
+						 - 부가상품명1 <a>000</a>원<br>		
+						 - 부가상품명2 <a>000</a>원<br>		
 						<hr>
-						총 결제금액<a>000</a>원
+						부가상품대여료 <a>000</a>원
+						<hr>
+						총 결제금액 <a id="finalFee">${param.rentalInsFee}</a>원
 					</div>	
 						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">					
 					<div class="nextBtnArea">
-						<button type="submit" id="nexBtn">다음</button>		
+						<button type="submit" id="nexBtn" onclick="payment()">결제하기</button>		
 		          </div>			          
 			</form>
 		</aside>
