@@ -56,7 +56,10 @@
  	padding-bottom: 0;
  }
  
-
+input[type="radio"] {
+	display: none;
+}
+ 
  
 </style>
 <script type="text/javascript">
@@ -102,14 +105,11 @@ $(document).ready(function() {
 		event.preventDefault();
 		let rentalFee = $("#rentalFee").data('value');
 		let rentalFeeParam = $("#rentalFeeParam").val(rentalFee);
-// 		let rentalFee2 = $("#insuranceListName").data('value');
-// 		let rentalFeeParam2 = $("#rentalFeeParam2").val(rentalFee2);
+		let rentalFee2 = $("#insuranceListName").data('value');
+		let rentalFeeParam2 = $("#rentalFeeParam2").val(rentalFee2);
 		console.log("rentalFee : " + rentalFee);
+		
 		$("#reservationForm").submit();
-		
-		
-		
-		
 	});
 	
 
@@ -118,63 +118,47 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
 	function insuranceAdd() {
-	    // Check if 'insurance1' is checked
+	    // 'insurance1' 체크 시에 rentalFee2에 보험금액이 더한 값 넣기
 	    if ($('#insurance1').is(':checked')) {
 	        var rentalFee = Number($('#rentalFee').data('value'));
-	        $('#rentalFee2').text(rentalFee);
+	        var insuranceAdd = 0;
+	        var rentalFee2 = rentalFee;
+	        console.log(rentalFee, insuranceAdd, rentalFee2);
+	        
+	        $("#rentalFee").text(rentalFee);
+	        $("#rentalFee2").text(rentalFee2);
+	        $("form").prepend('<input type="hidden" name="insFee" value="' + insuranceAdd + '" id="insFeeAdd">');
 	    }
-	    // Check if 'insurance2' is checked
+	    // 'insurance2' 체크 시에 rentalFee2에 보험금액이 더한 값 넣기
 	    if ($('#insurance2').is(':checked')) {
 	        var rentalFee = Number($('#rentalFee').data('value'));
 	        var insuranceAdd = Number($('#insuranceFeeAdd2').data('value'));
 	        var rentalFee2 = rentalFee + insuranceAdd;
 	        console.log(rentalFee, insuranceAdd, rentalFee2);
-	        $('#rentalFee2').text(rentalFee2);
+
+	        $("#rentalFee").text(rentalFee);
+	        $("#rentalFee2").text(rentalFee2);
+	        
+	        $("form").prepend('<input type="hidden" name="insFee" value="' + insuranceAdd + '" id="insFeeAdd">');
 	    }
 
-	    // Check if 'insurance3' is checked
+	    // 'insurance3' 체크 시에 rentalFee2에 보험금액이 더한 값 넣기
 	    if ($('#insurance3').is(':checked')) {
 	        var rentalFee = Number($('#rentalFee').data('value'));
 	        var insuranceAdd = Number($('#insuranceFeeAdd3').data('value'));
 	        var rentalFee2 = rentalFee + insuranceAdd;
 	        console.log(rentalFee, insuranceAdd, rentalFee2);
-	        $('#rentalFee2').text(rentalFee2);
+	        $("#rentalFee").text(rentalFee);
+	        $("#rentalFee2").text(rentalFee2);
+	        $("form").prepend('<input type="hidden" name="insFee" value="' + insuranceAdd + '" id="insFeeAdd">');
 	    }
+	    
+	    // form 태그에 input 태그 추가
+// 	    $("#rentalFee2").remove();
+// 	    $("form").prepend('<input type="hidden" name="rentalFee2" value="' + $('#rentalFee2').val() + '" id="rentalFee2">');
 	    
 	}
 	
-	
-// 	function insuranceAdd() {
-// 		console.log("호출성공");
-// 		if(insurance1.checked) {
-// 			var rentalFee = Number(document.getElementById("rentalFee").getAttribute('data-value'));
-// 			console.log(rentalFee);
-// 			var insuranceAdd = Number(document.getElementById("insuranceFeeAdd1").getAttribute('data-value'));
-// 			console.log(insuranceAdd);
-// 			var rentalFee2 = rentalFee + insuranceAdd;
-// 			console.log(rentalFee2);
-// 			document.getElementById('rentalFee2').innerText = rentalFee2;
-// 		}
-// 		if(insurance2.checked) {
-// 			var rentalFee = Number(document.getElementById("rentalFee").getAttribute('data-value'));
-// 			console.log(rentalFee);
-// 			var insuranceAdd = Number(document.getElementById("insuranceFeeAdd2").getAttribute('data-value'));
-// 			console.log(insuranceAdd);
-// 			var rentalFee2 = rentalFee + insuranceAdd;
-// 			console.log(rentalFee2);
-// 			document.getElementById('rentalFee2').innerText = rentalFee2;
-// 		}
-// 		if(insurance3.checked) {
-// 			var rentalFee = Number(document.getElementById("rentalFee").getAttribute('data-value'));
-// 			console.log(rentalFee);
-// 			var insuranceAdd = Number(document.getElementById("insuranceFeeAdd3").getAttribute('data-value'));
-// 			console.log(insuranceAdd);
-// 			var rentalFee2 = rentalFee + insuranceAdd;
-// 			console.log(rentalFee2);
-// 			document.getElementById('rentalFee2').innerText = rentalFee2;
-			
-// 		}
-// 	}
 </script>
 </head>
 <body>
@@ -201,34 +185,37 @@ $(document).ready(function() {
 					</li>
 				</ul>
 			</div>
-			
+
+<!-- 			보험선택			 -->
 			<div id="insurance" class="clear">
 				<h3>보험선택</h3>
 				<label class="insuranceRadio">
 					<input type="radio" id="insurance1" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="0">
 					<a>선택 안함</a><br>
 					<a id="insuranceFeeAdd1">0</a>원 추가<br>
-					사고 시 고객 부담금<br>
+					사고 시 고객 부담금<br><br>
 					<a class="customer">전액</a>
 				</label>
 				<label class="insuranceRadio">
 					<input type="radio" id="insurance2" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceBasicFee }">
-					<a>선택 안함</a><br>
+					<a>일반 자차</a><br>
 					<a id="insuranceFeeAdd2" data-value="${insuranceBasicFee}">${insuranceBasicFee }</a>원 추가<br>
-					사고 시 고객 부담금<br>
+					사고 시 고객 부담금<br><br>
 					<a class="customer">30만원</a>
 				</label>
 				<label class="insuranceRadio">
 					<input type="radio" id="insurance3" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceSpecFee }">
 					<a>완전 자차</a><br>
 					<a id="insuranceFeeAdd3" data-value="${insuranceSpecFee}">${insuranceSpecFee }</a>원 추가<br>
-					사고 시 고객 부담금<br>
+					사고 시 고객 부담금<br><br>
 					<a class="customer">면제</a>
 				</label>
 					<div id="insuranceDetail" class="clear">
 						<a>보장 내용 알아보기</a>	
 					</div>
-			</div>
+			</div><br><br>
+			
+<!-- 			운전자 정보 입력			 -->			
 			<div id="driverInfo"  class="clear">
 				<form id="driverInfoForm">
 					<h3>운전자 정보 입력</h3>
@@ -268,14 +255,15 @@ $(document).ready(function() {
 								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" onblur="checkExpDate()" maxlength="8" required><br>	
 						</div>
 					</div>
-					<div id="driverInfoSubmit"><input type="submit" value="입력완료" id="driverInfoInput"></div>
 				</form>		
 			</div>
 		</section>
 
-		<!-- 오른쪽 사이드 영역 -->
+<!-- 			오른쪽 사이드 영역			 -->
 		<aside id="sideContent">
 			<form action="ReservationAdd" id="reservationForm" name="reservation" method="post">
+				
+				
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 <!-- 						이름으로 바꿔야 함        -->
@@ -295,16 +283,17 @@ $(document).ready(function() {
 					</div>
 					<div class="sideDiv">	
 						결제내역<br>
-						표준가<a id="rentalFee" data-value="${param.rentalFee}">${param.rentalFee}</a>원
+						표준가 <a id="rentalFee" data-value="${param.rentalFee}">${param.rentalFee}</a>원
 						<hr>
-						총 결제금액<a id="rentalFee2" data-value="${param.rentalFee2}">${param.rentalFee}</a>원
+						총 결제금액 <a id="rentalFee2" data-value="${param.rentalFee2}">${param.rentalFee}</a>원
 					</div>	
 						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">
-						<input type="hidden" id="rentalFeeParam" name="rentalFee" value="">
+						<input type="hidden" name="rentalFee" value="${param.rentalFee}">
+<!-- 						<input type="hidden" id="rentalFeeParam" name="rentalFee" value=""> -->
 <!-- 						<input type="hidden" id="rentalFeeParam2" name="rentalFee2" value=""> -->
-						<input type="hidden" id="rentalFee2Hidden" name="rentalFee2" value="">
+<!-- 						<input type="hidden" id="rentalFee2Hidden" name="rentalFee2" value=""> -->
 					<div class="nextBtnArea">
     					<input type="hidden" name="rentalFee3" id="rentalFee2Hidden">
 						<button type="submit" id="nextBtn">다음</button>
