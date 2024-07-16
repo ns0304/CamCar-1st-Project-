@@ -150,7 +150,7 @@ $(document).ready(function() {
 	$("#campingCar").click(function() {
 		$("#checkAllCar").prop("checked", false);
 		$("label[for='checkAllCar']").css("border", "none");
-		if($("#campingCar").prop("checked")) {	// 캠핑카 체크 시 border 표시
+		if($("#campingCar").prop("checked")) {	// '캠핑카' 체크 시 border 표시
 			$("label[for='campingCar']").css("border", "2px solid #ccc");
 		} else {	// 선택 해제
 			$("label[for='campingCar']").css("border", "none");
@@ -159,7 +159,7 @@ $(document).ready(function() {
 	$("#suv").click(function() {
 		$("#checkAllCar").prop("checked", false);
 		$("label[for='checkAllCar']").css("border", "none");
-		if($("#suv").prop("checked")) {	// SUV 체크 시 border 표시
+		if($("#suv").prop("checked")) {	// 'SUV' 체크 시 border 표시
 			$("label[for='suv']").css("border", "2px solid #ccc");
 		} else {	// 선택 해제
 			$("label[for='suv']").css("border", "none");
@@ -168,11 +168,26 @@ $(document).ready(function() {
 	$("#smallCar").click(function() {
 		$("#checkAllCar").prop("checked", false);
 		$("label[for='checkAllCar']").css("border", "none");
-		if($("#smallCar").prop("checked")) {	// 소형차 체크 시 border 표시
+		if($("#smallCar").prop("checked")) {	// '소형차' 체크 시 border 표시
 			$("label[for='smallCar']").css("border", "2px solid #ccc");
 		} else {	// 선택 해제
 			$("label[for='smallCar']").css("border", "none");
 		}
+	});
+	// '전체' 버튼 클릭 시 다시 리셋
+	$("#checkAllCar").click(function() {
+		$("#campingCar").prop("checked", false);
+		$("label[for='campingCar']").css("border", "none");
+		$("#suv").prop("checked", false);
+		$("label[for='suv']").css("border", "none");
+		$("#smallCar").prop("checked", false);
+		$("label[for='smallCar']").css("border", "none");
+		if($("#checkAllCar").prop("checked")) {	// '전체' 체크 시 border 표시
+			$("label[for='checkAllCar']").css("border", "2px solid #ccc");
+		} else {	// 선택 해제
+			$("label[for='checkAllCar']").css("border", "none");
+		}
+		
 	});
 	
 	
