@@ -171,6 +171,7 @@ public class BoardController {
 			model.addAttribute("bo", bo);	
 			return "board/board_manage_detailview";
 		}
+		//wl
 		// 공지사항 리스트 삭제
 		@GetMapping("BoardDelete")
 		public String boardDelete(
