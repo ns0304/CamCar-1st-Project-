@@ -17,7 +17,41 @@
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 
 <!-- 오목이란 5개가 한줄이 되게 하면 이기는 게임입니다. -->
-
+<style type="text/css">
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+table tr:hover {
+    background-color: #f2f2f2;
+}
+table th, table td:nth-child(3) {
+    white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+}
+table input[type="button"] {
+    padding: 5px 10px;
+    background-color: #00838f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+table input[type="button"]:hover {
+    background-color: #006064;
+}
+</style>
 </head>
 <body>
 	<header>

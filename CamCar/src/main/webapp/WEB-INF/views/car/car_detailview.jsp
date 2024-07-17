@@ -45,43 +45,67 @@
 			// 클릭된 이미지에 selected 클래스 추가
 			$(this).addClass("selected");
 		});
-
 	});
 </script>
 <style type="text/css">
-  table {
-            border-collapse: collapse;
-            width: 30%;
-            margin-top: 20px;
-        }
-        table th, table td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            background-color: #f9f9f9;
-        }
-        table th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-        table tr:hover {
-            background-color: #f2f2f2;
-        }
-        table th, table td:nth-child(3) {
-            white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
-        }
-        table input[type="button"] {
-            padding: 5px 10px;
-            background-color: #00838f;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        table input[type="button"]:hover {
-            background-color: #006064;
-        }
+/*     html, body { */
+/*         margin: 0; */
+/*         padding: 0; */
+/*         width: 100%; */
+/*         height: 100%; */
+/*     } */
+/*     body { */
+/*         display: flex; */
+/*         flex-direction: column; */
+/*         font-size: 10px; /* 기본 글자 크기 축소 */ */
+/*     } */
+/*     main { */
+/*         display: flex; */
+/*         justify-content: center; */
+/*         align-items: center; */
+/*         flex: 1; */
+/*         overflow: auto; */
+/*     } */
+    section {
+        width: 80%;
+        max-width: 1000px; /* 섹션 너비 조정 */
+    }
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin-top: 20px;
+    }
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+    table th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+    table tr:hover {
+        background-color: #f2f2f2;
+    }
+    table th, table td:nth-child(3) {
+        white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+    }
+    table input[type="button"] {
+        padding: 3px 6px;
+        background-color: #00838f;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    table input[type="button"]:hover {
+        background-color: #006064;
+    }
+    .car_image {
+        width: 400px;
+        height: auto;
+    }
 </style>
 </head>
 <body>
@@ -138,8 +162,7 @@
 								<td class="write_td_right" colspan="2">${car.car_old}</td>
 							</tr>
 							<tr>
-								<th>반려동물<br>동승 여부 *
-								</th>
+								<th>반려동물<br>동승 여부 *</th>
 								<td class="write_td_right" colspan="2">
 									<c:choose>
 										<c:when test="${car.pet_opt eq 'Y'}">가능</c:when>
@@ -153,8 +176,7 @@
 							</tr>
 							<tr>
 								<th>주중 대여료 *</th>
-								<td class="write_td_right" colspan="2">${car.car_weekdays}
-								</td>
+								<td class="write_td_right" colspan="2">${car.car_weekdays}</td>
 							</tr>
 							<tr>
 								<th>주말 대여료 *</th>
@@ -249,19 +271,3 @@
 	</footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

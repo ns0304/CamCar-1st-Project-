@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <aside>
 	<div class="mainList" style="margin-top: 100px;">
-		<h5>
-			<div class="title">관리자 메뉴</div>
-		</h5>
+		<h3>
+			<a href="ManagerMain" class="">관리자 메뉴</a>
+		</h3>
 		<div class="menu-item">
 			<h2>회원 관리</h2>
 			<div class="submenu">
