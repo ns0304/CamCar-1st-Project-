@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -424,60 +425,62 @@ $(document).ready(function() {
 						<!-- ---------- 차량 상세 리스트 영역 ---------- -->
 						<c:forEach var="car" items="${carList}">
 							<c:if test="${model.car_model eq car.car_model}">
-								<c:forEach var="resCar" items="${resCarList}">
-									<c:choose>
-										<%-- 이미 예약된 차량일 경우 --%>
-										<c:when test="${resCar.car_idx eq car.car_idx}">	
-											<div class="carList_bottom" style="display: flex; background-color: gray;">
-												<div class="carName_detail">
-													<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
-													<span style="width: 400px;">
-														${car.car_old} / 
-														반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
-														<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
-														정원 ${car.car_riding}명 / 
-														${car.car_license} 이상
-													</span>
-													
-													<!-- 일정정보(대여일시) 전달  -->
-													<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-													<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-												</div>
-												<div class="pay_detail">
-													<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
-													<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
-													<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
-													<input type="submit" value="예약마감" class="resBtn" disabled style="background-color: #ccc; cursor: default; width: 80px;">
-												</div>
+								<c:choose>
+									<%-- 이미 예약된 차량일 경우 --%>
+									<c:when test="${fn:contains(resCarList, car.car_idx)}">	
+										<div class="carList_bottom" style="display: flex; background-color: gray;">
+											<div class="carName_detail">
+												<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
+												<span style="width: 400px;">
+													${car.car_old} / 
+													반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
+													<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
+													정원 ${car.car_riding}명 / 
+													${car.car_license} 이상
+												</span>
+												
+												<!-- 일정정보(대여일시) 전달  -->
+												<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+												<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 											</div>
-										</c:when>
-										<%-- 예약 가능한 차량일 경우 --%>
-										<c:otherwise>
-											<div class="carList_bottom" style="display: flex;">
-												<div class="carName_detail">
-													<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
-													<span style="width: 400px;">
-														${car.car_old} / 
-														반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
-														<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
-														정원 ${car.car_riding}명 / 
-														${car.car_license} 이상
-													</span>
-													
-													<!-- 일정정보(대여일시) 전달  -->
-													<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-													<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-												</div>
-												<div class="pay_detail">
-													<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
-													<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
-													<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
-													<input type="submit" value="예약" class="resBtn">
-												</div>
+											<div class="pay_detail">
+												<%-- 임시 차량코드 확인 --%>				
+												<input type="text" name="car_idx" class="car_idx" value="${car.car_idx}">
+												<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
+												<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
+												<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
+												<input type="submit" value="예약마감" class="resBtn" disabled style="background-color: #ccc; cursor: default; width: 80px;">
 											</div>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
+										</div>
+									</c:when>
+									<%-- 예약 가능한 차량일 경우 --%>
+									<c:otherwise>
+										<div class="carList_bottom" style="display: flex;">
+											<div class="carName_detail">
+												<p class="main_name">${car.car_model} ${car.car_fuel_type}</p>
+												<span style="width: 400px;">
+													${car.car_old} / 
+													반려동물 동반 <c:if test="${car.pet_opt eq 'N'}">불가능</c:if>
+													<c:if test="${car.pet_opt eq 'Y'}">가능</c:if>  / 
+													정원 ${car.car_riding}명 / 
+													${car.car_license} 이상
+												</span>
+												
+												<!-- 일정정보(대여일시) 전달  -->
+												<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
+												<input type="hidden" name="res_return_date" value="${param.res_return_date}">
+											</div>
+											<div class="pay_detail">
+												<%-- 임시 차량코드 확인 --%>				
+												<input type="text" name="car_idx" class="car_idx" value="${car.car_idx}">
+												<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
+												<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
+												<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
+												<input type="submit" value="예약" class="resBtn">
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
 							</c:if>
 						</c:forEach>
 					</div>

@@ -31,7 +31,7 @@
 	<!-- 해당 일정에 예약된 차량 리스트 조회 -->
 	<select id="selectResCarList">
 	<![CDATA[
-		SELECT *
+		SELECT c.car_idx
 		FROM car_info c
 		WHERE 
 			brc_idx = #{brc_idx}

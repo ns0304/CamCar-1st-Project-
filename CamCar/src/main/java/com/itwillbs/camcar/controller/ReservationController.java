@@ -70,8 +70,8 @@ public class ReservationController {
 		// 차량 상세 리스트 조회 요청(select)
 		List<CarVO> carList = service.getCarList(brc_idx);
 		
-		// 해당 일정에 선택된 차량 리스트 조회 요청 (따로 조회 후 disabled 처리)
-		List<CarVO> resCarList = service.getResCarList(brc_idx, startDate, endDate);
+		// 해당 일정에 선택된 차량 코드 리스트 조회 요청 (따로 조회 후 disabled 처리)
+		List<String> resCarList = service.getResCarList(brc_idx, startDate, endDate);
 
         // [ 차량 요금 계산 ]
         Map<Integer, Long> carFeeMap = new HashMap<>();

@@ -20,7 +20,7 @@ public interface ReservationMapper {
 	List<CarVO> selectCarList(int brc_idx);
 	
 	// 해당 일정에 선택된 차량 리스트 조회
-	List<CarVO> selectResCarList(
+	List<String> selectResCarList(
 			@Param("brc_idx") int brc_idx, 
 			@Param("startDate") LocalDateTime startDate, 
 			@Param("endDate") LocalDateTime endDate);

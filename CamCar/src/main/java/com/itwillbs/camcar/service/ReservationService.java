@@ -28,7 +28,7 @@ public class ReservationService {
 	}
 
 	// 해당 일정에 선택된 차량 리스트 조회 요청
-	public List<CarVO> getResCarList(int brc_idx, LocalDateTime startDate, LocalDateTime endDate) {
+	public List<String> getResCarList(int brc_idx, LocalDateTime startDate, LocalDateTime endDate) {
 		return mapper.selectResCarList(brc_idx, startDate, endDate);
 	}
 
