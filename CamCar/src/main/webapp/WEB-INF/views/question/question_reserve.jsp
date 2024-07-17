@@ -110,10 +110,10 @@ $(document).ready(function() {
 	<section>
 		<div align="left" id="div01">
 			<h2>자주 찾는 질문</h2>
-			<input type="button" id="button1" value="예약하기">
-			<input type="button" value="예약확인 / 변경">
-			<input type="button" value="보험">
-			<input type="button" value="고장 / 사고">
+			<input type="button" id="button1" value="예약 / 변경" onclick="location.href='Question_reserve'">
+			<input type="button" value="운전자" onclick="location.href='Question_drivers'">
+			<input type="button" value="보험" onclick="location.href='Question_insurance'">
+			<input type="button" value="고장 / 사고" onclick="location.href='Question_accident'">
 		</div>
 		<div align="left" id="div02">자주 찾는 질문들을 모아봤어요</div>
 		<div id="div03" align="left">
