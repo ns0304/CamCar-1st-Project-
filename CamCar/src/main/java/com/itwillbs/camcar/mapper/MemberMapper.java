@@ -21,10 +21,10 @@ public interface MemberMapper {
 	MemberVO selectMember(MemberVO member);
 	
 	// 회원 전화번호로 아이디 찾기
-	MemberVO selectTel(String mem_tel);
+	MemberVO selectTel(MemberVO member);
 	
 	// 회원 아이디로 비밀번호 찾기
-	MemberVO selectId(String mem_id);
+	MemberVO selectId(MemberVO member);
 	
 	// 회원 비밀번호 변경
 	int updatePasswd(Map<String, String> map);

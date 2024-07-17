@@ -176,6 +176,16 @@ public class CustomerController {
 	public String questionAccident() {
 		return "question/question_accident";
 	}
+	
+	
+	// -----------------------------------
+	// 서비스 페이지 매핑
+	@GetMapping("Service")
+	public String service() {
+		return "customer/service";
+	}
+	
+	
 }
 
 

@@ -24,8 +24,9 @@
 		<ul class="menu">
 			<li><a href="./">예약</a></li>
 			<li><a href="ReservationList">예약확인</a></li>
-		
+			<li><a href="Service">서비스</a></li>
 			<li><a href="Customer">고객센터</a></li>
+		
 		</ul>
 	
 		<%-- 로그인 여부(= 세션 아이디 존재 여부) 판별하여 각각 다른 링크 표시 --%>

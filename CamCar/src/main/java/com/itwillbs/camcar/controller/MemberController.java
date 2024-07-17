@@ -197,11 +197,11 @@ public class MemberController {
 //	// 아이디 찾기2 페이지
 //	// http://localhost:8080/camcar/IdFindPro
 	@PostMapping("IdFindPro")
-	public String id_find_pro(MemberVO member, Model model, String mem_tel) {
+	public String id_find_pro(MemberVO member, Model model) {
 //		member.setMem_id((String)session.getAttribute("sId"));
 //		System.out.println("member : " + member);
 		
-		MemberVO dbMember = service.isExistTel(mem_tel);
+		MemberVO dbMember = service.isExistTel(member);
 		
 		if(dbMember == null) { // !member.getMem_tel().equals(mem_tel)
 			model.addAttribute("msg", "없는 전화번호입니다");
@@ -225,9 +225,9 @@ public class MemberController {
 	// 비밀번호 찾기2 페이지
 	// http://localhost:8080/camcar/PwFindPro
 	@PostMapping("PwFindPro")
-	public String pw_find_pro(MemberVO member, Model model, String mem_id) {
+	public String pw_find_pro(MemberVO member, Model model) {
 		
-		MemberVO dbMember = service.isExistId(mem_id);
+		MemberVO dbMember = service.isExistId(member);
 		
 		if(dbMember == null) { // !member.getMem_tel().equals(mem_tel)
 			model.addAttribute("msg", "없는 아이디입니다");
@@ -244,8 +244,8 @@ public class MemberController {
 	
 	// 전화번호로 비밀번호 찾기
 	@PostMapping("PwResetPro")
-	public String pwResetPro(MemberVO member,String mem_tel, Model model) {
-		MemberVO dbMember = service.isExistTel(mem_tel);
+	public String pwResetPro(MemberVO member, Model model) {
+		MemberVO dbMember = service.isExistTel(member);
 		if(dbMember == null) { // !member.getMem_tel().equals(mem_tel)
 			model.addAttribute("msg", "없는 전화번호입니다");
 			return "result/fail";

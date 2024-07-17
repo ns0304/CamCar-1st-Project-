@@ -38,13 +38,14 @@ public class MemberService {
 	}
 	
 	// 회원 아이디 전화번호 비교
-	public MemberVO isExistTel(String mem_tel) {
-		return mapper.selectTel(mem_tel);
+	public MemberVO isExistTel(MemberVO member) {
+		System.out.println("전화번호 검색 요청 : " + member);
+		return mapper.selectTel(member);
 	}
 	
 	// 회원 아이디로 비밀번호 찾기
-	public MemberVO isExistId(String mem_id) {
-		return mapper.selectId(mem_id);
+	public MemberVO isExistId(MemberVO member) {
+		return mapper.selectId(member);
 	}
 	
 	//회원 비밀번호 변경

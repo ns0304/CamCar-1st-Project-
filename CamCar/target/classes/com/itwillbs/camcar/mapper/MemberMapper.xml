@@ -54,11 +54,15 @@
 		WHERE mem_id = #{mem_id}
 	</select>
 	
-	<!-- 회원 아이디 찾기 -->
+	<!-- 회원 아이디 찾기, 비밀번호 변경 위한 전화번호 검색 -->
 	<select id="selectTel" resultType="member">
 		SELECT *
 		FROM member_info
-		WHERE mem_tel = #{mem_tel}
+		WHERE 
+			mem_tel = #{mem_tel}
+			<if test="mem_id != null">
+				AND mem_id = #{mem_id}
+			</if>
 	</select>
 	
 	<!-- 회원 비밀번호 찾기 -->
