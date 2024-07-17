@@ -105,6 +105,10 @@
 		<input type="button" value="목록" onclick="location.href='board_list?pageNum=${param.pageNum}'">
 	</section>
 	</section>
+		<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
+		<aside class="chatBtn">
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+		</aside>
 	</main>
 	<footer>
 		<!-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 -->

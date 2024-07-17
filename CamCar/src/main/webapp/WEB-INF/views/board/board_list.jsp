@@ -9,24 +9,92 @@
 <meta charset="UTF-8">
 <title>캠핑갈카 공지사항</title>
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
-<link
-	href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
-	rel="stylesheet" type="text/css">
-<!-- <link -->
-<%-- 	href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css" --%>
-<!-- 	rel="stylesheet" type="text/css"> -->
-<script
-	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
-
+<link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
-table {
-	border-collapse: collapse;
-	width: 700px;
-}
-table th, table td {
-	padding: 10px;
-	text-align: center;
-}
+	
+	h2 {
+	    text-align: center;
+	    color: #333;
+	    margin-bottom: 20px;
+	}
+	
+	table {
+	    border-collapse: collapse;
+	    width: 100%;
+	    margin: 20px 0;
+	    background-color: #fff;
+	}
+	
+	table th, table td {
+	    padding: 15px;
+	    border: 1px solid #ddd;
+	    text-align: center;
+	}
+	
+	table th {
+	    background-color: #59b9a9;
+	    color: white;
+	}
+	
+	table tr:nth-child(even) {
+	    background-color: #f2f2f2;
+	}
+	
+	#buttonArea {
+	    text-align: right;
+	    margin-bottom: 20px;
+	}
+	
+	#buttonArea form {
+	    display: inline-block;
+	}
+	
+	#buttonArea select, #buttonArea input[type="text"] {
+	    padding: 10px;
+	    border: 1px solid #ddd;
+	    border-radius: 5px;
+	}
+	
+	#buttonArea input[type="submit"] {
+	    background-color: #59b9a9;
+	    color: white;
+	    border: none;
+	    padding: 10px 20px;
+	    cursor: pointer;
+	    border-radius: 5px;
+	    transition: background-color 0.3s;
+	}
+	
+	#buttonArea input[type="submit"]:hover {
+	    background-color: #498f7f;
+	}
+	
+	#pageList {
+	    text-align: center;
+	    margin: 20px 0;
+	}
+	
+	#pageList input[type="button"] {
+	    background-color: #59b9a9;
+	    color: white;
+	    border: none;
+	    padding: 10px 15px;
+	    cursor: pointer;
+	    border-radius: 5px;
+	    transition: background-color 0.3s;
+	    margin: 0 5px;
+	}
+	
+	#pageList input[type="button"]:hover {
+	    background-color: #498f7f;
+	}
+	
+	
+	#pageList a:hover {
+	    text-decoration: underline;
+	}
+	
 </style>
 </head>
 <body>
@@ -57,12 +125,12 @@ table th, table td {
 			</section>
 			<section id="listForm">
 				<br>
-				<table border="1">
+				<table>
 					<tr id="tr_top">
-						<td width="100px" align="center">번호</td>
-						<td align="center">제목</td>
-						<td width="150px" align="center">날짜</td>
-						<td width="100px" align="center">조회수</td>
+						<th width="100px">번호</th>
+						<th>제목</th>
+						<th width="150px">날짜</th>
+						<th width="100px">조회수</th>
 					</tr>
 					<%-- ================================================ --%>
 					<%-- 페이지번호(pageNum 파라미터) 가져와서 저장(없을 경우 기본값 1로 설정) --%>
@@ -77,16 +145,16 @@ table th, table td {
 					<c:forEach var="bo" items="${boardList}">
 						<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 						<tr>
-							<td align="center">${bo.bo_idx}</td>
-							<td id="subject" align="center">
+							<td>${bo.bo_idx}</td>
+							<td id="subject">
 								<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail) --%>
 								<%-- 파라미터 : 글번호(board_num), 페이지번호(pageNum) --%>
 								<a href="boardDetail?bo_idx=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</a>
 							</td>
-							<td align="center">
+							<td>
 								<fmt:formatDate value="${bo.bo_sysdate}" pattern="yyyy-MM-dd" />
 							</td>
-							<td align="center">${bo.bo_readcount}</td>
+							<td>${bo.bo_readcount}</td>
 						</tr>
 					</c:forEach>
 					<c:if test="${empty boardList}">
@@ -95,7 +163,7 @@ table th, table td {
 				</table>
 			</section>
 			<%-- ========================== 페이징 처리 영역 ========================== --%>
-			<section id="pageList" style="text-align: center;">
+			<section id="pageList">
 				<%-- [이전] 버튼 클릭 시 BoardList 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
 				<%-- 현재 페이지 번호(pageNum)가 URL 파라미터로 전달되므로 ${pageNum} 활용(미리 저장된 변수값) --%>
 				<%-- 단, 현재 페이지 번호가 1 보다 클 경우에만 동작(아니면, 버튼 비활성화 처리) --%>
@@ -128,9 +196,13 @@ table th, table td {
 						<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
 			</section>
 		</section>
-				<!-- 예약정보 선택 영역 -->
+		<!-- 예약정보 선택 영역 -->
 		<aside id="reservation_container">
 			<jsp:include page="/WEB-INF/views/reservation/reservation.jsp"></jsp:include>
+		</aside>
+			<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
+		<aside class="chatBtn">
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
 		</aside>
 	</main>
 	<footer>
@@ -139,16 +211,3 @@ table th, table td {
 	</footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
