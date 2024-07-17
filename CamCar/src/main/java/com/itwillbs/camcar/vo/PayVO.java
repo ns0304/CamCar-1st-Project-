@@ -7,7 +7,7 @@ import lombok.Data;
 /*
 -- 결제정보
 create table pay_info(
-	pay_idx int primary key,					-- 결제 고유번호
+	pay_idx varchar(100) primary key,					-- 결제 고유번호
 	res_idx int not null unique,				-- 예약 고유번호 
 	pay_method_idx int not null,				-- 결제방법코드 
 	pay_total int not null,						-- 최종 결제금액
@@ -24,7 +24,7 @@ public class PayVO {
 	// 2. Getter/Setter 정의
 	// 3. toString() 메서드 오버라이딩
 	// -------------------------------------------------------------
-	private int pay_idx;
+	private String pay_idx;
 	private int res_idx;
 	private int pay_method_idx;
 	private int pay_total;

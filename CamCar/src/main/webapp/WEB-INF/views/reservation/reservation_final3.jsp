@@ -233,9 +233,18 @@ $(document).ready(function() {
 						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 						<input type="hidden" name="rentalFee" value="${param.rentalFee}">	
+						<input type="hidden" name="insFee" value="${param.insFee}">	
+						<input type="hidden" name="rentalInsFee" value="${rentalInsFee}">	
 						<input type="hidden" name="car_idx" value="${param.car_idx}">					
-						<input type="hidden" name="insFee" value="${param.insFee}">						
-						<input type="hidden" name="rentalInsFee" value="${rentalInsFee}">						
+						<input type="hidden" name="dri_name" value="${param.dri_name}">						
+						<input type="hidden" name="dri_tel" value="${param.dri_tel}">						
+						<input type="hidden" name="dri_birthday" value="${param.dri_birthday}">						
+						<input type="hidden" name="lic_info" value="${param.lic_info}">						
+						<input type="hidden" name="lic_num" value="${param.lic_num}">						
+						<input type="hidden" name="lic_issue_date" value="${param.lic_issue_date}">						
+						<input type="hidden" name="lic_expiration_date" value="${param.lic_expiration_date}">						
+						<input type="hidden" name="brc_idx" value="${param.brc_idx}">						
+						<input type="hidden" name="insuranceType" value="${param.insuranceType}">						
 					<div class="nextBtnArea">
 						<button type="submit" id="nexBtn">다음</button>		
 		          </div>

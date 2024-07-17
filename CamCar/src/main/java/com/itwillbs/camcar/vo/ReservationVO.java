@@ -2,6 +2,7 @@ package com.itwillbs.camcar.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -39,11 +40,11 @@ public class ReservationVO {
 //	private Date res_return_date;
 	private Timestamp res_rental_date;
 	private Timestamp res_return_date;
-	private int res_rent_time;
 	private String brc_rent_name;
 	private int car_idx;
 	private String car_insurance;
 	private String lic_num;
 	private int mem_idx;
+	private int res_fee;
 
 }

@@ -28,7 +28,7 @@
 					</li>
 					<li>
 						부가상품
-					</li>
+					</li> 
 					<li>
 						결제
 					</li>
@@ -39,10 +39,10 @@
 			</div>
 			<div id="reservationComplete" class="clear">
 				<div id="completeContent">
-					예약번호 <span>XXXXX</span>
-					<h3><span>OOO</span>님, 예약이 완료되었습니다</h3>
+					예약번호 <span>${param.}</span>
+					<h3><span>${sId}</span>님, 예약이 완료되었습니다</h3>
 					<hr>
-					<a>${param.res_rental_date} ~ ${param.res_return_date}</a>에 이용하실<br>
+					<a>${param.rental_date} ~ ${param.return_date}</a>에 이용하실<br>
 					<a>${carDetail.car_model}</a>예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">

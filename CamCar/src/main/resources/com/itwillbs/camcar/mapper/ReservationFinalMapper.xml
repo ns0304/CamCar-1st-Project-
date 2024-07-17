@@ -11,5 +11,71 @@
 		WHERE item_code = #{item_code}
 	</select>
 
+	<select id="selectMemberInfo">
+		SELECT *
+		FROM member_info
+		WHERE mem_id = #{id}
+	</select>
 
+
+	<select id="selectMemIdx" resultType="int">
+		SELECT mem_idx
+		FROM member_info
+		WHERE mem_id = #{id}
+	</select>
+	
+	<select id="selectSameDriver" resultType="int">
+		SELECT COUNT(*)
+		FROM drivers_info
+		WHERE lic_num = #{lic_num}
+	</select>
+
+	<insert id="insertDriver" >
+		INSERT INTO drivers_info
+		VALUES (
+			null
+			, null
+			, #{dri_name}
+			, #{dri_tel}
+			, #{dri_birthday}
+			, #{lic_num}
+			, #{lic_info}
+			, #{lic_issue_date}
+			, #{lic_expiration_date}
+		)
+	</insert>
+	
+	<insert id="insertResInfo">
+		INSERT INTO res_info
+		VALUES (
+			null
+			, now()
+			, #{res_rental_date}
+			, #{res_return_date}
+			, #{brc_rent_name}
+			, #{car_idx}
+			, #{car_insurance}
+			, #{lic_num}
+			, #{mem_idx}
+			, #{res_fee}
+		)
+		<selectKey keyProperty="res_idx" resultType="int" order="AFTER">
+			SELECT res_idx
+			FROM res_info
+			ORDER BY res_time DESC
+			LIMIT 1
+		</selectKey>
+	</insert>
+	
+	<insert id="insertPayInfo">
+		INSERT INTO pay_info
+		VALUES (
+			#{pay_idx}
+			, #{res_idx}
+			, #{pay_method_idx}
+			, #{pay_total}
+			, '예약완료'
+			, now()
+		)
+	</insert>
 </mapper>

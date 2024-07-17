@@ -18,105 +18,148 @@
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-<script>
-      function mypaymentKakao() {
-    	var myAmount = document.getElementById('finalFee').innerText;
-    	console.log("The amount is: " + myAmount);
-        IMP.init("imp33031510"); // Example: imp00000000
-        IMP.request_pay(
-          {
-            // param
-            pg: "kakaopay",
-            pay_method: "card",
-            name: "캠핑갈카 렌트비용 결제",
-            amount: myAmount,
-            buyer_email: "gildong@gmail.com",
-            buyer_name: "홍길동",
-            buyer_tel: "010-4242-4242",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181"
-//             m_redirect_url: "", // 모바일 결제후 리다이렉트될 주소!!
-          }, async (rsp) => {
-            // callback
-            if (rsp.success) {
-            	console.log(rsp);
-              // 결제 성공시
-              try {
-                const response = await axios.post(
-                  "http://localhost:3000/api/savePayment", // GraphQL 엔드포인트로 변경
-                  {
-                    mem_idx: response.mem_idx,
-                    mem_id: response.mem_id,
-                    impUid: rsp.imp_uid,
-                    amount: rsp.paid_amount,
-                    pay_method: rsp.pay_method,
-                    payment_status: 'paid'
-                  },
-                  {
-                    headers: {
-                      authorization: "Bearer 액세스토큰", // 필요에 따라 토큰 변경
-                      'Content-Type': 'application/json'
-                    }
-                  }
-                );
-                if (response.status === 200) {
-                  alert('결제 완료!');
-                  window.location.reload();
-                } else {
-                  alert(`DB 저장 실패: [${response.status}] 관리자에게 문의하세요.`);
-                }
-              } catch (error) {
-                alert(`결제 성공 후 처리 중 오류 발생: ${error.message}`);
-              }
-            } else {
-            	console.log(rsp);
-              // 결제 실패시
-              alert(`결제 실패: ${rsp.error_msg}`);
-            }
-          }
-        );
-      }
-</script>
 <script type="text/javascript">
-$(document).ready(function() {
-    function payment() {
-        $('input[name="paymentMethod"]').on('click', function() {
-            if ($(this).val() === '네이버페이') {
-                var confirmNaver = confirm('네이버페이로 결제하시겠습니까?');
-                if (confirmNaver) {
-                    // Functionality for confirmation
-                    handleConfirm();
-                } else {
-                    // Functionality for cancellation
-                    handleCancel();
-                }
-            } else if ($(this).val() === '카카오페이') {
-            	
-            	
-            } else if ($(this).val() === '신용/체크카드') {
-            	
-            	
+	$(document).ready(function() {
+	    // 결제 처리
+	    function payment(event) {
+
+            if (!$('input[name="all_check"]').prop('checked')) {
+                alert('이용약관에 전체 동의하시면 결제가 진행됩니다.');
+                return false; 
             }
+	    	
+	    	
+	        event.preventDefault(); 
+	        var selectedPaymentMethod = $('input[name="paymentMethod"].selected').val();
+			// 결제방법 미선택시 다음 단계 진행 불가 
+	        if (!selectedPaymentMethod) {
+	            alert('결제 방법을 선택해 주세요.');
+	            return false;
+	        }
+			
+	        var selectedPaymentMethod = $('input[name="paymentMethod"].selected').val();
+			// 결제방법 미선택시 다음 단계 진행 불가 
+	        if (!selectedPaymentMethod) {
+	            alert('결제 방법을 선택해 주세요.');
+	            return false;
+	        }
+	
+			// 선택된 결제방법에 따라 각각 함수 호출
+	        if (selectedPaymentMethod === '네이버페이') {
+	            return naverConfirm();
+	        } else if (selectedPaymentMethod === '카카오페이') {
+	            return kakaoConfirm();
+	        } else if (selectedPaymentMethod === '신용/체크카드') {
+	            return cardConfirm();
+	        }
+	    }
+	
+	    // Function to handle button selection
+	    $('input[name="paymentMethod"]').on('click', function() {
+	        $('input[name="paymentMethod"]').removeClass('selected');
+	        $(this).addClass('selected');
+	    });
+	
+	    // 네이버페이 결제
+	    function naverConfirm() {
+	        var confirmNaver = confirm('네이버페이로 결제하시겠습니까?');
+	        if (confirmNaver) {
+	            console.log('네이버페이 결제 진행');
+	            alert('네이버페이로 결제가 진행됩니다.');
+	            $('form[name="reservation"]').off('submit').submit(); // Proceed with form submission
+	        } else {
+	            console.log('네이버페이 결제 취소');
+	            alert('결제가 취소되었습니다.');
+	        }
+	    }
+	
+	 	// 카카오페이 결제
+	    function kakaoConfirm() {
+	        var confirmKakao = confirm('카카오페이로 결제하시겠습니까?');
+	        if (confirmKakao) {
+	            console.log('카카오페이 결제 진행');
+	            var myAmount = document.getElementById('finalFee').innerText;
+	            console.log("결제금액 : " + myAmount);
+	
+	            // Initialize IMP with the correct merchant code
+	            IMP.init("imp33031510"); // Example: imp00000000
+	
+	            IMP.request_pay(
+	                {
+	                    pg: "kakaopay",
+	                    pay_method: "card",
+	                    name: "캠핑갈카 렌트비용 결제",
+	                    amount: myAmount,
+	                    buyer_email: "gildong@gmail.com",
+	                    buyer_name: "홍길동",
+	                    buyer_tel: "010-4242-4242",
+	                    buyer_addr: "서울특별시 강남구 신사동",
+	                    buyer_postcode: "01181"
+	                },
+	                async (rsp) => {
+	                    if (rsp.success) {
+	                        console.log('결제성공', rsp);
+	                        alert('결제가 완료되었습니다!');
+	                        
+	            	        $("#reservationPayForm").prepend('<input type="hidden" name="pay_method_name" value="카카오페이" id="pay_method_name">');
+	                        
+	                        document.getElementById('reservationPayForm').submit();
+	                        
+	                    } else {
+	                        console.error('Payment failed:', rsp);
+	                        alert(`결제 실패!`);
+                            if (confirm('결제를 다시 시도하시겠습니까?')) {
+                                kakaoConfirm();
+                            } else {
+                                return;
+                            }
+	                    }
+	                }
+	            );
+	        } else {
+	            alert('결제가 취소되었습니다.');
+	        }
+	    }
+	 	
+	
+	    // 신용/체크카드 결제
+	    function cardConfirm() {
+	        var confirmCard = confirm('신용/체크카드로 결제하시겠습니까?');
+	        if (confirmCard) {
+	            console.log('신용/체크카드 결제 진행');
+	            alert('신용/체크카드로 결제가 진행됩니다.');
+	            $('form[name="reservation"]').off('submit').submit(); // Proceed with form submission
+	        } else {
+	            console.log('신용/체크카드 결제 취소');
+	            alert('결제가 취소되었습니다.');
+	        }
+	    }
+	
+	    // 결제하기 버튼 클릭 시, payment 함수 호출
+	    $('#nexBtn').on('click', payment);
+	    
+        function updateAllCheck() {
+            var allChecked = true; // Assume all checkboxes are checked
+            $('input[name="cb"]').each(function() {
+                if (!$(this).prop('checked')) {
+                    allChecked = false; // If any checkbox is not checked, set allChecked to false
+                }
+            });
+            $('input[name="all_check"]').prop('checked', allChecked);
+        }
+
+        $('input[name="cb"]').on('change', updateAllCheck);
+
+        $('input[name="all_check"]').on('click', function() {
+            var allCheck = $(this).prop('checked'); // Get the state of the "all_check" checkbox
+            $('input[name="cb"]').prop('checked', allCheck); // Set the state of each individual checkbox to match the "all_check" checkbox
         });
-    }
-
-    // Function to handle confirmation
-    function handleConfirm() {
-        // Add your confirmation logic here
-        console.log('Payment confirmed with 네이버페이');
-        alert('네이버페이로 결제가 진행됩니다.');
-    }
-
-    // Function to handle cancellation
-    function handleCancel() {
-        // Add your cancellation logic here
-        console.log('Payment cancelled');
-        alert('결제가 취소되었습니다.');
-    }
-
-    // Call the pay function to set up the event handlers
-    pay();
+	    
+	    
+	    
+	    
 });
+
 </script>
 <!-- 포트원 결제 (카카오페이) -->
 <style type="text/css">
@@ -177,6 +220,7 @@ function checkbox_allCheck() {
 	}
 }
 
+
 $(document).ready(function() {
 	
 	// 이용약관 팝업창 1-7 열고 닫기
@@ -229,15 +273,6 @@ $(document).ready(function() {
 							<label><input type="button" name="paymentMethod" id="paymentCard" class="paymentBtnAll" value="신용/체크카드"> </label>
 							<label><input type="button" name="paymentMethod" id="paymentKakao" class="paymentBtnAll" value="카카오페이"> </label>
 							<label><input type="button" name="paymentMethod" id="paymentNaver" class="paymentBtnAll" value="네이버페이"> </label>
-<!-- 						    <button id="paymentCard" class="paymentBtnAll" onclick="mypaymentCard()">신용/체크카드</button> 결제하기 버튼 생성 -->
-<!-- 						    <button id="paymentKakao" class="paymentBtnAll" onclick="mypaymentKakao()">카카오페이</button> 결제하기 버튼 생성 -->
-<!-- 						    <button id="paymentNaver" class="paymentBtnAll" onclick="mypaymentNaver()">네이버페이</button> 결제하기 버튼 생성 -->
-<!-- 						    <button id="payment" class="paymentBtnAll">카카오페이</button> 결제하기 버튼 생성 -->
-<!-- 						    <button id="payment" class="paymentBtnAll">카카오페이</button> 결제하기 버튼 생성 -->
-
-<!-- 							<input type="button" value="신용/체크카드" id="paymentBtn1" > -->
-<!-- 							<input type="button" value="카카오페이" id="paymentBtn2"> -->
-<!-- 							<input type="button" value="네이버페이" id="paymentBtn3"> -->
 						</div>
 					</div>
 				</div>	
@@ -245,7 +280,7 @@ $(document).ready(function() {
 					<h3>이용약관 동의</h3>
 					<form name="fr">
 						<div id="userAgreementCheck">
-							<input type="checkbox" name="all_check" onclick="checkbox_allCheck()" > 모든 필수/선택 약관을 확인하고 전체 동의합니다. <br>
+							<input type="checkbox" name="all_check" onclick="checkbox_allCheck()" > 모든 이용약관을 확인하고 전체 동의합니다. <br>
 							<hr>
 							<input type="checkbox" name="cb"> 고유식별정보 수집 및 이용 동의(필수)<a class="detail" id="detail1">보기</a> <br>
 							<input type="checkbox" name="cb"> 대여자격 확인 및 동의(필수)<a class="detail" id="detail2">보기</a><br>
@@ -263,11 +298,11 @@ $(document).ready(function() {
 		
 		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
-			<form action="ReservationFin" name="reservation" method="post">
+			<form action="ReservationFin" name="reservation" id="reservationPayForm" method="post">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 <!-- 						이름으로 바꿔야 함        -->
-						<a>${sId}님의 여정</a>      
+						<a>${pay_idx}님의 여정</a>      
 						<div class="clear">
 							<a>
 							<c:choose>
@@ -312,9 +347,21 @@ $(document).ready(function() {
 						<hr>
 						총 결제금액 <a id="finalFee">${param.rentalInsFee}</a>원
 					</div>	
-						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">					
+						<input type="hidden" name="rental_date" value="${param.res_rental_date}">
+						<input type="hidden" name="return_date" value="${param.res_return_date}">
+						<input type="hidden" name="rentalFee" value="${param.rentalFee}">	
+						<input type="hidden" name="insFee" value="${param.insFee}">	
+						<input type="hidden" name="rentalInsFee" value="${param.rentalInsFee}">	
+						<input type="hidden" name="car_idx" value="${param.car_idx}">					
+						<input type="hidden" name="dri_name" value="${param.dri_name}">						
+						<input type="hidden" name="dri_tel" value="${param.dri_tel}">						
+						<input type="hidden" name="dri_birthday" value="${param.dri_birthday}">						
+						<input type="hidden" name="lic_info" value="${param.lic_info}">						
+						<input type="hidden" name="lic_num" value="${param.lic_num}">						
+						<input type="hidden" name="lic_issue_date" value="${param.lic_issue_date}">						
+						<input type="hidden" name="lic_expiration_date" value="${param.lic_expiration_date}">						
+						<input type="hidden" name="brc_idx" value="${param.brc_idx}">						
+						<input type="hidden" name="car_insurance" value="${param.insuranceType}">		
 					<div class="nextBtnArea">
 						<button type="submit" id="nexBtn" onclick="payment()">결제하기</button>		
 		          </div>			          
