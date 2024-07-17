@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 <!DOCTYPE html>
 <html>
@@ -444,11 +445,11 @@ $(document).ready(function() {
 												<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 											</div>
 											<div class="pay_detail">
-												<%-- 임시 차량코드 확인 --%>				
-												<input type="text" name="car_idx" class="car_idx" value="${car.car_idx}">
 												<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
 												<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
-												<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
+												<span class="main_name" style="font-size: 20px;">
+													<fmt:formatNumber value="${carFeeMap[car.car_idx]}" pattern="#,###" />원
+												</span>
 												<input type="submit" value="예약마감" class="resBtn" disabled style="background-color: #ccc; cursor: default; width: 80px;">
 											</div>
 										</div>
@@ -471,11 +472,11 @@ $(document).ready(function() {
 												<input type="hidden" name="res_return_date" value="${param.res_return_date}">
 											</div>
 											<div class="pay_detail">
-												<%-- 임시 차량코드 확인 --%>				
-												<input type="text" name="car_idx" class="car_idx" value="${car.car_idx}">
 												<input type="checkbox" name="rentalFee" class="rentalFee" value="${carFeeMap[car.car_idx]}">
 												<input type="checkbox" name="car_idx" class="car_idx" value="${car.car_idx}">
-												<span class="main_name" style="font-size: 20px;">${carFeeMap[car.car_idx]}원</span>
+												<span class="main_name" style="font-size: 20px;">
+													<fmt:formatNumber value="${carFeeMap[car.car_idx]}" pattern="#,###" />원
+												</span>
 												<input type="submit" value="예약" class="resBtn">
 											</div>
 										</div>
@@ -494,7 +495,13 @@ $(document).ready(function() {
 		<aside id="research_container">
 			<form action="Reservation" name="reservation" method="post">
 				<div>
-					<b>회원님과 함께하는 여정</b><br><br>
+					<b>
+						<c:choose>
+							<c:when test="${not empty sId}">${sId}님과 함께하는 여정</c:when>
+							<c:otherwise>회원님과 함께하는 여정</c:otherwise>
+						</c:choose>
+					</b>
+					<br><br>
 				</div>
 				<a><img alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> ${param.brc_rent_name}</a>
 				<span style="float: right;"><a href="update_res" id="update_res">수정</a></span>
@@ -502,7 +509,8 @@ $(document).ready(function() {
 				<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
 				<span style="float: right;"><a href="update_cal" id="update_cal">수정</a></span>
 				<div class="center">
-					<input type="reset" id="research" value="재검색">
+<!-- 					<input type="reset" id="research" value="재검색"> -->
+					<input type="reset" id="research" value="일정 다시 선택하러 가기">
 				</div>
 			</form>
 			<!-- ------- 지점 상세 정보(레이어팝업) -------------------------------------- -->

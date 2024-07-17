@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>캠핑갈카 : 차량 리스트</title>
+<title>캠핑갈카 : ${carDetail.car_model} 상세정보</title>
 <%-- 외부 CSS 파일 연결하기 --%>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <%-- jquery 라이브러리 포함시키기 --%>
@@ -43,6 +44,7 @@
 	cursor: pointer;
 	border-radius: 5px;
 	border: none;
+	background-color: #59b9a9;
 }
 #reservation:hover {
 	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -238,7 +240,13 @@ $(document).ready(function() {
 		<aside id="schedule_container">
 			<form action="Reservation" name="reservation" method="post">
 				<div>
-					<b>회원님과 함께하는 여정</b><br><br>
+					<b>
+						<c:choose>
+							<c:when test="${not empty sId}">${sId}님과 함께하는 여정</c:when>
+							<c:otherwise>회원님과 함께하는 여정</c:otherwise>
+						</c:choose>
+					</b>
+					<br><br>
 				</div>
 				<div id="schedule_wrap">
 					<a><img class="icon" alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> 
@@ -253,7 +261,9 @@ $(document).ready(function() {
 					<a><img class="icon" alt="campingcar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/campingcar.png"> ${carDetail.car_model}</a>
 				</div>
 				<div id="pay_wrap" >
-					<h3>${param.rentalFee}원</h3>
+					<h3>
+						<fmt:formatNumber value="${param.rentalFee}" pattern="#,###" />원
+					</h3>
 				</div>
 					<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
 					<input type="hidden" name="res_return_date" value="${param.res_return_date}">
