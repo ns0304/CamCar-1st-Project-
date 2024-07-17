@@ -98,6 +98,7 @@
 		</section>
 		<!-- 게시글 본문 출력 영역 -->
 		<section id="articleContentArea">
+			<img src="${pageContext.request.contextPath}/resources/upload/${bo.bo_file}"id="img1" class="bo_image" selected>
 			${bo.bo_content}
 		</section>
 	<section id="commandCell">

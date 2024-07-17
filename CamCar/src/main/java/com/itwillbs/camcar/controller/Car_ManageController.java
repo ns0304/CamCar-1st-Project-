@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.camcar.service.Car_ManageService;
+import com.itwillbs.camcar.vo.BoardVO;
 import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
 import com.itwillbs.camcar.vo.PageInfo;
@@ -286,4 +288,35 @@ public class Car_ManageController {
 			return "result/fail";
 		}
 	}
+	
+	// 차량 상태 업데이트
+	@PostMapping("carModify")
+	public String carInfoUpdate(@RequestParam Map<String, String> map, HttpSession session, Model model) throws Exception {
+		// 미 로그인 처리
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg", "관리자 권한 필수!");
+			model.addAttribute("targetURL", "MemberLogin");
+			return "result/fail";
+		}
+//		String car_status = map.get("car_status");
+//		int car_idx = Integer.parseInt(map.get("car_idx"));
+//		
+//		System.out.println("car_idx : " + car_idx);
+		
+		int updateCount = service.getCarInfoUpdate(map);
+		if(updateCount > 0) {
+			model.addAttribute("msg", "수정 완료!");
+			return "result/closepage";
+		}else {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "result/fail";
+		}
+	
+		
+		
+		
+	
+	}
+	
 }

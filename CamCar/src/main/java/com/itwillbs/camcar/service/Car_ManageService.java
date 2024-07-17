@@ -1,6 +1,7 @@
 package com.itwillbs.camcar.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,10 @@ public class Car_ManageService {
 	// 차량 삭제 
 	public int cardeleteBoard(int car_idx) {
 		return mapper.cardeleteBoard(car_idx);
+	}
+	//차량 상태 수정
+	public int getCarInfoUpdate(Map<String, String> map) {
+		return mapper.updateCar(map);
 	}
 
 	

@@ -106,7 +106,7 @@
 	<select id="selectBoardList3">
 		SELECT *
 		FROM board_notice
-		ORDER BY bo_sysdate ASC
+		ORDER BY bo_sysdate DESC
 		LIMIT 3
 	</select>
 </mapper>

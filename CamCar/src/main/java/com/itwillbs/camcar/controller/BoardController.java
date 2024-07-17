@@ -166,7 +166,7 @@ public class BoardController {
 		public String boardListDetail(int bo_idx, Model model) {
 			
 			BoardVO bo = service.getBoardManageDetail(bo_idx, true);
-			System.out.println("제발 좀 떠봐라 임마 : " + bo);
+//			System.out.println("제발 좀 떠봐라 임마 : " + bo);
 			if(bo == null) {
 				model.addAttribute("msg", "존재하지 않는 게시물입니다");
 				return "result/fail";
@@ -186,7 +186,7 @@ public class BoardController {
 			// 미 로그인 처리
 			String id = (String)session.getAttribute("sId");
 			if(id == null) {
-				model.addAttribute("msg", "로그인 필수!");
+				model.addAttribute("msg", "관리자 권한 필수!");
 				model.addAttribute("targetURL", "MemberLogin");
 				return "result/fail";
 			}
@@ -237,7 +237,7 @@ public class BoardController {
 			// 미 로그인 처리
 			String id = (String)session.getAttribute("sId");
 			if(id == null) {
-				model.addAttribute("msg", "로그인 필수!");
+				model.addAttribute("msg", "관리자 권한 필수!");
 				model.addAttribute("targetURL", "MemberLogin");
 				return "result/fail";
 			}

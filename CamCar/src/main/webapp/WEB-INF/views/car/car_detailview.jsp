@@ -26,6 +26,11 @@
 			location.href = "CarInfoDelete?car_idx=${car.car_idx}&pageNum=${param.pageNum}";
 		}
 	}
+	// 차량 상태 업데이트
+	function confirmUpdate() {
+		location.href= " CarInfoUpdate?car_idx=${car.car_idx}";
+	}
+	
 	$(document).ready(function() {
 		// 첫 번째 이미지에 selected 클래스 추가
 		$("#img1").addClass("selected");
@@ -44,18 +49,39 @@
 	});
 </script>
 <style type="text/css">
-table {
-	border-collapse: collapse;
-}
-
-table th, table td {
-	padding: 10px;
-	text-align: center;
-}
-
-.car_image {
-	width: 400px;
-}
+  table {
+            border-collapse: collapse;
+            width: 30%;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
+        table th, table td:nth-child(3) {
+            white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+        }
+        table input[type="button"] {
+            padding: 5px 10px;
+            background-color: #00838f;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        table input[type="button"]:hover {
+            background-color: #006064;
+        }
 </style>
 </head>
 <body>
@@ -63,6 +89,9 @@ table th, table td {
 		<section>
 			<div align="center">
 				<!-- 게시판 상세내용 보기 -->
+				<form action="carModify" name="carmodifyForm" method="post" >
+				<input type="hidden" name="car_idx" value="${car.car_idx}">
+<%-- 				<input type="hidden" name="car_status" value="${car.car_status}"> --%>
 				<article id="articleForm">
 					<h2>차량 상세 정보</h2>
 					<section id="basicInfoArea">
@@ -133,7 +162,12 @@ table th, table td {
 							</tr>
 							<tr>
 								<th>차량 상태 *</th>
-								<td class="write_td_right" colspan="2">${car.car_status}</td>
+								<td class="write_td_right" colspan="2">
+								<select name="car_status">
+									<option value="이용가능 차량" <c:if test="${car.car_status eq '이용가능 차량'}"> selected</c:if>>이용가능 차량</option>
+									<option value="정비중" <c:if test="${car.car_status eq '정비중'}"> selected</c:if>>정비중</option>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<th>차량 사진1</th>
@@ -199,10 +233,12 @@ table th, table td {
 							<%-- 삭제 버튼 클릭 시 패스워드 확인 없이 사용자에게 삭제 확인만 받기 위해서 --%>
 							<%-- 자바스크립트 confirmDelete() 메서드 호출하여 확인 후 비즈니스 로직 요청 --%>
 							<input type="button" value="삭제" onclick="confirmDelete()">
+							<input type="submit" value="수정">
 						</c:if>
 					</section>
 					<br>
 				</article>
+				</form>				
 			</div>
 		</section>
 	</main>

@@ -1,6 +1,7 @@
 package com.itwillbs.camcar.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -35,6 +36,8 @@ public interface Car_ManageMapper {
 	CarVO selectCarListDetail(int car_idx);
 	//차량 삭제
 	int cardeleteBoard(int car_idx);
+	//차량 정보 수정
+	int updateCar(Map<String, String> map);
 
 
 	

@@ -78,6 +78,12 @@
 		FROM car_info
 		WHERE car_idx = #{car_idx}
 	</delete>
-		
+	
+	<update id="updateCar">
+		UPDATE car_info 
+		SET car_status = #{car_status}
+		WHERE car_idx = #{car_idx}
+	
+	</update>
 	
 </mapper>

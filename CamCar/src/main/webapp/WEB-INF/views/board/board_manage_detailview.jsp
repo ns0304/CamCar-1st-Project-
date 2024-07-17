@@ -18,13 +18,41 @@
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
 table {
-	border-collapse: collapse;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 table th, table td {
-	padding: 10px;
-	text-align: center;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+table td {
+    font-size: 14px;
+    color: #666;
+}
+table tr:hover {
+    background-color: #e9e9e9;
+}
+.bo_image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 </style>
+
 <script type="text/javascript">
 	function confirmDelete() {
 		// 삭제 버튼 클릭 시 확인창을 통해 "삭제하시겠습니까?" 출력 후
