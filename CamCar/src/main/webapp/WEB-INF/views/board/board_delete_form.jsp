@@ -45,7 +45,6 @@
 					<td colspan="2">
 						<input type="submit" value="삭제">&nbsp;&nbsp;
 						<input type="button" value="돌아가기" onclick="javascript:history.back()">
-						<!-- 진성미니미니바보 -->
 					</td>
 				</tr>
 			</table>

@@ -17,10 +17,10 @@
     // 예제 데이터, 실제 데이터로 대체 필요
     // 일단은 그냥 chatgpt로 만들었는데 나중에 대대적인 수정 필요!!!
     const monthlySalesData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
         datasets: [{
-            label: 'Monthly Sales',
-            data: [12000, 15000, 8000, 18000, 20000, 22000],
+            label: '월 매출 통계',
+            data: [12000, 15000, 8000, 18000, 20000, 22000, 24000, 26000, 20000, 21000, 22000, 13000],
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -30,7 +30,7 @@
     const popularModelsData = {
         labels: ['레이', '카니발(하이 리무진)', '카니발', '스타리아(아클란S)'],
         datasets: [{
-            label: 'Popular Models',
+            label: '인기 차량 모델 순위',
             data: [30, 20, 40, 10],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -49,10 +49,10 @@
     };
 
     const rentalCountsData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
         datasets: [{
-            label: 'Rental Counts',
-            data: [50, 60, 40, 70, 80, 90],
+            label: '월별 렌트 횟수',
+            data: [50, 60, 40, 70, 80, 90, 40, 50, 60, 70, 80, 40],
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 1
@@ -62,7 +62,7 @@
     const ageGroupData = {
         labels: ['18-25', '26-35', '36-45', '46-55', '56+'],
         datasets: [{
-            label: 'Age Groups',
+            label: '연령대별 이용자',
             data: [15, 20, 25, 30, 10],
             backgroundColor: [
                 'rgba(255, 159, 64, 0.2)',
@@ -135,9 +135,9 @@
 		<section>
 			<article>
 				<%-- 본문 표시 영역 --%>
-				<h1>지점별 월 매출 통계</h1>
+				<h1>총 월 매출 통계</h1>
 					<canvas id="monthlySalesChart"></canvas>
-				<h1>지점별 인기차량 모델 순위</h1>
+				<h1>인기차량 모델 순위</h1>
 					<canvas id="popularModelsChart"></canvas>
 				<h1>월별 렌트 횟수 통계</h1>
 					 <canvas id="rentalCountsChart"></canvas>
