@@ -199,7 +199,7 @@ $(document).ready(function() {
 	
 	// ------------------------------------------------------------------------
 	// 5. submit 클릭 시 이벤트 처리 지점, 일정 미선택 시 
-	$("form").submit(function() {
+	$("#carList").submit(function() {
 		if($("#brc_rent_name").val() == "") {
 			alert("지점을 선택해주세요!");
 			return false; // submit 동작 취소

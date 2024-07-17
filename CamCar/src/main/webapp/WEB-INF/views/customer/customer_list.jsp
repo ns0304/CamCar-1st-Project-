@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
+<title>캠핑갈카 : 고객센터</title>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/customer.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
@@ -77,6 +77,17 @@
    		color: white;
    		padding: 0 20px;
     }
+    
+    /* 자주찾는질문 */
+	#freQna {
+		display: flex;
+		justify-content: space-around;
+	}
+	#freQna>input {
+		width: 20%;
+		background-color: #59b9a9;
+		color: white;
+	}
 
 </style>
 </head>
@@ -92,34 +103,28 @@
             <p>캠핑갈카 렌터카 고객센터입니다.
             무엇을 도와드릴까요?</p>
             <section>
-                <table id="table01">
-                    <tr>
-                        <td id="td01"><h3>자주 찾는 질문</h3></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" value="예약 / 변경" onclick="location.href='Question_reserve'">
-                            <input type="button" value="운전자" onclick="location.href='Question_drivers'">
-                            <input type="button" value="보험" onclick="location.href='Question_insurance'">
-                            <input type="button" value="고장 / 사고" onclick="location.href='Question_accident'">
-                        </td>
-                    </tr>
-                </table>
+            	<h3>자주 찾는 질문</h3>
+				<div id="freQna">
+	                <input type="button" value="예약 / 변경" onclick="location.href='Question_reserve'">
+	                <input type="button" value="운전자" onclick="location.href='Question_drivers'">
+	                <input type="button" value="보험" onclick="location.href='Question_insurance'">
+	                <input type="button" value="고장 / 사고" onclick="location.href='Question_accident'">
+				</div>
             </section>
             <section>
                 <br><br>
                 <table border="1">
                     <tr>
                         <td><b>공지사항 게시판</b></td>
-                        <td><a href="board_list">더보기</a></td>
+                        <td><a href="BoardList">더보기</a></td>
                     </tr>
                 </table>
             </section>
             <section id="listForm">
                 <table border="1">
                 <tr id="tr_top">
-                    <td width="40px">제목</td>
-                    <td width="40px">날짜</td>
+                    <th width="40px">제목</th>
+                    <th width="40px">날짜</th>
                 </tr>
                 <%-- ================================================ --%>
                 <c:forEach var="bo" items="${boardList3}">

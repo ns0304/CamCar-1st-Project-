@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 					<a href="qna_ask" class="">1:1 문의 상담 내역</a>
 				</h4>
 				<h4>
-					<a href="BoardList" class="">공지사항 관리</a>
+					<a href="BoardListManage" class="">공지사항 관리</a>
 				</h4>
 			</div>
 		</div>

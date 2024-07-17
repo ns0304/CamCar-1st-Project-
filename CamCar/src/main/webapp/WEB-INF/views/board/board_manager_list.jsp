@@ -82,7 +82,7 @@ table th, table td {
                 <%-- ========================== 페이징 처리 영역 ========================== --%>
                 <section id="pageList">
                     <input type="button" value="이전"
-                        onclick="location.href='BoardList?pageNum=${pageNum - 1}'"
+                        onclick="location.href='BoardListManage?pageNum=${pageNum - 1}'"
                         <c:if test="${pageNum <= 1}">disabled</c:if>>
 
                     <c:forEach var="i" begin="${pageInfo.startPage}"
@@ -93,14 +93,14 @@ table th, table td {
                                 <%-- 현재 페이지 번호 --%>
                             </c:when>
                             <c:otherwise>
-                                <a href="BoardList?pageNum=${i}">${i}</a>
+                                <a href="BoardListManage?pageNum=${i}">${i}</a>
                                 <%-- 다른 페이지 번호 --%>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
 
                     <input type="button" value="다음"
-                        onclick="location.href='BoardList?pageNum=${pageNum + 1}'"
+                        onclick="location.href='BoardListManage?pageNum=${pageNum + 1}'"
                         <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
                 </section>
             </div>

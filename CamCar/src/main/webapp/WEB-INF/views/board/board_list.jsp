@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>캠핑갈카 공지사항</title>
+<title>캠핑갈카 : 공지사항</title>
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
