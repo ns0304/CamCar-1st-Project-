@@ -12,59 +12,60 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/default.css"
 	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/myquestion_list.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-#listForm {
-	width: 1024px;
-	max-height: 610px;
-	margin: auto;
-}
+/* #listForm { */
+/* 	width: 1024px; */
+/* 	max-height: 610px; */
+/* 	margin: auto; */
+/* } */
 
-h2 {
-	text-align: center;
-}
+/* h2 { */
+/* 	text-align: center; */
+/* } */
 
-table {
-	margin: auto;
-	width: 1024px;
-}
+/* table { */
+/* 	margin: auto; */
+/* 	width: 1024px; */
+/* } */
 
-#tr_top {
-	background: orange;
-	text-align: center;
-}
+/* #tr_top { */
+/* 	background: orange; */
+/* 	text-align: center; */
+/* } */
 
-table td {
-	text-align: center;
-}
+/* table td { */
+/* 	text-align: center; */
+/* } */
 
-#pageList {
-	margin: auto;
-	width: 1024px;
-	text-align: center;
-}
+/* #pageList { */
+/* 	margin: auto; */
+/* 	width: 1024px; */
+/* 	text-align: center; */
+/* } */
 
-#emptyArea {
-	margin: auto;
-	width: 1024px;
-	text-align: center;
-}
+/* #emptyArea { */
+/* 	margin: auto; */
+/* 	width: 1024px; */
+/* 	text-align: center; */
+/* } */
 
-#myListForm {
-	margin: auto;
-	width: 1024px;
-	text-align: right;
-}
+/* #myListForm { */
+/* 	margin: auto; */
+/* 	width: 1024px; */
+/* 	text-align: right; */
+/* } */
 
-/* 하이퍼링크 밑줄 제거 */
-a {
-	text-decoration: none;
-}
+/* /* 하이퍼링크 밑줄 제거 */ 
+/* a { */
+/* 	text-decoration: none; */
+/* } */
 
-/* 제목 열 좌측 정렬 및 여백 설정 */
-#subject {
-	text-align: left;
-	padding-left: 20px;
-}
+/* /* 제목 열 좌측 정렬 및 여백 설정 */ 
+/* #subject { */
+/* 	text-align: left; */
+/* 	padding-left: 20px; */
+/* } */
 </style>
 </head>
 <body>
@@ -110,7 +111,6 @@ a {
 				<br>
 				<%-- ========================== 페이징 처리 영역 ========================== --%>
 				<section id="pageList">
-<%-- 				<c:if test="${sessionScope.sId eq qna.mem_id}"> --%>
 					<input type="button" value="이전"
 						onclick="location.href='MyQuestionList?pageNum=${pageNum - 1}'"
 						<c:if test="${pageNum <= 1}">disabled</c:if>>
@@ -132,7 +132,6 @@ a {
 					<input type="button" value="다음"
 						onclick="location.href='MyQuestionList?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
-<%-- 				</c:if> --%>
 				</section>
 			</div>
 		</section>

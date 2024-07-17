@@ -104,9 +104,10 @@
 		</aside>
 	</main>
 	
-	<div id="kakaotalk">
-		<a href="">&#128488;</a>
-	</div>
+	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
+	<aside class="chatBtn">
+		<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+	</aside>
 	
 	<footer>
 		<!-- 회사 소개 영역 -->

@@ -54,6 +54,14 @@ public interface MyPageMapper {
 	// 주소 변경
 	int updateMemAdd(Map<String, String> map);
 
+	//마이페이지 예약내역 조회
+	List<Map<String, String>> selectReserveList(String id);
+
+
+
+
+
+
 
 
 

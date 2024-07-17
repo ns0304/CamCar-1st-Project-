@@ -10,6 +10,8 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/license_info.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/address_info.css">
+<link href="${pageContext.request.servletContext.contextPath}/resources/css/myInfo.css" rel="stylesheet" type="text/css">
+
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <%-- 다음 우편번호 API --%>
@@ -147,7 +149,7 @@ border-radius: 10px;
     justify-content: center;
 }
 .confirmBtn1 {
-    background-color: #f8a459;
+    background-color: #59a999;
     color: white;
     padding: 10px;
     border: none;
@@ -237,7 +239,7 @@ border-radius: 10px;
     color: black; /* 탈퇴 버튼 텍스트 색상 설정 */
 }
 .continueBtn {
-    background-color: #f8a459; /* 계속 이용할게요 버튼 배경색 설정 */
+    background-color: #59a999; /* 계속 이용할게요 버튼 배경색 설정 */
     color: white; /* 계속 이용할게요 버튼 텍스트 색상 설정 */
 }
 
@@ -453,7 +455,7 @@ $(document).ready(function() {
     });
 
     // 운전면허 변경 팝업 닫기
-    $(".LicenseInfoHeader .close, .LicenseInfoInsert button").click(function() {
+    $(".LicenseInfoHeader .close, .licenseInputBtn").click(function() {
         $(".insertLicense").hide();
     });		
     
@@ -603,19 +605,25 @@ $(document).ready(function() {
 				<h1>내 정보 관리</h1>
 					<a href="MemberInfo">마이페이지 홈으로</a>
 				</div>
+				<br>
 				<form action="" method="post">
 					<fieldset>
 						<div>
 							<p>아이디</p>
 							<input type="text" id="mem_id" name="mem_id" value="${member.mem_id}" readonly>
 						</div>
+						<div>
+							<p>이름</p>
+							<input type="text" id="mem_name" name="mem_name" value="${member.mem_name}" readonly>
+						</div>
 						<hr>
 						<div>
 							<span>비밀번호</span><a href="changePasswd" class="changePasswd">변경</a>
 							<p>개인정보 보호를 위해 주기적으로 변경해주세요</p>
 						</div>
+						<br>
 						<div>
-							<span>휴대폰 번호</span><a href="changePhoneNum" class="changePhoneNum">본인 인증 후 변경</a>
+							<span>휴대폰 번호</span>
 							<input type="text" id="mem_tel" name="mem_tel" value="${member.mem_tel}" readonly>
 						</div>
 					</fieldset>
@@ -623,19 +631,19 @@ $(document).ready(function() {
 					<h3>추가 정보</h3>
 					<fieldset>
 						<div>
-							<span>주소</span><a href="changeAddress" class="changeAddress">변경</a>
-							<p>주소를 등록해 주세요</p>
+							<span>주소</span><a href="changeAddress" class="changeAddress">정보 조회 및 변경</a>
+							
 						</div>
-						<div>
-							<span>운전면허 정보</span><a href="changeLicense" class="changeLicense">변경</a>
-							<p>운전면허정보를 등록해 주세요</p>
+						<br> 
+						<div> 
+							<span>운전면허 정보</span><a href="changeLicense" class="changeLicense">조회</a>
 						</div>
 					</fieldset>
 					<br>
 					<h3>계정관리</h3>
 					<fieldset>
 						<div class="marketingAgree1">
-							<a href="marketingAgree" class="marketingAgree2">마케팅 활용 동의</a>
+							<b><a href="marketingAgree" class="marketingAgree2">마케팅 활용 동의</a></b>
 						</div>
 						<hr>
 						<div class="logOut">
@@ -650,6 +658,13 @@ $(document).ready(function() {
 			</div>
 		</section>
 	</main>
+	
+	<footer>
+		<!-- 회사 소개 영역 -->
+		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
+	</footer>
+	
+	
 	<!----------------------------- 비밀번호 변경 팝업 ----------------------------->
     <div class="passwdPopUp">
     	<fieldset class="changeField">
@@ -704,7 +719,7 @@ $(document).ready(function() {
             <div class="infoBox">
                 <p>약관에 동의해야 주소정보를 저장할 수 있어요</p>
             </div>
-            <form action="MyInfoModify" method="post">
+            <form action="AddModify" method="post">
             	<input type="hidden" name="mem_tel" value="${member.mem_tel}" id="mem_tel" size="10">
             	<input type="hidden" name="mem_id" value="${member.mem_id}" id="mem_id" size="10">
                 <fieldset class="address_section" id="address_section">
@@ -776,68 +791,87 @@ $(document).ready(function() {
     
     
     <!------------------------------ 운전면허정보 변경 팝업 ------------------------------->
-    <div class="insertLicense">
-    	<div class="LicenseInfoHeader">
-	        <h1>운전면허정보 입력</h1>
-	        <span class="close">&times;</span>
-        </div>
-        <p class="agreeAndSave"><img src="resources/images/ico_info.png" id="icon" >약관에 동의해야 주소정보를 저장할 수 있어요</p>
-        <div class="license_image">
-            <img src="resources/images/licensephoto.png" alt="운전면허증 사진 예시">
-        </div>
-        <br>
-        <div class="form">
-            
-            	<label for="license_name"></label>
-                <label for="license-type">면허종류</label>
-                <select id="license-type">
-                    <option value="">면허종류를 선택해주세요</option>
-                    <!-- 면허 종류 -->
-                    <option value="2종보통" <c:if test="${driver.lic_info eq '2종보통'}">selected</c:if>>2종보통</option>
-                    <option value="1종보통" <c:if test="${driver.lic_info eq '1종보통'}">selected</c:if>>1종보통</option>
-                    <option value="1종특수 - 구난차" <c:if test="${driver.lic_info eq '1종특수 - 구난차'}">selected</c:if>>1종특수 - 구난차</option>
-                    <option value="1종특수 - 대형견인차(트레일러)" <c:if test="${driver.lic_info eq '1종특수 - 대형견인차(트레일러)'}">selected</c:if>>1종특수 - 대형견인차(트레일러)</option>
-                    <option value="1종특수 - 소형견인차" <c:if test="${driver.lic_info eq '1종특수 - 소형견인차'}">selected</c:if>>1종특수 - 소형견인차</option>
-                    <option value="국제면허" <c:if test="${driver.lic_info eq '국제면허'}">selected</c:if>>국제면허</option>
-                </select>
+	<div class="insertLicense">
+		<form action="licenseModify" name="licenseForm" method="post">
+			<input type="hidden" name="mem_id" value="${driver.mem_id}" id="mem_id" size="10">
+			<div class="LicenseInfoHeader">
+				<h1>운전면허정보</h1>
+				<span class="close">&times;</span>
+			</div>
+			<p class="agreeAndSave">
+				<img src="resources/images/ico_info.png" id="icon">약관에 동의해야
+				주소정보를 저장할 수 있어요
+			</p>
+			<div class="license_image">
+				<img src="resources/images/licensephoto.png" alt="운전면허증 사진 예시">
+			</div>
+			<br>
+			<div class="form">
 
-                <label for="lic_num">면허번호</label>
-                <input type="text" id="lic_num" name ="lic_num" placeholder="면허번호를 입력해주세요" value="${driver.lic_num}" onblur="checkLicense()" required maxlength="12">
-                <a id="checkLicenseResult"></a><br>
-
-                <label for="lic_issue_date">발급일자</label>
-                <input type="text" id="lic_issue_date" name="lic_issue_date" placeholder="예) 20211001" value="${driver.lic_issue_date}" onblur="checkIssueDate()" maxlength="8" required>
-				<a id="checkIssueDateResult"></a><br>
-
-                  <label for="lic_expiration_date">만료일자</label>
-                  <input type="text" id="lic_expiration_date" name="lic_expiration_date" placeholder="예) 20251231" value="${driver.lic_expiration_date}" onblur="checkExpDate()" maxlength="8" required>
-				<a id="checkExpDateResult"></a><br>
-			<form name="licenseForm">	
-               <div class="consent_list">
-				  <div class="consent_details">
-                           <input type="checkbox" id="consent_all" name="consent" onclick="check_all(this.checked)">
-                        <label for="consent_all">전체동의</label>
-                  </div>
-	                  <div class="consent_details1">
-	                  <input type="checkbox" id="consent_person" name="consent" required>
-	                  <span><label for="consent_person">개인정보 수집 및 이용 동의(필수)</label>
-	                  <a href="#" class="agree1">보기</a></span>
-                  </div>
-                   <div class="consent_details2">
-                       <input type="checkbox" id="consentCollect" name="consent" required>
-                       <label for="consentCollect">고유식별정보 수집 및 이용 동의(필수)</label>
-                       <span><a href="#" class="agree2">보기</a></span>
-                   </d
-                   iv>
-                </div>
-            </form>
-        </div>
-        <br>
-        <div align="center" class="LicenseInfoInsert">
-            <input type="button"  class="licenseInputBtn" value="운전자 정보를 입력해 주세요" onclick="location.href=">
-        </div>
-     </div>
-    <!----------------------------- 운전면허정보 변경 팝업 끝 ----------------------------->
+				<label for="license_name"></label> <label for="license-type">면허종류</label>
+				<select id="lic_info" name="lic_info" disabled>
+					<option value="면허종류선택">면허종류를 선택해주세요</option>
+					<!-- 면허 종류 -->
+					<option value="2종보통" 
+						<c:if test="${driver.lic_info eq '2종보통'}">selected</c:if>>2종보통</option>
+					<option value="1종보통" 
+						<c:if test="${driver.lic_info eq '1종보통'}">selected</c:if>>1종보통</option>
+					<option value="1종특수 - 구난차" 
+						<c:if test="${driver.lic_info eq '1종특수 - 구난차'}">selected</c:if>>1종특수
+						- 구난차</option>
+					<option value="1종특수 - 대형견인차(트레일러)" 
+						<c:if test="${driver.lic_info eq '1종특수 - 대형견인차(트레일러)'}">selected</c:if>>1종특수
+						- 대형견인차(트레일러)</option>
+					<option value="1종특수 - 소형견인차" 
+						<c:if test="${driver.lic_info eq '1종특수 - 소형견인차'}">selected</c:if>>1종특수
+						- 소형견인차</option>
+					<option value="국제면허" 
+						<c:if test="${driver.lic_info eq '국제면허'}">selected</c:if>>국제면허</option>
+				</select> 
+				<label for="lic_num">면허번호</label> 
+				<input type="text" id="lic_num" name="lic_num" 
+					placeholder="면허번호를 입력해주세요" value="${driver.lic_num}"
+					onblur="checkLicense()" maxlength="12" required readonly> 
+					<a id="checkLicenseResult"></a><br> 
+					
+				<label for="lic_issue_date">발급일자</label>
+				<input type="text" id="lic_issue_date" name="lic_issue_date"
+					placeholder="예) 20211001" value="${driver.lic_issue_date}"
+					onblur="checkIssueDate()" maxlength="8" required readonly> <a
+					id="checkIssueDateResult"></a><br> 
+					
+				<label for="lic_expiration_date">만료일자</label> 
+				<input type="text" id="lic_expiration_date" name="lic_expiration_date"
+					placeholder="예) 20251231" value="${driver.lic_expiration_date}"
+					onblur="checkExpDate()" maxlength="8" required readonly> <a
+					id="checkExpDateResult"></a><br>
+					
+				<div class="consent_list">
+					<div class="consent_details">
+						<input type="checkbox" id="consent_all" name="consent"
+							onclick="check_all(this.checked)"> <label
+							for="consent_all">전체동의</label>
+					</div>
+					<div class="consent_details1">
+						<input type="checkbox" id="consent_person" name="consent" required>
+						<span><label for="consent_person">개인정보 수집 및 이용
+								동의(필수)</label> <a href="#" class="agree1">보기</a></span>
+					</div>
+					<div class="consent_details2">
+						<input type="checkbox" id="consentCollect" name="consent" required>
+						<label for="consentCollect">고유식별정보 수집 및 이용 동의(필수)</label> <span><a
+							href="#" class="agree2">보기</a></span>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div align="center" class="LicenseInfoInsert">
+				<input type="button" class="licenseInputBtn" value="닫기">
+					
+			</div>
+		</form>
+	</div>
+	<!----------------------------- 운전면허정보 변경 팝업 끝 ----------------------------->
     
 <!-- ==================================================================================== -->
     <!----------------------------- 운전면허정보 변경 팝업 >>  ----------------------------->
@@ -999,9 +1033,6 @@ $(document).ready(function() {
     </div>
     
     <!----------------------------- 회원탈퇴 팝업 끝 ----------------------------->
-	<footer>
-		<!-- 회사 소개 영역 -->
-		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
-	</footer>
+	
 </body>
 </html>

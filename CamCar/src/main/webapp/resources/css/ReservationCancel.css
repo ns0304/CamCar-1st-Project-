@@ -83,3 +83,61 @@ h2 {
     padding: 10px;
     text-align: left;
 }
+
+
+
+
+
+
+
+
+/*------------sideContent.jsp---------------------*/
+#sideContent {
+/* 	position: -webkit -sticky; IE버전 낮을경우 이 항목 추가 입력 */
+	position: sticky;
+	top: 130px;
+	background-color: #fff;
+	padding: 20px;
+	margin-left: 15px;
+	width: 230px; height: 800px;
+	z-index: 10;
+/* 	float: right; */
+	line-height: 20px;
+/* 	overflow:scroll; */
+}
+
+/* #sideContent>#carImage { */
+/* 	display:inline-block; */
+/* } */
+
+#sideContent img {
+	height: 155px;
+	object-fit:cover;
+	border: 1px solid lightgray;	
+}
+
+#sideContent .right{
+	float: right;
+}
+
+#sideContent .left{
+	float: left;
+}
+
+#sideContent .sideDiv{
+	margin-top: 30px;
+}
+
+#sideContent button{
+	display: block;
+	
+}
+
+#btnArea {
+	text-align: center;
+}
+
+#nextBtn {
+	height: 40px;
+	width: 60px;
+}

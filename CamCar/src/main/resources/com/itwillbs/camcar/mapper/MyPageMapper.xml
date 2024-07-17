@@ -5,6 +5,27 @@
     
 <mapper namespace="com.itwillbs.camcar.mapper.MyPageMapper">
 	
+<!-- 마이페이지 예약정보 조회 -->
+	<select id="selectReserveList" resultType="hashmap">
+		SELECT p.res_idx, r.res_rental_date, r.res_return_date, r.car_idx, b.brc_name, m.mem_id, p.pay_status
+		FROM res_info r JOIN brc_info b
+		ON r.brc_rent_name = b.brc_name
+		JOIN pay_info p
+		ON p.res_idx = r.res_idx
+		JOIN car_info c
+		ON r.car_idx = c.car_idx
+		JOIN member_info m
+        ON m.mem_idx = r.mem_idx
+		WHERE m.mem_id = #{id}
+		
+	</select>
+	
+	
+	
+	
+	
+	
+	
 <!-- 	나의 1:1문의 게시물 목록 조회 -->
 	<select id="selectQnaList" resultType="qna">
 		SELECT *
@@ -131,10 +152,13 @@
 		UPDATE member_info
 		SET 
 			mem_post_code = #{mem_post_code}
-			mem_add1 = #{mem_add1}
-			mem_add2 = #{mem_add2}
+			,mem_add1 = #{mem_add1}
+			,mem_add2 = #{mem_add2}
 		WHERE 
 			mem_tel = #{mem_tel}
+<!-- 			1=1 -->
 	</update>
+	
+
 	
 </mapper>

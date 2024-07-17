@@ -71,5 +71,25 @@ public class MyPageService {
 	public int modifyMemAdd(Map<String, String> map) {
 		return mapper.updateMemAdd(map);
 	}
+
+	//마이페이지 예약내역 조회
+	public List<Map<String, String>> getReserveList(String id) {
+		// TODO Auto-generated method stub
+		return mapper.selectReserveList(id);
+	}
+
+//	// 운전면허 정보 조회 요청
+//	public DriverVO getDriver(DriverVO driver) {
+//		return mapper.selectMemLicense(driver);
+//	}
+
+	
+
+
+//	public DriverVO getDriver(DriverVO driver, String id) {
+//		return mapper.selectMemLicense(driver, id);
+//	}
+
+
 	
 }

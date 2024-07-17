@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.camcar.service.MyPageService;
+import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.DriverVO;
 import com.itwillbs.camcar.vo.MemberVO;
 import com.itwillbs.camcar.vo.PageInfo;
+import com.itwillbs.camcar.vo.PayVO;
 import com.itwillbs.camcar.vo.QnaVO;
 
 @Controller
@@ -26,48 +28,14 @@ public class MyPageController {
 	@Autowired
 	private MyPageService service;
 	
-	// "MemberInfo" 서블릿 주소 매핑 - GET
-	// => mypage.jsp 페이지 포워딩
-//	@GetMapping("MemberInfo")
-//	public String mypage() {
-//		return "mypage/mypage";
-//	}
-	
-	
-//	// "service" 서블릿 주소 매핑 - GET
-//	// => mypage.jsp 페이지 포워딩
-//	@GetMapping("Service")
-//	public String myPage() {
-//		return "mypage/mypage";
-//	}
-	
-	
-	
-	// "myInfo" 서블릿 주소 매핑 - GET
-	// => myinfo.jsp 페이지 포워딩
-//	@GetMapping("myInfo")
-//	public String myInfo() {
-//		return "mypage/myinfo";
-//	}
-	
-	// "changeAddress" 서블릿 주소 매핑 - GET
-		// => address_info.jsp 페이지 포워딩
-//	@GetMapping("changeAddress")
-//	public String changeAddress() {
-//		return "mypage/address_info";
-//	}
-	
-	// "changeLicense" 서블릿 주소 매핑 - GET
-		// => license_info.jsp 페이지 포워딩
-//	@GetMapping("changeLicense")
-//	public String changeLicense() {
-//		return "mypage/license_info";
-//	}
-	
 	// [ 마이페이지 ]
 		// "MemberInfo" 서블릿 주소 매핑 - GET
 	@GetMapping("MemberInfo")
-	public String memberInfo(MemberVO member, HttpSession session, Model model) {
+	public String memberInfo(MemberVO member, HttpSession session, Model model,
+			@RequestParam Map<String, String> map, CarModelVO carModel, PayVO payInfo){
+			 System.out.println("지점 : " + map.get("brc_rent_name"));
+			 System.out.println("대여일시 : " + map.get("res_rental_date"));
+			 System.out.println("반납일시 : " + map.get("res_return_date"));
 		// 세션 아이디 없을 경우 "result/fail" 페이지 포워딩 처리
 				// => "msg" 속성값 : "로그인 필수!"  
 				//    "targetURL" 속성값 : "MemberLogin"(로그인 페이지)
@@ -77,22 +45,36 @@ public class MyPageController {
 			model.addAttribute("targetURL", "MemberLogin");
 			return"result/fail";
 		}
+		System.out.println("id : " + id);
 		
+		//마이페이지 예약내역 조회
+		List<Map<String, String>> ReserveList= service.getReserveList(id);
+		System.out.println("ReserveList : " + ReserveList);
+		
+		MemberVO memberList = service.getMember(member);
+		System.out.println("memberlist 정보 : " + memberList);
 ////		member = service.getMember(member);
 //		MemberVO dbMember = service.getMember(member);
 //		member.setMem_id(id);
 //		// Model 객체에 MemberVO 객체 저장 후 member/member_info.jsp 페이지 포워딩
 //				model.addAttribute("member", member);
-		
-		
+		model.addAttribute("ReserveList", ReserveList);
+		model.addAttribute("memberList", memberList);
 		return "mypage/mypage";
 	}
 	
+//-------------------------------------------------------------------------------------	
+	
+	// [마이페이지 - 예약내역 조회  ]
 	
 	
 	
 	
 	
+	
+	
+	
+//--------------------------------------------------------------------------------------	
 	
 	// [ 나의 1:1문의 게시글 목록]
 	@GetMapping("MyQuestionList")
@@ -271,21 +253,6 @@ public class MyPageController {
 //		}
 		System.out.println("map222 : " + map); // passwd 항목 암호화 결과 확인
 		
-//		if(!map.get("mem_post_code").equals("")) {
-//			
-//			map.put("mem_post_code", map.get("mem_post_code"));
-//		}
-//		
-//		if(!map.get("mem_add1").equals("")) {
-//			
-//			map.put("mem_add1", map.get("mem_add1"));
-//		}
-//		
-//		if(!map.get("mem_add2").equals("")) {
-//			
-//			map.put("mem_add2", map.get("mem_add2"));
-//		}
-		
 		// MemberService - modifyMemPasswd() 메서드 호출하여 비밀번호 변경 요청
 		int updateCount1 = service.modifyMemPasswd(map);
 		// MemberService - modifyMemAdd() 메서드 호출하여 주소 변경 요청
@@ -305,7 +272,27 @@ public class MyPageController {
 		
 	}
 	
-	
+	// [내 정보관리 주소 수정]
+	@PostMapping("AddModify")
+	public String addModify(@RequestParam Map<String,String> map, MemberVO member, Model model) {
+		//MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
+		member= service.getMember(member);
+		System.out.println("AddModify(member) : " + member);
+		
+		// MemberService - modifyMemAdd() 메서드 호출하여 주소 변경 요청
+		
+		int updateAddCount = service.modifyMemAdd(map);
+		// 수정 요청 결과 판별
+		// 성공 시"AddModify" 서블릿 주소 전달, 메세지 :  회원정보 수정 성공success.jsp)
+		if(updateAddCount > 0) {
+			model.addAttribute("msg", "회원 주소정보 수정 성공!");
+			model.addAttribute("targetURL", "myInfo");
+			return "result/success";
+		} else {
+			model.addAttribute("msg", "회원 주소정보 수정 실패!");
+			return "result/fail";
+		}
+	}
 	
 	
 	// [ 회원 탈퇴 ]

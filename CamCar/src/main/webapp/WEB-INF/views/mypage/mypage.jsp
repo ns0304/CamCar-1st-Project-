@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,8 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/res_confirm.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/mypage.css" rel="stylesheet" type="text/css">
+<%-- jquery 라이브러리 포함시키기 --%>
+<script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 </head>
 <body>
 	<header>
@@ -17,61 +22,79 @@
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
 	<div class="OuterBox" align="center">
-	<main>
-		<section>
-		<div align="center" class="myPageBox">
-			<div class="header">
-				<h1>마이페이지</h1>
-				<button class="myInfoManagement" id="myInfo" onclick="location.href='myInfo'">내 정보 관리</button>
-			</div>
-			<section class="resSection" >
-				<h2>예약내역</h2>
-				<div class="reservationList">
-					<div class="resCarImage">
-						<img src="${pageContext.request.servletContext.contextPath}/resources/images/1그랜저.png" width="300px" height="300px" alt="Car Image">
+		<main>
+			<section>
+				<div align="center" class="myPageBox">
+					<div class="header">
+						<h1>마이페이지</h1>
+						
+						<!-- join절 써서 예약리스트 가져오기 변수명 reserve로 지정 -->
+<%-- 						<c:forEach items="${ReserveList}" var="reserve"> --%>
+						
 					</div>
-					<div class="reservationInfo">
-						<h3>쉐보레 스파크 1.0 가솔린</h3>
-						 <button class="detailsBtn" onclick="location.href='ReservationDetail'">예약 상세 보기</button>
-						 <p>예약 번호: AAAD-75486451</p>
-                         <p>부산</p>
-                         <p>08.12(금) 15:00 ~ 08.13(토) 15:00</p>
-                         <div class="pageDots">
-                         	<span class="dot"></span>
-                         	<span class="dot"></span>
-                         	<span class="dot"></span>
-                         	<span class="dot"></span>
-                         </div>
-					 </div>
-					 <button class="cancelBtn">예약완료</button>
-				 </div>
+					<button class="myInfoManagement" id="myInfo"
+								onclick="location.href='myInfo'">내 정보 관리</button>
+					<section class="resSection">
+						<input type="hidden" value="${ReserveList[0].mem_id}" name="mem_id" id="mem_id"readonly>
+						<h2>예약내역</h2>
+							<c:if test="${sessionScope.sId eq ReserveList[0].mem_id}">
+								<div class="reservationList">
+									<div class="carList_top">
+										<div class="resCarImage">
+											<!-- 로고사진 -->
+											<img
+												src="${pageContext.request.servletContext.contextPath}/resources/images/1그랜저.png"
+												width="300px" height="300px" alt="Car Image">
+<%-- 												<img src="${pageContext.request.servletContext.contextPath}/resources/images/upload/${reserve.car_logo_image}"><br> --%>
+											<a>${ReserveList[0].car_company}</a>
+											<h3>${ReserveList[0].car_model}</h3>
+										</div>
+										<div class="carImage">
+											<img
+												src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
+										</div>
+									</div>
+									<div class="reservationInfo">
+										<h3>${reserve.car_model}</h3>
+										<button class="detailsBtn"
+											onclick="location.href='ReservationDetail'">예약 상세 보기</button>
+										<p>예약 번호: ${ReserveList[0].res_idx}</p>
+										<p>지점 : ${ReserveList[0].brc_name}</p>
+										<p>
+										<fmt:parseDate value="${ReserveList[0].res_rental_date}" pattern="yyyy-MM-dd" var="parseDateTime" type="both"/>
+											<fmt:formatDate value="${parseDateTime}"
+											pattern="yyyy-MM-dd" /> ~ 
+											<fmt:parseDate value="${ReserveList[0].res_return_date}" pattern="yyyy-MM-dd" var="parseDateTime" type="both"/>
+											<fmt:formatDate value="${parseDateTime}"
+											pattern="yyyy-MM-dd" />
+										</p>
+									</div>
+									<button class="payStatus">${ReserveList[0].pay_status}</button>
+								</div>
+ 							</c:if>
+					</section>
+					<section class="questionSection">
+						<div class="questionList">
+							<div class="questionContent">
+								<h2>1:1 문의내역</h2>
+								<p>정확한 답변으로 안내해 드릴게요</p>
+							</div>
+						</div>
+						<button class="moreViewBtn"
+							onclick="location.href='MyQuestionList'">이동</button>
+					</section>
+						
+				</div>
 			</section>
-			<section class="questionSection">
-			 	<div class="questionList">
-			 		<div class="questionContent">
-					 	<h2>1:1 문의내역</h2>
-			 			<p>정확한 답변으로 안내해 드릴게요</p>
-			 		</div>
-                </div>
-                <button class="moreViewBtn" onclick="location.href='MyQuestionList'">이동</button>
-            </section>
-	        
-        </div>
-        </section>
-	    <aside id="customer_container" >
+			<aside id="customer_container">
 				<jsp:include page="/WEB-INF/views/inc/customer_center.jsp"></jsp:include>
-		</aside>
+			</aside>
+
+		</main>
+	</div>
 		
-    </main>
-    </div>
 		
-		
-    <!-- 스크롤 따라 움직이는 카카오톡 1:1문의 아이콘 -->
-<!--     <div align="right" class="kakaoQna">  -->
-<!--         <table border="1"> -->
-<!--             <tr><td><b>카카오톡<br>1:1문의</b></td></tr>  -->
-<!--         </table> -->
-<!--     </div>    -->
+
     
     
     <!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		

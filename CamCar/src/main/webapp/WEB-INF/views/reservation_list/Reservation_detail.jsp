@@ -31,20 +31,19 @@
 						<tr>
 							<th>
 								<div class="" align="left">
-									<p>홍길동(이름)${mem.mem_name}</p>
-									<p><span>예약번호</span>12314124512"${pay_info.res_idx}"</p>	
-									<p><span>지점</span>부산 혹은 서울"${brc.brc_name}"</p>	
-									<p><span>일시</span>"${res.res_rental_date}" ~ "${res.res_return_date}"</p>	
-				    					<a href="" class="res_done">예약완료</a>
-									
+									<p>홍길동(이름)${member.mem_name}</p>
+									<p><span>예약번호</span>${resInfo.res_idx}</p>	
+									<p><span>지점</span>${resInfo.brc_rent_name}</p>	
+									<p><span>일시</span>${resInfo.res_rental_date} ~ ${resinfo.res_return_date}</p>	
+				    					<a href="" class="res_done">${payInfo.pay_status} 예약상태</a>
 								</div>
 								<hr>
 								<div align="left">
 									<div>차량</div>
 									<div>
 										<p>
-											<span>스파크1.0가솔린</span><br>
-											<span>21년식 가솔린</span>
+											<span>${carInfo.car_model}</span><br>
+											<span>${carInfo.car_old}</span>
 										</p>
 									</div>
 								
@@ -53,27 +52,22 @@
 									<div>보험</div>
 									<div>
 										<p>
-											<span>완전자차</span><br>
-											<span>사고 시 고객 부담 금액  </span>
+											<span>${resInfo.car_insurance}</span><br>
 										</p>
 									</div>
-								
 								</div>
-<!-- 								<div> -->
-<!-- 									<p> -->
-<!-- 										예약 번호 &nbsp;&nbsp; <a>dddd-d123445</a><br> -->
-<!-- 										일시 &nbsp;&nbsp; <a>08. 12(금) 15:00 ~ 08.13(화) 15:00</a><br> -->
-<!-- 										&nbsp;&nbsp;&nbsp;&nbsp;<a>부산</a><br> -->
-<!-- 										차량 &nbsp;&nbsp; <a>스파크1.0가솔린</a><br> -->
-<!-- 										 &nbsp;&nbsp;&nbsp;&nbsp; <a>2021년식 가솔린</a><br> -->
-<!-- 										보험 &nbsp;&nbsp; <a>완전자차</a><br> -->
-<!-- 										 &nbsp;&nbsp;&nbsp;&nbsp;  -->
-<!-- 										 &nbsp;&nbsp; <a>사고 시 고객 부담 금액</a><br> -->
-<!-- 									</p> -->
-<!-- 								</div> -->
 							</th>
 						</tr>
 					</table>
+					<div align="left">
+						<h4>결제내역</h4>
+						<table border="1" id="pay_list">
+							<tr>
+								<th><a>신용카드</a></th>
+								<td><a href="">${resInfo.res_fee}원</a></td>
+							</tr>
+						</table>
+					</div>
 				</div>
 				<br>
 				<div align="center" class="resCancelBtn">
@@ -83,33 +77,6 @@
 	<!------------------------------- 	상세내역 끝 ---------------------------------------->
 	
 	<!------------------------------- 	결제내역 ------------------------------------------->
-					<div align="left">
-					<h4>결제내역</h4>
-						<table border="1" id="pay_list">
-							<tr>
-								<th>
-									<a>신용카드</a>&nbsp;<a>06.16(일) HH : MM</a>
-								</th>
-								<td><a href="#">@@,@@@원</a></td>
-							</tr>
-							<tr>
-								<th>
-									<a>표준가</a>
-								</th>
-								<td>
-									<a href="">@@,@@@원</a>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<a>보험료</a>
-								</th>
-								<td>
-									<a href="">@@,@@@원</a>
-								</td>
-							</tr>
-						</table>
-					</div>
 				
 			</div>
 		</section>
@@ -119,11 +86,11 @@
 	</main>
 	<!---------------------------------- 메인 끝 ----------------------------->
 	
-	<!-- 사이드 카카오톡 1:1문의 -->
-	<div id="kakaotalk">
-		<a href="">&#128488;</a>
-	</div>
-	
+	 
+	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
+		<aside class="chatBtn">
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+		</aside>
 	<footer>
 		<!-- 회사 소개 영역 -->
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
