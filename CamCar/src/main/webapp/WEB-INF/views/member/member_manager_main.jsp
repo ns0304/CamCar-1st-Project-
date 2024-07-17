@@ -66,7 +66,7 @@ table th, table td {
 
 	<script type="text/javascript">
 		function correction(mem_id){
-			window.open('MemberInf?mem_id=' + mem_id, '_parent ', 'width=900px,height=900px,left=750, top=200');
+			window.open('MemberInf?mem_id=' + mem_id, '_parent ', 'width=900px,height=700px,left=400, top=200');
 		}
 		
 	</script>
@@ -102,7 +102,6 @@ table th, table td {
 								<th width="50px">생년월일</th>
 								<th width="100px">이메일</th>
 								<th width="80px">전화번호</th>
-								<th width="80px">이용횟수</th>
 								<th width="80px">계정상태</th>
 								<th width="80px">가입일자</th>
 								<th width="80px">탈퇴일정</th>
@@ -127,7 +126,6 @@ table th, table td {
 								</th>
 								<th>${member.mem_email }</th>
 								<th>${member.mem_tel}</th>
-								<th>이용횟수</th>
 								<th>
 									<c:choose>
 									      <c:when test="${member.mem_status eq 1}">

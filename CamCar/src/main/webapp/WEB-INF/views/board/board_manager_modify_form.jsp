@@ -20,6 +20,39 @@
 .img_btn_delete {
 	width: 10px; height: 10px;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+table th, table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+table tr:hover {
+    background-color: #f2f2f2;
+}
+table th, table td:nth-child(3) {
+    white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+}
+table input[type="button"] {
+    padding: 5px 10px;
+    background-color: #00838f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+table input[type="button"]:hover {
+    background-color: #006064;
+}
 </style>
 <script type="text/javascript">
 	function deleteFile(bo_idx, bo_file) {

@@ -98,7 +98,7 @@ public class BoardController {
 			}
 			
 			// 글목록(BoardList) 서블릿 주소 리다이렉트
-			return "redirect:/BoardList";
+			return "redirect:/BoardListManage";
 		} else { 
 			// "글쓰기 실패!" 메세지 출력 및 이전 페이지 돌아가기 처리
 			model.addAttribute("msg", "글쓰기 실패!");
@@ -161,7 +161,7 @@ public class BoardController {
 		
 		return "board/board_list";
 	}
-	
+	//관리자 공지사항 목록
 	@GetMapping("BoardListManage")
 	public String boardmanagerList(
 			@RequestParam(defaultValue = "") String searchType,
@@ -173,7 +173,7 @@ public class BoardController {
 //		System.out.println("페이지번호 : " + pageNum);
 		// --------------------------------------------------------------------
 		// 페이징 처리를 위해 조회 목록 갯수 조절에 사용될 변수 선언
-		int listLimit = 10; // 페이지 당 게시물 수
+		int listLimit = 5; // 페이지 당 게시물 수
 		int startRow = (pageNum - 1) * listLimit; // 조회할 게시물의 행 번호
 		
 		// 페이징 처리를 위한 계산 작업
@@ -196,7 +196,7 @@ public class BoardController {
 		// "해당 페이지는 존재하지 않습니다!" 출력 및 1페이지로 이동하도록 처리
 		if(pageNum < 1 || pageNum > maxPage) {
 			model.addAttribute("msg", "해당 페이지는 존재하지 않습니다!");
-			model.addAttribute("targetURL", "BoardList?pageNum=1");
+			model.addAttribute("targetURL", "BoardListManage?pageNum=1");
 			return "result/fail";
 		}
 		// --------------------------------------------------------------------
@@ -276,7 +276,7 @@ public class BoardController {
 				// 파일 삭제에 사용될 파일명(최대 3개)를 List 또는 배열에 저장하여 처리 코드 중복 제거
 				
 				model.addAttribute("msg", "삭제 성공!");
-				model.addAttribute("targetURL", "BoardList?pageNum=" + pageNum);
+				model.addAttribute("targetURL", "BoardListManage?pageNum=" + pageNum);
 				return "result/success";
 			} else {
 				model.addAttribute("msg", "삭제 실패!");
@@ -343,7 +343,7 @@ public class BoardController {
 			        model.addAttribute("msg", "업로드된 파일이 없습니다.");
 			        return "result/fail";
 			    }else if(mFile1.getOriginalFilename().equals("")) {
-			    	model.addAttribute("msg", "업로드된 파일이 진짜로다가 없습니다.");
+			    	model.addAttribute("msg", "업로드된 파일이 없습니다2.");
 			    	return "result/fail";
 			    }
 			 
