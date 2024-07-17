@@ -48,4 +48,9 @@ public class CustomerService {
 		return bo;
 	}
 
+	// 고객센터 공지사항 3개만 미리보기
+	public List<BoardVO> getBoardList3() {
+		return mapper.selectBoardList3();
+	}
+
 }

@@ -101,4 +101,12 @@
 		SET bo_readcount = bo_readcount + 1
 		WHERE bo_idx = #{bo_idx}
 	</update>
+	
+	<!-- 고객센터 공지사항 3개만 미리보기 -->
+	<select id="selectBoardList3">
+		SELECT *
+		FROM board_notice
+		ORDER BY bo_sysdate ASC
+		LIMIT 3
+	</select>
 </mapper>

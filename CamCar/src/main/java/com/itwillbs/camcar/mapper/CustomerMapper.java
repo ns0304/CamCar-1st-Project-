@@ -32,5 +32,8 @@ public interface CustomerMapper {
 	// 공지사항 게시글 조회수 증가
 	void updateReadcount(BoardVO bo);
 
+	// 고객센터 공지사항 3개만 미리보기
+	List<BoardVO> selectBoardList3();
+
 
 }

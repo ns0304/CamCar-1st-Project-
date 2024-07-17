@@ -73,9 +73,12 @@ public class BoardController {
 		MultipartFile mFile1 = bo.getFile();
 		// MultipartFile 객체의 getOriginalFile() 메서드 호출 시 업로드 한 원본 파일명 리턴
 		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
-		// --------------------------------------------------------------------------------------
 		// [ 파일명 중복 방지 대책 ]
 		String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+		bo.setBo_file("");
+		if(!mFile1.getOriginalFilename().equals("")) {
+			bo.setBo_file(subDir + "/" + fileName1);
+		}
 		
 		// BoardService - registBoard() 메서드 호출하여 게시물 등록 작업 요청
 		// => 파라미터 : BoardVO 객체   리턴타입 : int(insertCount)
@@ -255,6 +258,7 @@ public class BoardController {
 			// 조회 결과 게시물 정보 저장
 			model.addAttribute("bo", bo);
 			
+			
 			return "board/board_manager_modify_form";
 		}
 		
@@ -277,23 +281,64 @@ public class BoardController {
 			subDir = today.format(dtf); // LocalDate - DateTimeFormatter
 			realPath += "/" + subDir;
 			Path path = Paths.get(realPath); // 파라미터로 실제 업로드 경로 전달
+			System.out.println("path가 나오는지 확인해봅시다 : " + path);
 			// ------------------------------------------------------------------
-			// BoardService - modifyBoard() 메서드 호출하여 글 수정 작업 요청
-			// => 파라미터 : BoardVO 객체   리턴타입 : int(updateCount)
+			Files.createDirectories(path);
+			//파일명 중복 방지
+			MultipartFile mFile1 = bo.getFile();
+			 if (mFile1 == null) {
+			        model.addAttribute("msg", "업로드된 파일이 없습니다.");
+			        return "result/fail";
+			    }else if(mFile1.getOriginalFilename().equals("")) {
+			    	model.addAttribute("msg", "업로드된 파일이 진짜로다가 없습니다.");
+			    	return "result/fail";
+			    }
+			 
+			String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+			bo.setBo_file("");
+			System.out.println("과연 이것도 나올가요? : " + mFile1.getOriginalFilename());
+			if(!mFile1.getOriginalFilename().equals("")) {
+				bo.setBo_file(subDir + "/" + fileName1);
+			}
+			
+			System.out.println("사진 수정이 왜 안될까요? : " + bo);
+			
+			
 			int updateCount = service.modifyBoard(bo);
 			
 			// DB 작업 요청 처리 결과 판별하여
 			// 성공 시 실제 파일 업로드 처리 후 글 상세정보 조회 페이지 리다이렉트
 			// 실패 시 "글 수정 실패!" 출력 후 이전페이지 돌아가기 처리
-			if(updateCount > 0) {
+			 if (updateCount > 0) {
+			        try {
+			            // 수정된 부분: 파일 업로드 과정에서 발생할 수 있는 예외 처리
+			            mFile1.transferTo(new File(realPath, fileName1));
+			        } catch (IllegalStateException | IOException e) {
+			            e.printStackTrace();
+			            model.addAttribute("msg", "파일 업로드 중 오류 발생!");
+			            return "result/fail";
+			        }
+			        return "redirect:/BoardDetail?bo_idx=" + bo.getBo_idx() + "&pageNum=" + pageNum;
+			    } else {
+			        model.addAttribute("msg", "글 수정 실패!");
+			        return "result/fail";
+			    }
 			
-				// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
-				return "redirect:/BoardDetail?bo_idx=" + bo.getBo_idx() + "&pageNum=" + pageNum;
-			} else {
-				model.addAttribute("msg", "글 수정 실패!");
-				return "result/fail";
+		}
+		//공지사항 수정 파일 삭제
+		@GetMapping("BoardDeleteFile")
+		public String boardDeleteFile(@RequestParam Map<String, String> map, HttpSession session) throws Exception {
+			System.out.println("진성민의 마지막 어택 : " + map);
+			int deleteCount = service.removeBoFile(map);
+			if(deleteCount>0) {
+				String realPath = session.getServletContext().getRealPath(uploadPath);
+				if(!map.get("bo_file").equals("")) {
+					Path path = Paths.get(realPath, map.get("bo_file"));
+					Files.deleteIfExists(path);
+				}
 			}
 			
+			return"redirect:/BoardModify?bo_idx=" + map.get("bo_idx");
 		}
 	
 	

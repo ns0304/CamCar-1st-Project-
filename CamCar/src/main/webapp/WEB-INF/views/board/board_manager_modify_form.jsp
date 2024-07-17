@@ -16,6 +16,19 @@
 	rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<style type="text/css">
+.img_btn_delete {
+	width: 10px; height: 10px;
+}
+</style>
+<script type="text/javascript">
+	function deleteFile(bo_idx, bo_file) {
+		console.log(bo_idx + ", " + bo_file);
+		if(confirm("파일을 삭제하시겠습니까?")){
+			location.href = "BoardDeleteFile?bo_idx=" + bo_idx + "&bo_file=" + bo_file;
+		}
+	}	
+</script>
 </head>
 <body>
 	<header>
@@ -29,7 +42,7 @@
 	<!-- 공지글 수정 -->
 	<article id="modifyForm">
 		<h1>공지사항 글 수정</h1>
-		<form action="BoardModify" name="modifyForm" method="post" >
+		<form action="BoardModify" name="modifyForm" method="post" enctype="multipart/form-data">
 			<%-- 입력받지 않은 글번호, 페이지번호는 input 태그의 hidden 속성으로 파라미터에 포함시키기 --%>
 			<input type="hidden" name="bo_idx" value="${bo.bo_idx}">
 			<input type="hidden" name="pageNum" value="${param.pageNum}">
@@ -44,8 +57,19 @@
 				<tr>
 					<td class="td_left"><label for="bo_file">첨부 파일</label></td>
 					<td class="td_right">
-						<input type="file" id="bo_file" name="bo_file" value="${bo.bo_file}" required />
+						<c:choose>
+							<c:when test="${not empty bo.bo_file}">
+								${bo.bo_file}
+								<a href="javascript:deleteFile(${bo.bo_idx},'${bo.bo_file}')">
+									<img src="${pageContext.request.contextPath}/resources/img/icon/delete-icon.png" class="img_btn_delete" title="파일삭제">
+								</a>
+							</c:when>
+							<c:otherwise>
+								<input type="file" id="bo_file" name="file" value="${bo.bo_file}" required />
+							</c:otherwise>
+						</c:choose>
 					</td>
+					
 				</tr>
 				<tr>
 					<td class="td_left"><label for="bo_content">내용</label></td>

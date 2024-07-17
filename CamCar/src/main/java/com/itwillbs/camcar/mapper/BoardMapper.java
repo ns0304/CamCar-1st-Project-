@@ -32,6 +32,8 @@ public interface BoardMapper {
 	int deleteBoard(int bo_idx);
 	//공지사항 수정
 	int updateBoard(BoardVO bo);
+	//공지사항 파일 삭제
+	int deleteBoFile(Map<String, String> map);
 
 
 

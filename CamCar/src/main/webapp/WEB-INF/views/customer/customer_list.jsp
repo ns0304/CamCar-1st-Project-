@@ -69,45 +69,18 @@ table th:not(#table01 th), table td:not(#table01 td) {
 			<section id="listForm">
 				<table border="1">
 				<tr id="tr_top">
-					<td width="40px">번호</td>
 					<td width="40px">제목</td>
-					<td width="50px">작성자</td>
-					<td width="50px">조회수</td>
 					<td width="40px">날짜</td>
 				</tr>
 				<%-- ================================================ --%>
-				<%-- 페이지번호(pageNum 파라미터) 가져와서 저장(없을 경우 기본값 1로 설정) --%>
-				<c:set var="pageNum" value="1" />
-				<%-- pageNum 파라미터 존재할 경우(= 비어있지 않음) 판별 --%>
-				<c:if test="${not empty param.pageNum}">
-					<%-- pageNum 변수에 pageNum 파라미터값 저장 --%>
-					<c:set var="pageNum" value="${param.pageNum}" />
-				</c:if>
-				<%-- ================================================ --%>
-				<%-- JSTL 과 EL 활용하여 글목록 표시 작업 반복(boardList 객체 활용) --%>
-				<c:forEach var="board" items="${boardList}">
+				<c:forEach var="bo" items="${boardList3}">
 					<%-- boardList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 					<tr>
-						<td>${board.board_num}</td>
-						<td id="subject">
-							<%-- ========= 답글 관련 처리 ======== --%>
-							<%-- board_re_lev 값이 0 보다 크면 답글이므로 들여쓰기 후 이미지(re.gif) 표시 --%>
-							<%-- ex) lev = 1 일 때 2칸, lev = 2 일 때 4칸 들여쓰기 --%>
-							<c:if test="${board.board_re_lev > 0}">
-								<c:forEach begin="1" end="${board.board_re_lev}">
-									&nbsp;&nbsp;
-								</c:forEach>
-								<img src="${pageContext.request.contextPath}/resources/images/re.gif">
-							</c:if>
-							<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail.bo) --%>
-							<%-- 파라미터 : 글번호(board_num), 페이지번호(pageNum) --%>
-							<a href="BoardDetail?board_num=${board.board_num}&pageNum=${pageNum}">${board.board_subject}</a>
-						</td>
-						<td>${board.board_name}</td>
+						<td id="subject" align="center">
+							<a href="boardDetail?bo_idx=${bo.bo_idx}&pageNum=${pageNum}">${bo.bo_subject}</td>
 						<td>
-							<fmt:formatDate value="${board.board_date}" pattern="yy-MM-dd HH:mm" />
+							<fmt:formatDate value="${bo.bo_sysdate}" pattern="yy-MM-dd HH:mm" />
 						</td>
-						<td>${board.board_readcount}</td>
 					</tr>
 				</c:forEach>
 			</table>

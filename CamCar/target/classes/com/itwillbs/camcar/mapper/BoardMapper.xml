@@ -115,6 +115,7 @@
 		SET
 			bo_subject = #{bo_subject}
 			, bo_content = #{bo_content}
+			, bo_file = #{bo_file}
 		WHERE
 			bo_idx = #{bo_idx}	
 	</update>
@@ -131,7 +132,11 @@
 		SET bo_readcount = bo_readcount + 1
 		WHERE bo_idx = #{bo_idx}
 	</update>
-	
+	<delete id="deleteBoFile">
+		UPDATE board_notice
+		SET bo_file = CASE WHEN bo_file = #{bo_file} THEN '' ELSE bo_file END
+		WHERE bo_idx = #{bo_idx}
+	</delete>
 	
 	
 </mapper>

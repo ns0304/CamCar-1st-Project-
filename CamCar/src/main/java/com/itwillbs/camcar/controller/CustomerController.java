@@ -25,7 +25,14 @@ public class CustomerController {
 	// 고객센터 페이지
 	// http://localhost:8081/camcar/Customer
 	@GetMapping("Customer")
-	public String customer() {
+	public String customer(Model model) {
+		
+		List<BoardVO> boardList3 = service.getBoardList3();
+		System.out.println(boardList3);
+		// --------------------------------------------------------------------
+		// 게시물 목록과 페이징 정보를 Model 객체에 저장
+		model.addAttribute("boardList3", boardList3);
+		
 		return "customer/customer_list";
 	}
 	

@@ -57,6 +57,11 @@ public class BoardService {
 	public int modifyBoard(BoardVO bo) {
 		return mapper.updateBoard(bo);
 	}
+		
+	//공지사항 파일 삭제
+	public int removeBoFile(Map<String, String> map) {
+		return mapper.deleteBoFile(map);
+	}
 	
 
 
