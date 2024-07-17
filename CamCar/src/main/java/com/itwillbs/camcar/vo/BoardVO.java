@@ -37,7 +37,6 @@ public class BoardVO {
 	private String bo_file;
 	private Timestamp bo_sysdate;
 	private int bo_readcount;
-	
 	private MultipartFile file;
 	
 }

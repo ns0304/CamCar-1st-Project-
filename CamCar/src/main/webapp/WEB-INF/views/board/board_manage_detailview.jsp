@@ -56,6 +56,13 @@ table th, table td {
 			<tr><td width="400" align="center">${bo.bo_subject}</td><tr></tr>
 			<tr><th width="280">작성일시</th></tr>
 			<tr><td width="400" align="center"><fmt:formatDate value="${bo.bo_sysdate}" pattern="yyyy-MM-dd HH:mm" /></td></tr>
+			<tr><th width="280">공지사항 첨부사진</th></tr>
+				<tr><td class="write_td_right" colspan="2">${bo.bo_file}
+						<div>
+							<img src="${pageContext.request.contextPath}/resources/upload/${bo.bo_file}"id="img1" class="bo_image" selected>
+						</div>
+					</td>
+				</tr>
 			<tr><th width="280">공지사항 내용</th></tr>
 			<tr><td width="400" align="center" height="480">${bo.bo_content}</td></tr>
 			</table>

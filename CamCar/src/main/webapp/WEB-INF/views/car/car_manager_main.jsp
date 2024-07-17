@@ -52,6 +52,7 @@ table th, table td {
 							<th>모델명</th>
 							<th>연식</th>
 							<th>차량 지점 코드</th>
+							<th>차량 예약 상황</th>
 							<th>상세조회</th>
 						</tr>
 
@@ -67,6 +68,7 @@ table th, table td {
 								<th>${car.car_model}</th>
 								<th>${car.car_old}</th>
 								<th>${car.brc_idx}</th>
+								<th></th>
 								<th><input type="button" value="조회" onclick="correction(${car.car_idx})"></th>
 						</tr>
 					</c:forEach>

@@ -42,6 +42,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="td_left"><label for="bo_file">첨부 파일</label></td>
+					<td class="td_right">
+						<input type="file" id="bo_file" name="bo_file" value="${bo.bo_file}" required />
+					</td>
+				</tr>
+				<tr>
 					<td class="td_left"><label for="bo_content">내용</label></td>
 					<td class="td_right">
 						<textarea id="bo_content" name="bo_content" rows="15" cols="40" required>${bo.bo_content}</textarea>
