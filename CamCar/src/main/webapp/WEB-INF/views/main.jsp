@@ -34,7 +34,7 @@
 				<div class="slideScope">
 					<div class="slideData">
 						<div class="slideBestImg">
-							<img src="${pageContext.request.servletContext.contextPath}/resources/img/best_slide/best_slide1.jpg" id="bestImgSlide">
+							<a href="Service"><img src="${pageContext.request.servletContext.contextPath}/resources/img/service/녹산고향동산.png" id="bestImgSlide"></a>
 						</div>
 						<div class="slideCont">
 							<p class="subTit"></p>
@@ -92,18 +92,18 @@
 				index = 0;
 			}
 			
-		}, 3000);
+		}, 5000);
 		
 		<!-- 차박 베스트 장소 이미지 슬라이드 구현 -->	
-		let bestImgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+		let bestImgArr = ["녹산고향동산.png", "다대포해수욕장.jpg", "동백방파제.png", "문동방파제.jpg", "삼락생태공원.jpg"];
 		let index2 = 1;
 		setInterval(function() {
-			document.querySelector("#bestImgSlide").src = "${pageContext.request.servletContext.contextPath}/resources/img/best_slide/best_slide" + bestImgArr[index];
+			document.querySelector("#bestImgSlide").src = "${pageContext.request.servletContext.contextPath}/resources/img/service/" + bestImgArr[index];
 			index2++;
 			if(index2 == bestImgArr.length) {
 				index2 = 0;
 			}
-		}, 3000);	
+		}, 5000);	
 	
 	</script>
 	

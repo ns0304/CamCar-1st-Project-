@@ -54,6 +54,10 @@
     justify-content: space-between;
     align-items: center;
 }
+/* 필터버튼 */
+.filter {
+width: 60px;
+}
 .filter_result {
 	position: relative;
     font-size: 12px;
@@ -320,17 +324,52 @@ $(document).ready(function() {
     // ******************************************************************
     // 수정 필요 **************
     // 3. "적용하기" 버튼 클릭 시 선택된 필터 적용시키고 레이어 팝업 닫기
+//     $(".apply").click(function() {
+//     	// 선택된 필터 텍스트를 저장할 배열
+//         let filters = {};
+
+//         // 체크된 필터 항목들을 반복하며 배열에 추가
+//         $('input[type="checkbox"]:checked').each(function() {
+//             var name = $(this).attr('name');
+//             if (!filters[name]) {
+//                 filters[name] = [];
+//             }
+//             filters[name].push($(this).val());
+//         });
+
+//         // 선택된 필터가 있는지 확인
+//         if (selectedFilters.length > 0) {
+//             // 필터 목록을 쉼표로 구분된 문자열로 변환
+//             let filterText = selectedFilters.join(', ');
+//             $('.filter_result_wrap').text(filterText);
+//         }
+    	
+//         // 선택된 필터를 다시 서버로 전송
+//         $.ajax({
+//             url: '/CarList',
+//             type: 'POST',
+//             contentType: 'application/json',
+//             data: JSON.stringify(filters),
+//             success: function(data) {
+//                 var carList = $('#carList');
+//                 carList.empty();
+//                 data.forEach(function(car) {
+//                     carList.append('<p>' + car.name + ' - ' + car.type + '</p>');
+//                 });
+//                 $('.layerPopup_wrap').hide();
+//             }
+//         });
+//     });
+    
+    // 수정 필요
+    // "적용하기" 버튼 클릭 시 선택된 필터 적용시키고 레이어 팝업 닫기
     $(".apply").click(function() {
     	// 선택된 필터 텍스트를 저장할 배열
-        let filters = {};
+        let selectedFilters = [];
 
         // 체크된 필터 항목들을 반복하며 배열에 추가
         $('input[type="checkbox"]:checked').each(function() {
-            var name = $(this).attr('name');
-            if (!filters[name]) {
-                filters[name] = [];
-            }
-            filters[name].push($(this).val());
+            selectedFilters.push($(this).val());
         });
 
         // 선택된 필터가 있는지 확인
@@ -340,23 +379,8 @@ $(document).ready(function() {
             $('.filter_result_wrap').text(filterText);
         }
     	
-        // 선택된 필터를 다시 서버로 전송
-        $.ajax({
-            url: '/CarList',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(filters),
-            success: function(data) {
-                var carList = $('#carList');
-                carList.empty();
-                data.forEach(function(car) {
-                    carList.append('<p>' + car.name + ' - ' + car.type + '</p>');
-                });
-                $('.layerPopup_wrap').hide();
-            }
-        });
-        
     	
+        $(".layerPopup_wrap").hide();
     });
     // ******************************************************************
     
@@ -504,13 +528,13 @@ $(document).ready(function() {
 					<br><br>
 				</div>
 				<a><img alt="pin.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/pin.png"> ${param.brc_rent_name}</a>
-				<span style="float: right;"><a href="update_res" id="update_res">수정</a></span>
+<!-- 				<span style="float: right;"><a href="update_res" id="update_res">수정</a></span> -->
 				<hr>
 				<a><img alt="calendar.png" src="${pageContext.request.servletContext.contextPath}/resources/img/icon/calendar.png"> ${param.res_rental_date} ~ ${param.res_return_date}</a>
-				<span style="float: right;"><a href="update_cal" id="update_cal">수정</a></span>
+<!-- 				<span style="float: right;"><a href="update_cal" id="update_cal">수정</a></span> -->
 				<div class="center">
 <!-- 					<input type="reset" id="research" value="재검색"> -->
-					<input type="reset" id="research" value="일정 다시 선택하러 가기">
+					<input type="button" id="research" value="일정 다시 선택하러 가기" onclick="history.back()">
 				</div>
 			</form>
 			<!-- ------- 지점 상세 정보(레이어팝업) -------------------------------------- -->

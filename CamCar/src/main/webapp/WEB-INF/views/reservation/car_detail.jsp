@@ -45,6 +45,7 @@
 	border-radius: 5px;
 	border: none;
 	background-color: #59b9a9;
+	color: white;
 }
 #reservation:hover {
 	box-shadow: 0 5px 15px rgba(0,0,0,0.3);

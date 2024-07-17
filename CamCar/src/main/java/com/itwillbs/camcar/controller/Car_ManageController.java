@@ -146,7 +146,7 @@ public class Car_ManageController {
 			insertCount1 = service.registCarModel(carModel);
 		}
 		int insertCount2 = service.registCar(car);
-		if(insertCount1 >= 0 || insertCount2 > 0) { // 성공
+		if(insertCount1 >= 0 && insertCount2 > 0) { // 성공
 			try {
 				if(selectCount == 0) {
 					if(!mModelImg.getOriginalFilename().equals("")) {
