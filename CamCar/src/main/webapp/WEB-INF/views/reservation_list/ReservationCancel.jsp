@@ -10,7 +10,43 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/res_confirm.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/ReservationCancel.css" rel="stylesheet" type="text/css">
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	
+// 	$(document).ready(function() {
+// 		// 취소 수수료 계산하는 함수
+// 		function calculateFee() {
+// 			let now = new Date();
+// 			let rentalDate = new Date(${ReserveCancel[0].res_rental_date});
+// 			let nowTime = now.getTime(); // 오늘 날짜를 (1970년 기준)밀리초 단위로 리턴
+// 			let rentalTime = rentalDate.getTime();
+			
+// 			// 밀리초 단위 값을 시간 단위로 변환하여 두 날짜간의 차이 계산
+// 			let differenceTime = (nowTime - rentalTime) / 1000 / 60 / 60 ;
+			
+// 			// 소수점(실수 부분) 절삭(반올림)을 위해 Math객체의 round() 메서드 활용
+// 			differenceTime = Math.round(differenceTime);
+// 			console.log("오늘 날짜 - 대여일시 : " + differenceTime);
+			
+// 			if(differenceTime >= 72) { // 대여시작 72시간 이전 취소할 경우
+// 				$("#cancelFee").text("0");
+// 				return;
+// 			} else if(differenceTime < 72 && differenceTime > 0) {	// 대여시작 72시간 이내 취소할 경우
+// 				let cancelFee = ${ReserveCancel[0].pay_total} * 0.2;
+// 				$("#cancelFee").text(cancelFee);
+// 				return;
+// 			} else {
+// 				let cancelFee = ${ReserveCancel[0].pay_total} * 0.3;
+// 				$("#cancelFee").text(cancelFee);
+// 			}
+			
+// 		}
+		
+// 		calculateFee();
+// 	});
+	
+	
+	
+</script>
 </head>
 <body>
 <header>
@@ -25,15 +61,30 @@
         <h2>상세내역</h2>
         <div class="details">
             <div class="section">
-                <p><strong>홍길동</strong></p>
-                <p>예약 번호 : ${resInfo.res_idx}</p>
-                <p>일시 : ${resInfo.res_rental_date} ~ ${resinfo.res_return_date}</p>
-                <p>지점 : ${resInfo.brc_rent_name}</p>
-                <p>차량: ${carInfo.car_model}</p>
-                <p>${carInfo.car_old}</p>
-                <p>보험: ${resInfo.car_insurance}</p>
+            	<div>
+	                <p>예약 번호 : ${ReserveCancel[0].res_idx}</p>
+	                <p>차량: ${ReserveCancel[0].car_model}</p>
+	                <p>
+	                <script>
+						// 날짜 문자열을 불러옴.
+						var rentalDate = "${ReserveCancel[0].res_rental_date}";
+						var returnDate = "${ReserveCancel[0].res_return_date}";
+						
+						// T 문자를 공백으로 대체.
+						rentalDate = rentalDate.replace('T',' ');
+						returnDate = returnDate.replace('T',' ');
+						
+						// 결과를 출력.
+						document.write(rentalDate + " ~ " + returnDate);
+						console.log("rentalDate + ' ~ ' + returnDate");
+					</script> 
+	                </p>
+	                <p>보험: ${ReserveCancel[0].car_insurance}</p>
+                </div>
+	            <div align="right">
+	            	<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveCancel[0].car_model_image}" width="200px" >
+	            </div>
             </div>
-            <button class="complete-btn" value="${payInfo.pay_status}"></button>
         </div>
 
         <h2>필수 약관에 동의해 주세요</h2>
@@ -64,11 +115,12 @@
             <table>
                 <tr>
                     <td>이미 결제한 금액</td>
-                    <td>${resInfo.res_fee}원</td>
+                    <td>${ReserveCancel[0].pay_total}원</td>
                 </tr>
                 <tr>
                     <td>취소 수수료</td>
-                    <td>${resInfo.res_fee}원</td>
+                    	<p id="cancelFee">${cancelFee}원</p>
+<%--                     <td>${ReserveCancel[0].cancel_fee}원</td> --%>
                 </tr>
                 <tr>
                     <td>환불 예정 금액</td>
@@ -76,68 +128,57 @@
                 </tr>
             </table>
         </div>
-		<input type="button" class="calcelNo-btn" value="취소 안할래요" onclick="location.href='./'">
-        <button class="cancel-btn">예약취소</button>
+        <div align="center">
+<!-- 		<input type="button" class="calcelNo-btn" value="취소 안할래요" onclick="location.href='./'"> -->
+        	<button class="cancel-btn" style="background-color: #ccc;" onclick="location.href='./'">취소 안할래요</button>
+        	<button class="cancel-btn">예약취소</button>
+        </div>
     </div>
     </section>
     
-<!-- 고객센터로 이동 오른쪽 사이드 영역 -->
 	<aside>
 		   <!-- 오른쪽 사이드 영역 -->
 		<div id="sideContent">
 			<form action="ReservationFin" name="reservation" method="post">
-				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+				<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveCancel[0].car_model_image}" width="250px" >	
 					<div class="sideDiv">
-	<!-- 						이름으로 바꿔야 함        -->
-						<a>${sId}님의 여정</a>      
+						<a><b>${ReserveCancel[0].mem_name}</b> 님의 여정</a><br>
+						 <br>    
 						<div class="clear">
 							<a>
-							<c:choose>
-								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
-								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
-							</c:choose>
+								<b>${ReserveCancel[0].brc_name}</b>
 							</a>
-					          <hr>
-							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
-					          <hr>
-							<a>${carDetail.car_model}</a>
+				          	<hr>
+							<a> <b>대여일시 :</b> 
+								<script>
+									// 날짜 문자열을 불러옴.
+									var rentalDate = "${ReserveCancel[0].res_rental_date}";
+									var returnDate = "${ReserveCancel[0].res_return_date}";
+	
+									// T 문자를 공백으로 대체.
+									rentalDate = rentalDate.replace('T', ' ');
+									returnDate = returnDate.replace('T', ' ');
+	
+									// 결과를 출력.
+									document.write(rentalDate);
+									console.log("rentalDate + ' ~ ' + returnDate");
+								</script><br>
+								<b>반납일시 :</b> <script>document.write(returnDate);</script>
+							</a>
+							<hr>
 						</div>
 					</div>
 					<div class="sideDiv">	
-						운전자      
-						<div class="clear">
-							<a>운전자이름</a><br>
-							<hr>							
-							<a>면허종류</a>/<a>생년월일</a>
-						</div>
+						<b><a>
+						${ReserveCancel[0].car_model}<br>
+						${ReserveCancel[0].car_old}
+						</a></b>
+					<hr>							
 					</div>	
-					<div class="sideDiv">	
-						부가상품     
-						<div class="clear">
-							<a>부가상품분류명</a><br>
-							<hr>
-							<a>부가상품명1</a>/<a>세부이름</a><br>
-							<a>부가상품명2</a>/<a>세부이름</a>
-						</div>
-					</div>	
-					<div class="sideDiv">	
-						결제내역<br>
-						표준가<a>000</a>원
-						<hr>
-						보험료<a>000</a>원<br>
-						 - 부가상품명1<a>000</a>원<br>		
-						 - 부가상품명2<a>000</a>원<br>		
-						<hr>
-						부가상품대여료<a>000</a>원
-						<hr>
-						총 결제금액<a>000</a>원
-					</div>	
-						<input type="hidden" name="res_rental_date" value="${param.res_rental_date}">
-						<input type="hidden" name="res_return_date" value="${param.res_return_date}">
-						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">					
-					<div class="nextBtnArea">
-						<button type="submit" id="nexBtn">다음</button>		
-		          </div>			          
+					
+						<input type="hidden" name="res_rental_date" value="${ReserveCancel[0].res_rental_date}">
+						<input type="hidden" name="res_return_date" value="${ReserveCancel[0].res_return_date}">
+						<input type="hidden" name="car_idx" value="${ReserveCancel[0].car_idx}">					
 			</form>
 		</div>
 	</aside>

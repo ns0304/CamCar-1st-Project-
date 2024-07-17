@@ -31,28 +31,48 @@
 						<tr>
 							<th>
 								<div class="" align="left">
-									<p>홍길동(이름)${member.mem_name}</p>
-									<p><span>예약번호</span>${resInfo.res_idx}</p>	
-									<p><span>지점</span>${resInfo.brc_rent_name}</p>	
-									<p><span>일시</span>${resInfo.res_rental_date} ~ ${resinfo.res_return_date}</p>	
-				    					<a href="" class="res_done">${payInfo.pay_status} 예약상태</a>
+									<p>${ReserveDetail[0].mem_name}</p>
+									<p><span>예약번호 : </span>${ReserveDetail[0].res_idx}</p>	
+									<p><span>지점 : </span>${ReserveDetail[0].brc_name}</p>	
+									<p>
+									<span>일시 : 
+										<script>
+										// 날짜 문자열을 불러옴.
+										var rentalDate = "${ReserveDetail[0].res_rental_date}";
+										var returnDate = "${ReserveDetail[0].res_return_date}";
+										
+										// T 문자를 공백으로 대체.
+										rentalDate = rentalDate.replace('T',' ');
+										returnDate = returnDate.replace('T',' ');
+										
+										// 결과를 출력.
+										document.write(rentalDate + " ~ " + returnDate);
+										console.log("rentalDate + ' ~ ' + returnDate");
+										</script> 
+									</span>
+<%-- 									${ReserveDetail[0].res_rental_date} ~ ${ReserveDetail[0].res_return_date} --%>
+									</p>	
+									
+									
+									
+				    					<a href="" class="res_done">${ReserveDetail[0].pay_status}</a>
 								</div>
 								<hr>
 								<div align="left">
 									<div>차량</div>
 									<div>
 										<p>
-											<span>${carInfo.car_model}</span><br>
-											<span>${carInfo.car_old}</span>
+											<span>${ReserveDetail[0].car_model}</span>
+											<span>${ReserveDetail[0].car_old}</span>
 										</p>
 									</div>
-								
 								</div>
+								<hr>
 								<div align="left">
 									<div>보험</div>
 									<div>
 										<p>
-											<span>${resInfo.car_insurance}</span><br>
+											<span>${ReserveDetail[0].car_insurance}</span><br>
 										</p>
 									</div>
 								</div>
@@ -63,17 +83,18 @@
 						<h4>결제내역</h4>
 						<table border="1" id="pay_list">
 							<tr>
-								<th><a>신용카드</a></th>
-								<td><a href="">${resInfo.res_fee}원</a></td>
+								<th><a>${ReserveDetail[0].pay_method_name}</a></th>
+								<td><a>${ReserveDetail[0].res_fee}원</a></td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<br>
 				<div align="center" class="resCancelBtn">
-					<input type="button" id="res_cancelBtn" value="예약취소" onclick="location.href='ReservationCancel'"><br>
+<%-- 					<input type="button" id="res_cancelBtn" value="예약취소" onclick="location.href='ReservationCancel?res_idx='${ReserveDetail[0].res_idx}"><br> --%>
+					<a href="ReservationCancel?res_idx=${ReserveDetail[0].res_idx}&res_rental_date=${ReserveDetail[0].res_rental_date}"><button id="res_cancelBtn" >예약취소</button></a>
 				</div>
-					
+				
 	<!------------------------------- 	상세내역 끝 ---------------------------------------->
 	
 	<!------------------------------- 	결제내역 ------------------------------------------->

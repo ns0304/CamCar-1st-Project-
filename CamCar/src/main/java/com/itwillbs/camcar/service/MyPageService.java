@@ -72,9 +72,8 @@ public class MyPageService {
 		return mapper.updateMemAdd(map);
 	}
 
-	//마이페이지 예약내역 조회
+	//마이페이지 예약내역 조회 요청
 	public List<Map<String, String>> getReserveList(String id) {
-		// TODO Auto-generated method stub
 		return mapper.selectReserveList(id);
 	}
 

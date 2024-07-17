@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper
+	namespace="com.itwillbs.camcar.mapper.ReservationConfirmMapper">
+
+	<!-- <select id="selectReservationList" resultType="hashmap"> -->
+	<!-- SELECT p.res_idx, r.res_rental_date, r.res_return_date, r.car_idx, 
+		b.brc_name, m.mem_id, p.pay_status -->
+	<!-- FROM res_info r JOIN brc_info b -->
+	<!-- ON r.brc_rent_name = b.brc_name -->
+	<!-- JOIN pay_info p -->
+	<!-- ON p.res_idx = r.res_idx -->
+	<!-- JOIN car_info c -->
+	<!-- ON r.car_idx = c.car_idx -->
+	<!-- JOIN member_info m -->
+	<!-- ON m.mem_idx = r.mem_idx -->
+	<!-- WHERE m.mem_id = #{id} -->
+
+	<!-- </select> -->
+	<select id="selectReserveDetail" resultType="hashmap">
+		SELECT r.res_idx,
+		r.res_rental_date, r.res_return_date, r.car_idx, b.brc_name,
+		m.mem_name, p.pay_status, c.car_company,c.car_model, r.car_insurance,
+		r.res_fee, pm.pay_method_name, cm.car_model_image, cm.car_logo_image,
+		c.car_old, di.mem_id, di.dri_name, di.dri_birthday, p.pay_total
+		
+		FROM res_info r JOIN brc_info b
+		ON r.brc_rent_name = b.brc_name
+		JOIN pay_info p
+		ON p.res_idx = r.res_idx
+		JOIN car_info c
+		ON r.car_idx = c.car_idx
+		JOIN member_info m
+		ON m.mem_idx = r.mem_idx
+		JOIN pay_method pm
+		ON pm.pay_method_idx = p.pay_method_idx
+		JOIN car_model_info cm
+		ON cm.car_model = c.car_model
+		JOIN drivers_info di
+		ON di.lic_num = r.lic_num
+		
+		WHERE r.res_idx = #{res_idx}
+
+		
+
+	</select>
+
+
+</mapper>

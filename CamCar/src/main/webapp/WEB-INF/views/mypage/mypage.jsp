@@ -32,8 +32,9 @@
 <%-- 						<c:forEach items="${ReserveList}" var="reserve"> --%>
 						
 					</div>
-					<button class="myInfoManagement" id="myInfo"
-								onclick="location.href='myInfo'">내 정보 관리</button>
+					<div align="right">
+						<button class="myInfoManagement" id="myInfo" onclick="location.href='myInfo'">내 정보 관리</button>
+					</div>			
 					<section class="resSection">
 						<input type="hidden" value="${ReserveList[0].mem_id}" name="mem_id" id="mem_id"readonly>
 						<h2>예약내역</h2>
@@ -42,22 +43,21 @@
 									<div class="carList_top">
 										<div class="resCarImage">
 											<!-- 로고사진 -->
-											<img
-												src="${pageContext.request.servletContext.contextPath}/resources/images/1그랜저.png"
-												width="300px" height="300px" alt="Car Image">
-<%-- 												<img src="${pageContext.request.servletContext.contextPath}/resources/images/upload/${reserve.car_logo_image}"><br> --%>
-											<a>${ReserveList[0].car_company}</a>
-											<h3>${ReserveList[0].car_model}</h3>
+<!-- 											<img -->
+<%-- 												src="${pageContext.request.servletContext.contextPath}/resources/images/1그랜저.png" --%>
+<!-- 												width="300px" height="300px" alt="Car Image"> -->
+											<br>
+<%-- 											<a>${ReserveList[0].car_company}</a> --%>
+<%-- 											<h3>${ReserveList[0].car_model}</h3> --%>
 										</div>
 										<div class="carImage">
 											<img
-												src="${pageContext.request.contextPath}/resources/upload/${model.car_model_image}">
+												src="${pageContext.request.contextPath}/resources/upload/${ReserveList[0].car_model_image}" width="200px"><br>
+												<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_logo_image}">
 										</div>
 									</div>
-									<div class="reservationInfo">
-										<h3>${reserve.car_model}</h3>
-										<button class="detailsBtn"
-											onclick="location.href='ReservationDetail'">예약 상세 보기</button>
+									<div class="reservationInfo" align="left">
+										<h3>${ReserveList[0].car_model}</h3>
 										<p>예약 번호: ${ReserveList[0].res_idx}</p>
 										<p>지점 : ${ReserveList[0].brc_name}</p>
 										<p>
@@ -69,6 +69,8 @@
 											pattern="yyyy-MM-dd" />
 										</p>
 									</div>
+										<button class="detailsBtn"
+											onclick="location.href='ReservationDetail'">예약 상세 보기</button><br>
 									<button class="payStatus">${ReserveList[0].pay_status}</button>
 								</div>
  							</c:if>

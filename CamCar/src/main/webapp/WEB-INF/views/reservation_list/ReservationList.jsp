@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,31 +25,54 @@
 	<!----------------------------------- 내 예약 ------------------------------------------->
 		
 				<div align="left" class="myRes">
-					<h2>예약내역</h2>
+					<h2>${ReserveList[0].mem_name} 고객님의 예약내역</h2>
 					<p><b>내 예약</b></p>
+					<input type="hidden" value="${ReserveList[0].mem_id}" name="mem_id" id="mem_id"readonly>
 				
 					<table border="1" id="my_res">
 						<tr>
 							<th rowspan="4">
-								<img src="./resources/images/1그랜저.png" width="300px" height="300px">
+							<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_model_image}" width="250px" ><br>
+							<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_logo_image}" ><br>
+<!-- 								<img src="./resources/images/1그랜저.png" width="300px" height="300px"> -->
 							</th>
 							<td>
 								<span>
 								
-								<a>쉐보레 스파크 1.0 가솔린</a> 
-			    					<a href="ReservationDetail"><button>예약 상세 보기</button></a>
-									<a href="ResEnd"><button>예약완료</button>	</a>
+								<a>${ReserveList[0].car_model}</a> 
+			    					<a href="ReservationDetail?res_idx=${ReserveList[0].res_idx}"><button>예약 상세 보기</button></a>
+									<button disabled style="background-color: #59b9a9; color: black; border:none;">예약완료</button>
 								</span>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><a>예약 번호   dddd-d123445</a> </td>
+							<td colspan="2"><a>예약 번호 : ${ReserveList[0].res_idx}</a> </td>
 						</tr>
 						<tr>
-							<td colspan="2"><a>부산</a></td>
+							<td colspan="2"><a>지점 : ${ReserveList[0].brc_name}</a></td>
 						</tr>
 						<tr>
-							<td colspan="2"><a>08.12(금) 15:00 ~ 08.13(화) 15:00</a></td>
+							<td colspan="2">일정 :
+								<script>
+									// 날짜 문자열을 불러옴.
+									var rentalDate = "${ReserveList[0].res_rental_date}";
+									var returnDate = "${ReserveList[0].res_return_date}";
+									
+									// T 문자를 공백으로 대체.
+									rentalDate = rentalDate.replace('T',' ');
+									returnDate = returnDate.replace('T',' ');
+									
+									// 결과를 출력.
+									document.write(rentalDate + " ~ " + returnDate);
+									console.log("rentalDate + ' ~ ' + returnDate");
+									
+								</script> 
+<%-- 											<fmt:formatDate value="${ReserveList[0].res_rental_date}" --%>
+<%-- 											pattern="yyyy-MM-dd HH:mm" /> ~   --%>
+											
+<%-- 											<fmt:formatDate value="${ReserveList[0].res_return_date}"  --%>
+<%-- 											pattern="yyyy-MM-dd HH:mm" /> --%>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" text align="center">pageNum</td>

@@ -5,9 +5,12 @@
     
 <mapper namespace="com.itwillbs.camcar.mapper.MyPageMapper">
 	
-<!-- 마이페이지 예약정보 조회 -->
+<!-- 마이페이지 예약정보 조회 -(이용 예정인 차량 조회) -->
 	<select id="selectReserveList" resultType="hashmap">
-		SELECT p.res_idx, r.res_rental_date, r.res_return_date, r.car_idx, b.brc_name, m.mem_id, p.pay_status
+		SELECT p.res_idx, r.res_rental_date, r.res_return_date, r.car_idx, b.brc_name,
+		 m.mem_name, p.pay_status, c.car_company,c.car_model, r.car_insurance,
+		 r.res_fee, pm.pay_method_name, cm.car_model_image, cm.car_logo_image, c.car_old,
+		 di.mem_id, di.dri_name, di.dri_birthday 
 		FROM res_info r JOIN brc_info b
 		ON r.brc_rent_name = b.brc_name
 		JOIN pay_info p
@@ -16,7 +19,16 @@
 		ON r.car_idx = c.car_idx
 		JOIN member_info m
         ON m.mem_idx = r.mem_idx
+        JOIN pay_method pm
+        ON pm.pay_method_idx = p.pay_method_idx
+        JOIN car_model_info cm
+        ON cm.car_model = c.car_model
+        JOIN drivers_info di
+        ON di.mem_id = m.mem_id
 		WHERE m.mem_id = #{id}
+		AND r.res_rental_date > now()
+		
+		ORDER BY r.res_rental_date
 		
 	</select>
 	
