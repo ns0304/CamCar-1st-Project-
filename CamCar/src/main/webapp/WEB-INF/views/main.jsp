@@ -62,8 +62,8 @@ $(document).ready(function() {
 			</div>
 			<!--  차박 베스트 장소 이미지 버튼 슬라이드 영역 -->	
 			<br>	
-			<h3 id="qna">차박 베스트 장소를 추천해드릴게요</h3>
-			<span style="margin-bottom: 20px; ">캠핑갈카와 함께라면 즐거움이 &#9996;배</span>
+			<h3 id="qna">차박 베스트 장소를 <a style="color: #59b9a9;">추천</a>해드릴게요!</h3>
+			<span style="margin-bottom: 20px;"  class="blink">캠핑갈카와 함께라면 즐거움이 &#9996;배</span>
 			<div id="bestCarPlacePlease">	
 				<div class="slideshow-container">
 				  <div class="mySlides fade">
@@ -74,8 +74,8 @@ $(document).ready(function() {
 				
 				  <div class="mySlides fade">
 				    <div class="numbertext">2 / 3</div>
-				    <a href="Service#place2"><img src="${pageContext.request.servletContext.contextPath}/resources/img/service/다대포해수욕장.jpg" style="width:100%"></a>
-				    <div class="text">동백방파제 - 쾌적하고 탁 트인 방파제에서</div><br>
+				    <a href="Service#place5"><img src="${pageContext.request.servletContext.contextPath}/resources/img/service/다대포해수욕장.jpg" style="width:100%"></a>
+				    <div class="text">다대포해수욕장 - 쾌적하고 탁 트인 해수욕장에서</div><br>
 				  </div>
 				
 				  <div class="mySlides fade">

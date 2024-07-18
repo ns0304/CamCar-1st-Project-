@@ -11,54 +11,79 @@
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
 <link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <style type="text/css">
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+
 	#articleForm {
 		width: 500px;
-		height: 600px;
-		margin: auto;
+		height: auto;
+		margin: 20px auto;
+		padding: 20px;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		border-radius: 8px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
-	
+
 	h2 {
 		text-align: center;
 	}
-	
+
 	table {
-		border: 1px solid black;
-		border-collapse: collapse; 
-	 	width: 500px;
+		width: 100%;
+		border-collapse: collapse;
+		margin: 20px 0;
 	}
-	
+
+	th, td {
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+
 	th {
-		text-align: center;
+		background-color: #59b9a9;
+		color: white;
 	}
-	
+
 	td {
-		width: 150px;
-		text-align: center;
+		background-color: #f9f9f9;
 	}
-	
+
 	#basicInfoArea {
-		height: auto;
-		text-align: center;
+		margin: 10px 0;
 	}
-	
-	#board_file {
-		height: auto;
-		font-size: 12px;
-	}
-	
+
 	#articleContentArea {
-		background: orange;
+		background-color: #fff;
 		margin-top: 10px;
-		height: 350px;
-		text-align: center;
+		padding: 15px;
+		border: 1px solid #ddd;
+		border-radius: 8px;
 		overflow: auto;
 		white-space: pre-line;
+		color: #333;
 	}
-	
-	#commandList {
-		margin: auto;
-		width: 500px;
+
+	#commandCell {
 		text-align: center;
+		margin-top: 20px;
+	}
+
+	#commandCell input[type="button"] {
+		background-color: #59b9a9;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		margin: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	#commandCell input[type="button"]:hover {
+		background-color: #45a089;
 	}
 </style>
 <script type="text/javascript">
@@ -78,9 +103,6 @@
 		<jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 	</header>
 	<main>
-		<aside>
-			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
-		</aside>
 		<!-- 게시판 상세내용 보기 -->
 		<section id="articleForm">
 			<h2>1:1 문의글 상세내용 보기</h2>

@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 </script>
 
 
-<aside>
 	<div class="mainList" style="margin-top: 100px;">
 		<h3>
 			<a href="ManagerMain" class="">관리자 메뉴</a>
@@ -112,4 +111,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			</div>
 		</div>
 	</div>
-</aside>

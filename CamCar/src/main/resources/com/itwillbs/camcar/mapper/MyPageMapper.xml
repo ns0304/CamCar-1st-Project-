@@ -10,7 +10,7 @@
 		SELECT p.res_idx, r.res_rental_date, r.res_return_date, r.car_idx, b.brc_name,
 		 m.mem_name, p.pay_status, c.car_company,c.car_model, r.car_insurance,
 		 r.res_fee, pm.pay_method_name, cm.car_model_image, cm.car_logo_image, c.car_old,
-		 di.mem_id, di.dri_name, di.dri_birthday 
+		 di.mem_id, di.dri_name, di.dri_birthday, r.res_time
 		FROM res_info r JOIN brc_info b
 		ON r.brc_rent_name = b.brc_name
 		JOIN pay_info p

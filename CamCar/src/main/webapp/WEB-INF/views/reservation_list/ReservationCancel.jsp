@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약 취소 페이지</title>
+<title>캠핑갈카 : 예약 취소</title>
 <link rel="stylesheet" href="styles.css">
 <%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
@@ -63,6 +63,19 @@
             <div class="section">
             	<div>
 	                <p>예약 번호 : ${ReserveCancel[0].res_idx}</p>
+	                <p>예약 일자 : 
+	                <script>
+						// 날짜 문자열을 불러옴. 
+						var reserveDate = "${ReserveCancel[0].res_time}";
+						
+						// T 문자를 공백으로 대체.
+						reserveDate = reserveDate.replace('T',' ');
+						
+						// 결과를 출력.
+						document.write(reserveDate);
+						console.log("reserveDate");
+					</script> 
+	                </p>
 	                <p>차량: ${ReserveCancel[0].car_model}</p>
 	                <p>
 	                <script>
@@ -81,9 +94,6 @@
 	                </p>
 	                <p>보험: ${ReserveCancel[0].car_insurance}</p>
                 </div>
-	            <div align="right">
-	            	<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveCancel[0].car_model_image}" width="200px" >
-	            </div>
             </div>
         </div>
 
@@ -118,13 +128,16 @@
                     <td>${ReserveCancel[0].pay_total}원</td>
                 </tr>
                 <tr>
-                    <td>취소 수수료</td>
-                    	<p id="cancelFee">${cancelFee}원</p>
+                    <td>취소 수수료 
 <%--                     <td>${ReserveCancel[0].cancel_fee}원</td> --%>
+					</td>
+					<td>
+                    	<p id="cancelFee">${cancelFee}원</p>
+					</td>
                 </tr>
                 <tr>
                     <td>환불 예정 금액</td>
-                    <td>12345원</td>
+                    <td>170000원</td>
                 </tr>
             </table>
         </div>

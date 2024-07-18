@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+/*     background-color: #333; */
     color: white;
 }
 
@@ -140,5 +140,4 @@ document.addEventListener("DOMContentLoaded", function() {
             <li><a>관리자님 환영합니다</a></li>
         </ul>
     </nav>
-    <hr>
 </div>

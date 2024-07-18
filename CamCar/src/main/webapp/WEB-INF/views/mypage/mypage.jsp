@@ -70,7 +70,7 @@
 										</p>
 									</div>
 										<button class="detailsBtn"
-											onclick="location.href='ReservationDetail'">예약 상세 보기</button><br>
+											onclick="location.href='ReservationDetail?res_idx=${ReserveList[0].res_idx}'">예약 상세 보기</button><br>
 									<button class="payStatus">${ReserveList[0].pay_status}</button>
 								</div>
  							</c:if>
@@ -81,9 +81,12 @@
 								<h2>1:1 문의내역</h2>
 								<p>정확한 답변으로 안내해 드릴게요</p>
 							</div>
+							<br>
+							<div>
+								<button class="moreViewBtn"
+								onclick="location.href='MyQuestionList'">이동</button>
+							</div>
 						</div>
-						<button class="moreViewBtn"
-							onclick="location.href='MyQuestionList'">이동</button>
 					</section>
 						
 				</div>

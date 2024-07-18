@@ -60,10 +60,55 @@ public class ReservationConfirmController {
 //		model.addAttribute("memberList", memberList);
 		
 				
+		//예약확인 페이지 - 지난 예약내역 조회
+		List<Map<String, String>> ReserveList2 = service.getReserveList2(id);
+		System.out.println("ReserveList2 : " + ReserveList2);
+		
+		
+		model.addAttribute("ReserveList2", ReserveList2);
 				
 		
 		return "reservation_list/ReservationList";
 	}
+	
+	
+	
+	// "MoreView" 서블릿 주소 매핑 - GET
+	// => ReservationList2.jsp 페이지 포워딩
+	@GetMapping("MoreView")
+	public String moreView(String res_idx, MemberVO member, HttpSession session, Model model,
+			@RequestParam Map<String, Object> map, CarModelVO carModel, PayVO payInfo) {
+
+		// 세션 아이디 없을 경우 "result/fail" 페이지 포워딩 처리
+		// => "msg" 속성값 : "로그인 필수!"  
+		//    "targetURL" 속성값 : "MemberLogin"(로그인 페이지)
+		String id = (String)session.getAttribute("sId");
+		if(id == null) {
+			model.addAttribute("msg","로그인 필수!");
+			model.addAttribute("targetURL", "MemberLogin");
+			return"result/fail";
+		}
+		System.out.println("id : " + id);
+		
+		//예약확인 페이지 - 이용 예정 예약내역 조회
+		// myservice.getReserveList(id); 재사용 
+		List<Map<String, String>> ReserveList= myservice.getReserveList(id);
+		
+		model.addAttribute("ReserveList", ReserveList);
+		System.out.println("ReserveList : " + ReserveList);
+		
+		
+		//예약확인 페이지 - 지난 예약내역 조회
+		List<Map<String, String>> ReserveList2 = service.getReserveList2(id);
+		
+		model.addAttribute("ReserveList2", ReserveList2);
+		System.out.println("ReserveList2 : " + ReserveList2);
+		
+		
+		
+		return "reservation_list/ReservationList2";
+	}
+	
 	
 	// "customerCenter" 서블릿 주소 매핑 - GET
 	// => customer_center.jsp 페이지 포워딩
@@ -72,6 +117,7 @@ public class ReservationConfirmController {
 		
 		return "customer_center";
 	}
+	
 	
 	// "ReservationDetail" 서블릿 주소 매핑 - GET
 		// => reservation_detail.jsp 페이지 포워딩

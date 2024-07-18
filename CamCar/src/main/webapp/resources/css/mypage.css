@@ -28,6 +28,7 @@
 .reservationList {
     display: flex;
     align-items: center;
+    background-color: #f1f3f5;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -82,9 +83,11 @@
 .questionList {
     border: 1px solid #ddd;
     border-radius: 5px;
+    width: 97%; 
+    background-color: #f1f3f5;
     padding: 10px;
     min-height: 150px;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
 }
@@ -108,6 +111,15 @@
 .myPageBox {
         width: 100%;
     }
+.payStatus {
+	background-color: #59b9a9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
 
+/* 이동버튼 */
+.moreViewBtn {
+	background-color: #59b9a9;
+}
 
 

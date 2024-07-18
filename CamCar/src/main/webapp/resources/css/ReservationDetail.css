@@ -1,0 +1,147 @@
+@charset "UTF-8";
+/* General Styles */
+
+
+
+div {
+    margin-bottom: 20px;
+}
+
+h2, h4, p {
+    margin: 10px 0;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+td {
+/*     vertical-align: top; */
+    text-align: left;
+}
+
+/* Button Styles */
+.res_done {
+    background-color: #59b9a9;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* button:hover:not(:disabled) { */
+/*     background-color: #45a089; */
+/* } */
+
+.res_done {
+    display: inline-block;
+    background-color: #59b9a9;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Specific Class Styles */
+.resList {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.resList h4 {
+    color: #333;
+}
+
+.resList .res_done {
+/*     margin-top: 10px; */
+}
+
+.resList div {
+    margin-bottom: 10px;
+}
+
+
+
+
+/* 분리 선 */
+.resList hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+/* Align Text Left in Details */
+.resList td > div {
+    text-align: left;
+}
+
+.resList td > div p span {
+    font-weight: bold;
+}
+
+.resList td > div p {
+    margin: 5px 0;
+}
+
+.pay_list th, .pay_list td {
+    text-align: left;
+}
+
+/* 상세내역, 결제내역 */
+.DetailList, .payList {
+	margin-bottom: 20px;
+/* 	padding-right: ;  */
+	display: flex;
+	border-radius: 10px;
+} 
+#payList {
+	height:30%;
+}
+/* 예약취소버튼 */
+.resCancelBtn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resCancelBtn button {
+    background-color: #59b9a9;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.res_cancelBtn {
+/* 	padding:2em; */
+	width: 150px;
+	height: 50px;
+	color: #59B9A9;
+	border-radius: 10px;
+}
+
+#res_cancelBtn:hover {
+    background-color: #45a089;
+}

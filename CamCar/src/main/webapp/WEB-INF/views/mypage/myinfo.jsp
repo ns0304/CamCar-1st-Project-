@@ -603,7 +603,7 @@ $(document).ready(function() {
 			<div>
 				<div>
 				<h1>내 정보 관리</h1>
-					<a href="MemberInfo">마이페이지 홈으로</a>
+					<a href="MemberInfo" id="goHome">마이페이지 홈으로</a>
 				</div>
 				<br>
 				<form action="" method="post">
@@ -618,40 +618,40 @@ $(document).ready(function() {
 						</div>
 						<hr>
 						<div>
-							<span>비밀번호</span><a href="changePasswd" class="changePasswd">변경</a>
+							<p>비밀번호&nbsp;<a href="changePasswd" class="changePasswd">변경</a></p>
 							<p>개인정보 보호를 위해 주기적으로 변경해주세요</p>
 						</div>
 						<br>
 						<div>
-							<span>휴대폰 번호</span>
+							<p>휴대폰 번호</p>
 							<input type="text" id="mem_tel" name="mem_tel" value="${member.mem_tel}" readonly>
 						</div>
 					</fieldset>
 					<br>
-					<h3>추가 정보</h3>
+					<h3>추가 정보</h3> 
 					<fieldset>
 						<div>
-							<span>주소</span><a href="changeAddress" class="changeAddress">정보 조회 및 변경</a>
+							<span>주소</span>&nbsp;<a href="changeAddress" class="changeAddress">정보 조회 및 변경</a>
 							
 						</div>
 						<br> 
 						<div> 
-							<span>운전면허 정보</span><a href="changeLicense" class="changeLicense">조회</a>
+							<span>운전면허 정보</span>&nbsp;<a href="changeLicense" class="changeLicense">조회</a>
 						</div>
 					</fieldset>
 					<br>
 					<h3>계정관리</h3>
 					<fieldset>
 						<div class="marketingAgree1">
-							<b><a href="marketingAgree" class="marketingAgree2">마케팅 활용 동의</a></b>
+							<a href="marketingAgree" class="marketingAgree2">마케팅 활용 동의</a>
 						</div>
 						<hr>
 						<div class="logOut">
-							<label><a href="javascript:confirmLogout()">로그아웃</a></label>
+							<a href="javascript:confirmLogout()">로그아웃</a>
 						</div>
 						<hr>
 						<div class="memberWithdraw">
-							<label><a href="withdrawBtn">회원탈퇴</a></label>
+							<a href="withdrawBtn">회원탈퇴</a>
 						</div>
 					</fieldset>
 				</form>

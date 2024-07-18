@@ -25,7 +25,8 @@
 	display: none;
 	position: absolute;
     right: 8px;
-    top: 120px;
+    top: 8px;
+    right: 430px;
 	background-color: #fff;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     z-index: 1000;
@@ -131,14 +132,16 @@ $(document).ready(function() {
 		let brcInfo = $("#res_apply1").val();
 		let hidden = $("#brc_rent_name").val(brcInfo);	// hidden 필드에 값 저장
 // 	    alert("선택된 지점 : " + hidden.val());	// 선택된 지점 : 캠핑갈카 부산본점
+	    $("#res_detail1").hide();
+	    $("#res_detail2").hide();
 		$("#busan").css("border", "2px solid #ccc");
 		$("#seoul").css("border", "none");
-	    $("#res_detail1").hide();
 	});
 	$("#res_apply2").click(function() {
 		let brcInfo = $("#res_apply2").val();
 		let hidden = $("#brc_rent_name").val(brcInfo);	// hidden 필드에 값 저장
 // 	    alert("선택된 지점 : " + hidden.val());	// 선택된 지점 : 캠핑갈카 서울지점
+	    $("#res_detail1").hide();
 	    $("#res_detail2").hide();
 		$("#seoul").css("border", "2px solid #ccc");
 		$("#busan").css("border", "none");
