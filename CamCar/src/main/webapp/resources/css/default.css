@@ -130,10 +130,11 @@ main>section {
 	width: 100%;
 }
 
-/* 카카오톡 1:1 상담 */
-.chatBtn {border-left:16px solid #0ca;
-	border-radius: 16px 0 0 16px;
-    background-color: #C0C0C0;
+/* 카카오톡 1:1 상담 버튼 */
+.chatBtn {
+	border-left:16px solid #59B9A9;
+	border-radius: 10px 0 0 10px;
+    background-color: #F1F3F5;
 	width:110px;
 	padding: 10px;
 	box-sizing: border-box;
@@ -144,12 +145,16 @@ main>section {
 }
 
 .chatBtn:hover {right:0; transition:1.5s;}
+
 .chatBtn a {
- text-decoration: none;
- text-transform: capitalize;}
-.chatBtn img {height: 30px;
- width: 30px;}
-.chatBtn a:link, #quick a:visited {
-	color: #000040;}
-.chatBtn a:hover, #quick a:active {
-	color: #FFFFFF;}
+	 text-decoration: none;
+	 text-transform: capitalize;}
+	 
+.chatBtn img {
+	height: 30px;
+ 	width: 30px;
+}
+ 
+.chatBtn a:link, #quick a:visited {color: #000040;}
+	
+.chatBtn a:hover, #quick a:active {color: #59B9A9;}
