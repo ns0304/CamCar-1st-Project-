@@ -125,6 +125,12 @@
         });
     };
 </script>
+<style type="text/css">
+#articleForm {
+	width: 500px;
+	margin: auto;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -133,18 +139,20 @@
 		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
 	</header>
 	<main>
-		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
-		<section>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
+		<section id="articleForm">
 			<article>
 				<%-- 본문 표시 영역 --%>
 				<h1>총 월 매출 통계</h1>
-					<canvas id="monthlySalesChart"></canvas>
+				<canvas id="monthlySalesChart"></canvas>
 				<h1>인기차량 모델 순위</h1>
-					<canvas id="popularModelsChart"></canvas>
+				<canvas id="popularModelsChart"></canvas>
 				<h1>월별 렌트 횟수 통계</h1>
-					 <canvas id="rentalCountsChart"></canvas>
+				<canvas id="rentalCountsChart"></canvas>
 				<h1>연령대별 이용자 통계</h1>
-					<canvas id="ageGroupChart"></canvas>
+				<canvas id="ageGroupChart"></canvas>
 			</article>
 		</section>
 	</main>

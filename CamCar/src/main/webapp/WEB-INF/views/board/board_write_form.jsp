@@ -18,38 +18,49 @@
 
 <!-- 오목이란 5개가 한줄이 되게 하면 이기는 게임입니다. -->
 <style type="text/css">
+#articleForm {
+	width: 500px;
+	margin: auto;
+}
+
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 20px;
 }
+
 table th, table td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    background-color: #f9f9f9;
+	padding: 8px;
+	text-align: left;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	background-color: #f9f9f9;
 }
+
 table th {
-    background-color: #f2f2f2;
-    color: #333;
+	background-color: #f2f2f2;
+	color: #333;
 }
+
 table tr:hover {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
+
 table th, table td:nth-child(3) {
-    white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+	white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
 }
+
 table input[type="button"] {
-    padding: 5px 10px;
-    background-color: #00838f;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+	padding: 5px 10px;
+	background-color: #00838f;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
+
 table input[type="button"]:hover {
-    background-color: #006064;
+	background-color: #006064;
 }
 </style>
 </head>
@@ -59,14 +70,17 @@ table input[type="button"]:hover {
 	</header>
 	<main>
 		<!-- 게시판 등록 -->
-		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
-		<section>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
+		<section id="articleForm">
 			<div align="center">
 
 				<article id="writeForm">
 					<h1>공지사항 글 등록</h1>
-					<form action="BoardWrite" name="writeForm" method="post" enctype="multipart/form-data">
-					
+					<form action="BoardWrite" name="writeForm" method="post"
+						enctype="multipart/form-data">
+
 						<table>
 							<tr>
 								<td class="write_td_left"><label for="bo_subject">제목</label></td>
@@ -81,15 +95,14 @@ table input[type="button"]:hover {
 							</tr>
 							<tr>
 								<td class="write_td_left"><label for="bo_file">파일첨부</label></td>
-								<td class="write_td_right">
-									<input type="file" name="file">
-									<hr>
-								</td>
+								<td class="write_td_right"><input type="file" name="file">
+									<hr></td>
 							</tr>
 						</table>
+						<br>
 						<section id="commandCell">
-							<input type="submit" value="등록">&nbsp;&nbsp;  
-							<input type="button" value="취소" onclick="history.back()">
+							<input type="submit" value="등록">&nbsp;&nbsp; <input
+								type="button" value="취소" onclick="history.back()">
 						</section>
 					</form>
 				</article>
