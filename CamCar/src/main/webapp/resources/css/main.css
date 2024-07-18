@@ -16,6 +16,20 @@
 	overflow: hidden;
 }
 
+/* 차박 베스트 장소 폰트 깜빡임 */
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink-effect 0.8s step-end infinite;
+ }
+
+
+
 /* okokok 차박 베스트 장소 이미지 사이즈 조절 okokok */
 .SlideImg img, .slideBestImg img {
 	height: 500px;

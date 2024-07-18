@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>캠핑갈카 관리자</title>
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
-<link href="${pageContext.request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/manager_default.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	#articleForm {
 		width: 500px;

@@ -62,8 +62,8 @@ $(document).ready(function() {
 			</div>
 			<!--  차박 베스트 장소 이미지 버튼 슬라이드 영역 -->	
 			<br>	
-			<h3 id="qna">차박 베스트 장소를 추천해드릴게요</h3>
-			<span style="margin-bottom: 20px; ">캠핑갈카와 함께라면 즐거움이 &#9996;배</span>
+			<h3 id="qna">차박 베스트 장소를 <a style="color: #59b9a9;">추천</a>해드릴게요!</h3>
+			<span style="margin-bottom: 20px;"  class="blink">캠핑갈카와 함께라면 즐거움이 &#9996;배</span>
 			<div id="bestCarPlacePlease">	
 				<div class="slideshow-container">
 				  <div class="mySlides fade">
