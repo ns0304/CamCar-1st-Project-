@@ -31,15 +31,6 @@ h1, h3 {
     color: #333; /* 텍스트 색상 설정 */
 }
 
-/* 링크 스타일 */
-a {
-    color: #aaa; /* 링크 색상 설정 */
-    text-decoration: none; /* 링크 밑줄 제거 */
-}
-
-/* a:hover { */
-/*     text-decoration: underline; 호버 시 밑줄 추가 */
-/* } */
 
 /* 폼 스타일 */
 form {
