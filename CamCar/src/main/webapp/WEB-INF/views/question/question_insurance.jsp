@@ -31,47 +31,64 @@
     </script>
 --%>
 <style>
-#div01 {
-	margin-bottom: 30px;
+body {
+    font-family: Arial, sans-serif;
+}
+
+#div01, #div02, #div03 {
+    margin-bottom: 30px;
+    wi
+}
+
+#div01 input[type="button"] {
+	width: 20%;
+}
+
+#div01 h2 {
+    margin-bottom: 10px;
+}
+
+#freQna {
+    display: flex;
+    justify-content: space-around;
 }
 
 #div02 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #555;
 }
 
-#div03>input {
-	margin-bottom: 13px;
-	padding-left: 20px;
+#div03 input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #F0F0F0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#buttona {
-	padding-right: 150px;
+#div03 input[type="button"]:hover, #div01 input[type="button"]:hover {
+    color: white;
+    background-color: #59b9a9;
 }
-#buttonb {
-	padding-right: 137px;
-}
-#buttonc {
-	padding-right: 74px;
-}
-#buttond {
-	padding-right: 160px;
-}
-#buttone {
-	padding-right: 176px;
-}
-#buttonf {
-	padding-right: 40px;
-}	
+
 .contentArea {
-    display: none; /* Hidden by default */
+    display: none;
     margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
-
+.contentArea p {
+    margin: 0;
+    color: #333;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {

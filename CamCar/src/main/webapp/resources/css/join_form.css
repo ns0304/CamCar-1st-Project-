@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+<style type="text/css">
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #59b9a9;
+}
+
+.joinForm1, .joinForm2, .joinForm3 {
+    padding: 20px 60px;
+    border: 1.5px solid #59b9a9;
+    border-radius: 12px;
+    width: 600px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.joinForm2, .joinForm3 {
+    display: none;
+}
+
+#need {
+    margin-bottom: 20px;
+    color: #59b9a9;
+}
+
+input[type="text"], input[type="password"], input[type="button"], select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    border-color: #59b9a9;
+    outline: none;
+    box-shadow: 0 0 5px rgba(89, 185, 169, 0.5);
+}
+
+input[type="button"] {
+    background-color: #59b9a9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="button"]:hover {
+    background-color: #47a796;
+}
+
+input[type="submit"] {
+    background-color: #59b9a9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #47a796;
+}
+
+/* 팝업 스타일 */
+.popUp {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border-radius: 12px;
+}
+
+.popUpHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popUpHeader h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #59b9a9;
+}
+
+.popUpHeader .close {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popUpContent tr {
+    background-color: #e0e0e0;
+}
+
+.popUpContent {
+    margin: 20px 0;
+}
+
+.popUp table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.popUp table, .popUp th, .popUp td {
+    border: 1px solid #ccc;
+}
+
+.popUp th, .popUp td {
+    padding: 8px;
+    text-align: center;
+}
+
+.popUpConfirm {
+    text-align: center;
+}
+
+.popUpConfirm button {
+    padding: 10px 20px;
+    background-color: #59b9a9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 8px;
+}
+
+.popUpConfirm button:hover {
+    background-color: #47a796;
+}
+
+.confirmBtn { /* "확인했어요" 버튼 */
+    border-radius: 10px;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+</style>
