@@ -66,8 +66,6 @@ input[type="radio"] {
 
 $(document).ready(function() {
 	
-
-	
 	// 보장 내용 알아보기 팝업창
 	// 팝업 열기
 	$("#insuranceDetail").click(function(event) {
@@ -131,6 +129,40 @@ $(document).ready(function() {
 		return true;
 	});
 	
+	
+	// 보험 선택 해야 다음 페이지로 이동 가능함
+    function validateDriverInfo() {
+        let isValid = true;
+
+        // 모든 input 요소가 비어 있지 않은지 확인
+        $('#driverInfoList input[type="text"]').each(function() {
+            if ($(this).val().trim() === '') {
+                $(this).focus();
+                isValid = false;
+                return false; // 루프를 중지
+            }
+        });
+
+        // select 요소에서 유효한 옵션이 선택되었는지 확인
+        if (isValid && $('#lic_info').val() === '') {
+            $('#lic_info').focus();
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    $('#reservationForm').on('submit', function(event) {
+        if (!$('input[name="insuranceListName"]:checked').length) {
+            event.preventDefault(); // 폼 제출을 막음
+            alert('보험을 선택해주세요.');
+        } else if (!validateDriverInfo()) {
+            event.preventDefault(); // 폼 제출을 막음
+            alert('운전자 정보 입력 영역을 모두 입력해주세요.');
+        }
+    });
+	
+	
 });
 </script>
 <script type="text/javascript">
@@ -141,9 +173,6 @@ $(document).ready(function() {
 	        var insuranceAdd = 0;
 	        var rentalFee2 = rentalFee;
 	        console.log(rentalFee, insuranceAdd, rentalFee2);
-// 	        var insuranceType = $('#insuranceType1').data('value');
-// 	        var insuranceType = $('#insuranceType1').data('value');
-// 			console.log("insuranceType : " + insuranceType);
 	        $("#rentalFee").text(rentalFee);
 	        $("#rentalFee2").text(rentalFee2);
 	 	    $("#insFeeAdd").remove();
@@ -180,15 +209,7 @@ $(document).ready(function() {
 	        $("#reservationForm").prepend('<input type="hidden" name="insuranceType" value="완전자차" id="insuranceType">');
 	    }
 	    
-	    // form 태그에 input 태그 추가
-// 	    $("#rentalFee2").remove();
-// 	    $("form").prepend('<input type="hidden" name="rentalFee2" value="' + $('#rentalFee2').val() + '" id="rentalFee2">');
-	    
-// 	    $("form").prepend('<input type="hidden" name="insFee" value="' + insuranceAdd + '" id="insFeeAdd">');
-	    
 	}
-	
-// 	$("#nextBtn").on("click", function() {
 </script>
 </head>
 <body>
@@ -202,7 +223,7 @@ $(document).ready(function() {
 			<div id ="reservationStep" >
 				<ul class="reservationStepList">
 					<li id="reservationStepNow">
-						예약
+						<b>예약</b>
 					</li>
 					<li>
 						부가상품
@@ -248,10 +269,10 @@ $(document).ready(function() {
 			
 <!-- 			운전자 정보 입력			 -->			
 			<div id="driverInfo"  class="clear">
-				<form id="driverInfoForm">
+				<div id="driverInfoForm">
 					<h3>운전자 정보 입력</h3>
 					<a href="#" id="myInfoLoad">내 정보에서 불러오기</a>
-					
+					<br><br>
 					<div id="driverInfoList">
 						<div id="driverInfo1" class="clear">
 							<h4>기본정보</h4><br>
@@ -286,16 +307,14 @@ $(document).ready(function() {
 								<input type="text" name="lic_expiration_date" id="lic_expiration_date" placeholder="예) 20251231" size="20" maxlength="8" required><br>
 						</div>
 					</div>
-				</form>		
+				</div>		
 			</div>
 		</section>
 
 <!-- 			오른쪽 사이드 영역			 -->
 		<aside id="sideContent">
 			<form action="ReservationAdd" id="reservationForm" name="reservation" method="post">
-				
-				
-				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+				<img src="${pageContext.request.contextPath}/resources/upload/${param.car_model_image}" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 <!-- 						이름으로 바꿔야 함        -->
 						<a>${sId}님의 여정</a> 
@@ -303,11 +322,11 @@ $(document).ready(function() {
 							<a>
 							<c:choose>
 								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
-								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+								<c:otherwise>캠핑갈카 서울지점</c:otherwise>
 							</c:choose>
 							</a>
 					          <hr>
-							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
+							<a>${param.res_rental_date} <br> ~ ${param.res_return_date}</a>
 					          <hr>
 							<a>${carDetail.car_model}</a>
 						</div>
@@ -323,9 +342,6 @@ $(document).ready(function() {
 						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">
 						<input type="hidden" name="rentalFee" value="${param.rentalFee}">
 						<input type="hidden" name="brc_idx" value="${carDetail.brc_idx}">
-<!-- 						<input type="hidden" id="rentalFeeParam" name="rentalFee" value=""> -->
-<!-- 						<input type="hidden" id="rentalFeeParam2" name="rentalFee2" value=""> -->
-<!-- 						<input type="hidden" id="rentalFee2Hidden" name="rentalFee2" value=""> -->
 					<div class="nextBtnArea">
 <!--     					<input type="hidden" name="rentalFee3" id="rentalFee2Hidden"> -->
 						<button type="submit" id="nextBtn">다음</button>
@@ -345,7 +361,7 @@ $(document).ready(function() {
 		        <div class="popUpMessage">
 		            <h3>자동차보험 꼭 가입해야 하나요?</h3>
 		            캠핑갈카 모든 차량이 ‘자동차 종합보험’에 가입되어 있으니<br>
-					보험 가입하고 든든하게 보장받으세요.<br>
+					보험 가입하고 든든하게 보장받으세요.<br><br>
 					<h3>‘일반자차’와 ‘완전자차’ 차이점을 알고싶어요</h3>
 					‘고객부담금’을 제외한 나머지 보장 내용이 같아요.<br>
 					 단, 보험을 선택하지 않으면 사고 시 모든 비용을 부담해야 해요.<br>
@@ -375,18 +391,18 @@ $(document).ready(function() {
 							<td colspan="3">인당 1천 5백만원까지</td>
 						</tr>
 					</table> 
-					 &#128712; 자손 : 나의 신체가 다친 경우
-					 &#128712; 대물 : 다른 사람의 물건(차량)에 손해를 입힌 경우
-					 &#128712; 대인 : 다른 사람의 신체를 다치게 한 경우
+					 &#128712; 자손 : 나의 신체가 다친 경우<br>
+					 &#128712; 대물 : 다른 사람의 물건(차량)에 손해를 입힌 경우<br>
+					 &#128712; 대인 : 다른 사람의 신체를 다치게 한 경우<br><br>
 		            <h3>휴차보상료가 뭔가요?</h3>	
 		            차량 사고시 수리 기간 동안 할인이 적용되지 않은 표준대여료(24시간 기준)의 50%를 고객(임차인)에게 청구하는데<br>
 					이 요금을 휴차보상료(또는 휴차료)라고 해요.<br><br>
 					- ‘완전 자차’ 보험 가입 시 단순 사고일 경우 휴차보상료가 면제 돼요.<br>
 					-  단, ‘완전 자차’ 보험을 가입했어도 전손 처리 혹은 폐차 시 휴차보상료가 부과 돼요.<br>
-					 &#128712; 임대차 계약서 > 보험 보상 관련 약관에서 확인 가능	
+					 &#128712; 임대차 계약서 > 보험 보상 관련 약관에서 확인 가능	<br><br>
 					 <h3>보험 가입 후 사고 났을 때 어떻게 처리되나요?</h3>	
-					 한 번의 사고만 보장해요. 운전 중 사고가 났다면 캠핑갈카 고객센터 (1599-9111)로 전화주세요.<br>
-					 -----이미지삽입-----
+					 한 번의 사고만 보장해요. 운전 중 사고가 났다면<br>
+					 캠핑갈카 고객센터 (1599-9111)로 전화주세요.<br>
 					 <br>
  		        	<input type="button" value="확인했어요" class="agreementConfirm">
 		        </div>		        
@@ -397,7 +413,6 @@ $(document).ready(function() {
 		<aside class="chatBtn">
 			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
 		</aside>		
-		
 		
 	<footer>
 		<!-- 회사 소개 영역 -->

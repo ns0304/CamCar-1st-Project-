@@ -54,5 +54,10 @@
 		WHERE car_idx = #{car_idx}
 	</select>
 
-
+	<!-- 차량 모델 이미지 정보 조회 -->	
+	<select id="selectCarModelImage" resultType="String">
+		SELECT car_model_image
+		FROM car_model_info
+		WHERE car_model = #{car_model}
+	</select>
 </mapper>

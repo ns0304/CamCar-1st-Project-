@@ -55,5 +55,4 @@
 			</c:choose>
 		</ul>
 	</div>
-	<hr>
 </div>

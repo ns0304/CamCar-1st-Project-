@@ -25,7 +25,7 @@
 	</header>
 	<main>
 		<section>
-			<div>
+			<div id="place1">
 				<h2>🚗캠핑 차박 추천 장소!</h2>
 				<p>🏕캠핑갈카 차박(부산) - 녹산고향동산</p>
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/녹산고향동산.png" id="service">
@@ -35,7 +35,7 @@
 				취사가 가능하지 않아 간단한 차박 정도만 가능한 곳이에요. 근처에 화장실 및 편의점도 있어서 편안하게 차박을
 				할 수 있는 곳입니다.</p>
 			</div>
-			<div>
+			<div id="place2">
 				<p>🏕캠핑갈카 차박(부산) - 동백방파제</p>
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/동백방파제.png" id="service">
 				<p>🙆‍♀️ 쾌적하고 편한 장소 추천!</p>
@@ -44,7 +44,7 @@
 				<p>기장에는 워낙 차박을 많이 하는곳이다 보니 주변 편의점에서 차박 용품을 판매하고 있어 쉽게 구입도 가능합니다.
 					방파제인만큼 파도가 높고 날씨가 흐릴경우에는 들어 갈 수 없고 캠핑은 삼가하는것이 좋습니다.</p>
 			</div>
-			<div>
+			<div id="place3">
 				<p>🏕캠핑갈카 차박(부산) - 삼락생태공원</p>
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/삼락생태공원.jpg" id="service">
 				<p>🙆‍♀️ 다양한 꽃들을 보고 싶은 장소 추천!</p>
@@ -53,7 +53,7 @@
 					대부분 삼락생태공원이라 하면 4월의 벚꽃길을 제일 먼저 떠올리지만, 5, 6월의 삼락공원은 더 다양한 꽃들과 푸름으로
 					더 아름다운 경관을 볼 수 있습니다.</p>
 			</div>
-			<div>
+			<div id="place4">
 				<p>🏕<b>초보 캠퍼가 알아야 할 것</b></p>
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/문동방파제.jpg" id="service">
 				<p>허가를 받지 않거나 지정된 장소를 제외한 산이나 강 등지에서 이루어지는 야영과 불을 피우는 취사 행위는 금지되어 있다.
@@ -64,7 +64,7 @@
 				 간단 조리식품, 상비약, 테이블&의자, 화롯대, 타프, 베개, 도마, 휴대용 스피커(음량 조절 필수) 등</p>
 				<p><b>🏕낭만템 :</b> 반짝반짝 알전구, 알록달록 가렌드와 바람개비 같은 소품을 활용하여 장식 추천</p>
 			</div>
-			<div>
+			<div id="place5">
 				<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/다대포해수욕장.jpg" id="service">
 				<p>2️⃣ 장비 용어</p>
 				<p><b>타프 :</b> 햇볕, 비, 눈 등을 막는 넓다란 천으로 전실(거실 공간)을 구성.

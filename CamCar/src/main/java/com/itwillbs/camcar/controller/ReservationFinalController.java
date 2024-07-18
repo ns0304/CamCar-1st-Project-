@@ -50,6 +50,7 @@ public class ReservationFinalController {
 			return "result/fail";
 		}
 		
+		System.out.println("차량 모델 이미지 : " + map.get("car_model_image"));
 		System.out.println("차량코드 : " + map.get("car_idx"));
 		int car_idx = Integer.parseInt(map.get("car_idx"));
 		
@@ -58,16 +59,14 @@ public class ReservationFinalController {
 		
 		// 세션 아이디를 MemberVO에 저장		
 		String id = (String)session.getAttribute("sId");		
-
+		
 		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
 		member = my_service.getMember(member);
 		model.addAttribute("member", member);
 		System.out.println("*****id : " + id);
 		driver = my_service.getDriver(driver, id);
 		
-		
 		model.addAttribute("driver", driver);
-		
 		
 		// 요금 계산(보험)
 		model.getAttribute("carList");
@@ -215,6 +214,7 @@ public class ReservationFinalController {
 		System.out.println("pay22 : " + pay);
 		System.out.println("res22 : " + res);
 		
+		
 		// 운전자 정보 DB에 등록
 		// 만약, 운전자 정보가 이미 DB에 있다면 DriverVO에는 insert하지 않음 
 		int selectCount = service.getSameDriver(driver);
@@ -238,6 +238,7 @@ public class ReservationFinalController {
 			System.out.println("예약 정보 등록 성공!");
 			int res_idx = res.getRes_idx();
 			pay.setRes_idx(res_idx);
+			model.addAttribute("res_idx", res_idx);
 			insertCount3 = service.registPayInfo(pay);
 			
 		} else {

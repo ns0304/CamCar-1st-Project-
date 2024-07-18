@@ -36,4 +36,9 @@ public class ReservationService {
 	public CarVO getCarDetail(int car_idx) {
 		return mapper.selectCarDetail(car_idx);
 	}
+
+	// 차량 모델 이미지 조회 요청
+	public String getCarModelImage(String car_model) {
+		return mapper.selectCarModelImage(car_model);
+	}
 }

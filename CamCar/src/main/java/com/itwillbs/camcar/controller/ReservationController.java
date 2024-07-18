@@ -138,8 +138,14 @@ public class ReservationController {
  			return "result/fail";
  		}
  		
+ 		String car_model = carDetail.getCar_model();
+ 		
+ 		System.out.println("car_model : " + car_model);
+ 		String car_model_image = service.getCarModelImage(car_model);
+ 		
  		// Model 객체에 조회 결과 저장
  		model.addAttribute("carDetail", carDetail);
+ 		model.addAttribute("car_model_image", car_model_image);
  		
  		
  		return "reservation/car_detail";

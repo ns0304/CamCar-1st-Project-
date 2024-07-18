@@ -5,7 +5,7 @@ header {
 	top: 0;
 	width: 100%;
 	height: 90px;
-	background-color: white;
+	background-color: #f1f3f5;
 	z-index: 50;
 	display: flex; /* flex 레이아웃 추가 */
 	justify-content: center; /* 수평 중앙 정렬 */
@@ -53,8 +53,8 @@ header {
 }
 
 .logo img {
-	width: 110px;
-	height: 50px;
+	width: 160px;
+	height: 45px;
 	margin-top: 5px;
 }
 

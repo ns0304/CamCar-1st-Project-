@@ -325,6 +325,7 @@
 		<!-- 예약 일정 영역 -->
 		<aside id="schedule_container">
 			<form action="Reservation" name="reservation" method="post">
+				<input type="hidden" name="car_model_image" value="${car_model_image }">
 				<div>
 					<b> <c:choose>
 							<c:when test="${not empty sId}">${sId}님과 함께하는 여정</c:when>
