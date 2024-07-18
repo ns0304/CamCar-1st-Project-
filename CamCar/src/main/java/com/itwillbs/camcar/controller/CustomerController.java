@@ -49,7 +49,7 @@ public class CustomerController {
 //		System.out.println("페이지번호 : " + pageNum);
 		// --------------------------------------------------------------------
 		// 페이징 처리를 위해 조회 목록 갯수 조절에 사용될 변수 선언
-		int listLimit = 10; // 페이지 당 게시물 수
+		int listLimit = 5; // 페이지 당 게시물 수
 		int startRow = (pageNum - 1) * listLimit; // 조회할 게시물의 행 번호
 		
 		// 페이징 처리를 위한 계산 작업
