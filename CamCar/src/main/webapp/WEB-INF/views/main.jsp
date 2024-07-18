@@ -74,8 +74,8 @@ $(document).ready(function() {
 				
 				  <div class="mySlides fade">
 				    <div class="numbertext">2 / 3</div>
-				    <a href="Service#place2"><img src="${pageContext.request.servletContext.contextPath}/resources/img/service/다대포해수욕장.jpg" style="width:100%"></a>
-				    <div class="text">동백방파제 - 쾌적하고 탁 트인 방파제에서</div><br>
+				    <a href="Service#place5"><img src="${pageContext.request.servletContext.contextPath}/resources/img/service/다대포해수욕장.jpg" style="width:100%"></a>
+				    <div class="text">다대포해수욕장 - 쾌적하고 탁 트인 해수욕장에서</div><br>
 				  </div>
 				
 				  <div class="mySlides fade">
