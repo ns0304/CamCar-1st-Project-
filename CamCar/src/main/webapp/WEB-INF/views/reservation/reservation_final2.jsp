@@ -240,32 +240,34 @@ $(document).ready(function() {
 <!-- 			보험선택			 -->
 			<div id="insurance" class="clear">
 				<h3>보험선택</h3>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance1" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="0">
-					<a id="insuranceType1">선택안함</a><br>
-					<a id="insuranceFeeAdd1">0</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">전액</a>
-				</label>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance2" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceBasicFee }">
-					<a id="insuranceType2">일반자차</a><br>
-					<a id="insuranceFeeAdd2" data-value="${insuranceBasicFee}">${insuranceBasicFee }</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">30만원</a>
-				</label>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance3" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceSpecFee }">
-					<a id="insuranceType3">완전자차</a><br>
-					<a id="insuranceFeeAdd3" data-value="${insuranceSpecFee}">${insuranceSpecFee }</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">면제</a>
-				</label>
+				<div id="insuranceRadioList">
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance1" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="0">
+						<br><a id="insuranceType1">선택안함</a><br>
+						<a id="insuranceFeeAdd1">0</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">전액</a><br>
+					</label>
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance2" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceBasicFee }">
+						<br><a id="insuranceType2">일반자차</a><br>
+						<a id="insuranceFeeAdd2" data-value="${insuranceBasicFee}">${insuranceBasicFee }</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">30만원</a><br>
+					</label>
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance3" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceSpecFee }">
+						<br><a id="insuranceType3">완전자차</a><br>
+						<a id="insuranceFeeAdd3" data-value="${insuranceSpecFee}">${insuranceSpecFee }</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">면제</a><br>
+					</label>
+				</div>
 					<div id="insuranceDetail" class="clear">
 						<a>보장 내용 알아보기</a>	
 					</div>
 			</div>
-			<br><br>
+			
 			
 <!-- 			운전자 정보 입력			 -->			
 			<div id="driverInfo"  class="clear">
@@ -342,10 +344,9 @@ $(document).ready(function() {
 						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">
 						<input type="hidden" name="rentalFee" value="${param.rentalFee}">
 						<input type="hidden" name="brc_idx" value="${carDetail.brc_idx}">
+						<input type="hidden" name="car_model_image" value="${param.car_model_image}">
 					<div class="nextBtnArea">
-<!--     					<input type="hidden" name="rentalFee3" id="rentalFee2Hidden"> -->
-						<button type="submit" id="nextBtn">다음</button>
-<!-- 						<button type="button" id="nextBtn" onclick="nextPage()">다음</button> -->
+						<button type="submit" id="nextBtn"><b>다음</b></button>
 		          </div>			
 			</form>
 		</aside>

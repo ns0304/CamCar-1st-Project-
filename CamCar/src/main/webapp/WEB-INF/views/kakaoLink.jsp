@@ -12,6 +12,6 @@ function kakaoOpen() {
 </script>
  <nav>
 	  <a onclick="kakaoOpen()">
-	  <img src="${pageContext.request.servletContext.contextPath}/resources/img/chat.png"><br>
+	  <img src="${pageContext.request.servletContext.contextPath}/resources/img/kakaoChat.png"><br>
 	  채팅상담</a>
  </nav>
