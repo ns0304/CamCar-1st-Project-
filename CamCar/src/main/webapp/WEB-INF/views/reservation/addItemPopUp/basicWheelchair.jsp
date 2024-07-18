@@ -43,8 +43,7 @@
 		<button id="campingSet2_1" class="campingSet2BtnIn">
 			<img
 				src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/basic/wheelchair/wheelchair_1.png"
-				alt="Camping Set"><br> 스노우라인 블랙에디션<br> 테이블(2인용) +
-			릴렉스체어 2개<br> 일 12,000원<br>
+				alt="Camping Set"><br> 토도윅스<br> 오토복 M1<br>무료<br>
 		</button>
 		<br>
 	    <input type="button" value="선택" class="select">
@@ -52,9 +51,7 @@
 	<div class="campingSet2Btn">
 		<button id="campingSet2_2" class="campingSet2BtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/basic/wheelchair/wheelchair_2.png" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    토도윅스<br> 오토복 M6<br>무료<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>

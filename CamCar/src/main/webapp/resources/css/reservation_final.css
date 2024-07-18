@@ -154,6 +154,9 @@ main{
     font-weight: bold;
 }
 
+.insuranceRadio.selected {
+    background-color: #59B9A9; 
+}
 
 #driverInfo {
 	padding-top: 0px;

@@ -13,11 +13,12 @@
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
+/* 보험 팝업창 */
 .insurancePopUp {
     display: none;
     position: fixed;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
     background-color: #fff;
@@ -125,12 +126,11 @@ $(document).ready(function() {
 	    
         console.log($("#reservationForm").html());
         
-//         $("#driverInfoForm").submit();
 		return true;
 	});
 	
 	
-	// 보험 선택 해야 다음 페이지로 이동 가능함
+	// 보험 선택, 운전자정보 모두 입력 해야 다음 페이지로 이동 가능
     function validateDriverInfo() {
         let isValid = true;
 
@@ -139,11 +139,11 @@ $(document).ready(function() {
             if ($(this).val().trim() === '') {
                 $(this).focus();
                 isValid = false;
-                return false; // 루프를 중지
+                return false; 
             }
         });
 
-        // select 요소에서 유효한 옵션이 선택되었는지 확인
+        // select 요소 선택되어 있는지 확인
         if (isValid && $('#lic_info').val() === '') {
             $('#lic_info').focus();
             isValid = false;
@@ -154,14 +154,22 @@ $(document).ready(function() {
 
     $('#reservationForm').on('submit', function(event) {
         if (!$('input[name="insuranceListName"]:checked').length) {
-            event.preventDefault(); // 폼 제출을 막음
+            event.preventDefault(); 
             alert('보험을 선택해주세요.');
         } else if (!validateDriverInfo()) {
-            event.preventDefault(); // 폼 제출을 막음
+            event.preventDefault(); 
             alert('운전자 정보 입력 영역을 모두 입력해주세요.');
         }
     });
 	
+    
+    // 보험선택 체크되면 표시하기 위해 클래스 추가
+    $('.insuranceRadio input[type="radio"]').click(function() {
+        $('.insuranceRadio').removeClass('selected');
+        if ($(this).is(':checked')) {
+            $(this).closest('.insuranceRadio').addClass('selected');
+        }
+    });
 	
 });
 </script>

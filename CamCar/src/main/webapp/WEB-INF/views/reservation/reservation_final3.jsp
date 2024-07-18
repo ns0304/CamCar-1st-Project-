@@ -122,6 +122,7 @@ $(document).ready(function() {
 	            $(".basicPopUp" + i).hide();
 	        });
 	    }	
+	
 });
 </script>
 </head>

@@ -39,7 +39,8 @@
 			</div>
 			<div id="reservationComplete" class="clear">
 				<div id="completeContent">
-					예약번호 No.<span>${pay_idx}</span>
+					<br>
+					[ 예약아이디 <span>${pay.pay_idx}</span> ]
 					<h3><b><span>${sId}</span>님, 예약이 완료되었습니다</b></h3>
 					
 					<a>${param.rental_date} ~ ${param.return_date}</a> 에 이용하실<br>

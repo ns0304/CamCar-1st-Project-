@@ -337,9 +337,9 @@ $(document).ready(function() {
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>${driver.dri_name}님</a><br>
+							<a>${param.dri_name}님</a><br>
 							<hr>							
-							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
+							<a>${param.lic_info}</a>/<a>${param.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	
@@ -357,11 +357,11 @@ $(document).ready(function() {
 						<hr>
 						보험료 <a>${param.insFee}</a>원						
 						<hr>
-						부가상품료 <a>000</a>원<br>
-						 - 부가상품명1 <a>000</a>원<br>		
-						 - 부가상품명2 <a>000</a>원<br>		
+						부가상품료 <a>XXX</a>원<br>
+						 - 부가상품명1 <a>XXX</a>원<br>		
+						 - 부가상품명2 <a>XXX</a>원<br>		
 						<hr>
-						부가상품대여료 <a>000</a>원
+						부가상품대여료 <a>XXX</a>원
 						<hr>
 						총 결제금액 <a id="finalFee">${param.rentalInsFee}</a>원
 					</div>	

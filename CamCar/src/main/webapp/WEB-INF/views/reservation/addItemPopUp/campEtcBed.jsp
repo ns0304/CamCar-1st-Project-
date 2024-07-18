@@ -48,8 +48,7 @@
 		<button id="campEtcKit1" class="campEtcKitBtnIn">
 			<img
 				src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/bed_1.jpg"
-				alt="Camping Set"><br> 스노우라인 블랙에디션<br> 테이블(2인용) +
-			릴렉스체어 2개<br> 일 12,000원<br>
+				alt="Camping Set"><br>듀랑고<br> 3D 렉탕글러 -32도 침낭 (부분)<br> 일 8,000원<br>
 		</button>
 		<br>
 	    <input type="button" value="선택" class="select">
@@ -57,26 +56,23 @@
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit2" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/bed_2.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    듀랑고<br> 아담&이브_이브(부분)<br>
+		    일 8,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit3" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/bed_3.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    몬테라<br> 3D 매트 L(전체)<br>
+		    일 11,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit4" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/bed_4.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
+   		    필드스테이션<br> 카펫 매트140(전체)<br>
 		    일 12,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
