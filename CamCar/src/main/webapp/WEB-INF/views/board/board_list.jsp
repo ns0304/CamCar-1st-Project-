@@ -11,8 +11,7 @@
 <!-- 외부 CSS 파일(css/default.css) 연결하기 -->
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
-<style type="text/css">
-	
+<<style type="text/css">
 	h2 {
 	    text-align: center;
 	    color: #333;
@@ -90,11 +89,19 @@
 	    background-color: #498f7f;
 	}
 	
+	#pageList input[type="button"]:disabled {
+	    background-color: #ddd;
+	    color: #aaa;
+	    cursor: not-allowed;
+	}
+	
+	#pageList input[type="button"]:disabled:hover {
+	    background-color: #ddd;
+	}
 	
 	#pageList a:hover {
 	    text-decoration: underline;
 	}
-	
 </style>
 </head>
 <body>
