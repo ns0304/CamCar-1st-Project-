@@ -125,7 +125,6 @@
 						<option value="subject" <c:if test="${param.searchType eq 'subject'}">selected</c:if>>제목</option>
 						<option value="content" <c:if test="${param.searchType eq 'content'}">selected</c:if>>내용</option>
 						<option value="subject_content" <c:if test="${param.searchType eq 'subject_content'}">selected</c:if>>제목+내용</option>
-						<option value="name" <c:if test="${param.searchType eq 'name'}">selected</c:if>>작성자</option>
 					</select>
 					<input type="text" name="searchKeyword" value="${param.searchKeyword}">
 					<input type="submit" value="검색">
