@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 <%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
 <link
-	href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
-	rel="stylesheet" type="text/css">
-<link
 	href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css"
 	rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
