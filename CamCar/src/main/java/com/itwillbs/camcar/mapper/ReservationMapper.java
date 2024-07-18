@@ -28,4 +28,7 @@ public interface ReservationMapper {
 	// 차량 상세정보 조회
 	CarVO selectCarDetail(int car_idx);
 
+	// 차량 모델 이미지 조회
+	String selectCarModelImage(String car_model);
+
 }

@@ -293,7 +293,6 @@ $(document).ready(function() {
 					</form>
 				</div>
 			</div>
-
 		</section>
 		
 		<!-- 오른쪽 사이드 영역 -->

@@ -39,11 +39,11 @@
 			</div>
 			<div id="reservationComplete" class="clear">
 				<div id="completeContent">
-					예약번호 <span>${param.}</span>
+					예약번호 <span>${pay_idx}</span>
 					<h3><span>${sId}</span>님, 예약이 완료되었습니다</h3>
 					<hr>
-					<a>${param.rental_date} ~ ${param.return_date}</a>에 이용하실<br>
-					<a>${carDetail.car_model}</a>예약이 완료되었습니다
+					<a>${param.rental_date} ~ ${param.return_date}</a> 에 이용하실<br>
+					<a>${carDetail.car_model}</a> 예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
 					<input type="button" value="예약 상세 조회">

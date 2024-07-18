@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 /* 캠핑갈카 홍보 사진/일러스트 슬라이드 */
 .SlideImg>img {
 	height: 500px;
@@ -11,12 +12,9 @@
 }
 
 .SlideImg, .slideBestImg {
-/* 	width: 720px; */
 	height: 500px;
-	border: 2px solid #ccc;	/* 임시 */
 	overflow: hidden;
 }
-
 
 /* okokok 차박 베스트 장소 이미지 사이즈 조절 okokok */
 .SlideImg img, .slideBestImg img {
@@ -25,40 +23,180 @@
 }
 
 /* 자주 묻는 질문 영역 */
-#mainQna {
-	border: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */
-	height: auto;
+.contentArea {
+    display: none; /* Hidden by default */
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
 }
 
-#qna {display: flex;
-flex-direction: column;
-width: 100%;
-border-radius: 3px;
-background-color: lightgray;
-height: 20px;
-padding: 30px 50px;
-box-sizing: border-box;
-margin-bottom: 0px;
+#mainQna {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 700px;
+/*    	width: 700px; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#qna {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+    text-decoration: blink;
+    color: gray;
+}
+
+#mainQnaMore {
+    display: block;
+    text-align: right;
+    color: #59b9a9; /* Main color */
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+#mainQnaMore:hover {
+    text-decoration: underline;
 }
 
 #qnaContent {
-	height: auto;
-	background-color: gray;
-	width: 100%;
-	padding: 30px 50px;
-	box-sizing: border-box;
+    font-size: 16px;
 }
 
-#qnaContent1, #qnaContent2, #qnaContent3 {
-	display:block;
-	padding: 20px 0px;
-	}
+#qnaContent a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
 
-#mainQnaMore {
-text-align: right;
+#qnaContent a:hover {
+    color: #59b9a9; /* Main color */
+}
+
+#qnaContent hr {
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+}
+
+
+.SlideImg>img {
+    height: 500px;
+}
+
+.SlideImg>p {
+    position: relative;
+    bottom: 250px;
+}
+
+.SlideImg, .slideBestImg {
+    height: 500px;
+    overflow: hidden;
+}
+
+
+#bestCarPlacePlease > * {box-sizing:border-box;}
+
+#bestCarPlacePlease {
+	margin-top: 10px;
+}
+
+
+/* Hide the images by default */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.mySlides img {
+	height: 500px;
+	object-fit : cover;
 }
 
 .extra {
