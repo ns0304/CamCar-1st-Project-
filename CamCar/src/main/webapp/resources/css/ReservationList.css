@@ -1,0 +1,127 @@
+@charset "UTF-8";
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+section {
+    width: 50%; 
+    margin: 0 auto;
+}
+
+/* div { */
+/*     margin-bottom: 50px; */
+/* } */
+.mainDiv {
+	margin-bottom: 50px;
+}
+h2 {
+	text-align: left;
+	
+}
+.myRes span a.moreView {
+	text-decoration: underline;
+	color:#333; 
+}
+h2, p, a {
+    margin: 5px 0;
+     margin-left: 10px;
+}
+
+table {
+    width: 95%;
+    border-collapse: collapse;
+/*     margin-top: 10px; */
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+td {
+    vertical-align: top;
+}
+
+/* Button Styles */
+button {
+    background-color: #59b9a9;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #59b9a9;
+    color: black;
+    border-radius: 10px;
+}
+
+button:hover:not(:disabled) {
+    background-color: #45a089;
+}
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 내예약, 지난 예약 div Class Styles */
+.myRes, .oldRes {
+    border: 1px solid #ddd;
+    padding: 30px, 20px, 20px, 20px; 
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+/* 내예약 테이블 */
+#myRes {
+	margin: 0, 10px, 0, 10px;
+}
+/* 더보기 */
+.moreView {
+	
+}
+.myRes h2, .oldRes p {
+    color: #333;
+}
+
+.myRes span, .oldRes span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myRes span a, .oldRes span a {
+    text-decoration: none;
+    color: #333;
+}
+
+.myRes span button, .oldRes span button {
+    margin-left: 10px;
+}
+
+/* Align Text Center */
+td[text-align="center"] {
+    text-align: center;
+}
+
+/*
