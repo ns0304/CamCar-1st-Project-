@@ -13,7 +13,7 @@
 <script>
     // 예제 데이터, 실제 데이터로 대체 필요
     // 일단은 그냥 chatgpt로 만들었는데 나중에 대대적인 수정 필요!!!
-    const monthlySalesData = {
+    let monthlySalesData = {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
         datasets: [{
             label: '월 매출 통계',
@@ -24,7 +24,7 @@
         }]
     };
 
-    const popularModelsData = {
+    let popularModelsData = {
         labels: ['레이', '카니발(하이 리무진)', '카니발', '스타리아(아클란S)','팰리세이드'],
         datasets: [{
             label: '인기 차량 모델 순위',
@@ -47,7 +47,7 @@
         }]
     };
 
-    const rentalCountsData = {
+    let rentalCountsData = {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
         datasets: [{
             label: '월별 렌트 횟수',
@@ -58,7 +58,7 @@
         }]
     };
 
-    const ageGroupData = {
+    let ageGroupData = {
         labels: ['18-25', '26-35', '36-45', '46-55', '56+'],
         datasets: [{
             label: '연령대별 이용자',
@@ -83,7 +83,7 @@
 
     // 차트 렌더링
     window.onload = function() {
-        const ctx1 = document.getElementById('monthlySalesChart').getContext('2d');
+        let ctx1 = document.getElementById('monthlySalesChart').getContext('2d');
         new Chart(ctx1, {
             type: 'bar',
             data: monthlySalesData,
@@ -96,13 +96,13 @@
             }
         });
 
-        const ctx2 = document.getElementById('popularModelsChart').getContext('2d');
+        let ctx2 = document.getElementById('popularModelsChart').getContext('2d');
         new Chart(ctx2, {
             type: 'pie',
             data: popularModelsData
         });
 
-        const ctx3 = document.getElementById('rentalCountsChart').getContext('2d');
+        let ctx3 = document.getElementById('rentalCountsChart').getContext('2d');
         new Chart(ctx3, {
             type: 'line',
             data: rentalCountsData,
@@ -115,7 +115,7 @@
             }
         });
 
-        const ctx4 = document.getElementById('ageGroupChart').getContext('2d');
+        let ctx4 = document.getElementById('ageGroupChart').getContext('2d');
         new Chart(ctx4, {
             type: 'doughnut',
             data: ageGroupData
