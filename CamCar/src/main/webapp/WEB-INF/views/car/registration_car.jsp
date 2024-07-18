@@ -19,7 +19,10 @@
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
-<style type="text/css">
+#articleForm {
+	width: 600px;
+	margin: auto;
+}
         table {
             border-collapse: collapse;
             width: 100%;
@@ -27,7 +30,6 @@
         }
         table th, table td {
             padding: 8px;
-            text-align: center;
             border: 1px solid #ddd;
             font-size: 14px;
             background-color: #f9f9f9;
@@ -35,6 +37,7 @@
         table th {
             background-color: #f2f2f2;
             color: #333;
+            text-align: center;
         }
         table tr:hover {
             background-color: #f2f2f2;
@@ -71,7 +74,7 @@
 		<aside>
 			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
 		</aside>
-		<section>
+		<section id="articleForm">
 			<div>
 				<div align="center">
 					<h1>차량 정보 등록</h1>

@@ -18,6 +18,10 @@
 <script
     src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
+#articleForm {
+	width: 900px;
+	margin: auto;
+}
 table {
 	border-collapse: collapse;
 }
@@ -74,17 +78,17 @@ table input[type="button"]:hover {
         <aside>
             <jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
         </aside>
-        <section>
+        <section id="articleForm">
             <div align="center">
                 <!-- 게시판 리스트 -->
                 <h2>캠핑갈카 공지사항</h2>
                 <section id="listForm">
                     <table border="1">
                         <tr id="tr_top">
-                        	<td align="center">공지글 번호</td>
+                        	<td align="center" width="80">공지글 번호</td>
                             <td align="center">공지 사항 제목</td>
                             <td width="150px" align="center">날짜</td>
-                            <td align="center">상세 정보 보기</td>
+                            <td align="center" width="100">상세 정보 보기</td>
                         </tr>
 
                         <c:set var="pageNum" value="1" />

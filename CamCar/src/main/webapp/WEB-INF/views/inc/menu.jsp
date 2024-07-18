@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			<a href="ManagerMain" class="">관리자 메뉴</a>
 		</h3>
 		<div class="menu-item">
-			<h2>회원 관리</h2>
+			<h2><a href="memberList">회원 관리</a></h2>
 			<div class="submenu">
 				<h4>
 					<a href="memberList" class="">현재 회원 목록</a>
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			</div>
 		</div>
 		<div class="menu-item">
-			<h2>차량 관리</h2>
+			<h2><a href="CarListBoard">차량 관리</a></h2>
 			<div class="submenu">
 				<h4>
 					<a href="CarListBoard" class="">차량 목록 조회</a>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			</div>
 		</div>
 		<div class="menu-item">
-			<h2>게시글 관리</h2>
+			<h2><a href="qna_ask">게시글 관리</a></h2>
 			<div class="submenu">
 				<h4>
 					<a href="qna_ask" class="">1:1 문의 상담 내역</a>

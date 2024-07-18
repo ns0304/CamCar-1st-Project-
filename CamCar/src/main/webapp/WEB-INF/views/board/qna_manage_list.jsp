@@ -18,41 +18,52 @@
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 
- <style type="text/css">
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-        table th, table td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ddd;
-            font-size: 14px;
-            background-color: #f9f9f9;
-        }
-        table th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-        table tr:hover {
-            background-color: #f2f2f2;
-        }
-        table th, table td:nth-child(3) {
-            white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
-        }
-        table input[type="button"] {
-            padding: 5px 10px;
-            background-color: #00838f;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        table input[type="button"]:hover {
-            background-color: #006064;
-        }
-    </style>
+<style type="text/css">
+#articleForm {
+	width: 900px;
+	margin: auto;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 20px;
+}
+
+table th, table td {
+	padding: 8px;
+	text-align: center;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	background-color: #f9f9f9;
+}
+
+table th {
+	background-color: #f2f2f2;
+	color: #333;
+}
+
+table tr:hover {
+	background-color: #f2f2f2;
+}
+
+table th, table td:nth-child(3) {
+	white-space: nowrap; /* 생년월일 칼럼 텍스트가 너무 길 때 줄이지 않도록 설정 */
+}
+
+table input[type="button"] {
+	padding: 5px 10px;
+	background-color: #00838f;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+table input[type="button"]:hover {
+	background-color: #006064;
+}
+</style>
 
 
 </head>
@@ -61,8 +72,10 @@
 		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
 	</header>
 	<main>
-		<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
-		<section>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
+		<section id="articleForm">
 			<div align="center">
 				<!-- 게시판 리스트 -->
 				<h2>캠핑갈카 1:1 문의</h2>
@@ -86,16 +99,14 @@
 							<%-- qnaList 에서 꺼낸 BoardBean 객체(board)에 저장된 멤버변수값(데이터) 출력 --%>
 							<tr>
 								<td>${qna.mem_id}</td>
-								<td>
-									<c:choose>
+								<td><c:choose>
 										<c:when test="${qna.qna_type_idx eq 1}">예약/예약상담</c:when>
 										<c:when test="${qna.qna_type_idx eq 2}">차량인도</c:when>
 										<c:when test="${qna.qna_type_idx eq 3}">정비/사고</c:when>
 										<c:when test="${qna.qna_type_idx eq 4}">결제</c:when>
 										<c:when test="${qna.qna_type_idx eq 5}">계약변경/종료</c:when>
 										<c:when test="${qna.qna_type_idx eq 6}">기타</c:when>
-									</c:choose>
-								</td>
+									</c:choose></td>
 								<%-- 
 								<td>
 								<fmt:parseDate value="${orderTicket.order_ticket_date}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
@@ -103,10 +114,10 @@
 								</td>--%>
 								<td>${qna.qna_inquery}</td>
 								<c:if test="${not empty qna.qna_reply}">
-								<td>답변완료</td>
+									<td>답변완료</td>
 								</c:if>
 								<c:if test="${empty qna.qna_reply}">
-								<td style="color: blue;"><b>답변대기</b></td>
+									<td style="color: blue;"><b>답변대기</b></td>
 								</c:if>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>
