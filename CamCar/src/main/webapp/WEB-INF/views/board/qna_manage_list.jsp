@@ -121,7 +121,7 @@ table input[type="button"]:hover {
 								</c:if>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>
-								<td><input type="button" value="수정"
+								<td><input type="button" value="답변"
 									onclick="location.href='QnaDetail?qna_number=${qna.qna_number}'"></td>
 							</tr>
 						</c:forEach>
