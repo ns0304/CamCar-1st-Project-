@@ -26,6 +26,7 @@ table th, table td {
 	padding: 10px;
 	text-align: center;
 }
+
 .graph {
         width: 100%;
         border-collapse: collapse;
@@ -84,7 +85,7 @@ table th, table td {
 					<h1>현재 회원 목록</h1>
 					<form action="memberList">
 						<%-- 검색타입 목록(셀렉트박스), 검색어(텍스트박스) 추가(파라미터 있으면 해당 내용 표시) --%>
-						
+						<%--지민아 부탁해 --%>
 						<%--검색기능 처리 --%>
 						<select name="searchType">
 							<option value="name" <c:if test="${param.searchType eq 'name'}">selected</c:if>>이름</option>
