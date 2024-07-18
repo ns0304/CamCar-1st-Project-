@@ -128,8 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
             <li class="menu-item" data-hover="boardManagement">
                 <a href="#">게시글관리</a>
                 <div class="menu-details">
-                    <h4><a href="qna_ask">1:1 문의 상담 내역</a></h4>
                     <h4><a href="BoardListManage">공지사항 관리</a></h4>
+                    <h4><a href="qna_ask">1:1 문의 상담 내역</a></h4>
                 </div>
             </li>
         </ul>
