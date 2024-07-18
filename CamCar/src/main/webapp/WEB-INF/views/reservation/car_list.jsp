@@ -474,7 +474,7 @@ $(document).ready(function() {
 												<span class="main_name" style="font-size: 20px;">
 													<fmt:formatNumber value="${carFeeMap[car.car_idx]}" pattern="#,###" />원
 												</span>
-												<input type="submit" value="예약마감" class="resBtn" disabled style="background-color: #ccc; cursor: default; width: 80px;">
+												<input type="submit" value="예약불가" class="resBtn" disabled style="background-color: #ccc; cursor: default; width: 80px;">
 											</div>
 										</div>
 									</c:when>

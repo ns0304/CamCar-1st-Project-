@@ -42,6 +42,7 @@
 		        (r.res_rental_date <= #{endDate} AND r.res_return_date >= #{startDate})
 		    )
 		)
+		OR car_status = '정비중'
 		ORDER BY c.car_model
 	]]>
 	</select>
