@@ -240,6 +240,25 @@ $(document).ready(function() {
 
 });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all payment buttons
+        var paymentButtons = document.querySelectorAll('.paymentBtnAll');
+
+        // Add click event listener to each button
+        paymentButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Remove 'active' class from all buttons
+                paymentButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked button
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
 </head>
 <body>
 		<header>
@@ -258,7 +277,7 @@ $(document).ready(function() {
 						부가상품
 					</li>
 					<li id="reservationStepNow">
-						결제
+						<b>결제</b>
 					</li>
 					<li>
 						완료
@@ -298,19 +317,19 @@ $(document).ready(function() {
 		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
 			<form action="ReservationFin" name="reservation" id="reservationPayForm" method="post">
-				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+				<img src="${pageContext.request.contextPath}/resources/upload/${param.car_model_image}" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 <!-- 						이름으로 바꿔야 함        -->
-						<a>${pay_idx}님의 여정</a>      
+						<a>${sId}님의 여정</a>      
 						<div class="clear">
 							<a>
 							<c:choose>
 								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
-								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+								<c:otherwise>캠핑갈카 서울지점</c:otherwise>
 							</c:choose>
 							</a>
 					          <hr>
-							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
+							<a>${param.res_rental_date} <br> ~ ${param.res_return_date}</a>
 					          <hr>
 							<a>${carDetail.car_model}</a>
 						</div>
