@@ -128,9 +128,9 @@ public class MemberController {
 			model.addAttribute("msg", "로그인 실패!");
 			return "result/fail";
 			
-//		} else if(dbMember.getMem_status() == 3) { // 로그인 성공(이지만 탈퇴 회원인 경우)
-//			model.addAttribute("msg", "탈퇴한 회원입니다!");
-//			return "result/fail";
+		} else if(dbMember.getMem_status() == 3) { // 로그인 성공(이지만 탈퇴 회원인 경우)
+			model.addAttribute("msg", "탈퇴한 회원입니다!");
+			return "result/fail";
 			
 		} else { // 로그인 성공
 			// 로그인 성공한 아이디를 세션에 저장
