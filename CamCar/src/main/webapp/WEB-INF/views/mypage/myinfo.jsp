@@ -246,6 +246,12 @@ border-radius: 10px;
 
 </style>
 <script type="text/javascript">
+//입력값 검증 결과를 저장할 변수 선언(true : 적합, false : 부적합)
+	let checkPasswdResult = false;
+	let checkPasswd2Result = false;
+	
+
+
 
 // 1. 마케팅 전체 동의 
 function check_all2(checked) {
@@ -682,13 +688,15 @@ $(document).ready(function() {
 	        <br>
 	        <div class="popUpNewPasswd">
 	            <a>새 비밀번호</a>
-                <input type="password" name="mem_passwd" id="mem_passwd" onblur="checkPasswd()" required><br>
-                <a>영문, 숫자, 특수문자 포함 10 ~ 20자 이내</a>
+                <input type="password" name="mem_passwd" id="mem_passwd" onblur="checkPasswd()" required>
+                <span id="checkPasswdComplexResult"></span>
+				<div id="checkPasswdResult"></div>
 	        </div>
 	        <br>
 	        <div class="popUpNewPasswdConfirm">
 	            <a>새 비밀번호 확인</a>
-	            <input type="password" name="mem_passwd2" id="mem_passwd2" onblur="checkSamePasswd()" required>
+	            <input type="password" name="mem_passwd2" id="mem_passwd2" onblur="checkSamePasswd()" required><br>
+	            <div id="checkPasswd2Result"></div>
 	        </div>
 	        <br>
 	        <div class="popUpChangePasswd" >
@@ -750,7 +758,7 @@ $(document).ready(function() {
                 </fieldset>
                 <br>
                 <div class="submit_section">
-                    <button type="submit" class="submitBtn">주소를 입력해주세요</button>
+                    <button type="submit" class="submitBtn">주소 정보 변경</button>
                 </div>
             </form>
     	</fieldset>
