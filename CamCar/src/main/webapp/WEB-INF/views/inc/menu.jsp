@@ -100,13 +100,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 			</div>
 		</div>
 		<div class="menu-item">
-			<h2><a href="qna_ask">게시글 관리</a></h2>
+			<h2><a href="BoardListManage">게시글 관리</a></h2>
 			<div class="submenu">
 				<h4>
-					<a href="qna_ask" class="">1:1 문의 상담 내역</a>
+					<a href="BoardListManage" class="">공지사항 관리</a>
 				</h4>
 				<h4>
-					<a href="BoardListManage" class="">공지사항 관리</a>
+					<a href="qna_ask" class="">1:1 문의 상담 내역</a>
 				</h4>
 			</div>
 		</div>

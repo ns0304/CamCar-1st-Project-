@@ -92,14 +92,13 @@
 							<th rowspan="6">
 								<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${oldResList.car_model_image}" width="250px" ><br>
 								<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${oldResList.car_logo_image}" ><br>
-<!-- 								<img src="./resources/images/1그랜저.png" width="300px" height="300px"> -->
 							</th>
 							<td>
 								<span>
 								
 								<a>${oldResList.car_model}</a> 
 								
-									<button disabled style="background-color: #59b9a9; color: black; border:none;">${oldResList.pay_status}</button>	
+									<button disabled style="background-color: #59b9a9; color: black; border:none;">이용완료</button>	
 								
 								</span>
 							</td>
