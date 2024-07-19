@@ -8,11 +8,13 @@
 	<br>
 	<div class="logo">
 		<a href="./"><img src="${pageContext.request.contextPath}/resources/img/camcar_logo.png" id="camcarLogo"></a>
-		<p style="margin-left: 30px; margin-right: 1500px;">
-			이용약관 | 개인정보보호정책 | 이메일수집거부 | 자동차대여약관<br><br>
-			부산광역시 부산진구 부전동 112-3 삼한골든게이트 7층 (캠핑갈카 본점)    대표 진성민   TEL 051-1234-5678   E-MAIL ns0304@gmail.com
-		<p>
-		<a><img src="${pageContext.request.servletContext.contextPath}/resources/img/kakaoChatQR.png" id="qrImg"></a>
+		<div style="width: 60%;">
+			<p style="margin-left: 30px;">
+				이용약관 | 개인정보보호정책 | 이메일수집거부 | 자동차대여약관<br><br>
+				부산광역시 부산진구 부전동 112-3 삼한골든게이트 7층 (캠핑갈카 본점)    대표 진성민   TEL 051-1234-5678   E-MAIL ns0304@gmail.com
+			<p>
+		</div>
+		<a style="margin-left: 100px;"><img src="${pageContext.request.servletContext.contextPath}/resources/img/kakaoChatQR.png" id="qrImg"></a>
 	</div>
 	<br>
 </div>
