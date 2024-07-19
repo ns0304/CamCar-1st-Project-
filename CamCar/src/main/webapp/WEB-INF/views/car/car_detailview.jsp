@@ -12,9 +12,7 @@
 <link
 	href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
 	rel="stylesheet" type="text/css"> -->
-<link
-	href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
@@ -256,10 +254,6 @@ table input[type="button"]:hover {
 		</section>
 	</main>
 	<br>
-		<!-- 카카오톡 채팅 문의 -->	
-	<aside class="chatBtn">
-		<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
-	</aside>
 	
 	<footer>
 		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
