@@ -215,6 +215,7 @@ public class ReservationFinalController {
 		System.out.println("pay22 : " + pay);
 		System.out.println("res22 : " + res);
 		model.addAttribute("pay", pay);
+		model.addAttribute("res", res);
 		
 		// 운전자 정보 DB에 등록
 		// 만약, 운전자 정보가 이미 DB에 있다면 DriverVO에는 insert하지 않음 
