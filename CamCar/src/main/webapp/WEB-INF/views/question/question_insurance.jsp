@@ -89,6 +89,9 @@ body {
     margin: 0;
     color: #333;
 }
+main>section {
+	height: 600px;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
