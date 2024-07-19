@@ -151,7 +151,9 @@ public class CustomerController {
 		int insertCount = service.registInquiry(qna);
 		
 		if(insertCount > 0) {
-			return "customer/customer_list";
+			model.addAttribute("msg", "1:1문의 등록 완료");
+			model.addAttribute("targetURL", "Customer");
+			return "result/success";
 		} else {
 			model.addAttribute("msg", "글쓰기 실패!");
 			return "result/fail";
