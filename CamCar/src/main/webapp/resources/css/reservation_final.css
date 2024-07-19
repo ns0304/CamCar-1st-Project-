@@ -248,7 +248,7 @@ height: 550px;
 /* 	float: right; */
 	line-height: 20px;
 	height: 600px;
-	overflow: scroll;
+	overflow: auto;
 	overflow-x: hidden;
 	border: 1px solid #ccc;
 }

@@ -139,6 +139,7 @@ table input[type="button"]:hover {
 		</section>
 	</main>
 	<br>
+	
 	<footer>
 		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>

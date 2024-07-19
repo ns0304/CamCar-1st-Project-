@@ -165,10 +165,10 @@
     <aside id="reservation_container">
         <jsp:include page="/WEB-INF/views/reservation/reservation.jsp"></jsp:include>
     </aside>
-   	<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->		
-	<aside class="chatBtn">
-		<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
-	</aside>
+		<!-- 카카오톡 채팅 문의 -->	
+		<aside class="chatBtn">
+			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+		</aside>
 </main>
 <footer>
     <%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>

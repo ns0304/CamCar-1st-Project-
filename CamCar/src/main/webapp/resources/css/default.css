@@ -52,7 +52,12 @@ header {
 	font-size: 12px;
 }
 
-.logo img {
+#qrImg {
+	width: 100px;
+	height: 100px;
+}
+
+.logo img:not(#qrImg) {
 	width: 155px;
 	height: 60px;
 	margin-top: 5px;

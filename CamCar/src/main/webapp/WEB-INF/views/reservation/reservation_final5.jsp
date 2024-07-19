@@ -45,9 +45,10 @@
 					
 					<a>${param.rental_date} ~ ${param.return_date}</a> 에 이용하실<br>
 					<a>${carDetail.car_model}</a> 예약이 완료되었습니다
+					<a>res : ${res.res_idx}</a> 
 				</div>
 				<div id="completeBtn">
-					<input type="button" class="completeBtnAll" value="예약 상세 조회" onclick="location.href = 'reservation_list/ReservationList2.jsp'">
+					<input type="button" class="completeBtnAll" value="예약 상세 조회" onclick="location.href='./ '">
 					<input type="button" class="completeBtnAll" value="홈으로 가기"  onclick="location.href = './'" >
 				</div>
 			</div>

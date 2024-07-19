@@ -168,7 +168,10 @@ $(document).ready(function() {
 		<jsp:include page="/WEB-INF/views/reservation/reservation.jsp"></jsp:include>
 	</aside>
 </main>
-	
+		<!-- 카카오톡 채팅 문의 -->	
+	<aside class="chatBtn">
+		<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+	</aside>
 
 	<footer>
 	<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>

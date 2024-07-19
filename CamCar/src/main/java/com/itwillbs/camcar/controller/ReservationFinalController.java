@@ -3,6 +3,7 @@ package com.itwillbs.camcar.controller;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -215,8 +216,6 @@ public class ReservationFinalController {
 		System.out.println("res22 : " + res);
 		model.addAttribute("pay", pay);
 		
-		
-		
 		// 운전자 정보 DB에 등록
 		// 만약, 운전자 정보가 이미 DB에 있다면 DriverVO에는 insert하지 않음 
 		int selectCount = service.getSameDriver(driver);
@@ -230,7 +229,7 @@ public class ReservationFinalController {
 		// 예약 정보 DB에 등록
 		int insertCount2 = service.registResInfo(res);
 		
-		System.out.println("res333 : " + res);
+//		System.out.println("res333 : " + res);
 		
 		// 결제 정보 DB에 등록
 		int insertCount3 = 0;
@@ -250,11 +249,22 @@ public class ReservationFinalController {
 		
 		if(insertCount3 > 0) {
 			System.out.println("운전자 정보 등록 성공!");
+			
+			
+			//마이페이지 예약내역 조회
+			List<Map<String, String>> ReserveList= my_service.getReserveList(id);
+			System.out.println("ReserveList : " + ReserveList);
+			
+			model.addAttribute("ReserveList", ReserveList);
+			
+			
 			return "reservation/reservation_final5";
 		} else {
 			model.addAttribute("msg", "운전자 정보 등록 실패!");
 			return "result/fail";
 		}
+		
+		
 	}
 	
 	

@@ -117,11 +117,13 @@ input[type="button"]:hover {
 					onclick="location.href='board_list?pageNum=${param.pageNum}'">
 			</section>
 		</section>
-		<!-- okokokkokok 카카오톡 1:1문의하기 okokokkokok-->
-		<aside class="chatBtn">
-			<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
-		</aside>
 	</main>
+	
+		<!-- 카카오톡 채팅 문의 -->	
+	<aside class="chatBtn">
+		<jsp:include page="/WEB-INF/views/kakaoLink.jsp"></jsp:include>
+	</aside>
+	
 	<footer>
 		<!-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 -->
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
