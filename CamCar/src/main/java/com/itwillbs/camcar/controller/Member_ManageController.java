@@ -37,6 +37,7 @@ public class Member_ManageController {
 		// 페이징 처리를 위한 계산 작업
 		// MemberListService - getMemberListCount() 메서드 호출하여 전체 게시물 수 조회 요청
 		int listCount = service.getMemberListCount(searchType, searchKeyword);
+		System.out.println("오늘 발표 마지막 날입니다 : " + listCount);
 		int pageListLimit = 3;
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;

@@ -97,7 +97,14 @@
 						<c:if test="${sessionScope.sId eq qna.mem_id}">
 							<tr>
 								<td>${qna.mem_id}</td>
-								<td>${qna.qna_type_idx}</td>
+								<td><c:choose>
+									<c:when test="${qna.qna_type_idx eq 1}">예약/예약상담</c:when>
+									<c:when test="${qna.qna_type_idx eq 2}">차량인도</c:when>
+									<c:when test="${qna.qna_type_idx eq 3}">정비/사고</c:when>
+									<c:when test="${qna.qna_type_idx eq 4}">결제</c:when>
+									<c:when test="${qna.qna_type_idx eq 5}">계약변경/종료</c:when>
+									<c:when test="${qna.qna_type_idx eq 6}">기타</c:when>
+								</c:choose></td>
 								<td>${qna.qna_inquery}</td>
 								<td><fmt:formatDate value="${qna.qna_date}"
 										pattern="yyyy-MM-dd" /></td>
