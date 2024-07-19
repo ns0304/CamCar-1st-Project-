@@ -52,6 +52,7 @@ p {
 				<div class="place">
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/녹산고향동산.png" id="service">
 					<p>🙆‍♀️ 시원한 강뷰 추천장소!</p>
+					<p><b>주소:</b> 부산광역시 강서구 범방동 7</p>
 					<div class="placeLetter">
 						<p>녹산고향동산은 시원한 강뷰를 보면서 넓은 들판에 차박을 할 수 있는 곳입니다.
 						피크닉도 하기 좋아 피크닉 명소로도 알려져 있습니다. 봄이되면 벚꽃이 피어나 벚꽃캠핑까지 할 수 있는 곳이지만
@@ -67,6 +68,7 @@ p {
 				<div class="place">
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/동백방파제.png" id="service">
 					<p>🙆‍♀️ 쾌적하고 편한 장소 추천!</p>
+					<p><b>주소:</b> 부산광역시 기장군 일광면 문오성길</p>
 					<div class="placeLetter">
 						<p>동백방파제는 다른 방파제에 비해 넓은 구조로 캠핑하기 좋은 곳입니다. 방파제 특성상 화장실도 위치하고 있어
 							쾌적하게 사용할 수 있고 방파제근처로 가면 공터가 많아 공터에도 바다뷰를 가지고 있어 차박하기 좋습니다.</p><br><br>
@@ -82,6 +84,7 @@ p {
 				<div class="place">
 					<img src="${pageContext.request.servletContext.contextPath}/resources/img/service/삼락생태공원.jpg" id="service">
 					<p>🙆‍♀️ 다양한 꽃들을 보고 싶은 장소 추천!</p>
+					<p><b>주소:</b> 부산광역시 사상구 삼락동 29</p>
 					<div class="placeLetter">
 						<p>그 어디에 차를 세워 두어도 푸름을 즐길 수 있는 곳이 있다. 그곳은 바로 부산 사상구의 삼락생태공원입니다.
 							삼락생태공원은 낙동강하구 둔치 중 가장 넓은 습지이며, 다양한 자연환경과 편의시설을 갖춘 부산의 대표적인 공원입니다.

@@ -47,8 +47,7 @@
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit1" class="campEtcKitBtnIn">
 			<img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_1.jpg" alt="Camping Set"><br> 
-			스노우라인 블랙에디션<br> 테이블(2인용) +
-			릴렉스체어 2개<br>
+			몬테라<br> 마름 폴딩 롤테이블<br>
 			일 12,000원<br>
 		</button>
 		<br>
@@ -57,63 +56,56 @@
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit2" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_2.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    아이언메쉬<br> 화로대테이블<br>
+		    일 17,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit3" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_3.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    온리원<br> 릴렉스체어<br>
+		    일 10,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit4" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_4.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    지프<br> 헥사 비비큐 테이블(BBQ 테이블)<br>
+		    일 22,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit5" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_5.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    헬리녹스<br> 릴렉스체어 다크블루<br>
+		    일 11,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit5" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_6.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    자칼<br> 범페체어 라이트브라운<br>
+		    일 9,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit5" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_7.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    몬테라<br> 우디체어<br>
+		    일 8,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>
 	<div class="campEtcKitBtn">
 		<button id="campEtcKit5" class="campEtcKitBtnIn">
 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/etc/fur_8.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
+   		    스노우라인<br> 미니테이블<br>
+		    일 7,000원<br>
 		</button><br>
   		    <input type="button" value="선택" class="select">
     </div>

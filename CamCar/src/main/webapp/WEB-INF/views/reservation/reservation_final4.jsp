@@ -240,6 +240,25 @@ $(document).ready(function() {
 
 });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all payment buttons
+        var paymentButtons = document.querySelectorAll('.paymentBtnAll');
+
+        // Add click event listener to each button
+        paymentButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Remove 'active' class from all buttons
+                paymentButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked button
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
 </head>
 <body>
 		<header>
@@ -258,7 +277,7 @@ $(document).ready(function() {
 						부가상품
 					</li>
 					<li id="reservationStepNow">
-						결제
+						<b>결제</b>
 					</li>
 					<li>
 						완료
@@ -298,19 +317,19 @@ $(document).ready(function() {
 		<!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
 			<form action="ReservationFin" name="reservation" id="reservationPayForm" method="post">
-				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+				<img src="${pageContext.request.contextPath}/resources/upload/${param.car_model_image}" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 <!-- 						이름으로 바꿔야 함        -->
-						<a>${pay_idx}님의 여정</a>      
+						<a>${sId}님의 여정</a>      
 						<div class="clear">
 							<a>
 							<c:choose>
 								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
-								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+								<c:otherwise>캠핑갈카 서울지점</c:otherwise>
 							</c:choose>
 							</a>
 					          <hr>
-							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
+							<a>${param.res_rental_date} <br> ~ ${param.res_return_date}</a>
 					          <hr>
 							<a>${carDetail.car_model}</a>
 						</div>
@@ -318,9 +337,9 @@ $(document).ready(function() {
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>${driver.dri_name}님</a><br>
+							<a>${param.dri_name}님</a><br>
 							<hr>							
-							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
+							<a>${param.lic_info}</a>/<a>${param.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	
@@ -338,11 +357,11 @@ $(document).ready(function() {
 						<hr>
 						보험료 <a>${param.insFee}</a>원						
 						<hr>
-						부가상품료 <a>000</a>원<br>
-						 - 부가상품명1 <a>000</a>원<br>		
-						 - 부가상품명2 <a>000</a>원<br>		
+						부가상품료 <a>XXX</a>원<br>
+						 - 부가상품명1 <a>XXX</a>원<br>		
+						 - 부가상품명2 <a>XXX</a>원<br>		
 						<hr>
-						부가상품대여료 <a>000</a>원
+						부가상품대여료 <a>XXX</a>원
 						<hr>
 						총 결제금액 <a id="finalFee">${param.rentalInsFee}</a>원
 					</div>	

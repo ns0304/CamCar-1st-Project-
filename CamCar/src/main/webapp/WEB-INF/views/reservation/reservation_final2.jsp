@@ -13,11 +13,12 @@
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
+/* 보험 팝업창 */
 .insurancePopUp {
     display: none;
     position: fixed;
     left: 50%;
-    top: 40%;
+    top: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
     background-color: #fff;
@@ -125,12 +126,11 @@ $(document).ready(function() {
 	    
         console.log($("#reservationForm").html());
         
-//         $("#driverInfoForm").submit();
 		return true;
 	});
 	
 	
-	// 보험 선택 해야 다음 페이지로 이동 가능함
+	// 보험 선택, 운전자정보 모두 입력 해야 다음 페이지로 이동 가능
     function validateDriverInfo() {
         let isValid = true;
 
@@ -139,11 +139,11 @@ $(document).ready(function() {
             if ($(this).val().trim() === '') {
                 $(this).focus();
                 isValid = false;
-                return false; // 루프를 중지
+                return false; 
             }
         });
 
-        // select 요소에서 유효한 옵션이 선택되었는지 확인
+        // select 요소 선택되어 있는지 확인
         if (isValid && $('#lic_info').val() === '') {
             $('#lic_info').focus();
             isValid = false;
@@ -154,14 +154,22 @@ $(document).ready(function() {
 
     $('#reservationForm').on('submit', function(event) {
         if (!$('input[name="insuranceListName"]:checked').length) {
-            event.preventDefault(); // 폼 제출을 막음
+            event.preventDefault(); 
             alert('보험을 선택해주세요.');
         } else if (!validateDriverInfo()) {
-            event.preventDefault(); // 폼 제출을 막음
+            event.preventDefault(); 
             alert('운전자 정보 입력 영역을 모두 입력해주세요.');
         }
     });
 	
+    
+    // 보험선택 체크되면 표시하기 위해 클래스 추가
+    $('.insuranceRadio input[type="radio"]').click(function() {
+        $('.insuranceRadio').removeClass('selected');
+        if ($(this).is(':checked')) {
+            $(this).closest('.insuranceRadio').addClass('selected');
+        }
+    });
 	
 });
 </script>
@@ -240,32 +248,34 @@ $(document).ready(function() {
 <!-- 			보험선택			 -->
 			<div id="insurance" class="clear">
 				<h3>보험선택</h3>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance1" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="0">
-					<a id="insuranceType1">선택안함</a><br>
-					<a id="insuranceFeeAdd1">0</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">전액</a>
-				</label>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance2" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceBasicFee }">
-					<a id="insuranceType2">일반자차</a><br>
-					<a id="insuranceFeeAdd2" data-value="${insuranceBasicFee}">${insuranceBasicFee }</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">30만원</a>
-				</label>
-				<label class="insuranceRadio">
-					<input type="radio" id="insurance3" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceSpecFee }">
-					<a id="insuranceType3">완전자차</a><br>
-					<a id="insuranceFeeAdd3" data-value="${insuranceSpecFee}">${insuranceSpecFee }</a>원 추가<br>
-					사고 시 고객 부담금<br><br>
-					<a class="customer">면제</a>
-				</label>
+				<div id="insuranceRadioList">
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance1" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="0">
+						<br><a id="insuranceType1">선택안함</a><br>
+						<a id="insuranceFeeAdd1">0</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">전액</a><br>
+					</label>
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance2" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceBasicFee }">
+						<br><a id="insuranceType2">일반자차</a><br>
+						<a id="insuranceFeeAdd2" data-value="${insuranceBasicFee}">${insuranceBasicFee }</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">30만원</a><br>
+					</label>
+					<label class="insuranceRadio">
+						<input type="radio" id="insurance3" name="insuranceListName" class="insuranceList" onclick="insuranceAdd()" value="${insuranceSpecFee }">
+						<br><a id="insuranceType3">완전자차</a><br>
+						<a id="insuranceFeeAdd3" data-value="${insuranceSpecFee}">${insuranceSpecFee }</a>원 추가<br><br>
+						사고 시 고객 부담금<br><br>
+						<a class="customer">면제</a><br>
+					</label>
+				</div>
 					<div id="insuranceDetail" class="clear">
 						<a>보장 내용 알아보기</a>	
 					</div>
 			</div>
-			<br><br>
+			
 			
 <!-- 			운전자 정보 입력			 -->			
 			<div id="driverInfo"  class="clear">
@@ -342,10 +352,9 @@ $(document).ready(function() {
 						<input type="hidden" name="car_idx" value="${carDetail.car_idx}">
 						<input type="hidden" name="rentalFee" value="${param.rentalFee}">
 						<input type="hidden" name="brc_idx" value="${carDetail.brc_idx}">
+						<input type="hidden" name="car_model_image" value="${param.car_model_image}">
 					<div class="nextBtnArea">
-<!--     					<input type="hidden" name="rentalFee3" id="rentalFee2Hidden"> -->
-						<button type="submit" id="nextBtn">다음</button>
-<!-- 						<button type="button" id="nextBtn" onclick="nextPage()">다음</button> -->
+						<button type="submit" id="nextBtn"><b>다음</b></button>
 		          </div>			
 			</form>
 		</aside>

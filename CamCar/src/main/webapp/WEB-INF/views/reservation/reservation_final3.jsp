@@ -122,6 +122,7 @@ $(document).ready(function() {
 	            $(".basicPopUp" + i).hide();
 	        });
 	    }	
+	
 });
 </script>
 </head>
@@ -139,7 +140,7 @@ $(document).ready(function() {
 						예약
 					</li>
 					<li id="reservationStepNow">
-						부가상품
+						<b>부가상품</b>
 					</li>
 					<li>
 						결제
@@ -154,8 +155,7 @@ $(document).ready(function() {
 					<h3>캠핑아이템</h3>
 					<div id="campingItem">
 						<div id="campingSet">
-						<h4>추천 세트</h4>
-						테이블 + 인원별(체어+매트+식기류)<br>
+						<h4>세트</h4>
 							<div id ="campingSetBtn">
 								<input type="button" value="2인" id="campingSetBtn2">
 								<input type="button" value="3인" id="campingSetBtn3">
@@ -196,7 +196,7 @@ $(document).ready(function() {
 <!-- 오른쪽 사이드 영역 -->
 		<aside id="sideContent">
 			<form action="ReservationPay" name="reservation" method="post">
-				<img src="${pageContext.request.servletContext.contextPath}/resources/img/campingcarImage.png" id="campingcarImage" height="120px">
+				<img src="${pageContext.request.contextPath}/resources/upload/${param.car_model_image}" id="campingcarImage" height="120px">
 					<div class="sideDiv">
 						<ul></ul>
 <!-- 						이름으로 바꿔야 함        -->
@@ -205,11 +205,11 @@ $(document).ready(function() {
 							<a>
 							<c:choose>
 								<c:when test="${carDetail.brc_idx eq 5101}">--캠핑갈카 부산본점</c:when>
-								<c:otherwise>--캠핑갈카 서울지점</c:otherwise>
+								<c:otherwise>캠핑갈카 서울지점</c:otherwise>
 							</c:choose>
 							</a>
 					          <hr>
-							<a>${param.res_rental_date} ~ ${param.res_return_date}</a>
+							<a>${param.res_rental_date} <br> ~ ${param.res_return_date}</a>
 					          <hr>
 							<a>${carDetail.car_model}</a>
 						</div>
@@ -217,9 +217,9 @@ $(document).ready(function() {
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>${driver.dri_name}님</a><br>
+							<a>${param.dri_name}님</a><br>
 							<hr>							
-							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
+							<a>${param.lic_info}</a>/<a>${param.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	
@@ -244,9 +244,10 @@ $(document).ready(function() {
 						<input type="hidden" name="lic_issue_date" value="${param.lic_issue_date}">						
 						<input type="hidden" name="lic_expiration_date" value="${param.lic_expiration_date}">						
 						<input type="hidden" name="brc_idx" value="${param.brc_idx}">						
-						<input type="hidden" name="insuranceType" value="${param.insuranceType}">						
+						<input type="hidden" name="insuranceType" value="${param.insuranceType}">		
+						<input type="hidden" name="car_model_image" value="${param.car_model_image}">				
 					<div class="nextBtnArea">
-						<button type="submit" id="nexBtn">다음</button>		
+						<button type="submit" id="nextBtn"><b>다음</b></button>
 		          </div>
 			</form>
 		</aside>

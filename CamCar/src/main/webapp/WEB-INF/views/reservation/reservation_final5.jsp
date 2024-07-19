@@ -33,21 +33,22 @@
 						결제
 					</li>
 					<li id="reservationStepNow">
-						완료
+						<b>완료</b>
 					</li>
 				</ul>
 			</div>
 			<div id="reservationComplete" class="clear">
 				<div id="completeContent">
-					예약번호 <span>${pay_idx}</span>
-					<h3><span>${sId}</span>님, 예약이 완료되었습니다</h3>
-					<hr>
+					<br>
+					[ 예약아이디 <span>${pay.pay_idx}</span> ]
+					<h3><b><span>${sId}</span>님, 예약이 완료되었습니다</b></h3>
+					
 					<a>${param.rental_date} ~ ${param.return_date}</a> 에 이용하실<br>
 					<a>${carDetail.car_model}</a> 예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
-					<input type="button" value="예약 상세 조회">
-					<input type="button" value="홈으로 가기"  onclick="location.href = './'" >
+					<input type="button" class="completeBtnAll" value="예약 상세 조회" onclick="location.href = 'reservation_list/ReservationList2.jsp'">
+					<input type="button" class="completeBtnAll" value="홈으로 가기"  onclick="location.href = './'" >
 				</div>
 			</div>
 

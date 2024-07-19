@@ -39,6 +39,7 @@ public class ReservationFinalController {
 	@PostMapping("Reservation")
 	public String reservation(@RequestParam Map<String, String> map, Model model, HttpSession session
 			, HttpServletRequest request, MemberVO member, DriverVO driver) {
+		// 로그인 된 아이디만 예약 진행 가능
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 필수!");
 			model.addAttribute("targetURL", "MemberLogin");
@@ -50,28 +51,28 @@ public class ReservationFinalController {
 			return "result/fail";
 		}
 		
-		System.out.println("차량 모델 이미지 : " + map.get("car_model_image"));
-		System.out.println("차량코드 : " + map.get("car_idx"));
+		// 차량 이미지 조회 위해 차량 인덱스에 맞는 모델 정보 저장
+//		System.out.println("차량 모델 이미지 : " + map.get("car_model_image"));
+//		System.out.println("차량코드 : " + map.get("car_idx"));
 		int car_idx = Integer.parseInt(map.get("car_idx"));
-		
 		CarVO carDetail = service.getCarDetail(car_idx);
 		model.addAttribute("carDetail", carDetail);
 		
 		// 세션 아이디를 MemberVO에 저장		
 		String id = (String)session.getAttribute("sId");		
 		
-		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회 요청
+		// MemberPageService - getMember() 메서드 사용하여 회원 데이터 저장
 		member = my_service.getMember(member);
 		model.addAttribute("member", member);
-		System.out.println("*****id : " + id);
-		driver = my_service.getDriver(driver, id);
 		
+		// MemberPageService - getDriver() 메서드 사용하여 로그인 되어 있는 회원의 운전자 데이터 저장
+		driver = my_service.getDriver(driver, id);
 		model.addAttribute("driver", driver);
 		
-		// 요금 계산(보험)
 		model.getAttribute("carList");
 //		System.out.println(model.getAttribute("carList"));
 		
+		// 요금 계산(보험)
 		long rentalFee = Integer.parseInt(map.get("rentalFee"));
 		
 		//전달받은 금액에 요율을 각각 적용하여 일반보험, 완전보험 보험금액 산정
@@ -188,7 +189,6 @@ public class ReservationFinalController {
 		res.setBrc_rent_name(brc_rent_name);
 		
 		
-		
 		int pay_method_idx = map.get("pay_method_name").equals("신용/체크카드")?1:(map.get("pay_method_name").equals("카카오페이")?2:3);
 		pay.setPay_method_idx(pay_method_idx);
 		pay.setPay_total(res_fee);
@@ -213,6 +213,8 @@ public class ReservationFinalController {
 		
 		System.out.println("pay22 : " + pay);
 		System.out.println("res22 : " + res);
+		model.addAttribute("pay", pay);
+		
 		
 		
 		// 운전자 정보 DB에 등록
