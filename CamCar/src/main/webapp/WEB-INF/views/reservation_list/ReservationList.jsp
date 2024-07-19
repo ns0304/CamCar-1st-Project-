@@ -24,68 +24,79 @@
 			<form action="ReservationList" method="get"onsubmit=""></form>
 				
 	<!----------------------------------- 내 예약 ------------------------------------------->
-		
-				<input type="hidden" value="${ReserveList[0].mem_id}" name="mem_id" id="mem_id"readonly>
-				<h2>${ReserveList[0].mem_name} 고객님의 예약내역</h2>
-				<div align="left" class="myRes">
-					<p><b>내 예약</b></p>
-					<div align="right">
-						<span><a href="MoreView" class="moreView">더보기</a></span>
-					</div>
-					<div></div>
-					<table border="1" id="my_res">
-						<tr>
-							<th rowspan="4">
-							<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_model_image}" width="250px" ><br>
-							<img src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_logo_image}" ><br>
-<!-- 								<img src="./resources/images/1그랜저.png" width="300px" height="300px"> -->
-							</th>
-							<td>
-								<span>
-								
-								<a>${ReserveList[0].car_model}</a> 
-			    					<a href="ReservationDetail?res_idx=${ReserveList[0].res_idx}"><button>예약 상세 보기</button></a>
-									<button disabled style="background-color: #59b9a9; color: black; border:none;">${ReserveList[0].pay_status}</button>
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><a>예약 번호 : ${ReserveList[0].res_idx}</a> </td>
-						</tr>
-						<tr>
-							<td colspan="2"><a>지점 : ${ReserveList[0].brc_name}</a></td>
-						</tr>
-						<tr>
-							<td colspan="2"><a>일정 :
-								<script>
-									// 날짜 문자열을 불러옴.
-									var rentalDate = "${ReserveList[0].res_rental_date}";
-									var returnDate = "${ReserveList[0].res_return_date}";
-									
-									// T 문자를 공백으로 대체.
-									rentalDate = rentalDate.replace('T',' ');
-									returnDate = returnDate.replace('T',' ');
-									
-									// 결과를 출력.
-									document.write(rentalDate + " ~ " + returnDate);
-									console.log("rentalDate + ' ~ ' + returnDate");
-									
-								</script> 
-<%-- 											<fmt:formatDate value="${ReserveList[0].res_rental_date}" --%>
-<%-- 											pattern="yyyy-MM-dd HH:mm" /> ~   --%>
-											
-<%-- 											<fmt:formatDate value="${ReserveList[0].res_return_date}"  --%>
-<%-- 											pattern="yyyy-MM-dd HH:mm" /> --%>
-							</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-			<!------------------------------- 	내 예약 끝 ---------------------------------------->
+
+				<input type="hidden" value="${ReserveList[0].mem_id}" name="mem_id"
+					id="mem_id" readonly>
+				<h2>${ReserveList[0].mem_name}고객님의 예약내역</h2>
+				<br>
+				<!---------- 조건문 시작 --------->
+<%-- 				<c:set var="ReserveList" value="ReserveList[0]" /> --%>
+<%-- 					<c:if test="${empty ReserveList}"> --%>
+<!-- 						<p>조회된 예약 내역이 없습니다.</p> -->
+<%-- 					</c:if> --%>
+						<div align="left" class="myRes">
+							<p>
+								<b>내 예약</b>
+							</p>
+							<div align="right">
+								<span><a href="MoreView" class="moreView">더보기</a></span>
+							</div>
+							<div></div>
+							<table border="1" id="my_res">
+								<tr>
+									<th rowspan="4"><img
+										src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_model_image}"
+										width="250px"><br> <img
+										src="${pageContext.request.servletContext.contextPath}/resources/upload/${ReserveList[0].car_logo_image}"><br>
+										<!-- 								<img src="./resources/images/1그랜저.png" width="300px" height="300px"> -->
+									</th>
+									<td><span> <a>${ReserveList[0].car_model}</a> <a
+											href="ReservationDetail?res_idx=${ReserveList[0].res_idx}"><button>예약
+													상세 보기</button></a>
+											<button disabled
+												style="background-color: #59b9a9; color: black; border: none;">${ReserveList[0].pay_status}</button>
+									</span></td>
+								</tr>
+								<tr>
+									<td colspan="2"><a>예약 번호 : ${ReserveList[0].res_idx}</a></td>
+								</tr>
+								<tr>
+									<td colspan="2"><a>지점 : ${ReserveList[0].brc_name}</a></td>
+								</tr>
+								<tr>
+									<td colspan="2"><a>일정 : <script>
+										// 날짜 문자열을 불러옴.
+										var rentalDate = "${ReserveList[0].res_rental_date}";
+										var returnDate = "${ReserveList[0].res_return_date}";
+
+										// T 문자를 공백으로 대체.
+										rentalDate = rentalDate.replace('T',
+												' ');
+										returnDate = returnDate.replace('T',
+												' ');
+
+										// 결과를 출력.
+										document.write(rentalDate + " ~ "
+												+ returnDate);
+										console
+												.log("rentalDate + ' ~ ' + returnDate");
+									</script> 
+											<%-- 											<fmt:formatDate value="${ReserveList[0].res_rental_date}" --%>
+											<%-- 											pattern="yyyy-MM-dd HH:mm" /> ~   --%> <%-- 											<fmt:formatDate value="${ReserveList[0].res_return_date}"  --%>
+											<%-- 											pattern="yyyy-MM-dd HH:mm" /> --%>
+									</a></td>
+								</tr>
+							</table>
+						</div>
+				<!------------------------------- 	내 예약 끝 ---------------------------------------->
 						
 			<!------------------------------- 	지난 예약 ---------------------------------------->
 				<div align="left" class="oldRes">
 					<p><b>지난 예약</b></p>
+<%-- 					<c:set var="ReserveList2" value="ReserveList2[0]" /> --%>
+<%-- 					<c:if test="${empty ReserveList2}"> --%>
+<!-- 						<p>조회된 예약 내역이 없습니다.</p> -->
+<%-- 					</c:if> --%>
 					<table border="1" id="old_res">
 						<tr>
 							<th rowspan="6">
@@ -145,8 +156,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" text align="center">
-								<button>예약 상세 보기</button>
+							<td colspan="2" align="center">
+								<a href="ReservationDetail?res_idx=${ReserveList2[0].res_idx}">
+								<button>예약상세 보기</button>
+								</a>
 								<button>리뷰작성</button>
 							</td>
 						</tr>

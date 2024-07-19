@@ -1023,7 +1023,7 @@ $(document).ready(function() {
             </div>
         </div>
         <div class="checkboxArea">
-            <input type="checkbox" id="confirmCheck">
+            <input type="checkbox" id="confirmCheck" required>
             <label for="confirmCheck">위 내용을 확인했습니다</label>
         </div>
         <div class="leavingBtns">
