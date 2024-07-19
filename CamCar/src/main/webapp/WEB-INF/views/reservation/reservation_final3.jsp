@@ -217,9 +217,9 @@ $(document).ready(function() {
 					<div class="sideDiv">	
 						운전자      
 						<div class="clear">
-							<a>${driver.dri_name}님</a><br>
+							<a>${param.dri_name}님</a><br>
 							<hr>							
-							<a>${driver.lic_info}</a>/<a>${driver.dri_birthday}</a>
+							<a>${param.lic_info}</a>/<a>${param.dri_birthday}</a>
 						</div>
 					</div>	
 					<div class="sideDiv">	

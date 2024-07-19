@@ -47,7 +47,7 @@
 					<a>${carDetail.car_model}</a> 예약이 완료되었습니다
 				</div>
 				<div id="completeBtn">
-					<input type="button" class="completeBtnAll" value="예약 상세 조회" >
+					<input type="button" class="completeBtnAll" value="예약 상세 조회" onclick="location.href = 'reservation_list/ReservationList2.jsp'">
 					<input type="button" class="completeBtnAll" value="홈으로 가기"  onclick="location.href = './'" >
 				</div>
 			</div>
