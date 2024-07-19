@@ -93,6 +93,7 @@
 			<!------------------------------- 	지난 예약 ---------------------------------------->
 				<div align="left" class="oldRes">
 					<p><b>지난 예약</b></p>
+				<c:if test="${not empty ReserveList2}">
 <%-- 					<c:set var="ReserveList2" value="ReserveList2[0]" /> --%>
 <%-- 					<c:if test="${empty ReserveList2}"> --%>
 <!-- 						<p>조회된 예약 내역이 없습니다.</p> -->
@@ -164,6 +165,13 @@
 							</td>
 						</tr>
 					</table>
+				</c:if>
+				<c:if test="${empty ReserveList2}">
+				<div align="center">
+					<b><a>예약내역이 없습니다.</a></b><br>
+				</div>
+				
+				</c:if>
 				</div>
 			</div>
 		</section>
