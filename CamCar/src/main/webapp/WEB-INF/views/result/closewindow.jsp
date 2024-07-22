@@ -2,23 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>삭제 성공</title>
-    <script>
-        function closePage() {
+    <title>Result</title>
+    <script type="text/javascript">
+        function closeWindowAndRefreshParent() {
             alert("${msg}");
-            window.close();
+            window.opener.location.reload(); // 부모 창 새로고침
+            window.close(); // 현재 창 닫기
         }
     </script>
 </head>
-<body onload="closePage()">
+<body onload="closeWindowAndRefreshParent()">
 </body>
 </html>
-
-
 
 
 
