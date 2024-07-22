@@ -461,7 +461,7 @@ $(document).ready(function() {
     });
 
     // 운전면허 변경 팝업 닫기
-    $(".LicenseInfoHeader .close, .licenseInputBtn").click(function() {
+    $(".LicenseInfoHeader .close ").click(function() {
         $(".insertLicense").hide();
     });		
     
@@ -800,7 +800,7 @@ $(document).ready(function() {
     
     <!------------------------------ 운전면허정보 변경 팝업 ------------------------------->
 	<div class="insertLicense">
-		<form action="licenseModify" name="licenseForm" method="post">
+		<form action="LicModify" name="licenseForm" method="post">
 			<input type="hidden" name="mem_id" value="${driver.mem_id}" id="mem_id" size="10">
 			<div class="LicenseInfoHeader">
 				<h1>운전면허정보</h1>
@@ -817,7 +817,7 @@ $(document).ready(function() {
 			<div class="form">
 
 				<label for="license_name"></label> <label for="license-type">면허종류</label>
-				<select id="lic_info" name="lic_info" disabled>
+				<select id="lic_info" name="lic_info" >
 					<option value="면허종류선택">면허종류를 선택해주세요</option>
 					<!-- 면허 종류 -->
 					<option value="2종보통" 
@@ -839,19 +839,19 @@ $(document).ready(function() {
 				<label for="lic_num">면허번호</label> 
 				<input type="text" id="lic_num" name="lic_num" 
 					placeholder="면허번호를 입력해주세요" value="${driver.lic_num}"
-					onblur="checkLicense()" maxlength="12" required readonly> 
+					onblur="checkLicense()" maxlength="12" required > 
 					<a id="checkLicenseResult"></a><br> 
 					
 				<label for="lic_issue_date">발급일자</label>
 				<input type="text" id="lic_issue_date" name="lic_issue_date"
 					placeholder="예) 20211001" value="${driver.lic_issue_date}"
-					onblur="checkIssueDate()" maxlength="8" required readonly> <a
+					onblur="checkIssueDate()" maxlength="8" required > <a
 					id="checkIssueDateResult"></a><br> 
 					
 				<label for="lic_expiration_date">만료일자</label> 
 				<input type="text" id="lic_expiration_date" name="lic_expiration_date"
 					placeholder="예) 20251231" value="${driver.lic_expiration_date}"
-					onblur="checkExpDate()" maxlength="8" required readonly> <a
+					onblur="checkExpDate()" maxlength="8" required > <a
 					id="checkExpDateResult"></a><br>
 					
 				<div class="consent_list">
@@ -868,13 +868,13 @@ $(document).ready(function() {
 					<div class="consent_details2">
 						<input type="checkbox" id="consentCollect" name="consent" required>
 						<label for="consentCollect">고유식별정보 수집 및 이용 동의(필수)</label> <span><a
-							href="#" class="agree2">보기</a></span>
+							href="" class="agree2">보기</a></span>
 					</div>
 				</div>
 			</div>
 			<br>
 			<div align="center" class="LicenseInfoInsert">
-				<input type="button" class="licenseInputBtn" value="닫기">
+				<input type="submit" class="licenseInputBtn" value="정보수정" >
 					
 			</div>
 		</form>

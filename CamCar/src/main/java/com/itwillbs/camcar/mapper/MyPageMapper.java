@@ -58,6 +58,12 @@ public interface MyPageMapper {
 	List<Map<String, String>> selectReserveList(String id);
 
 
+	// 운전면허 정보 수정 
+	int updateLicInfo(Map<String, String> map);
+
+
+
+
 
 
 
