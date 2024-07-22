@@ -129,7 +129,7 @@ public class ReservationFinalController {
 	
 	// "ReservationPay" 서블릿 주소 매핑 - POST
 	@PostMapping("ReservationPay")
-	public String reservationPay(@RequestParam Map<String, String> map, Model model, DriverVO driver, MemberVO member) {
+	public String reservationPay(@RequestParam Map<String, String> map, Model model, HttpSession session, DriverVO driver, MemberVO member) {
 		System.out.println("res_rental_date : " + map.get("res_rental_date"));
 		System.out.println("res_return_date : " + map.get("res_return_date"));
 		System.out.println("지점정보 : " + map.get("brc_idx"));
@@ -154,6 +154,13 @@ public class ReservationFinalController {
 		
 		CarVO carDetail = service.getCarDetail(car_idx);
 		model.addAttribute("carDetail", carDetail);
+		
+
+		String id = (String)session.getAttribute("sId");
+		MemberVO dbmember = service.getMemberInfo(id);
+		System.out.println("멤버정보 : " + dbmember);
+		model.addAttribute("dbmember", dbmember);
+		
 		
 		return "reservation/reservation_final4";
 	}

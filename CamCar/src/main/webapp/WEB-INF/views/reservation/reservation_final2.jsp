@@ -79,7 +79,7 @@ $(document).ready(function() {
 	    $(".insurancePopUp").hide();
 	});
 	
-	// '내정보 불러오기 ' 버튼 클릭 시 저장된 회원 정보를 운전자 정보 필드에 불러오기
+	// '내정보 불러오기' 버튼 클릭 시 저장된 회원 정보를 운전자 정보 필드에 불러오기
 	$("#myInfoLoad").click(function() {	
 		event.preventDefault();
 		$("#dri_name").val("${driver.dri_name}");

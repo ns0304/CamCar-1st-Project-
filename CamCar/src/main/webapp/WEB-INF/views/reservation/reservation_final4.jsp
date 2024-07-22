@@ -12,12 +12,14 @@
 <link href="${pageContext.request.servletContext.contextPath}/resources/css/reservation_final.css" rel="stylesheet" type="text/css">
 <%-- jquery 라이브러리 포함시키기 --%>
 <script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
-<!-- 포트원 결제 (카카오페이) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<%-- 포트원 결제 라이브러리 포함시키기 --%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<%-- 포트원 결제 라이브러리 포함시키기 --%>
 <script type="text/javascript">
 	$(document).ready(function() {
 	    // 결제 처리
@@ -54,19 +56,26 @@
 	        }
 	    }
 	
-	    // Function to handle button selection
+	    // 결제방법은 한 가지만 선택 가능
 	    $('input[name="paymentMethod"]').on('click', function() {
 	        $('input[name="paymentMethod"]').removeClass('selected');
 	        $(this).addClass('selected');
 	    });
 	
+	    
+	    // 결제 공통 정보 저장
+	    let IMP = window.IMP;
+	    IMP.init("imp33031510"); // 가맹점 식별코드	 
+	    var myAmount = document.getElementById('finalFee').innerText; // 최종 결제 금액
+	    
+	    
 	    // 네이버페이 결제
 	    function naverConfirm() {
 	        var confirmNaver = confirm('네이버페이로 결제하시겠습니까?');
 	        if (confirmNaver) {
 	            console.log('네이버페이 결제 진행');
 	            alert('네이버페이로 결제가 진행됩니다.');
-	            $('form[name="reservation"]').off('submit').submit(); // Proceed with form submission
+// 	            $('form[name="reservation"]').off('submit').submit(); // Proceed with form submission
 	        } else {
 	            console.log('네이버페이 결제 취소');
 	            alert('결제가 취소되었습니다.');
@@ -78,25 +87,23 @@
 	        var confirmKakao = confirm('카카오페이로 결제하시겠습니까?');
 	        if (confirmKakao) {
 	            console.log('카카오페이 결제 진행');
-	            var myAmount = document.getElementById('finalFee').innerText;
-	            console.log("결제금액 : " + myAmount);
+// 	            var myAmount = document.getElementById('finalFee').innerText;
+	            console.log("카카오페이 결제금액 : " + myAmount);
 	
-	            // Initialize IMP with the correct merchant code
-	            IMP.init("imp33031510"); // Example: imp00000000
+// 	            // Initialize IMP with the correct merchant code
+// 	            IMP.init("imp33031510"); // Example: imp00000000
 	
-	            IMP.request_pay(
-	                {
+	            IMP.request_pay({
 	                    pg: "kakaopay",
 	                    pay_method: "card",
 	                    name: "캠핑갈카 렌트비용 결제",
 	                    amount: myAmount,
-	                    buyer_email: "gildong@gmail.com",
-	                    buyer_name: "홍길동",
-	                    buyer_tel: "010-4242-4242",
-	                    buyer_addr: "서울특별시 강남구 신사동",
-	                    buyer_postcode: "01181"
-	                },
-	                async (rsp) => {
+// 	                    buyer_email: "gildong@gmail.com",
+// 	                    buyer_name: "홍길동",
+// 	                    buyer_tel: "010-4242-4242",
+// 	                    buyer_addr: "서울특별시 강남구 신사동",
+// 	                    buyer_postcode: "01181"
+	                }, async (rsp) => {
 	                    if (rsp.success) {
 	                        console.log('결제성공', rsp);
 	                        alert('결제가 완료되었습니다!');
@@ -127,13 +134,45 @@
 	        var confirmCard = confirm('신용/체크카드로 결제하시겠습니까?');
 	        if (confirmCard) {
 	            console.log('신용/체크카드 결제 진행');
-	            alert('신용/체크카드로 결제가 진행됩니다.');
-	            $('form[name="reservation"]').off('submit').submit(); // Proceed with form submission
-	        } else {
-	            console.log('신용/체크카드 결제 취소');
-	            alert('결제가 취소되었습니다.');
-	        }
-	    }
+// 	            var myAmount = document.getElementById('finalFee').innerText;
+	            console.log("신용/체크카드 결제금액 : " + myAmount);	
+	            
+                IMP.request_pay({
+                    // 파라미터 값 설정
+                    pg : "html5_inicis.INIpayTest", // PG사 코드표에서 선택
+                    pay_method : "card", // 결제 방식
+//                     merchant_uid : "IMP" + makeMerchantUid, // 결제 고유 번호
+                    name: "캠핑갈카 렌트비용 결제",
+                    amount: myAmount, // 금액
+                    buyer_email: "${dbmember.mem_email}",
+                    buyer_name: "${dbmember.mem_name}",
+                    buyer_tel: "${dbmember.mem_tel}",
+//                     buyer_addr: "서울특별시 강남구 신사동",
+//                     buyer_postcode: "01181"
+                }, async (rsp) => {
+                    if (rsp.success) {
+                        console.log('결제성공', rsp);
+                        alert('결제가 완료되었습니다!');
+                        
+            	        $("#reservationPayForm").prepend('<input type="hidden" name="pay_method_name" value="신용/체크카드" id="pay_method_name">');
+                        
+                        document.getElementById('reservationPayForm').submit();
+                        
+                    } else {
+                        console.error('Payment failed:', rsp);
+                        alert(`결제 실패!`);
+                        if (confirm('결제를 다시 시도하시겠습니까?')) {
+                        	cardConfirm();
+                        } else {
+                            return;
+                        }
+                    }
+                }
+            );
+        } else {
+            alert('결제가 취소되었습니다.');
+        }
+    }
 	
 	    // 결제하기 버튼 클릭 시, payment 함수 호출
 	    $('#nexBtn').on('click', payment);
@@ -155,13 +194,11 @@
             $('input[name="cb"]').prop('checked', allCheck); // Set the state of each individual checkbox to match the "all_check" checkbox
         });
 	    
-	    
-	    
-	    
 });
 
 </script>
-<!-- 포트원 결제 (카카오페이) -->
+
+
 <style type="text/css">
 .agreementPopUp1, .agreementPopUp2, .agreementPopUp3, .agreementPopUp4, .agreementPopUp5, .agreementPopUp6, .agreementPopUp7 {
     display: none;
@@ -242,18 +279,14 @@ $(document).ready(function() {
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get all payment buttons
         var paymentButtons = document.querySelectorAll('.paymentBtnAll');
 
-        // Add click event listener to each button
         paymentButtons.forEach(function(button) {
             button.addEventListener('click', function() {
-                // Remove 'active' class from all buttons
                 paymentButtons.forEach(function(btn) {
                     btn.classList.remove('active');
                 });
 
-                // Add 'active' class to the clicked button
                 this.classList.add('active');
             });
         });
