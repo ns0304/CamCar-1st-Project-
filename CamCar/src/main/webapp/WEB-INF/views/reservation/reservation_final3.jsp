@@ -73,6 +73,13 @@
     height: 500px;
 }
 
+
+.popupTotal, .popupItemList {
+    font-weight: bold;
+    margin-top: 20px;
+    display: none; /* 기본적으로 숨김 */
+}
+
 </style>
 
 <script type="text/javascript">
@@ -121,10 +128,11 @@ $(document).ready(function() {
 	        $(".basicPopUp" + i + " .close" + i).click(function() {
 	            $(".basicPopUp" + i).hide();
 	        });
-	    }	
+	    }
 	
 });
 </script>
+
 </head>
 <body>
 		<header>

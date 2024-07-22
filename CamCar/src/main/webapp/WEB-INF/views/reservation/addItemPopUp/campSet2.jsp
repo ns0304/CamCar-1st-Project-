@@ -49,13 +49,13 @@
 		<br>
 	    <input type="button" value="선택" class="select">
 	</div>
-	<div class="campingSet2Btn">
-		<button id="campingSet2_2" class="campingSet2BtnIn">
-		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/set/set2_2.jpg" alt="Camping Set"><br>
-   		    스노우라인 블랙에디션<br>
-		    테이블(2인용) + 릴렉스체어 2개<br>
-		    일 12,000원<br>
-		</button><br>
-  		    <input type="button" value="선택" class="select">
-    </div>
+<!-- 	<div class="campingSet2Btn"> -->
+<!-- 		<button id="campingSet2_2" class="campingSet2BtnIn"> -->
+<%-- 		    <img src="${pageContext.request.servletContext.contextPath}/resources/img/add_item/camp/set/set2_2.jpg" alt="Camping Set"><br> --%>
+<!--    		    스노우라인 블랙에디션<br> -->
+<!-- 		    테이블(2인용) + 릴렉스체어 2개<br> -->
+<!-- 		    일 12,000원<br> -->
+<!-- 		</button><br> -->
+<!--   		    <input type="button" value="선택" class="select"> -->
+<!--     </div> -->
 </div>
