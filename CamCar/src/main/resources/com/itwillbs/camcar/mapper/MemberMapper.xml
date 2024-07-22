@@ -52,6 +52,8 @@
 		SELECT *
 		FROM member_info
 		WHERE mem_id = #{mem_id}
+		OR mem_tel = #{mem_tel}
+		OR mem_jumin = #{mem_jumin}
 	</select>
 	
 	<!-- 회원 아이디 찾기, 비밀번호 변경 위한 전화번호 검색 -->

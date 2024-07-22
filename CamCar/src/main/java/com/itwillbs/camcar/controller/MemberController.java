@@ -105,6 +105,44 @@ public class MemberController {
 		}
 		
 	}
+	
+	@ResponseBody
+	@GetMapping("MemberCheckDupTel")
+	public String checkDupTel(MemberVO member) {
+		System.out.println("tel : " + member.getMem_tel());
+		
+		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회
+		// => 파라미터 : MemberVO 객체   리턴타입 : MemberVO 객체
+		member = service.getMember(member);
+		
+		// 조회 결과 리턴된 MemberVO 객체가 있을 경우 아이디 중복, null 이면 사용 가능이므로
+		// MemberVO 객체가 null 이 아닐 경우 "true" 리턴, 아니면 "false" 리턴
+		if(member != null) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("MemberCheckDupJumin")
+	public String checkDupJumin(MemberVO member) {
+		System.out.println("jumin : " + member.getMem_jumin());
+		
+		// MemberService - getMember() 메서드 재사용하여 회원 상세정보 조회
+		// => 파라미터 : MemberVO 객체   리턴타입 : MemberVO 객체
+		member = service.getMember(member);
+		
+		// 조회 결과 리턴된 MemberVO 객체가 있을 경우 아이디 중복, null 이면 사용 가능이므로
+		// MemberVO 객체가 null 이 아닐 경우 "true" 리턴, 아니면 "false" 리턴
+		if(member != null) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+	}
 
 	
 	// 로그인 페이지

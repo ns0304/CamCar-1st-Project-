@@ -22,6 +22,8 @@
 	let checkLicenseResult = false;
 	let checkIssueDateResult = false;
 	let checkExpDateResult = false;
+	let checkJuminResult = false;
+	let checkTelResult = false;
 	// =============================================================
 	// 1. ID 중복확인 버튼 클릭 시 새 창(check_id.jsp) 띄우기
 // 	function checkId2() {
@@ -104,6 +106,128 @@
 		$("#checkIdResult").css("color", color);
 		$("#mem_id").css("background", bgColor);
 
+		
+	}
+	
+	function checkTel() {
+		// 입력받은 전화번호 값 가져오기
+		let mem_tel = $("#mem_tel").val();
+		
+		let regex = /^0\d{1,2}(-|\))\d{3,4}-\d{4}$/;
+
+		// 정규표현식 문자열을 관리하는 객체(regex)의 exec() 메서드 호출하여
+		// 검사할 문자열을 전달하면 정규표현식 일치 여부 확인 가능
+		if(!regex.exec(mem_tel)) { // 불일치
+			checkTelResult = false; // 아이디 검사 적합 여부 false(부적합) 값 저장
+		} else { // 일치
+			checkTelResult = true; // 아이디 검사 적합 여부 true(적합) 값 저장
+		}
+		
+		let msg = "";
+		let color = "";
+		let bgColor = "";
+		
+		// 정규표현식 규칙 검사 결과 판별
+		// => 불일치 시 불일치 메세지 출력 처리
+		// => 일치 시 AJAX 활용하여 아이디 중복 검사 요청 후 결과 처리
+		if(!checkTelResult) {
+			msg = "양식에 맞게 입력해주세요";
+			color = "red";
+			bgColor = "lightpink";
+		} else {
+			$.ajax({
+				type : "GET",
+				url : "MemberCheckDupTel",
+				data : {
+					mem_tel : $("#mem_tel").val()
+				},
+				success : function(result) {
+					console.log("result = " + result);
+					if(result.trim() == "true") {
+						msg = "이미 사용중인 전화번호";
+						color = "red";
+						bgColor = "lightpink";
+					} else if(result.trim() == "false") {
+						msg = "사용 가능한 전화번호";
+						color = "green";
+						bgColor = "";
+					}
+					
+					$("#checkTelResult").text(msg);
+					$("#checkTelResult").css("color", color);
+					$("#mem_tel").css("background", bgColor);
+				}
+			});
+		}
+		
+		// AJAX 요청에 대한 코드 실행 시점 문제 발생으로 AJAX 응답 성공 시
+		// 기본값 널스트링 값이 저장된 채로 실행되므로 정확한 결과값이 표시되지 않는다!
+		// => 따라서, 현재 코드가 AJAX 요청 성공 시 처리하는 success 블럭에도 추가되어야한다!
+		
+		$("#checkTelResult").text(msg);
+		$("#checkTelResult").css("color", color);
+		$("#mem_tel").css("background", bgColor);
+		
+	}
+	
+	function checkJumin() {
+		// 입력받은 전화번호 값 가져오기
+		let mem_jumin = $("#mem_jumin").val();
+		
+		let regex = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])[-]\d{7}$/;
+
+		// 정규표현식 문자열을 관리하는 객체(regex)의 exec() 메서드 호출하여
+		// 검사할 문자열을 전달하면 정규표현식 일치 여부 확인 가능
+		if(!regex.exec(mem_jumin)) { // 불일치
+			checkJuminResult = false; // 아이디 검사 적합 여부 false(부적합) 값 저장
+		} else { // 일치
+			checkJuminResult = true; // 아이디 검사 적합 여부 true(적합) 값 저장
+		}
+		
+		let msg = "";
+		let color = "";
+		let bgColor = "";
+		
+		// 정규표현식 규칙 검사 결과 판별
+		// => 불일치 시 불일치 메세지 출력 처리
+		// => 일치 시 AJAX 활용하여 아이디 중복 검사 요청 후 결과 처리
+		if(!checkJuminResult) {
+			msg = "양식에 맞게 입력해주세요";
+			color = "red";
+			bgColor = "lightpink";
+		} else {
+			$.ajax({
+				type : "GET",
+				url : "MemberCheckDupJumin",
+				data : {
+					mem_jumin : $("#mem_jumin").val()
+				},
+				success : function(result) {
+					console.log("result = " + result);
+					if(result.trim() == "true") {
+						msg = "이미 사용중인 주민번호";
+						color = "red";
+						bgColor = "lightpink";
+					} else if(result.trim() == "false") {
+						msg = "사용 가능한 주민번호";
+						color = "green";
+						bgColor = "";
+					}
+					
+					$("#checkJuminResult").text(msg);
+					$("#checkJuminResult").css("color", color);
+					$("#mem_jumin").css("background", bgColor);
+				}
+			});
+		}
+		
+		// AJAX 요청에 대한 코드 실행 시점 문제 발생으로 AJAX 응답 성공 시
+		// 기본값 널스트링 값이 저장된 채로 실행되므로 정확한 결과값이 표시되지 않는다!
+		// => 따라서, 현재 코드가 AJAX 요청 성공 시 처리하는 success 블럭에도 추가되어야한다!
+		
+		$("#checkJuminResult").text(msg);
+		$("#checkJuminResult").css("color", color);
+		$("#mem_jumin").css("background", bgColor);
 		
 	}
 	
@@ -246,6 +370,16 @@
 				$("#mem_passwd").focus();
 				return false;
 				
+			} else if(!checkJuminResult) {
+				alert("주민번호를 부적합하게 입력했습니다.");
+				$("#mem_jumin").focus();
+				return false;
+			
+			} else if(!checkTelResult) {
+				alert("전화번호를 부적합하게 입력했습니다.");
+				$("#mem_tel").focus();
+				return false;
+			
 			} else if(!checkLicenseResult) {
 				alert("면허번호를 바르게 입력해주세요.");
 				$("#lic_num").focus();
@@ -628,7 +762,9 @@
 							<td id="tdjumin">(주민번호 입력 시 "-"를 입력해주세요)</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14" required="required">
+							<td><input type="text" name="mem_jumin" size="15" id="mem_jumin" maxlength="14" required="required" onblur="checkJumin()">
+								<div id="checkJuminResult"></div>
+							</td>
 						</tr>
 						<tr>
 							<td>휴대폰 번호(*)</td>
@@ -637,7 +773,9 @@
 							<td id="tdtel">(휴대폰 번호를 입력 시 "-"를 입력해주세요)</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13" required="required"></td>
+							<td><input type="text" name="mem_tel" size="10" id="mem_tel" maxlength="13" required="required" onblur="checkTel()">
+								<div id="checkTelResult"></div>
+							</td>
 						</tr>	
 						<tr>
 							<td>휴대폰 번호 인증</td>
