@@ -122,6 +122,15 @@
 					<td colspan="4" style="height: 100px;">${qna.qna_content}</td>
 				</tr>
 				</table>
+				<!-- 답변 영역 -->
+				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>
+				<%-- 단, 수정, 삭제 버튼은 세션 아이디와 작성자 아이디가 일치할 경우에만 표시 --%>
+				<c:if test="${not empty qna.qna_reply}">
+					<div id="articleReplyArea">
+						<b>답변</b>
+						<textarea rows="10" cols="67" name="qna_reply">${qna.qna_reply}</textarea>
+					</div>
+				</c:if>
 			</section>
 			<section id="commandCell">
 				<%-- 답글, 수정, 삭제 버튼은 로그인 한 사용자에게만 표시 --%>

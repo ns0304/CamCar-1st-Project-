@@ -122,6 +122,7 @@
 						onclick="location.href='MyQuestionList?pageNum=${pageNum - 1}'"
 						<c:if test="${pageNum <= 1}">disabled</c:if>>
 
+<%-- 					<c:if test="${sessionScope.sId eq qna.mem_id}"> --%>
 					<c:forEach var="i" begin="${pageInfo.startPage}"
 						end="${pageInfo.endPage}">
 						<c:choose>
@@ -135,6 +136,7 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
+<%-- 					</c:if> --%>
 
 					<input type="button" value="다음"
 						onclick="location.href='MyQuestionList?pageNum=${pageNum + 1}'"
