@@ -24,11 +24,13 @@ public class ReviewVO {
 	// 2. Getter/Setter 정의
 	// 3. toString() 메서드 오버라이딩
 	// -------------------------------------------------------------
-	private int rev_idx;
-	private int rev_res_idx;
-	private int car_review1;
-	private int car_review2;
-	private int car_review3;
-	private int car_review4;
-	private int car_review5;
+//	private int rev_idx;
+//	private int rev_res_idx;
+	private int car_idx;
+	private int rev1;
+	private int rev2;
+	private int rev3;
+	private int rev4;
+	private int rev5;
+	private int total;
 }

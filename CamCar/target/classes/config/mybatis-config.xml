@@ -11,6 +11,7 @@
 		<typeAlias type="com.itwillbs.camcar.vo.QnaVO" alias="qna"/>
 		<typeAlias type="com.itwillbs.camcar.vo.BoardVO" alias="bo"/>
 		<typeAlias type="com.itwillbs.camcar.vo.DriverVO" alias="driver"/>
+		<typeAlias type="com.itwillbs.camcar.vo.ReviewVO" alias="review"/>
 	</typeAliases>
 <!-- 날짜형식 변환 설정 -->
 <!--     <typeHandlers> -->

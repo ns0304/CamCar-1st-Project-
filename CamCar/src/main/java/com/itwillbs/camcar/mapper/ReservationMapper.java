@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
+import com.itwillbs.camcar.vo.ReviewVO;
 
 @Mapper
 public interface ReservationMapper {
@@ -32,6 +33,9 @@ public interface ReservationMapper {
 
 	// 차량 모델 이미지 조회
 	String selectCarModelImage(String car_model);
+
+	// 이용자 리뷰 조회
+	List<ReviewVO> selectUserReview(int car_idx);
 
 
 }

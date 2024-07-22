@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.camcar.mapper.ReservationMapper;
 import com.itwillbs.camcar.vo.CarModelVO;
 import com.itwillbs.camcar.vo.CarVO;
+import com.itwillbs.camcar.vo.ReviewVO;
 
 @Service
 public class ReservationService {
@@ -40,6 +41,11 @@ public class ReservationService {
 	// 차량 모델 이미지 조회 요청
 	public String getCarModelImage(String car_model) {
 		return mapper.selectCarModelImage(car_model);
+	}
+
+	// 이용자 리뷰 조회 요청
+	public List<ReviewVO> getUserReview(int car_idx) {
+		return mapper.selectUserReview(car_idx);
 	}
 
 }

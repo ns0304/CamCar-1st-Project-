@@ -138,6 +138,25 @@
 			// 클릭된 이미지에 selected 클래스 추가
 			$(this).addClass("selected");
 		});
+		
+		
+		// 이용자 리뷰 만족도 계산(%)
+		$('.total').each(function() {
+            // 각 리뷰와 총 리뷰 수 속성 값
+            var rev1 = parseFloat($(this).data('rev1'));
+            var rev2 = parseFloat($(this).data('rev2'));
+            var rev3 = parseFloat($(this).data('rev3'));
+            var rev4 = parseFloat($(this).data('rev4'));
+            var rev5 = parseFloat($(this).data('rev5'));
+            var total = parseFloat($(this).data('total'));
+            
+            // 총 리뷰 수가 0보다 클 경우
+            if (total > 0) {
+                var percentage = ((rev1 + rev2 + rev3 + rev4 + rev5) / (total * 5)) * 100;
+             	// Math.round()를 사용하여 백분율을 반올림하고, 결과를 .percentage 클래스가 있는 span에 표시
+                $(this).find('.percentage').text(Math.round(percentage) + '%');
+            }
+        });
 
 	});
 </script>
@@ -221,38 +240,48 @@
 					<br>
 					<br>
 					<div class="carDetail_review">
-						<div class="userRev">
-							<p style="font-size: 18px;">이용자 리뷰</p>
-							<span class="total"><b style="color: red;">87%</b>가 만족했어요</span>
-						</div>
-						<hr>
-						<div class="review_wrap">
-							<div class="review1 rev">
-								<p>전체적으로 만족스러워요</p>
-								<span>&#128516; 12</span>
-							</div>
-							<div class="review2 rev">
-								<p>차량 관리 상태가 좋아요</p>
-								<span>&#128516; 7&nbsp;</span>
-							</div>
-							<div class="review3 rev">
-								<p>차량 옵션이 많아요</p>
-								<span>&#128516; 5&nbsp;</span>
-							</div>
-							<div class="review4 rev">
-								<p>연비가 좋아요</p>
-								<span>&#128516; 4&nbsp;</span>
-							</div>
-							<div class="review5 rev">
-								<p>차박용으로 딱이예요</p>
-								<span>&#128516; 11</span>
-							</div>
-						</div>
+						<c:if test="${not empty user_review}">
+							<c:forEach var="review" items="${user_review}">
+								<div class="userRev">
+									<p style="font-size: 18px;">이용자 리뷰</p>
+									<span class="total" data-rev1="${review.rev1}" data-rev2="${review.rev2}" data-rev3="${review.rev3}" data-rev4="${review.rev4}" data-rev5="${review.rev5}" data-total="${review.total}">
+										<c:choose>
+											<c:when test="${review.total eq 0}">아직 리뷰가 없어요</c:when>	<%-- 리뷰가 없을 경우 --%>
+											<c:otherwise><b style="color: red;" class="percentage"></b>가 만족했어요</c:otherwise>
+										</c:choose>
+									</span>
+									<%-- 임시 --%>
+<%-- 									<span class="total">이용자 중 <b style="color: red;">${review.total}</b>명이 참여했어요</span> --%>
+								</div>
+								<hr>
+								<div class="review_wrap">
+										<div class="review1 rev">
+											<p>전체적으로 만족스러워요</p>
+											<span>&#128516; ${review.rev1}</span>
+										</div>
+										<div class="review2 rev">
+											<p>차량 관리 상태가 좋아요</p>
+											<span>&#128516; ${review.rev2}</span>
+										</div>
+										<div class="review3 rev">
+											<p>차량 옵션이 많아요</p>
+											<span>&#128516; ${review.rev3}</span>
+										</div>
+										<div class="review4 rev">
+											<p>연비가 좋아요</p>
+											<span>&#128516; ${review.rev4}</span>
+										</div>
+										<div class="review5 rev">
+											<p>차박용으로 딱이예요</p>
+											<span>&#128516; ${review.rev5}</span>
+										</div>
+									</div>
+								</c:forEach>
+							</c:if>
 
-						<br>
-						<br>
 					</div>
-					<br> <br>
+					<br><br><br><br>
+					
 					<div class="carDetail_brc">
 						<p style="font-size: 18px;">인수 및 반납장소</p>
 						<hr>
