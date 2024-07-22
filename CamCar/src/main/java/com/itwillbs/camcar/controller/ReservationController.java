@@ -3,16 +3,23 @@ package com.itwillbs.camcar.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.camcar.service.ReservationService;
 import com.itwillbs.camcar.vo.CarModelVO;
@@ -33,26 +40,78 @@ public class ReservationController {
 	@PostMapping("CarList")
 	public String carListPro(
 			@RequestParam Map<String, String> map, Model model, 
-			@RequestParam(name= "car_opt", required = false) String[] car_opt, 
+			@RequestParam(name = "car_opt", required = false) String[] car_opt, 
+            @RequestParam(name = "fuel_opt", required = false) String[] fuel_opt, 
+            @RequestParam(name = "age_opt", required = false) String[] age_opt, 
+            @RequestParam(name = "drive_opt", required = false) String[] drive_opt, 
+            @RequestParam(name = "model_opt", required = false) String[] model_opt, 
+            @RequestParam(name = "pet_opts", required = false) String[] pet_opts,
 			CarModelVO carModel) {
 		System.out.println("지점 : " + map.get("brc_rent_name"));
 		System.out.println("대여일시 : " + map.get("res_rental_date"));
 		System.out.println("반납일시 : " + map.get("res_return_date"));
 		
-		// 선택한 차량 옵션 출력
-		List<String> car_optList = null;
+		// 필터 조건을 model에 저장
+		List<String> car_typeList = null;
+		List<String> car_fuel_typeList = null;
+		List<String> car_age = null;
+		List<String> car_career = null;
+//		List<String> car_oldList = null;
+		List<String> pet_opt = null;
 		if(car_opt != null) {	// 차량 하나이상 선택 시
-			car_optList = Arrays.asList(car_opt);
-			model.addAttribute("car_optList", car_optList);
+			car_typeList = Arrays.asList(car_opt);
+			model.addAttribute("car_typeList", car_typeList);	// 차종 선택
 		}
+		
+		if(fuel_opt != null) {	// 연료 선택 시
+			car_fuel_typeList = Arrays.asList(fuel_opt);
+			model.addAttribute("car_fuel_typeList", car_fuel_typeList);
+		}
+		
+		if(age_opt != null) {	// 나이제한 선택 시
+			car_age = Arrays.asList(age_opt);
+			model.addAttribute("car_age", car_age);
+		}
+		
+		if(drive_opt != null) {	// 운전경력 제한 선택 시
+			car_career = Arrays.asList(drive_opt);
+			model.addAttribute("car_career", car_career);
+		}
+		
+		// 연식 선택 시 최소값-1부터 최대값까지 계산
+		if (model_opt != null) {	// 연식 선택 시
+		    List<Integer> years = Arrays.stream(model_opt)
+		                                 .map(Integer::parseInt)
+		                                 .collect(Collectors.toList());
+		    int minValue = Collections.min(years) - 1;
+		    int maxValue = Collections.max(years);
+
+		    Map<String, Integer> range = new HashMap<>();
+		    range.put("startYear", minValue);
+		    range.put("endYear", maxValue);
+
+		    model.addAttribute("car_oldList", range);
+		}
+		
+		if(pet_opts != null) {	// 반려동물 동승 여부 선택 시
+			pet_opt = Arrays.asList(pet_opts);
+			model.addAttribute("pet_opt", pet_opt);
+		}
+		
 		
 		// -----------------------------------------------------------------------------------
 		// 차량 모델 리스트 조회 요청(select)
-        Map<String, Object> params = new HashMap<>();
-        params.put("car_optList", car_optList);
+        Map<String, Object> car_type = new HashMap<>();
+        car_type.put("car_typeList", car_typeList);
+        Map<String, Object> car_opts = new HashMap<>();
+        car_opts.put("car_fuel_typeList", car_fuel_typeList);
+        car_opts.put("car_age", car_age);
+        car_opts.put("car_career", car_career);
+        car_opts.put("car_oldList", model.getAttribute("car_oldList"));
+        car_opts.put("pet_opt", pet_opt);
+        
 
-		List<CarModelVO> carModelList = service.getCarModelList(params);
-		model.addAttribute("carModelList", carModelList);
+		List<CarModelVO> carModelList = service.getCarModelList(car_type);
 		
 		// =================================================================================
 		// [ 차량 요금 계산 ]
@@ -68,7 +127,7 @@ public class ReservationController {
 		int brc_idx = map.get("brc_rent_name").equals("캠핑갈카 부산본점") ? 5101 : 201;
 		
 		// 차량 상세 리스트 조회 요청(select)
-		List<CarVO> carList = service.getCarList(brc_idx);
+		List<CarVO> carList = service.getCarList(brc_idx, car_opts);
 		
 		// 해당 일정에 선택된 차량 코드 리스트 조회 요청 (따로 조회 후 disabled 처리)
 		List<String> resCarList = service.getResCarList(brc_idx, startDate, endDate);
@@ -81,9 +140,10 @@ public class ReservationController {
         }
 
 		// model 객체에 조회 결과 저장
-		model.addAttribute("carList", carList);
-		model.addAttribute("resCarList", resCarList);
-		model.addAttribute("carFeeMap", carFeeMap);
+        model.addAttribute("carModelList", carModelList);	// 차량 모델 리스트
+		model.addAttribute("carList", carList);	// 차량 상세 리스트
+		model.addAttribute("resCarList", resCarList);	// 예약된 차량코드 리스트
+		model.addAttribute("carFeeMap", carFeeMap);	// 총 대여시간에 따른 차량 요금
 		
 		return "reservation/car_list";
 	}
@@ -118,6 +178,43 @@ public class ReservationController {
         return (dayOfWeek == 5 || dayOfWeek == 6 || dayOfWeek == 7);
     }
 
+
+    // "FilterCars" 서블릿 주소 매핑 - POST
+//    @PostMapping("/FilterCars")
+//    public String filterCarsPost(
+//            @RequestParam(name = "car_type", required = false) String[] car_type, 
+//            @RequestParam(name = "fuel_opt", required = false) String[] fuel_opt, 
+//            @RequestParam(name = "age_opt", required = false) String[] age_opt, 
+//            @RequestParam(name = "drive_opt", required = false) String[] drive_opt, 
+//            @RequestParam(name = "model_opt", required = false) String[] model_opt, 
+//            @RequestParam(name = "pet_opt", required = false) String pet_opt,
+//            RedirectAttributes redirectAttributes) {
+//
+//        // 필터 조건을 RedirectAttributes에 추가
+//        if (car_type != null) {
+//            redirectAttributes.addAttribute("car_type", car_type);
+//        }
+//        if (fuel_opt != null) {
+//            redirectAttributes.addAttribute("fuel_opt", fuel_opt);
+//        }
+//        if (age_opt != null) {
+//            redirectAttributes.addAttribute("age_opt", age_opt);
+//        }
+//        if (drive_opt != null) {
+//            redirectAttributes.addAttribute("drive_opt", drive_opt);
+//        }
+//        if (model_opt != null) {
+//            redirectAttributes.addAttribute("model_opt", model_opt);
+//        }
+//        if (pet_opt != null) {
+//            redirectAttributes.addAttribute("pet_opt", pet_opt);
+//        }
+//
+//        return "CarList";
+//    } 
+    
+    
+    
     // "CarDetail" 서블릿 주소 매핑 - POST
  	@PostMapping("CarDetail")
  	public String carDetailPro(

@@ -18,13 +18,13 @@ public class ReservationService {
 	private ReservationMapper mapper;
 
 	// 차량 모델 리스트 조회 요청
-	public List<CarModelVO> getCarModelList(Map<String, Object> params) {
-		return mapper.selectModelList(params);
+	public List<CarModelVO> getCarModelList(Map<String, Object> car_type) {
+		return mapper.selectModelList(car_type);
 	}
 
 	// 차량 상세 리스트 조회 요청
-	public List<CarVO> getCarList(int brc_idx) {
-		return mapper.selectCarList(brc_idx);
+	public List<CarVO> getCarList(int brc_idx, Map<String, Object> car_opts) {
+		return mapper.selectCarList(brc_idx, car_opts);
 	}
 
 	// 해당 일정에 선택된 차량 리스트 조회 요청
@@ -41,4 +41,5 @@ public class ReservationService {
 	public String getCarModelImage(String car_model) {
 		return mapper.selectCarModelImage(car_model);
 	}
+
 }

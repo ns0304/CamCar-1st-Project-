@@ -90,7 +90,7 @@ body {
     color: #333;
 }
 main>section {
-	height: 700px;
+	min-height: 700px;
 }
 </style>
 <script type="text/javascript">

@@ -12,10 +12,10 @@
 <style>
 
 /* 지점 선택, 차종 선택 버튼 정렬 */
-.brc_btn, #car_opt, #car_opt_detail {
+.brc_btn, #car_opt {
 	display: flex;
 }
-.brc_btn input, #car_opt input, #car_opt_detail input {
+.brc_btn input, #car_opt input {
 	width: 50%;
 	background-color: #f1f3f5;
 }
@@ -267,6 +267,7 @@ $(document).ready(function() {
 		
 		<!-- ------- 차량 조회 및 예약 버튼 -------------------------------------- -->
 		<div>
+<!-- 			<input type="hidden" id="fuel_opt" name="fuel_opt" value=""> -->
 			<input type="submit" id="res_assembly" value="차량 조회하고 예약하기">
 		</div>
 	</form>

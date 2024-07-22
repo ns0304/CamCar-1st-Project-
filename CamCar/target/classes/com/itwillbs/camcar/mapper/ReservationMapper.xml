@@ -10,10 +10,10 @@
 		SELECT *
 		FROM car_model_info
 		WHERE 1=1
-		    <if test="car_optList != null and car_optList.size() > 0">	-- car_optList가 있을 경우
+		    <if test="car_typeList != null and car_typeList.size() > 0">	-- car_typeList가 있을 경우
 		        AND car_type IN
-		        <foreach item="item" index="index" collection="car_optList" open="(" separator="," close=")">
-		            #{item}
+		        <foreach item="car_type" index="index" collection="car_typeList" open="(" separator="," close=")">
+		            #{car_type}
 		        </foreach>
 		    </if>
 			
@@ -25,6 +25,49 @@
 		SELECT *
 		FROM car_info
 		WHERE brc_idx = #{brc_idx}
+	        <if test="car_opts.car_fuel_typeList != null and car_opts.car_fuel_typeList.size() > 0">	-- car_fuel_typeList가 있을 경우
+	            AND car_fuel_type IN
+	            <foreach item="car_fuel_type" index="index" collection="car_opts.car_fuel_typeList" open="(" separator="," close=")">
+	                #{car_fuel_type}
+	            </foreach>
+	        </if>
+	        <if test="car_opts.car_age != null">	-- car_age가 있을 경우
+	            <foreach item="car_age" index="index" collection="car_opts.car_age">
+	                <choose>
+		                <when test="car_age == 26">	-- 만 26세 이상
+		                	AND car_age >= #{car_age}
+		                </when>
+		                <otherwise>	-- 만 21 ~ 25세
+		                	AND car_age BETWEEN 21 AND 25
+		                </otherwise>
+	                </choose>
+	            </foreach>
+	        </if>
+	        <if test="car_opts.car_career != null">	-- car_careerList가 있을 경우
+	            <foreach item="car_career" index="index" collection="car_opts.car_career">
+	                <choose>
+		                <when test="car_career == 3">	-- 3년 이상
+		                	AND car_career >= #{car_career}
+		                </when>
+		                <otherwise>	-- 1년~3년 미만
+		                	AND car_career BETWEEN 1 AND 2
+		                </otherwise>
+	                </choose>
+	            </foreach>
+	        </if>
+	        <if test="car_opts.car_oldList != null"> -- car_oldList가 있을 경우
+                AND (
+			        car_old BETWEEN #{car_opts.car_oldList.startYear} AND #{car_opts.car_oldList.endYear}
+			    )
+            </if>
+	        <if test="car_opts.pet_opt != null">	-- pet_opt가 있을 경우
+	            <foreach item="pet_opt" index="index" collection="car_opts.pet_opt">
+	               	AND pet_opt = #{pet_opt}
+	            </foreach>
+	        </if>
+            
+		
+		
 		ORDER BY car_model
 	</select>
 	
