@@ -24,10 +24,6 @@ public class MyPageService {
 	}
 	
 	
-	// 운전자 정보 조회 요청
-	public DriverVO getDriver(DriverVO driver, String id) {
-		return mapper.selectDriver(driver, id);
-	}
 	
 	// 회원 정보 수정 요청
 	public int modifyMember(Map<String, String> map) {
@@ -76,18 +72,19 @@ public class MyPageService {
 	public List<Map<String, String>> getReserveList(String id) {
 		return mapper.selectReserveList(id);
 	}
-
-//	// 운전면허 정보 조회 요청
-//	public DriverVO getDriver(DriverVO driver) {
-//		return mapper.selectMemLicense(driver);
-//	}
-
 	
+	// 운전자 정보 조회 요청
+	public DriverVO getDriver(DriverVO driver, String id) {
+		return mapper.selectDriver(driver, id);
+	}
 
 
-//	public DriverVO getDriver(DriverVO driver, String id) {
-//		return mapper.selectMemLicense(driver, id);
-//	}
+	// 운전면허 정보 수정 요청
+	public int modifyLicInfo(Map<String, String> map) {
+		return mapper.updateLicInfo(map);
+	}
+
+
 
 
 	

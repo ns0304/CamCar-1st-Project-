@@ -282,7 +282,7 @@ public class Car_ManageController {
 			// 파일 삭제에 사용될 파일명(최대 3개)를 List 또는 배열에 저장하여 처리 코드 중복 제거
 			model.addAttribute("msg", "삭제 성공!");
 			model.addAttribute("targetURL", "CarListBoard?pageNum=" + pageNum);
-			return "result/closepage";
+			return "result/closewindow";
 		} else {
 			model.addAttribute("msg", "삭제 실패!");
 			return "result/fail";

@@ -6,15 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>캠핑갈카 관리자</title>
-<%-- 외부 CSS 파일(css/default.css) 연결하기 --%>
-<link
-	href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
+<link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
 	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css"
+<link href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css"
 	rel="stylesheet" type="text/css">
-<script
-	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <style type="text/css">
 #articleForm {
 	width: 900px;
@@ -64,15 +60,12 @@ table input[type="button"]:hover {
 <script type="text/javascript">
         function correction(car_idx) {
             var url = 'CarDetailView?car_idx=' + car_idx;
-            var windowFeatures = 'width=900px,height=900px,left=750,top=200';
-            window.open(url, '_blank', windowFeatures);
+            window.location.href = url;
         }
     </script>
 </head>
 <body>
 	<header>
-		<%-- 기본 메뉴 표시 영역(inc/top.jsp) 페이지 삽입 --%>
-		<%-- 현재 위치는 컨텍스트 루트(/MVC_Board = webapp) 이므로 inc 디렉토리의 top.jsp 지정 --%>
 		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
 	</header>
 	<main>
@@ -139,9 +132,7 @@ table input[type="button"]:hover {
 			</div>
 		</section>
 	</main>
-	
 	<footer>
-		<%-- 회사 소개 영역(inc/bottom.jsp) 페이지 삽입 --%>
 		<jsp:include page="/WEB-INF/views/inc/bottom.jsp"></jsp:include>
 	</footer>
 </body>

@@ -12,7 +12,9 @@
 <link
 	href="${pageContext.request.servletContext.contextPath}/resources/css/default.css"
 	rel="stylesheet" type="text/css"> -->
-<link href="${pageContext.request.servletContext.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.servletContext.contextPath}/resources/css/manager_default.css"
+	rel="stylesheet" type="text/css">
 <script
 	src="${pageContext.request.servletContext.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
@@ -97,7 +99,14 @@ table input[type="button"]:hover {
 </style>
 </head>
 <body>
+
+	<header>
+		<jsp:include page="/WEB-INF/views/inc/manager_top.jsp"></jsp:include>
+	</header>
 	<main>
+		<aside>
+			<jsp:include page="/WEB-INF/views/inc/menu.jsp"></jsp:include>
+		</aside>
 		<section>
 			<div align="center">
 				<!-- 게시판 상세내용 보기 -->
@@ -106,7 +115,7 @@ table input[type="button"]:hover {
 					<%-- 				<input type="hidden" name="car_status" value="${car.car_status}"> --%>
 					<article id="articleForm">
 						<h2>차량 상세 정보</h2>
-						<section id="basicInfoArea">
+						<section id="articleForm">
 							<table border="1" class="graph">
 								<tr>
 									<th>차량코드 *</th>

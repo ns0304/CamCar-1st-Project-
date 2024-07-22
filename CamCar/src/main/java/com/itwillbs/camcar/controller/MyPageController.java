@@ -246,11 +246,11 @@ public class MyPageController {
 //			return "result/fail";
 //		}
 		//------------------------------------------------------------------------------
-		// 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
-		// 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
-//		if(!map.get("mem_passwd").equals("")) {
-//			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
-//		}
+//		 기존 비밀번호 일치 시 회원 정보 수정 요청 전에 
+//		 새 비밀번호 입력 여부를 확인하여 새비밀번호 입력됐을 경우 암호화 수행 필요
+		if(!map.get("mem_passwd").equals("")) {
+			map.put("mem_passwd", passwordEncoder.encode(map.get("mem_passwd")));
+		}
 		System.out.println("map222 : " + map); // passwd 항목 암호화 결과 확인
 		
 		// MemberService - modifyMemPasswd() 메서드 호출하여 비밀번호 변경 요청
@@ -294,6 +294,29 @@ public class MyPageController {
 		}
 	}
 	
+	// [내 운전면허 정보 수정]
+	@PostMapping("LicModify")
+	public String licModify(@RequestParam Map<String,String> map, DriverVO driver, Model model, HttpSession session) {
+		System.out.println("LicModify(driver) : " + driver);
+		
+		String id = (String)session.getAttribute("sId");
+		driver = service.getDriver(driver, id);
+		
+		// MyPageService - modifyLicInfo() 메서드 호출하여 면허정보 변경 요청
+		int updateLicCount = service.modifyLicInfo(map);
+		// 수정 요청 결과 판별 
+		// 성공 시 "myInfo" 서블릿 주소 전달, 메세지 : 회원정보 수정 성공(success.jsp)
+		System.out.println("updateLicCount : " + updateLicCount);
+		if(updateLicCount > 0) {
+			//		 			if(updateCount1 > 0 || updateCount2 > 0) {
+			model.addAttribute("msg", "회원 운전면허 정보 수정 성공!");
+			model.addAttribute("targetURL", "myInfo");
+			return "result/success";
+		}  else {
+			model.addAttribute("msg", "회원정보 수정 실패!");
+			return "result/fail";
+		}
+	}
 	
 	// [ 회원 탈퇴 ]
 	@GetMapping("MemberWithdraw")

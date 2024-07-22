@@ -37,6 +37,9 @@
 				</otherwise>
 			</choose>
 		</if>
+		ORDER BY
+			qna_date DESC
+			
 		LIMIT
 			#{startRow}     
 			, #{listLimit}
