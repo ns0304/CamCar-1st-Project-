@@ -12,6 +12,8 @@
             window.opener.location.reload(); // 부모 창 새로고침
             window.close(); // 현재 창 닫기
         }
+        
+        // ㅎㅎ
     </script>
 </head>
 <body onload="closeWindowAndRefreshParent()">
