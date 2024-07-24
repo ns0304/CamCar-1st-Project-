@@ -182,13 +182,13 @@
 							<tr>
 								<th>주중 대여료 *</th>
 								<td class="write_td_right" colspan="2">
-									<input type="number" id="car_weekdays" name="car_weekdays" min="1000" max="100000" step="100" required/>
+									<input type="number" id="car_weekdays" name="car_weekdays" min="1000" max="100000" step="1000" required/>
 								</td>
 							</tr>
 							<tr>
 								<th>주말 대여료 *</th>
 								<td class="write_td_right" colspan="2">
-									<input type="number" id="car_weekend" name="car_weekend" min="1000" max="100000" step="100" required />
+									<input type="number" id="car_weekend" name="car_weekend" min="1000" max="100000" step="1000" required />
 								</td>
 							</tr>
 							<tr>

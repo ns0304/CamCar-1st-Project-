@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <%-- 로그인 여부(= 세션 아이디 존재 여부) 판별하여 각각 다른 링크 표시 --%>
         <%-- EL 의 sessionScope 내장 객체에 접근하여 "sId" 속성값 존재 여부 판별 --%>
         <ul class="member">
-            <li><a>관리자님 환영합니다</a></li>
+            <li><a href="ManagerMain">관리자님 환영합니다</a></li>
         </ul>
     </nav>
 </div>

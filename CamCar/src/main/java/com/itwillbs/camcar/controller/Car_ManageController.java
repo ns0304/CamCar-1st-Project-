@@ -307,7 +307,7 @@ public class Car_ManageController {
 		int updateCount = service.getCarInfoUpdate(map);
 		if(updateCount > 0) {
 			model.addAttribute("msg", "수정 완료!");
-			return "result/closepage";
+			return "result/closewindow";
 		}else {
 			model.addAttribute("msg", "잘못된 접근입니다!");
 			return "result/fail";
