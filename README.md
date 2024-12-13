@@ -38,7 +38,7 @@ http://c5d2403t1.itwillbs.com/CamCar/
 ----------------
 |팀장|부팀장|서기|팀원|팀원|
 |------|---|---|---|---|
-|<div align="center">[진성민](https://github.com/ns0304)</div>|<div align="center">[최민석](https://github.com/CHOIMINSEOK-KORR)</div>|<div align="center">[옥혜지](https://github.com/devok11)</div>|<div align="center">[최지민](https://github.com/yeonjinnk)</div>|<div align="center">[하지형](https://github.com/morehaji)</div>|
+|<div align="center">[진성민](https://github.com/ns0304)</div>|<div align="center">[최민석](https://github.com/CHOIMINSEOK-KORR)</div>|<div align="center">[옥혜지](https://github.com/devok11)</div>|<div align="center">[최지민](https://github.com/codeJimin)</div>|<div align="center">[하지형](https://github.com/morehaji)</div>|
 |관리자페이지<br>관리자페이지 CSS|회원가입/로그인<br>고객센터|메인 페이지<br>결제/예약|예약<br>차량 리스트<br>차량 상세조회|마이페이지<br>1:1문의|
 
 
@@ -53,33 +53,24 @@ http://c5d2403t1.itwillbs.com/CamCar/
 |로그인|회원가입|
 |------|---|
 |<img src="https://github.com/user-attachments/assets/a358ee4b-f0d8-41ff-a179-2eb4805f85d2"  width="600" height="400"/>|<img src="https://github.com/user-attachments/assets/0e7d1ebc-f6de-4fb5-8b90-c351d6194179"  width="400" height="600"/>|
-|- 로그인<br>- 이메일 인증 서비스와 휴대폰 번호 인증|-|
+|- 로그인<br>- 아이디, 비밀번호 찾기|- 이메일 인증 서비스<br>- coolsms를 사용한 휴대폰 번호 인증|
 
 
 |마이페이지|
 |------|
-|<img src="https://github.com/user-attachments/assets/aa177e7e-7943-4fbc-a100-2d9bb114727c"  width="800" height="600"/>|
-|- 판매내역<br>- 구매내역<br>- 찜한상품<br>- 회원정보 수정|
+|<img src="https://github.com/user-attachments/assets/f75c77db-437d-4685-9509-a5758d46395a"  width="800" height="600"/>|
+|- 예약내역<br>- 1:1 문의내역<br>- 회원정보 수정|
 
-|스토어 상품|결제|
+|고객센터|1 : 1 문의 사항|
 |------|------|
-|<img src="https://github.com/user-attachments/assets/056aa97c-5f95-4f9f-b857-418d2e8286e4"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/4024a029-bbab-4c1b-b7ff-70e87f455c5a"  width="400" height="300"/>|
-|- 상세 이미지 확대<br>- 수량 변경|- 카카오페이 결제|
+|<img src="https://github.com/user-attachments/assets/bcbc1d69-6526-4d88-b7bf-c8c5afbb2eba"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/e4a62894-4831-42dc-b4d8-4e43411535aa"  width="400" height="300"/>|
+|- 자주 찾는 질문<br>- 1 : 1 문의 사항|- 유형 카테고리로 더 세밀한 문의 가|
 
-|채팅|채팅 알림|
-|------|------|
-|<img src="https://github.com/user-attachments/assets/da0b6dfc-eaa6-4c1b-b2b1-78f62b7601ac"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/fee04af6-5d43-4c19-931e-ab12cc4a37b6"  width="400" height="300"/>|
-|- 1:1채팅<br>- 버튼 통해 판매자는 금액 입력 및 구매자는 결제 가능<br>- 채팅 신고하기<br>- 채팅 종료|- 미확인 채팅 알림 메뉴 위 적색 아이콘으로 표시<br>- 수신된 채팅 내용을 알림 메뉴에서 확인 가능|
 
-|최근 검색어|인기 검색어|
-|------|------|
-|<img src="https://github.com/user-attachments/assets/55c1ee20-209f-4ed6-9cf1-f8307c130cc2"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/c720475e-1593-43e5-82f4-31952df56875"  width="400" height="300"/>|
-|- 최근 검색어 확인|- 인기 검색어 1~20위 확인|
-
-|상품 목록|상품 상세|
-|------|------|
-|<img src="https://github.com/user-attachments/assets/12da34f9-a662-44ea-a0b8-d7a1c8be7069"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/daabd340-8ef4-4a44-88bd-7d46d993792f"  width="400" height="300"/>|
-|- 카테고리 선택 <br>- 아래로 스크롤 시 게시글 자동 로딩|- 상품의 이미지가 슬라이드 형식으로 출력<br>- 거래하기, 찜하기 버튼 및 판매자 정보<br>- 판매자 본인은 수정하기/삭제하기/끌어올리기 가능
+|관리자 페이지|
+|------|
+|<img src="https://github.com/user-attachments/assets/1713260d-fb4c-4c21-9026-317cc3da5311"  width="800" height="600"/>|
+|- chart.js 활용한 관리자 메인페이지|
 
 |
 
