@@ -38,7 +38,7 @@ http://c5d2403t1.itwillbs.com/CamCar/
 ----------------
 |팀장|부팀장|서기|팀원|팀원|
 |------|---|---|---|---|
-|<div align="center">[진성민](https://github.com/ns0304)</div>|<div align="center">[옥혜지](https://github.com/CHOIMINSEOK-KORR)</div>|<div align="center">[최지민](https://github.com/devok11)</div>|<div align="center">[최민석](https://github.com/codeJimin)</div>|<div align="center">[하지형](https://github.com/morehaji)</div>|
+|<div align="center">[진성민](https://github.com/ns0304)</div>|<div align="center">[옥혜지](https://github.com/devok11)</div>|<div align="center">[최지민](https://github.com/codeJimin)</div>|<div align="center">[최민석](https://github.com/CHOIMINSEOK-KORR)</div>|<div align="center">[하지형](https://github.com/morehaji)</div>|
 |관리자페이지<br>관리자페이지 CSS|메인 페이지<br>결제/예약|예약<br>차량 리스트<br>차량 상세조회|회원가입/로그인<br>고객센터|마이페이지<br>1:1문의|
 
 
