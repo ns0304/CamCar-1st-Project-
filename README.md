@@ -64,7 +64,7 @@ http://c5d2403t1.itwillbs.com/CamCar/
 |고객센터|1 : 1 문의 사항|
 |------|------|
 |<img src="https://github.com/user-attachments/assets/bcbc1d69-6526-4d88-b7bf-c8c5afbb2eba"  width="400" height="300"/>|<img src="https://github.com/user-attachments/assets/e4a62894-4831-42dc-b4d8-4e43411535aa"  width="400" height="300"/>|
-|- 자주 찾는 질문<br>- 1 : 1 문의 사항|- 유형 카테고리로 더 세밀한 문의 가|
+|- 자주 찾는 질문<br>- 1 : 1 문의 사항|- 유형 카테고리로 더 세밀한 문의 가능능|
 
 
 |관리자 페이지|
